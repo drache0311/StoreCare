@@ -22,4 +22,10 @@ public class DepartmentVO {
 	public void setDep_name(String dep_name) {
 		this.dep_name = dep_name;
 	}
+	
+	// 이 부분이랑 그 사이트 참고하면 될듯 !!!
+	@Override
+	public String toString() {
+		return "DepartmentVO [code=" + code + ", dep_name=" + dep_name +"]";
+	}
 }

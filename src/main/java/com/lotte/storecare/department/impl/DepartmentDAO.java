@@ -106,10 +106,14 @@ public class DepartmentDAO {
 				department.setCode(rs.getInt("CODE"));
 				department.setDep_name(rs.getString("DEP_NAME"));
 				departmentList.add(department);
-				System.out.println("=====>>>>>>Tes{"+department.getCode() +"}");
-				System.out.println("=====>>>>>>Tes{"+department.getDep_name() +"}");
+				System.out.println("=====>>>>>>{"+department.getCode() +"}");
+				System.out.println("=====>>>>>>{"+department.getDep_name() +"}");
 			}
-			System.out.println("===> JDBC로 getDepartmentList() 기능 완료");
+			
+			for(DepartmentVO i : departmentList) { //for문을 통한 전체출력
+			    System.out.println(i.getCode());
+			    System.out.println(i.getDep_name());
+			}
 			
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <!DOCTYPE html>
 <head>
@@ -18,12 +18,6 @@
 </head>
 
 <body>
-<p>out.print("list:"+${departmentList }); </p>
-<p><c:>${code }</c:>
-						<c:forEach items="${departmentList }" var="department ">
-								<p>${department.Code }   ${department.Dep_name }</p>
-						</c:forEach>
-
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
     <div class="container">
@@ -76,11 +70,9 @@
 					<tr>
 						<td align="right">
 						<select name="searchCondition">
-						<tr>
-						<c:forEach items="${departmentList }" var="department">
-								<option value="${department.code}">${department.dep_name }
-						</c:forEach>
-						</tr>
+								<c:forEach items="${departmentList}" var="department">
+										<option value="${department.code}">${department.dep_name}</option>
+								</c:forEach>
 						</select>
 						</td>
 					</tr>
