@@ -16,23 +16,22 @@ public class PlaceDAO {
 	private Connection conn = null;
 	private PreparedStatement stmt = null;
 	private ResultSet rs = null;
-	// SQL 명령어들
+	// SQL 명령어들 -> 미완성
 	private final String PLACE_INSERT = "insert into place(seq, title, writer, content) values((select nvl(max(seq), 0)+1 from place),?,?,?)";
 	private final String PLACE_UPDATE = "update place set title=?, content=? where seq=?";
 	private final String PLACE_DELETE = "delete place where seq=?";
 	private final String PLACE_GET = "select * from place where seq=?";
-	private final String PLACE_LIST = "select * from place order by seq desc";
+	private final String PLACE_LIST = "select * from place";
 
 	// CRUD 기능의 메소드 구현
-	// 글 등록
+	// 글 등록 - > 미완성
 	public void insertPlace(PlaceVO vo) {
 		System.out.println("===> JDBC로 insertplace() 기능 처리");
 		try {
 			conn = JDBCUtil.getConnection();
 			stmt = conn.prepareStatement(PLACE_INSERT);
-			stmt.setString(1, vo.getTitle());
-			stmt.setString(2, vo.getWriter());
-			stmt.setString(3, vo.getContent());
+			stmt.setInt(1, vo.getCode());
+			stmt.setString(2, vo.getPlace_detail());
 			stmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -47,9 +46,8 @@ public class PlaceDAO {
 		try {
 			conn = JDBCUtil.getConnection();
 			stmt = conn.prepareStatement(PLACE_UPDATE);
-			stmt.setString(1, vo.getTitle());
-			stmt.setString(2, vo.getContent());
-			stmt.setInt(3, vo.getSeq());
+			stmt.setInt(1, vo.getCode());
+			stmt.setString(2, vo.getPlace_detail());
 			stmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -58,13 +56,13 @@ public class PlaceDAO {
 		}
 	}
 
-	// 글 삭제
+	// 글 삭제 -> 미완성
 	public void deletePlace(PlaceVO vo) {
 		System.out.println("===> JDBC로 deleteplace() 기능 처리");
 		try {
 			conn = JDBCUtil.getConnection();
 			stmt = conn.prepareStatement(PLACE_DELETE);
-			stmt.setInt(1, vo.getSeq());
+			stmt.setInt(1, vo.getCode());
 			stmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -73,23 +71,19 @@ public class PlaceDAO {
 		}
 	}
 
-	// 글 상세 조회
+	// 글 상세 조회 -> 미완성
 	public PlaceVO getPlace(PlaceVO vo) {
 		System.out.println("===> JDBC로 getplace() 기능 처리");
 		PlaceVO place = null;
 		try {
 			conn = JDBCUtil.getConnection();
 			stmt = conn.prepareStatement(PLACE_GET);
-			stmt.setInt(1, vo.getSeq());
+			stmt.setInt(1, vo.getCode());
 			rs = stmt.executeQuery();
 			if (rs.next()) {
 				place = new PlaceVO();
-				place.setSeq(rs.getInt("SEQ"));
-				place.setTitle(rs.getString("TITLE"));
-				place.setWriter(rs.getString("WRITER"));
-				place.setContent(rs.getString("CONTENT"));
-				place.setRegDate(rs.getDate("REGDATE"));
-				place.setCnt(rs.getInt("CNT"));
+				place.setCode(rs.getInt("CODE"));
+				place.setPlace_detail(rs.getString("PLACE_DETAIL"));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -109,12 +103,8 @@ public class PlaceDAO {
 			rs = stmt.executeQuery();
 			while (rs.next()) {
 				PlaceVO place = new PlaceVO();
-				place.setSeq(rs.getInt("SEQ"));
-				place.setTitle(rs.getString("TITLE"));
-				place.setWriter(rs.getString("WRITER"));
-				place.setContent(rs.getString("CONTENT"));
-				place.setRegDate(rs.getDate("REGDATE"));
-				place.setCnt(rs.getInt("CNT"));
+				place.setCode(rs.getInt("CODE"));
+				place.setPlace_detail(rs.getString("PLACE_DETAIL"));
 				placeList.add(place);
 			}
 		} catch (Exception e) {

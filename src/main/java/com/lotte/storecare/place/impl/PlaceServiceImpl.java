@@ -17,7 +17,7 @@ public class PlaceServiceImpl implements PlaceService {
 //		if (vo.getSeq() == 0) {
 //			throw new IllegalArgumentException("0�� ���� ����� �� �����ϴ�.");
 //		}
-		placeDAO.insertPlace(vo); // 100�� �� ��� ����
+//		placeDAO.insertPlace(vo); // 100�� �� ��� ����
 		placeDAO.insertPlace(vo); // Exception �߻�
 	}
 
