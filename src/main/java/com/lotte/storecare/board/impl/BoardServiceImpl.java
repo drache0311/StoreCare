@@ -2,11 +2,15 @@ package com.lotte.storecare.board.impl;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.lotte.storecare.board.BoardService;
 import com.lotte.storecare.board.BoardVO;
+import com.lotte.storecare.user.UserVO;
+import com.lotte.storecare.user.impl.UserDAO;
 
 @Service("boardService")
 public class BoardServiceImpl implements BoardService {
@@ -17,7 +21,7 @@ public class BoardServiceImpl implements BoardService {
 //		if (vo.getSeq() == 0) {
 //			throw new IllegalArgumentException("0�� ���� ����� �� �����ϴ�.");
 //		}
-		boardDAO.insertBoard(vo); // 100�� �� ��� ����
+//		boardDAO.insertBoard(vo); // 100�� �� ��� ����
 		boardDAO.insertBoard(vo); // Exception �߻�
 	}
 
@@ -33,7 +37,7 @@ public class BoardServiceImpl implements BoardService {
 		return boardDAO.getBoard(vo);
 	}
 
-	public List<BoardVO> getBoardList(BoardVO vo) {
-		return boardDAO.getBoardList(vo);
+	public List<BoardVO> getBoardList(BoardVO vo ,HttpSession session) {
+		return boardDAO.getBoardList(vo, session);
 	}
 }

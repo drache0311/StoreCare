@@ -1,5 +1,7 @@
 ﻿package com.lotte.view.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -7,6 +9,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.lotte.storecare.board.BoardVO;
 import com.lotte.storecare.board.impl.BoardDAO;
+import com.lotte.storecare.user.UserVO;
+import com.lotte.storecare.user.impl.UserDAO;
 
 @Controller
 public class BoardController {
@@ -48,8 +52,8 @@ public class BoardController {
 
 	// 글 목록 검색
 	@RequestMapping("/getBoardList.do")
-	public ModelAndView getBoardList(BoardVO vo, BoardDAO boardDAO, ModelAndView mav) {
-		mav.addObject("boardList", boardDAO.getBoardList(vo)); // Model 정보 저장
+	public ModelAndView getBoardList(BoardVO vo, BoardDAO boardDAO, ModelAndView mav, HttpSession session) {
+		mav.addObject("boardList", boardDAO.getBoardList(vo, session)); // Model 정보 저장
 		mav.setViewName("getBoardList"); // View 정보 저장
 		return mav;
 	}

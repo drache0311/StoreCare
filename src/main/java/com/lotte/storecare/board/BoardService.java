@@ -2,6 +2,11 @@ package com.lotte.storecare.board;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
+import com.lotte.storecare.user.UserVO;
+import com.lotte.storecare.user.impl.UserDAO;
+
 public interface BoardService {
 	// CRUD ����� �޼ҵ� ����
 	// �� ���
@@ -17,5 +22,5 @@ public interface BoardService {
 	BoardVO getBoard(BoardVO vo);
 
 	// �� ��� ��ȸ
-	List<BoardVO> getBoardList(BoardVO vo);
+	List<BoardVO> getBoardList(BoardVO vo, HttpSession session);
 }
