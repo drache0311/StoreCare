@@ -5,9 +5,15 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Repository;
 import com.lotte.storecare.board.BoardVO;
 import com.lotte.storecare.common.JDBCUtil;
+import com.lotte.storecare.department.DepartmentVO;
+import com.lotte.storecare.user.UserVO;
+import com.lotte.storecare.user.impl.UserDAO;
 
 // DAO(Data Access Object)
 @Repository("boardDAO")
@@ -17,22 +23,26 @@ public class BoardDAO {
 	private PreparedStatement stmt = null;
 	private ResultSet rs = null;
 	// SQL 명령어들
-	private final String BOARD_INSERT = "insert into board(seq, title, writer, content) values((select nvl(max(seq), 0)+1 from board),?,?,?)";
-	private final String BOARD_UPDATE = "update board set title=?, content=? where seq=?";
-	private final String BOARD_DELETE = "delete board where seq=?";
+	//private final String BOARD_INSERT = "insert into board(seq, title, writer, content) values((select nvl(max(seq), 0)+1 from board),?,?,?)";
+	private final String BOARD_INSERT = "insert into board(floor, problem_code,problem_place_code,users_id,department_code,datetime) values(?,?,?,?,?,?)";
+	private final String BOARD_UPDATE = "update board set problem_code=?, problem_place_code=? where seq=?";
+	private final String BOARD_DELETE = "delete from board where seq=?";
 	private final String BOARD_GET = "select * from board where seq=?";
-	private final String BOARD_LIST = "select * from board order by seq desc";
+	private final String BOARD_LIST = "select * from board where users_id=?";
 
 	// CRUD 기능의 메소드 구현
-	// 글 등록
+	// 글 등록 -> 아직 불확실
 	public void insertBoard(BoardVO vo) {
 		System.out.println("===> JDBC로 insertBoard() 기능 처리");
 		try {
 			conn = JDBCUtil.getConnection();
 			stmt = conn.prepareStatement(BOARD_INSERT);
-			stmt.setString(1, vo.getTitle());
-			stmt.setString(2, vo.getWriter());
-			stmt.setString(3, vo.getContent());
+			stmt.setString(1, vo.getFloor());
+			stmt.setInt(2, vo.getProblem_code());
+			stmt.setInt(3, vo.getProblem_place_code());
+			stmt.setString(4, vo.getUsers_id());
+			stmt.setInt(5, vo.getDepartment_code());
+			stmt.setTimestamp(6, vo.getDatetime());
 			stmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -41,14 +51,14 @@ public class BoardDAO {
 		}
 	}
 
-	// 글 수정
+	// 글 수정  -> 아직 불확실
 	public void updateBoard(BoardVO vo) {
 		System.out.println("===> JDBC로 updateBoard() 기능 처리");
 		try {
 			conn = JDBCUtil.getConnection();
 			stmt = conn.prepareStatement(BOARD_UPDATE);
-			stmt.setString(1, vo.getTitle());
-			stmt.setString(2, vo.getContent());
+			stmt.setInt(1, vo.getProblem_code());
+			stmt.setInt(2, vo.getProblem_place_code());
 			stmt.setInt(3, vo.getSeq());
 			stmt.executeUpdate();
 		} catch (Exception e) {
@@ -66,6 +76,7 @@ public class BoardDAO {
 			stmt = conn.prepareStatement(BOARD_DELETE);
 			stmt.setInt(1, vo.getSeq());
 			stmt.executeUpdate();
+			System.out.println("===> JDBC로 deleteBoard() 기능 처리 완료");
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -73,7 +84,7 @@ public class BoardDAO {
 		}
 	}
 
-	// 글 상세 조회
+	// 글 상세 조회 
 	public BoardVO getBoard(BoardVO vo) {
 		System.out.println("===> JDBC로 getBoard() 기능 처리");
 		BoardVO board = null;
@@ -85,11 +96,12 @@ public class BoardDAO {
 			if (rs.next()) {
 				board = new BoardVO();
 				board.setSeq(rs.getInt("SEQ"));
-				board.setTitle(rs.getString("TITLE"));
-				board.setWriter(rs.getString("WRITER"));
-				board.setContent(rs.getString("CONTENT"));
-				board.setRegDate(rs.getDate("REGDATE"));
-				board.setCnt(rs.getInt("CNT"));
+				board.setFloor(rs.getString("FLOOR"));
+				board.setProblem_code(rs.getInt("PROBLEM_CODE"));
+				board.setProblem_place_code(rs.getInt("PROBLEM_PLACE_CODE"));
+				board.setUsers_id(rs.getString("USERS_ID"));
+				board.setDepartment_code(rs.getInt("DEPARTMENT_CODE"));
+				board.setDatetime(rs.getTimestamp("DATETIME"));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -99,24 +111,29 @@ public class BoardDAO {
 		return board;
 	}
 
-	// 글 목록 조회
-	public List<BoardVO> getBoardList(BoardVO vo) {
+	// 글 목록 조회 
+	public List<BoardVO> getBoardList(BoardVO vo,HttpSession session) {
 		System.out.println("===> JDBC로 getBoardList() 기능 처리");
 		List<BoardVO> boardList = new ArrayList<BoardVO>();
+		String id = session.getAttribute("login").toString();
 		try {
 			conn = JDBCUtil.getConnection();
 			stmt = conn.prepareStatement(BOARD_LIST);
+			stmt.setString(1, id);
 			rs = stmt.executeQuery();
 			while (rs.next()) {
 				BoardVO board = new BoardVO();
 				board.setSeq(rs.getInt("SEQ"));
-				board.setTitle(rs.getString("TITLE"));
-				board.setWriter(rs.getString("WRITER"));
-				board.setContent(rs.getString("CONTENT"));
-				board.setRegDate(rs.getDate("REGDATE"));
-				board.setCnt(rs.getInt("CNT"));
+				board.setFloor(rs.getString("FLOOR"));
+				board.setProblem_code(rs.getInt("PROBLEM_CODE"));
+				board.setProblem_place_code(rs.getInt("PROBLEM_PLACE_CODE"));
+				board.setUsers_id(rs.getString("USERS_ID"));
+				board.setDepartment_code(rs.getInt("DEPARTMENT_CODE"));
+				board.setDatetime(rs.getTimestamp("DATETIME"));
+				System.out.println("=======>board Users_id = " + board.getUsers_id());
 				boardList.add(board);
 			}
+			System.out.println("===> JDBC로 getBoardList() 기능 처리 완료");
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {

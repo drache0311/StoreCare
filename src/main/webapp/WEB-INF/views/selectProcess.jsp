@@ -21,7 +21,7 @@
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
     <div class="container">
-      <a class="navbar-brand" href="#">Start Bootstrap</a>
+      <a class="navbar-brand" href="#">롯데백화점</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -33,13 +33,13 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">About</a>
+            <a class="nav-link" href="#">미정</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Services</a>
+            <a class="nav-link" href="#">미정</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Contact</a>
+            <a class="nav-link" href="logout.do">Log-out</a>
           </li>
         </ul>
       </div>
@@ -64,11 +64,11 @@
         <ul class="list-unstyled">
           <li>문의하실 백화점을 선택하세요</li>
           <li>		
-          <!-- 선택 시작 -->
+          <!-- 문의할 백화점 선택 FORM -->
 			<form action="insertBoard" method="post">
-				<table>
+				<table align="center">
 					<tr>
-						<td align="right">
+						<td align="center">
 						<select name="searchCondition">
 								<c:forEach items="${departmentList}" var="department">
 										<option value="${department.code}">${department.dep_name}</option>
@@ -78,12 +78,14 @@
 					</tr>
 					<tr>
 					<td>
-					<button type="submit" value="TEST" >TEST</button>
+					<button type="submit" value="dep_code" >등록하기</button>
 					</td>
 					</tr>
 				</table>
 			</form>
-			<!-- 선택 종료 -->
+			<!-- 문의할 백화점 선택 FORM 종료 -->
+			<!-- 내 문의내역 BUTTON  -->
+			<button type="button" onclick="location.href='getBoardList.do' ">내 문의내역</button>
 		</li>
         </ul>
       </div>

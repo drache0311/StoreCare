@@ -9,10 +9,10 @@
 <%
 	String code = request.getParameter("searchCondition");
 	out.println(code);
+	out.println("dep_code");
 %>
 	<center>
 		<h1>±Û µî·Ï</h1>
-		<a href="logout.do">Log-out</a>
 		<hr>
 		<form action="insertBoard.do" method="post">
 			<table border="1" cellpadding="0" cellspacing="0">

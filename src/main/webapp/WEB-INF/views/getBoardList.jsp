@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
+
+
+
 <!DOCTYPE html>
 <head>
 
@@ -8,7 +13,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Bare - Start Bootstrap Template</title>
+  <title>나의 StoreCare</title>
 
   <!-- Bootstrap core CSS -->
   <link href="<%=request.getContextPath()%>/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -20,14 +25,14 @@
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
     <div class="container">
-      <a class="navbar-brand" href="#">Start Bootstrap</a>
+      <a class="navbar-brand" href="#">StoreCare</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item active">
-            <a class="nav-link" href="#">Home
+            <a class="nav-link" href="getDepartmentList.do">Home
               <span class="sr-only">(current)</span>
             </a>
           </li>
@@ -38,54 +43,36 @@
             <a class="nav-link" href="#">Services</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Contact</a>
+            <a class="nav-link" href="logout.do">Log-out</a>
           </li>
         </ul>
       </div>
     </div>
   </nav>
 
+	문의가 없으면 문의 하시겠어요? 버튼 만들어서 selectProcess로 ㄱㄱ
   <!-- Page Content -->
-	<center>
-		<h1>글 목록</h1>
-		<h3>
-			테스트님 환영합니다...<a href="logout.do">Log-out</a>
-		</h3>
-		<!-- 검색 시작 -->
-		<form action="getBoardList.jsp" method="post">
-			<table border="1" cellpadding="0" cellspacing="0" width="700">
-				<tr>
-					<td align="right">
-					<select name="searchCondition">
-							<option value="TITLE">제목
-							<option value="CONTENT">내용
-					</select> <input name="searchKeyword" type="text" /> <input type="submit"
-						value="검색" /></td>
-				</tr>
-			</table>
-		</form>
-		<!-- 검색 종료 -->
-		<table border="1" cellpadding="0" cellspacing="0" width="700">
-			<tr>
-				<th bgcolor="orange" width="100">번호</th>
-				<th bgcolor="orange" width="200">제목</th>
-				<th bgcolor="orange" width="150">작성자</th>
-				<th bgcolor="orange" width="150">등록일</th>
-				<th bgcolor="orange" width="100">조회수</th>
-			</tr>
-			<c:forEach items="${boardList }" var="board">
-				<tr>
-					<td>${board.seq }</td>
-					<td align="left"><a href="getBoard.do?seq=${board.seq }">
-							${board.title }</a></td>
-					<td>${board.writer }</td>
-					<td>${board.regDate }</td>
-					<td>${board.cnt }</td>
-				</tr>
-			</c:forEach>
-		</table>
-		<br> <a href="insertBoard.jsp">새글 등록</a>
-	</center>
+  <div class = "container-fluid" >
+	  <c:forEach items="${boardList}" var="board">
+		  <div class = "card mt-4">
+		    <div class ="card-body">
+		      <span class='text-primary'> ${board.datetime} </span>
+		      <h1 class = "card-title"> ${board.problem_place_code}  // 기계가 고장났어요로 교체 -> place테이블의 place_detail </h1>
+		      <div class = "card-subtitle text-muted mb-2">
+		        ${board.problem_code}	// 엘리베이터가 고장났어요로 교체 -> problem테이블의 problem_detail 
+		      </div>
+		      <div class ="card-text mb-2">   ${board.floor }   </div>
+		      <div class ="card-text mb-2">  <span class= "text-muted">${board.department_code }	// 백화점이름 으로 교체 -> department테이블의 dep_name </span></div>
+		      <a href="getBoard.do?seq=${board.seq}" class="btn btn-primary">자세히보기</a>
+		    </div>
+	    </c:forEach>
+    </div>
+
+</div>
+  
+  
+  
+  
 
   <!-- Bootstrap core JavaScript -->
   <script src="<%=request.getContextPath()%>/resources/vendor/jquery/jquery.slim.min.js"></script>

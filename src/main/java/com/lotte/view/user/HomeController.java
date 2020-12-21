@@ -4,6 +4,8 @@ import java.text.DateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -43,10 +45,16 @@ public class HomeController {
 		return "login";
 	}
 	
+	@RequestMapping(value = "/login", method=RequestMethod.GET)
+	public String LOGOUT_GET() {
+		return "login";
+	}
+	
 	// 입력한 아이디/비밀번호 맞으면 getDpartMent.do로 , 틀리면 다시 login.jsp로
 	@RequestMapping(value="/login.do", method=RequestMethod.POST)
-	public String login_POST(UserVO vo, UserDAO userDAO) {	
+	public String LOGIN_POST(UserVO vo, UserDAO userDAO,HttpSession session) {	
 		if (userDAO.getUser(vo) != null) {
+			session.setAttribute("login", userDAO.getUser(vo).getId());
 			return "getDepartmentList.do";
 		}else {
 			return "login";
@@ -56,15 +64,18 @@ public class HomeController {
 	// 위에 getDpartMent에서 일로 넘어와서 selectProcess.jsp 보여줌
 	@RequestMapping("/selectProcess")
 	public String selectProcess() {		
+		
 		return "selectProcess";
 	}
 	
 	// 아직 미 설정
-	@RequestMapping(value = "/logout.do")
-	public String LOGIN_POST(Locale locale, Model model) {
+	@RequestMapping(value="/logout.do", method=RequestMethod.GET)
+	public String LOGOUT(HttpSession session) {
+		session.invalidate();
 		return "login";
 	}
 	
+
 	
 	
 }
