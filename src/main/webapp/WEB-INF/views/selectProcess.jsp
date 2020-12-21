@@ -65,7 +65,7 @@
           <li>문의하실 백화점을 선택하세요</li>
           <li>		
           <!-- 문의할 백화점 선택 FORM -->
-			<form action="insertBoard" method="post">
+			<form action="getProblemList.do" method="post">
 				<table align="center">
 					<tr>
 						<td align="center">

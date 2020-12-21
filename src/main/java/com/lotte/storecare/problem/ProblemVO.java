@@ -4,64 +4,53 @@ import java.sql.Date;
 
 //VO(Value Object)
 public class ProblemVO {
-	private int seq;
-	private String title;
-	private String writer;
-	private String content;
-	private Date regDate;
-	private int cnt;
+	private int place_code;
+	private int code;
+	private String problem_detail;
+	private String place_detail;
 
-	public int getSeq() {
-		return seq;
+	public String getPlace_detail() {
+		return place_detail;
 	}
 
-	public void setSeq(int seq) {
-		this.seq = seq;
+
+	public void setPlace_detail(String place_detail) {
+		this.place_detail = place_detail;
 	}
 
-	public String getTitle() {
-		return title;
+
+	public int getPlace_code() {
+		return place_code;
 	}
 
-	public void setTitle(String title) {
-		this.title = title;
+
+	public void setPlace_code(int place_code) {
+		this.place_code = place_code;
 	}
 
-	public String getWriter() {
-		return writer;
+
+	public int getCode() {
+		return code;
 	}
 
-	public void setWriter(String writer) {
-		this.writer = writer;
+
+	public void setCode(int code) {
+		this.code = code;
 	}
 
-	public String getContent() {
-		return content;
+
+	public String getProblem_detail() {
+		return problem_detail;
 	}
 
-	public void setContent(String content) {
-		this.content = content;
+
+	public void setProblem_detail(String problem_detail) {
+		this.problem_detail = problem_detail;
 	}
 
-	public Date getRegDate() {
-		return regDate;
-	}
-
-	public void setRegDate(Date regDate) {
-		this.regDate = regDate;
-	}
-
-	public int getCnt() {
-		return cnt;
-	}
-
-	public void setCnt(int cnt) {
-		this.cnt = cnt;
-	}
 
 	@Override
 	public String toString() {
-		return "ProblemVO [seq=" + seq + ", title=" + title + ", writer=" + writer + ", content=" + content + ", regDate="
-				+ regDate + ", cnt=" + cnt + "]";
+		return "ProblemVO [place_code=" + place_code + ", code=" + code + ", problem_detail=" + problem_detail + ", place_detail=" + place_detail + "]";
 	}
 }

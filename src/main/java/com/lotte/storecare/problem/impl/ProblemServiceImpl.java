@@ -17,7 +17,7 @@ public class ProblemServiceImpl implements ProblemService {
 //		if (vo.getSeq() == 0) {
 //			throw new IllegalArgumentException("0�� ���� ����� �� �����ϴ�.");
 //		}
-		problemDAO.insertProblem(vo); // 100�� �� ��� ����
+//		problemDAO.insertProblem(vo); // 100�� �� ��� ����
 		problemDAO.insertProblem(vo); // Exception �߻�
 	}
 
