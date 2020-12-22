@@ -32,17 +32,21 @@ public class ProcessController {
 	public String DELETEBOARD_GET() {	
 		return "getBoardList";
 	}
-	// 12/21 16:50 테스트중 삽입
+	
 	@RequestMapping(value="/insertBoard", method=RequestMethod.GET)
 	public String INSERTBOARD_GET() {	
 		return "insertBoard";
 	}
 	
-	// 12/22 09:35 테스트중 삽입
+	
 	@RequestMapping(value="/checkBoard", method=RequestMethod.GET)
 	public String CHECKBOARD_GET() {	
 		return "checkBoard";
 	}	
 	
-	
+	// 12/22 11:35 테스트중 삽입
+	@RequestMapping(value="/updateBoard", method=RequestMethod.GET)
+	public String UPDATEBOARD_GET() {	
+		return "checkBoard";
+	}	
 }

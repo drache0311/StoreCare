@@ -50,9 +50,12 @@
 
 <%
 	String code = request.getParameter("searchCondition");
+	if(code == null)
+		code = request.getParameter("dep_code");
 	out.println(code);
 	out.println("dep_code");
-	
+	String seq = (String) request.getParameter("seq");
+	out.println(seq);
 %>
 <!-- 예시 템플릿 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ  -->
 <div class="card w-75">
@@ -70,13 +73,19 @@
 	</div>
 </div> 		
 <!-- 예시 템플릿 여기까지   ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ          -->
+
+<%=seq %>
+<c:set var="seq" value="<%=seq %>" />
+
 <c:forEach items="${problemList}" var="problem" varStatus="status">
 <c:if test="${problem.code==1}" var="result1">
 	<div class="card w-75">
 		<div class="card-body">
 		    <h5 class="card-title">${problem.place_detail}</h5>
 </c:if>
-		    <a href="checkBoard?problem_code=${problem.code}&dep_code=<%=code%>&place_code=${problem.place_code}&problem_detail=${problem.problem_detail}&place_detail=${problem.place_detail}" class="btn btn-primary">${problem.problem_detail}</a>
+
+		    <a href="checkBoard?problem_code=${problem.code}&dep_code=<%=code%>&place_code=${problem.place_code}&problem_detail=${problem.problem_detail}&place_detail=${problem.place_detail}&seq=<%=seq%>" class="btn btn-primary">${problem.problem_detail}</a>
+
 <c:if test="${problem.place_code}==${status.end}" var="result1">
 		</div>
 		

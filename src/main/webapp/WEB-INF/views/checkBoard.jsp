@@ -26,6 +26,7 @@ String problem_code = request.getParameter("problem_code");
 String dep_code = request.getParameter("dep_code");
 String place_detail = request.getParameter("place_detail");
 String problem_detail = request.getParameter("problem_detail");
+String seq = (String) request.getParameter("seq");
 String id = (String) session.getAttribute("login");
 
 %>
@@ -65,10 +66,28 @@ String id = (String) session.getAttribute("login");
  
   
     <!-- Page Content -->
-<form action="insertBoard.do">
+<c:set var="seq" value="<%=seq%>" />    
+<c:set var="id" value="<%=id%>" />    
+
+<!--  지금은 null이 String이라서 'null'로 비교하는데  -->
+<!-- 앞에서 POST로 던져주고 진짜 null로 비교하는식으로 변경  -->
+<!-- GET은 버리고 POST로 다 변경하장  -->
+
+
+<c:choose>
+	<c:when test="${seq eq 'null'}" >
+		<form action="insertBoard.do" method="get">
+	</c:when>
+	<c:when test="${seq ne 'null'}" >
+		<form action="updateBoard.do" method="get">
+	</c:when>
+</c:choose>
  	<div class = "container-fluid" >
 			<div class = "card mt-4">
 			    <div class ="card-body">
+			    <c:if test="${seq ne 'null'}">
+			  	  <input name="seq" type="hidden" value="<%=seq%>" />
+			    </c:if>
 			    <input name="users_id" type="hidden" value="<%=id%>" />
 			    	<h5 class="card-header">현재 방문 백화점</h5>
 			    	<input name="department_code" type="hidden" value="<%=dep_code %>" />
@@ -87,7 +106,14 @@ String id = (String) session.getAttribute("login");
 					<h1 class = "card-title"> 아직 미구현 </h1>
 				</div>
    			</div>
-   			<button class="btn btn-primary" type="submit" >등록하기</button>
+   			<c:choose>
+	   			<c:when test="${seq eq 'null'}">
+					<button class="btn btn-primary" type="submit" >등록하기</button>
+				</c:when>
+				<c:when test="${seq ne 'null'}">
+					<button class="btn btn-primary" type="submit" >수정하기</button>
+				</c:when>
+			</c:choose>
 	</div>
 </form>
   
