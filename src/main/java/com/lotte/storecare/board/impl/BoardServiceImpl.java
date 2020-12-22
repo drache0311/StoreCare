@@ -18,11 +18,7 @@ public class BoardServiceImpl implements BoardService {
 	private BoardDAO boardDAO;
 
 	public void insertBoard(BoardVO vo) {
-//		if (vo.getSeq() == 0) {
-//			throw new IllegalArgumentException("0�� ���� ����� �� �����ϴ�.");
-//		}
-//		boardDAO.insertBoard(vo); // 100�� �� ��� ����
-		boardDAO.insertBoard(vo); // Exception �߻�
+		boardDAO.insertBoard(vo);
 	}
 
 	public void updateBoard(BoardVO vo) {

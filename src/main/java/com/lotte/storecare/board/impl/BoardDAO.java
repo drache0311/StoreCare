@@ -28,10 +28,10 @@ public class BoardDAO {
 	private final String BOARD_UPDATE = "update board set problem_code=?, problem_place_code=? where seq=?";
 	private final String BOARD_DELETE = "delete from board where seq=?";
 	private final String BOARD_GET = "select * from board where seq=?";
-	private final String BOARD_LIST = "select * from board where users_id=?";
+	private final String BOARD_LIST = "select * from board,problem,place where problem.place_code=place.code and board.problem_code=problem.code and board.problem_place_code=place.code and users_id=?";
 
 	// CRUD 기능의 메소드 구현
-	// 글 등록 -> 아직 불확실
+	// 글 등록 
 	public void insertBoard(BoardVO vo) {
 		System.out.println("===> JDBC로 insertBoard() 기능 처리");
 		try {
@@ -44,7 +44,7 @@ public class BoardDAO {
 			stmt.setInt(5, vo.getDepartment_code());
 			stmt.setTimestamp(6, vo.getDatetime());
 			stmt.executeUpdate();
-		System.out.println("===> JDBC로 insertBoard() 기능 처리");
+		System.out.println("===> JDBC로 insertBoard() 기능 처리 완료");
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -52,7 +52,7 @@ public class BoardDAO {
 		}
 	}
 
-	// 글 수정  -> 아직 불확실
+	// 글 수정  
 	public void updateBoard(BoardVO vo) {
 		System.out.println("===> JDBC로 updateBoard() 기능 처리");
 		try {
@@ -132,7 +132,8 @@ public class BoardDAO {
 				board.setUsers_id(rs.getString("USERS_ID"));
 				board.setDepartment_code(rs.getInt("DEPARTMENT_CODE"));
 				board.setDatetime(rs.getTimestamp("DATETIME"));
-				System.out.println("=======>board Users_id = " + board.getUsers_id());
+				board.setPlace_detail(rs.getString("PLACE_DETAIL"));
+				board.setProblem_detail(rs.getString("PROBLEM_DETAIL"));
 				boardList.add(board);
 			}
 			System.out.println("===> JDBC로 getBoardList() 기능 처리 완료");

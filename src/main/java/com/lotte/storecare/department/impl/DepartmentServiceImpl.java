@@ -17,7 +17,7 @@ public class DepartmentServiceImpl implements DepartmentService {
 //		if (vo.getSeq() == 0) {
 //			throw new IllegalArgumentException("0�� ���� ����� �� �����ϴ�.");
 //		}
-		departmentDAO.insertDepartment(vo); // 100�� �� ��� ����
+//		departmentDAO.insertDepartment(vo); // 100�� �� ��� ����
 		departmentDAO.insertDepartment(vo); // Exception �߻�
 	}
 

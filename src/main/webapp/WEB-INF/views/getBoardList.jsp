@@ -50,25 +50,39 @@
     </div>
   </nav>
 
-	문의가 없으면 문의 하시겠어요? 버튼 만들어서 selectProcess로 ㄱㄱ
   <!-- Page Content -->
+  <!-- 여기도 null이 아니라 [] 빈 리스트인데 이거 나중에 생각해보자  -->
+<c:choose>
+<c:when test="${boardList ne '[]'}">
  	<div class = "container-fluid" >
 		<c:forEach items="${boardList}" var="board">
 			<div class = "card mt-4">
 			    <div class ="card-body">
 					<span class='text-primary'> ${board.datetime} </span>
-					<h1 class = "card-title"> ${board.problem_place_code}  // 기계가 고장났어요로 교체 -> place테이블의 place_detail </h1>
+					<h1 class = "card-title"> ${board.place_detail}</h1>
 					<div class = "card-subtitle text-muted mb-2">
-					  ${board.problem_code}	// 엘리베이터가 고장났어요로 교체 -> problem테이블의 problem_detail 
+					  ${board.problem_detail}
 					</div>
 					<div class ="card-text mb-2">   ${board.floor }   </div>
 					<div class ="card-text mb-2">  <span class= "text-muted">${board.department_code }	// 백화점이름 으로 교체 -> department테이블의 dep_name </span></div>
 					<a href="getProblemList.do?seq=${board.seq}&dep_code=${board.department_code}" class="btn btn-primary">수정하기</a>
+					<a href="deleteBoard.do?seq=${board.seq}" class="btn btn-primary">삭제하기</a>
 				</div>
 		</c:forEach>
    			</div>
 	</div>
-  
+</c:when>
+<c:otherwise>
+<div class = "container-fluid" >
+			<div class = "card mt-4">
+			    <div class ="card-body">
+					<h1 class = "card-title"> 문의가 없네요 !! </h1>
+					 <a href="getDepartmentList.do" class="btn btn-primary">문의 하러가기 </a>
+				</div>
+			</div>
+</div>
+</c:otherwise>
+</c:choose>
   
   
   
