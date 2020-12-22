@@ -1,52 +1,107 @@
-<%@page contentType="text/html; charset=EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-"http://www.w3.org/TR/html4/loose.dtd">
-<html>
+
+
+
+<!DOCTYPE html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<title>±Û »ó¼¼</title>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>ë‚˜ì˜ StoreCare</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="<%=request.getContextPath()%>/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
 </head>
+
 <body>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+    <div class="container">
+      <a class="navbar-brand" href="#">StoreCare</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="getDepartmentList.do">Home
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Services</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="logout.do">Log-out</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  
+  
+  
+  
+  
+  
 	<center>
-		<h1>±Û »ó¼¼</h1>
-		<a href="logout.do">Log-out</a>
+		<h1>ë¬¸ì˜ ìƒì„¸</h1>
 		<hr>
-		<form action="updateBoard.do" method="post">
+		<form action="getProblemList.do" method="post">
 			<input name="seq" type="hidden" value="${board.seq}" />
 			<table border="1" cellpadding="0" cellspacing="0">
 				<tr>
-					<td bgcolor="orange" width="70">Á¦¸ñ</td>
+					<td bgcolor="orange" width="70">ì œëª©</td>
 					<td align="left"><input name="title" type="text"
-						value="${board.floor} // ¿©±â inputÅ¸ÀÔÀ» select·Î ¹Ù²ã¾ß ÇÔ" /></td>
+						value="${board.floor} // ì—¬ê¸° inputíƒ€ì…ì„ selectë¡œ ë°”ê¿”ì•¼ í•¨" /></td>
 				</tr>
 				<tr>
-					<td bgcolor="orange">ÀÛ¼ºÀÚ</td>
+					<td bgcolor="orange">ì‘ì„±ì</td>
 					<td align="left">${board.problem_code}</td>
 				</tr>
 				<tr>
-					<td bgcolor="orange">³»¿ë</td>
+					<td bgcolor="orange">ë‚´ìš©</td>
 					<td align="left"><textarea name="content" cols="40" rows="10">
-						${board.users_id}// ¿©±â inputÅ¸ÀÔÀ» select·Î ¹Ù²ã¾ß ÇÔ</textarea></td>
+						${board.users_id}// ì—¬ê¸° inputíƒ€ì…ì„ selectë¡œ ë°”ê¿”ì•¼ í•¨</textarea></td>
 				</tr>
 				<tr>
-					<td bgcolor="orange">µî·ÏÀÏ</td>
+					<td bgcolor="orange">ë“±ë¡ì¼</td>
 					<td align="left">${board.department_code}</td>
 				</tr>
 				<tr>
-					<td bgcolor="orange">Á¶È¸¼ö</td>
+					<td bgcolor="orange">ì¡°íšŒìˆ˜</td>
 					<td align="left">${board.datetime}</td>
 				</tr>
 				<tr>
 					<td colspan="2" align="center"><input type="submit"
-						value="±Û ¼öÁ¤" /></td>
+						value="ê¸€ ìˆ˜ì •" /></td>
 				</tr>
 			</table>
 		</form>
 		<hr>
-		<a href="insertBoard.jsp">±Ûµî·Ï</a>&nbsp;&nbsp;&nbsp; 
-		<a href="deleteBoard.do?seq=${board.seq}">±Û»èÁ¦</a>&nbsp;&nbsp;&nbsp;
-		<a href="getBoardList.do">±Û¸ñ·Ï</a>
+		<a href="insertBoard.jsp">ê¸€ë“±ë¡</a>&nbsp;&nbsp;&nbsp; 
+		<a href="deleteBoard.do?seq=${board.seq}">ê¸€ì‚­ì œ</a>&nbsp;&nbsp;&nbsp;
+		<a href="getBoardList.do">ê¸€ëª©ë¡</a>
 	</center>
+	
+	
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="<%=request.getContextPath()%>/resources/vendor/jquery/jquery.slim.min.js"></script>
+  <script src="<%=request.getContextPath()%>/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
 </body>
+
 </html>
+

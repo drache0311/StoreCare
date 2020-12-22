@@ -62,6 +62,7 @@ public class BoardDAO {
 			stmt.setInt(2, vo.getProblem_place_code());
 			stmt.setInt(3, vo.getSeq());
 			stmt.executeUpdate();
+			System.out.println("===> JDBC로 updateBoard() 기능 처리 완료");
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {

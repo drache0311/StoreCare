@@ -63,7 +63,7 @@
 					</div>
 					<div class ="card-text mb-2">   ${board.floor }   </div>
 					<div class ="card-text mb-2">  <span class= "text-muted">${board.department_code }	// 백화점이름 으로 교체 -> department테이블의 dep_name </span></div>
-					<a href="getBoard.do?seq=${board.seq}" class="btn btn-primary">자세히보기</a>
+					<a href="getProblemList.do?seq=${board.seq}&dep_code=${board.department_code}" class="btn btn-primary">수정하기</a>
 				</div>
 		</c:forEach>
    			</div>

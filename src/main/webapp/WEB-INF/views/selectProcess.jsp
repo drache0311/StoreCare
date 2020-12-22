@@ -79,13 +79,14 @@
 					<tr>
 					<td>
 					<button type="submit" value="dep_code" >등록하기</button>
+					<!-- 내 문의내역 BUTTON  -->
+					<button type="button" value="dep_code" onclick="location.href='getBoardList.do' ">내 문의내역</button>
 					</td>
 					</tr>
 				</table>
 			</form>
 			<!-- 문의할 백화점 선택 FORM 종료 -->
-			<!-- 내 문의내역 BUTTON  -->
-			<button type="button" onclick="location.href='getBoardList.do' ">내 문의내역</button>
+
 		</li>
         </ul>
       </div>
