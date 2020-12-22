@@ -44,6 +44,7 @@ public class BoardDAO {
 			stmt.setInt(5, vo.getDepartment_code());
 			stmt.setTimestamp(6, vo.getDatetime());
 			stmt.executeUpdate();
+		System.out.println("===> JDBC로 insertBoard() 기능 처리");
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
