@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
 "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -14,11 +13,28 @@
   <!-- Bootstrap core CSS -->
   <link href="<%=request.getContextPath()%>/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-<title>새글등록</title>
+<title>등록 확인</title>
+
+
+
+
+
+<%
+
+String place_code = request.getParameter("place_code");
+String problem_code = request.getParameter("problem_code");
+String dep_code = request.getParameter("dep_code");
+String place_detail = request.getParameter("place_detail");
+String problem_detail = request.getParameter("problem_detail");
+String id = (String) session.getAttribute("login");
+
+%>
+
+
 </head>
 <body>
 
-  <!-- Navigation -->
+  <!-- Navigation            ----------------------------------------------------------- -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
     <div class="container">
       <a class="navbar-brand" href="#">StoreCare</a>
@@ -45,58 +61,47 @@
       </div>
     </div>
   </nav>
-
-
-
-<%
-	String code = request.getParameter("searchCondition");
-	out.println(code);
-	out.println("dep_code");
-	
-%>
-<!-- 예시 템플릿 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ  -->
-<div class="card w-75">
-	<div class="card-body">
-	    <h5 class="card-title">기계  고장</h5>
-	    <a href="#" class="btn btn-primary">엘리베이터가 고장났어요</p></a>
-	    <a href="#" class="btn btn-primary">에스컬레이터가 고장났어요</a>
+  <!-- Navigation  DONE   ----------------------------------------------------------------------------  -->
+ 
+  
+    <!-- Page Content -->
+<form action="insertBoard.do">
+ 	<div class = "container-fluid" >
+			<div class = "card mt-4">
+			    <div class ="card-body">
+			    <input name="users_id" type="hidden" value="<%=id%>" />
+			    	<h5 class="card-header">현재 방문 백화점</h5>
+			    	<input name="department_code" type="hidden" value="<%=dep_code %>" />
+					<h1 class = "card-title"> <%=dep_code %>  // 롯데백화점_본점 </h1>
+				</div>
+				<div class ="card-body">
+			    	<h5 class="card-header">요청내용</h5>
+			    	<input name="problem_place_code" type="hidden" value="<%=place_code %>" />
+					<span class='text-primary'> <%=place_detail %> </span>
+					<input name="problem_code" type="hidden" value="<%=problem_code %>" />
+					<h1 class = "card-title"> <%=problem_detail %> </h1>
+				</div>
+				<div class ="card-body">
+			    	<h5 class="card-header">백화점 층 수</h5>
+			    	<input name="floor" type="hidden" value="5F" />
+					<h1 class = "card-title"> 아직 미구현 </h1>
+				</div>
+   			</div>
+   			<button class="btn btn-primary" type="submit" >등록하기</button>
 	</div>
-</div>
-<div class="card w-75">
-	<div class="card-body">
-	    <h5 class="card-title">플로어(매장환경)</h5>
-	    <a href="#" class="btn btn-primary">너무 더워요</p></a>
-	    <a href="#" class="btn btn-primary">미끄러워요</a>
-	</div>
-</div> 		
-<!-- 예시 템플릿 여기까지   ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ          -->
-<c:forEach items="${problemList}" var="problem" varStatus="status">
-<c:if test="${problem.code==1}" var="result1">
-	<div class="card w-75">
-		<div class="card-body">
-		    <h5 class="card-title">${problem.place_detail}</h5>
-</c:if>
-		    <a href="checkBoard?problem_code=${problem.code}&dep_code=<%=code%>&place_code=${problem.place_code}&problem_detail=${problem.problem_detail}&place_detail=${problem.place_detail}" class="btn btn-primary">${problem.problem_detail}</a>
-<c:if test="${problem.place_code}==${status.end}" var="result1">
-		</div>
-		
-	</div>
-</c:if>
-</c:forEach>
-
-
-		
-<a href="getBoardList.do">글 목록 가기</a>
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
+</form>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  	
 	  <!-- Bootstrap core JavaScript -->
   <script src="<%=request.getContextPath()%>/resources/vendor/jquery/jquery.slim.min.js"></script>
   <script src="<%=request.getContextPath()%>/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

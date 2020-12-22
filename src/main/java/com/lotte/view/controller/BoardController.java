@@ -15,13 +15,13 @@ import com.lotte.storecare.user.impl.UserDAO;
 @Controller
 public class BoardController {
 	
-	// 글 등록 전 페이지
+	// 글 등록 전 페이지 완료
 	@RequestMapping(value = "/insertBoard", method=RequestMethod.POST)
 	public String insertBoard() {
 		return "insertBoard";
 	}
 	
-	// 글 등록
+	// 글 등록 완료
 	@RequestMapping("/insertBoard.do")
 	public String insertBoard(BoardVO vo, BoardDAO boardDAO) {
 		boardDAO.insertBoard(vo);
@@ -35,14 +35,14 @@ public class BoardController {
 		return "getBoardList.do";
 	}
 
-	// 글 삭제
+	// 글 삭제 미완
 	@RequestMapping("/deleteBoard.do")
 	public String deleteBoard(BoardVO vo, BoardDAO boardDAO) {
 		boardDAO.deleteBoard(vo);
 		return "getBoardList.do";
 	}
 
-	// 글 상세 조회
+	// 글 상세 조회 미완
 	@RequestMapping("/getBoard.do")
 	public ModelAndView getBoard(BoardVO vo, BoardDAO boardDAO, ModelAndView mav) {
 		mav.addObject("board", boardDAO.getBoard(vo)); // Model 정보 저장
@@ -50,7 +50,7 @@ public class BoardController {
 		return mav;
 	}
 
-	// 글 목록 검색
+	// 글 목록 검색 완료
 	@RequestMapping("/getBoardList.do")
 	public ModelAndView getBoardList(BoardVO vo, BoardDAO boardDAO, ModelAndView mav, HttpSession session) {
 		mav.addObject("boardList", boardDAO.getBoardList(vo, session)); // Model 정보 저장

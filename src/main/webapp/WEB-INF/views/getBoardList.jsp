@@ -52,23 +52,22 @@
 
 	문의가 없으면 문의 하시겠어요? 버튼 만들어서 selectProcess로 ㄱㄱ
   <!-- Page Content -->
-  <div class = "container-fluid" >
-	  <c:forEach items="${boardList}" var="board">
-		  <div class = "card mt-4">
-		    <div class ="card-body">
-		      <span class='text-primary'> ${board.datetime} </span>
-		      <h1 class = "card-title"> ${board.problem_place_code}  // 기계가 고장났어요로 교체 -> place테이블의 place_detail </h1>
-		      <div class = "card-subtitle text-muted mb-2">
-		        ${board.problem_code}	// 엘리베이터가 고장났어요로 교체 -> problem테이블의 problem_detail 
-		      </div>
-		      <div class ="card-text mb-2">   ${board.floor }   </div>
-		      <div class ="card-text mb-2">  <span class= "text-muted">${board.department_code }	// 백화점이름 으로 교체 -> department테이블의 dep_name </span></div>
-		      <a href="getBoard.do?seq=${board.seq}" class="btn btn-primary">자세히보기</a>
-		    </div>
-	    </c:forEach>
-    </div>
-
-</div>
+ 	<div class = "container-fluid" >
+		<c:forEach items="${boardList}" var="board">
+			<div class = "card mt-4">
+			    <div class ="card-body">
+					<span class='text-primary'> ${board.datetime} </span>
+					<h1 class = "card-title"> ${board.problem_place_code}  // 기계가 고장났어요로 교체 -> place테이블의 place_detail </h1>
+					<div class = "card-subtitle text-muted mb-2">
+					  ${board.problem_code}	// 엘리베이터가 고장났어요로 교체 -> problem테이블의 problem_detail 
+					</div>
+					<div class ="card-text mb-2">   ${board.floor }   </div>
+					<div class ="card-text mb-2">  <span class= "text-muted">${board.department_code }	// 백화점이름 으로 교체 -> department테이블의 dep_name </span></div>
+					<a href="getBoard.do?seq=${board.seq}" class="btn btn-primary">자세히보기</a>
+				</div>
+		</c:forEach>
+   			</div>
+	</div>
   
   
   

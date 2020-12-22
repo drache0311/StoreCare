@@ -38,5 +38,11 @@ public class ProcessController {
 		return "insertBoard";
 	}
 	
+	// 12/22 09:35 테스트중 삽입
+	@RequestMapping(value="/checkBoard", method=RequestMethod.GET)
+	public String CHECKBOARD_GET() {	
+		return "checkBoard";
+	}	
+	
 	
 }
