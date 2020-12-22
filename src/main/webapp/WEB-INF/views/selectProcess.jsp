@@ -10,7 +10,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Bare - Start Bootstrap Template</title>
+  <title>Lotte-StoreCare</title>
 
   <!-- Bootstrap core CSS -->
   <link href="<%=request.getContextPath()%>/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">

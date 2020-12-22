@@ -18,6 +18,7 @@ public class BoardController {
 	// 글 등록 전 페이지 완료
 	@RequestMapping(value = "/insertBoard", method=RequestMethod.POST)
 	public String insertBoard() {
+		System.out.println("여긴 POST");
 		return "insertBoard";
 	}
 	

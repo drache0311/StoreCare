@@ -35,6 +35,7 @@ public class ProcessController {
 	
 	@RequestMapping(value="/insertBoard", method=RequestMethod.GET)
 	public String INSERTBOARD_GET() {	
+		System.out.println("여긴 GET");
 		return "insertBoard";
 	}
 	

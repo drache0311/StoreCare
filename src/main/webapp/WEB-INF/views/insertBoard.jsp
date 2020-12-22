@@ -14,7 +14,7 @@
   <!-- Bootstrap core CSS -->
   <link href="<%=request.getContextPath()%>/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-<title>새글등록</title>
+<title>문의 선택</title>
 </head>
 <body>
 
@@ -60,42 +60,43 @@
 <!-- 예시 템플릿 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ  -->
 <div class="card w-75">
 	<div class="card-body">
-	    <h5 class="card-title">기계  고장</h5>
-	    <a href="#" class="btn btn-primary">엘리베이터가 고장났어요</p></a>
-	    <a href="#" class="btn btn-primary">에스컬레이터가 고장났어요</a>
+	    <h5 class="card-title">이전</h5>
+	    <a href="getBoardList.do" class="btn btn-primary">내 문의 목록 보기</a>
 	</div>
 </div>
-<div class="card w-75">
-	<div class="card-body">
-	    <h5 class="card-title">플로어(매장환경)</h5>
-	    <a href="#" class="btn btn-primary">너무 더워요</p></a>
-	    <a href="#" class="btn btn-primary">미끄러워요</a>
-	</div>
-</div> 		
 <!-- 예시 템플릿 여기까지   ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ          -->
 
 <%=seq %>
 <c:set var="seq" value="<%=seq %>" />
+<c:set var="temp" value="0" />
+<c:set var="count" value="0" />
+
+
 
 <c:forEach items="${problemList}" var="problem" varStatus="status">
-<c:if test="${problem.code==1}" var="result1">
-	<div class="card w-75">
-		<div class="card-body">
-		    <h5 class="card-title">${problem.place_detail}</h5>
-</c:if>
+<c:choose>
 
-		    <a href="checkBoard?problem_code=${problem.code}&dep_code=<%=code%>&place_code=${problem.place_code}&problem_detail=${problem.problem_detail}&place_detail=${problem.place_detail}&seq=<%=seq%>" class="btn btn-primary">${problem.problem_detail}</a>
 
-<c:if test="${problem.place_code}==${status.end}" var="result1">
-		</div>
-		
+<c:when test="${problem.place_code != temp}">
+
+<c:if test="${problem.place_code>1}">
+			</div>
 	</div>
 </c:if>
+	
+	<c:set var="temp" value="${problem.place_code}" />
+	
+	<div class="card w-75">
+		<div class="card-body">
+		<h5 class="card-title">${problem.place_detail}</h5>
+</c:when>
+</c:choose>
+		    <a href="checkBoard?problem_code=${problem.code}&dep_code=<%=code%>&place_code=${problem.place_code}&problem_detail=${problem.problem_detail}&place_detail=${problem.place_detail}&seq=<%=seq%>" class="btn btn-primary">${problem.problem_detail}</a>
 </c:forEach>
-
-
+			</div>
+	</div>
 		
-<a href="getBoardList.do">글 목록 가기</a>
+
 
 	
 	

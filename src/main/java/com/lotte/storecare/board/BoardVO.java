@@ -14,7 +14,25 @@ public class BoardVO {
 	private int department_code;
 	private Timestamp datetime;
 	private UserVO uvo;
+	private String problem_detail;
+	private String place_detail;
 	
+	public String getProblem_detail() {
+		return problem_detail;
+	}
+
+	public void setProblem_detail(String problem_detail) {
+		this.problem_detail = problem_detail;
+	}
+
+	public String getPlace_detail() {
+		return place_detail;
+	}
+
+	public void setPlace_detail(String place_detail) {
+		this.place_detail = place_detail;
+	}
+
 	public UserVO getUvo() {
 		return uvo;
 	}
@@ -83,6 +101,6 @@ public class BoardVO {
 	@Override
 	public String toString() {
 		return "BoardVO [seq=" + seq + ", floor=" + floor + ", problem_code=" + problem_code + ", problem_place_code=" + problem_place_code + ", users_id="
-				+ users_id + ", department_code=" + department_code + "datetime" + datetime +"]";
+				+ users_id + ", department_code=" + department_code + "datetime=" + datetime +"place_detail="+ place_detail + "problem_detail=" + problem_detail +"]";
 	}
 }
