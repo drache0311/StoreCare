@@ -1,6 +1,6 @@
 package com.lotte.storecare.problem;
 
-import java.sql.Date;
+
 
 //VO(Value Object)
 public class ProblemVO {
