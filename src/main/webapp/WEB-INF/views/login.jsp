@@ -16,21 +16,7 @@
     <!-- Bootstrap core CSS -->
 	<link href="<%=request.getContextPath()%>/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-    <style>
-      .bd-placeholder-img {
-        font-size: 1.125rem;
-        text-anchor: middle;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        user-select: none;
-      }
 
-      @media (min-width: 768px) {
-        .bd-placeholder-img-lg {
-          font-size: 3.5rem;
-        }
-      }
-    </style>
 
     
     <!-- Custom styles for this template -->
@@ -46,12 +32,8 @@
     <input type="text" id="inputId" name="id" class="form-control" placeholder="Your ID" required autofocus>
     <label for="inputPassword" class="visually-hidden">Password</label>
     <input type="password" id="inputPassword" name="password" class="form-control" placeholder="Password" required>
-    <div class="checkbox mb-3">
-      <label>
-        <input type="checkbox" value="remember-me"> Remember me
-      </label>
-    </div>
-    <button class="w-100 btn btn-lg btn-primary" type="submit" value="로그인" >Sign in</button>
+    <button class="w-100 btn btn-lg btn-primary" type="submit" value="로그인" >Sign In</button>
+    <button class="w-100 btn btn-lg btn-primary" type="button" onclick="location.href='signUp'" value="signUp" >Sign Up</button>
     <p class="mt-5 mb-3 text-muted">&copy; 2017-2020</p>
   </form>
 </main>

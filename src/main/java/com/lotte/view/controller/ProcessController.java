@@ -1,13 +1,9 @@
 package com.lotte.view.controller;
 
-import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
-import com.lotte.storecare.user.UserVO;
-import com.lotte.storecare.user.impl.UserDAO;
 
 @Controller
 public class ProcessController {

@@ -9,8 +9,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.lotte.storecare.board.BoardVO;
 import com.lotte.storecare.board.impl.BoardDAO;
-import com.lotte.storecare.user.UserVO;
-import com.lotte.storecare.user.impl.UserDAO;
+
 
 @Controller
 public class BoardController {

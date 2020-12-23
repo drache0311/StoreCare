@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page import="java.sql.Timestamp" %>
+<%@ page import="java.text.SimpleDateFormat" %>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
 "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -23,15 +26,17 @@
 
 String place_code = request.getParameter("place_code");
 String problem_code = request.getParameter("problem_code");
-
 String place_detail = request.getParameter("place_detail");
 String problem_detail = request.getParameter("problem_detail");
 String seq = (String) request.getParameter("seq");
 String id = (String) session.getAttribute("login");
 String department_code = request.getParameter("department_code");
 
-%>
 
+Timestamp now = new Timestamp(System.currentTimeMillis());
+
+
+%>
 
 </head>
 <body>
@@ -89,6 +94,7 @@ String department_code = request.getParameter("department_code");
 			    <c:if test="${seq ne 'null'}">
 			  	  <input name="seq" type="hidden" value="<%=seq%>" />
 			    </c:if>
+			    <input name="datetime" type="hidden" value="<%=now%>" />
 			    <input name="users_id" type="hidden" value="<%=id%>" />
 			    	<h5 class="card-header">현재 방문 백화점</h5>
 			    	<input name="department_code" type="hidden" value="<%=department_code %>" />
