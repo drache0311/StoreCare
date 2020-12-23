@@ -83,6 +83,11 @@ public class HomeController {
 	}
 	
 
+	// 입력한 아이디/비밀번호 맞으면 getDpartMent.do로 , 틀리면 다시 login.jsp로
+	@RequestMapping(value="/signUp", method=RequestMethod.GET)
+	public String SIGNUP_GET() {	
+			return "signUp";
+	}
 
 	
 	

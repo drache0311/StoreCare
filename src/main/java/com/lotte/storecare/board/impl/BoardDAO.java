@@ -11,9 +11,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Repository;
 import com.lotte.storecare.board.BoardVO;
 import com.lotte.storecare.common.JDBCUtil;
-import com.lotte.storecare.department.DepartmentVO;
-import com.lotte.storecare.user.UserVO;
-import com.lotte.storecare.user.impl.UserDAO;
+
 
 // DAO(Data Access Object)
 @Repository("boardDAO")
@@ -25,7 +23,7 @@ public class BoardDAO {
 	// SQL 명령어들
 	//private final String BOARD_INSERT = "insert into board(seq, title, writer, content) values((select nvl(max(seq), 0)+1 from board),?,?,?)";
 	private final String BOARD_INSERT = "insert into board(floor, problem_code,problem_place_code,users_id,department_code,datetime) values(?,?,?,?,?,?)";
-	private final String BOARD_UPDATE = "update board set problem_code=?, problem_place_code=?,floor=? where seq=?";
+	private final String BOARD_UPDATE = "update board set problem_code=? datetime=?, problem_place_code=?,floor=? where seq=?";
 	private final String BOARD_DELETE = "delete from board where seq=?";
 	private final String BOARD_GET = "select * from board where seq=?";
 	private final String BOARD_FLOOR = "select distinct department_floor,dep_name from board,department where department.code=?";
@@ -60,9 +58,10 @@ public class BoardDAO {
 			conn = JDBCUtil.getConnection();
 			stmt = conn.prepareStatement(BOARD_UPDATE);
 			stmt.setInt(1, vo.getProblem_code());
-			stmt.setInt(2, vo.getProblem_place_code());
-			stmt.setInt(3, vo.getFloor());
-			stmt.setInt(4, vo.getSeq());
+			stmt.setTimestamp(2, vo.getDatetime());
+			stmt.setInt(3, vo.getProblem_place_code());
+			stmt.setInt(4, vo.getFloor());
+			stmt.setInt(5, vo.getSeq());
 			stmt.executeUpdate();
 			System.out.println("===> JDBC로 updateBoard() 기능 처리 완료");
 		} catch (Exception e) {
