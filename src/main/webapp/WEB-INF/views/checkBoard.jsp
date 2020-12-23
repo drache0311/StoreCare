@@ -23,11 +23,12 @@
 
 String place_code = request.getParameter("place_code");
 String problem_code = request.getParameter("problem_code");
-String dep_code = request.getParameter("dep_code");
+
 String place_detail = request.getParameter("place_detail");
 String problem_detail = request.getParameter("problem_detail");
 String seq = (String) request.getParameter("seq");
 String id = (String) session.getAttribute("login");
+String department_code = request.getParameter("department_code");
 
 %>
 
@@ -75,12 +76,12 @@ String id = (String) session.getAttribute("login");
 
 
 <c:choose>
-	<c:when test="${seq eq 'null'}" >
+	<c:when test="${seq eq '0'}" >
 		<form action="insertBoard.do" method="get">
 	</c:when>
-	<c:when test="${seq ne 'null'}" >
+	<c:otherwise>
 		<form action="updateBoard.do" method="get">
-	</c:when>
+	</c:otherwise>
 </c:choose>
  	<div class = "container-fluid" >
 			<div class = "card mt-4">
@@ -90,29 +91,33 @@ String id = (String) session.getAttribute("login");
 			    </c:if>
 			    <input name="users_id" type="hidden" value="<%=id%>" />
 			    	<h5 class="card-header">현재 방문 백화점</h5>
-			    	<input name="department_code" type="hidden" value="<%=dep_code %>" />
-					<h1 class = "card-title"> <%=dep_code %>  // 롯데백화점_본점 </h1>
+			    	<input name="department_code" type="hidden" value="<%=department_code %>" />
+					<h1 class = "card-title"> ${board.department_name}  </h1>
 				</div>
 				<div class ="card-body">
 			    	<h5 class="card-header">요청내용</h5>
 			    	<input name="problem_place_code" type="hidden" value="<%=place_code %>" />
 					<span class='text-primary'> <%=place_detail %> </span>
-					<input name="problem_code" type="hidden" value="<%=problem_code %>" />
+					<input name="problem_code" type="hidden" value="<%=problem_code %>" />			
 					<h1 class = "card-title"> <%=problem_detail %> </h1>
 				</div>
 				<div class ="card-body">
 			    	<h5 class="card-header">백화점 층 수</h5>
-			    	<input name="floor" type="hidden" value="5F" />
-					<h1 class = "card-title"> 아직 미구현 </h1>
+			    	
+			    		<select name="floor">
+								<c:forEach var="floor" begin="1" end="${board.floor}">
+										<option value="${floor}">${floor}F</option>
+								</c:forEach>
+						</select>
 				</div>
    			</div>
    			<c:choose>
-	   			<c:when test="${seq eq 'null'}">
+	   			<c:when test="${seq eq '0'}">
 					<button class="btn btn-primary" type="submit" >등록하기</button>
 				</c:when>
-				<c:when test="${seq ne 'null'}">
+				<c:otherwise>
 					<button class="btn btn-primary" type="submit" >수정하기</button>
-				</c:when>
+				</c:otherwise>
 			</c:choose>
 	</div>
 </form>

@@ -9,7 +9,7 @@ public class JDBCUtil {
 	public static Connection getConnection() {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			return DriverManager.getConnection("jdbc:mysql://ec2-52-79-250-203.ap-northeast-2.compute.amazonaws.com/storecare","root","Dlwlrma0516*");
+			return DriverManager.getConnection("jdbc:mysql://ec2-54-180-155-202.ap-northeast-2.compute.amazonaws.com/storecare","root","Dlwlrma0516*");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
