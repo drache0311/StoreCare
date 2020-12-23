@@ -9,8 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.lotte.storecare.board.BoardService;
 import com.lotte.storecare.board.BoardVO;
-import com.lotte.storecare.user.UserVO;
-import com.lotte.storecare.user.impl.UserDAO;
+
 
 @Service("boardService")
 public class BoardServiceImpl implements BoardService {

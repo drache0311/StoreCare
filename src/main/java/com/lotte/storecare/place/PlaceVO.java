@@ -1,6 +1,5 @@
 package com.lotte.storecare.place;
 
-import java.sql.Date;
 
 //VO(Value Object)
 public class PlaceVO {
