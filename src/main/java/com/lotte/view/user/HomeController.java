@@ -44,9 +44,23 @@ public class HomeController {
 		
 		return "login";
 	}
+
+	// logout.do로 받아서 session 끊고 login으로 get방식으루 보냄
+	@RequestMapping(value="/logout.do", method=RequestMethod.GET)
+	public String LOGOUT(HttpSession session) {
+		session.invalidate();
+		return "login";
+	}
 	
+	// 로그아웃 할 때 이걸로 받아서 로그인화면으로 감
 	@RequestMapping(value = "/login", method=RequestMethod.GET)
 	public String LOGOUT_GET() {
+		return "login";
+	}
+	
+	//아디 비번 안 맞을시 여기로 와서 다시 login 페이지
+	@RequestMapping(value = "/login", method=RequestMethod.POST)
+	public String LOGIN_INVALID_POST() {
 		return "login";
 	}
 	
@@ -68,13 +82,7 @@ public class HomeController {
 		return "selectProcess";
 	}
 	
-	// 아직 미 설정
-	@RequestMapping(value="/logout.do", method=RequestMethod.GET)
-	public String LOGOUT(HttpSession session) {
-		session.invalidate();
-		return "login";
-	}
-	
+
 
 	
 	

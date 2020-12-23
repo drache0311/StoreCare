@@ -29,7 +29,7 @@ public class BoardController {
 		return "getBoardList.do";
 	}
 
-	// 글 수정
+	// 글 수정 완료
 	@RequestMapping("/updateBoard.do")
 	public String updateBoard(BoardVO vo, BoardDAO boardDAO) {
 		boardDAO.updateBoard(vo);
@@ -50,7 +50,15 @@ public class BoardController {
 		mav.setViewName("getBoard"); // View 정보 저장
 		return mav;
 	}
-
+	
+	// 글 상세 조회 미완
+	@RequestMapping("/checkBoard.do")
+	public ModelAndView getFloor(BoardVO vo, BoardDAO boardDAO, ModelAndView mav) {
+		mav.addObject("board", boardDAO.getFloor(vo)); // Model 정보 저장
+		mav.setViewName("checkBoard"); // View 정보 저장
+		return mav;
+	}
+	
 	// 글 목록 검색 완료
 	@RequestMapping("/getBoardList.do")
 	public ModelAndView getBoardList(BoardVO vo, BoardDAO boardDAO, ModelAndView mav, HttpSession session) {

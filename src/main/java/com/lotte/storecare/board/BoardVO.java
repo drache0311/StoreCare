@@ -7,7 +7,7 @@ import com.lotte.storecare.user.UserVO;
 //VO(Value Object)
 public class BoardVO {
 	private int seq;
-	private String floor;
+	private int floor;
 	private int problem_code;
 	private int problem_place_code;
 	private String users_id;
@@ -16,7 +16,16 @@ public class BoardVO {
 	private UserVO uvo;
 	private String problem_detail;
 	private String place_detail;
+	private String department_name;
 	
+	public String getDepartment_name() {
+		return department_name;
+	}
+
+	public void setDepartment_name(String department_name) {
+		this.department_name = department_name;
+	}
+
 	public String getProblem_detail() {
 		return problem_detail;
 	}
@@ -89,11 +98,11 @@ public class BoardVO {
 		this.seq = seq;
 	}
 
-	public String getFloor() {
+	public int getFloor() {
 		return floor;
 	}
 
-	public void setFloor(String floor) {
+	public void setFloor(int floor) {
 		this.floor = floor;
 	}
 

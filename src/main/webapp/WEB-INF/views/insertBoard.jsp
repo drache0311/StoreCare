@@ -52,21 +52,21 @@
 	String code = request.getParameter("searchCondition");
 	if(code == null)
 		code = request.getParameter("dep_code");
-	out.println(code);
-	out.println("dep_code");
 	String seq = (String) request.getParameter("seq");
-	out.println(seq);
+	if(seq==null){
+		seq = "0";
+	}
 %>
-<!-- 예시 템플릿 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ  -->
+<!-- 내 문의보기  ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ  -->
 <div class="card w-75">
 	<div class="card-body">
 	    <h5 class="card-title">이전</h5>
 	    <a href="getBoardList.do" class="btn btn-primary">내 문의 목록 보기</a>
 	</div>
 </div>
-<!-- 예시 템플릿 여기까지   ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ          -->
+<!-- 내문의 보기 여기까지   ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ          -->
 
-<%=seq %>
+
 <c:set var="seq" value="<%=seq %>" />
 <c:set var="temp" value="0" />
 <c:set var="count" value="0" />
@@ -91,7 +91,7 @@
 		<h5 class="card-title">${problem.place_detail}</h5>
 </c:when>
 </c:choose>
-		    <a href="checkBoard?problem_code=${problem.code}&dep_code=<%=code%>&place_code=${problem.place_code}&problem_detail=${problem.problem_detail}&place_detail=${problem.place_detail}&seq=<%=seq%>" class="btn btn-primary">${problem.problem_detail}</a>
+		    <a href="checkBoard.do?problem_code=${problem.code}&department_code=<%=code%>&place_code=${problem.place_code}&problem_detail=${problem.problem_detail}&place_detail=${problem.place_detail}&seq=<%=seq%>" class="btn btn-primary">${problem.problem_detail}</a>
 </c:forEach>
 			</div>
 	</div>
