@@ -23,7 +23,7 @@ public class BoardDAO {
 	// SQL 명령어들
 	//private final String BOARD_INSERT = "insert into board(seq, title, writer, content) values((select nvl(max(seq), 0)+1 from board),?,?,?)";
 	private final String BOARD_INSERT = "insert into board(floor, problem_code,problem_place_code,users_id,department_code,datetime) values(?,?,?,?,?,?)";
-	private final String BOARD_UPDATE = "update board set problem_code=? datetime=?, problem_place_code=?,floor=? where seq=?";
+	private final String BOARD_UPDATE = "update board set problem_code=? ,datetime=?, problem_place_code=?,floor=? where seq=?";
 	private final String BOARD_DELETE = "delete from board where seq=?";
 	private final String BOARD_GET = "select * from board where seq=?";
 	private final String BOARD_FLOOR = "select distinct department_floor,dep_name from board,department where department.code=?";
