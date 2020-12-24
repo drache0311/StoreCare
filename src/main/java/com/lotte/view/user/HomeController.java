@@ -67,7 +67,14 @@ public class HomeController {
 	// 입력한 아이디/비밀번호 맞으면 getDpartMent.do로 , 틀리면 다시 login.jsp로
 	@RequestMapping(value="/login.do", method=RequestMethod.POST)
 	public String LOGIN_POST(UserVO vo, UserDAO userDAO,HttpSession session) {	
-		if (userDAO.getUser(vo) != null) {
+		
+		if (userDAO.getUser(vo).getRole() == 0) {	// role = 0 은 총괄 관리자이다.
+			session.setAttribute("login", userDAO.getUser(vo).getId());
+			return "headAdmin";
+		}else if(userDAO.getUser(vo).getRole() == 1){	// role = 1 은 각 점 관리자이다.
+			session.setAttribute("login", userDAO.getUser(vo).getId());
+			return "admin";
+		}else if (userDAO.getUser(vo) != null) {	// 나머지 role = 2 들은 일반 사용자들이다.
 			session.setAttribute("login", userDAO.getUser(vo).getId());
 			return "getDepartmentList.do";
 		}else {
@@ -90,5 +97,10 @@ public class HomeController {
 	}
 
 	
+	//headAdmin 은 headAdmin 페이지로
+	@RequestMapping(value = "/headAdmin", method=RequestMethod.POST)
+	public String LOGIN_HAEDADMIN_POST() {
+		return "adminHead";
+	}
 	
 }
