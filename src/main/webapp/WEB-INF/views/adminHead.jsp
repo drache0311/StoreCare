@@ -7,39 +7,38 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.79.0">
-    <title>headAdmin</title>
-
+    
+    <title>총괄 관리자</title>
+    
+	
 	<!-- Bootstrap core CSS -->
 	<link href="<%=request.getContextPath()%>/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-	
-
 
 	<!-- Custom styles for this template -->
 	<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/vendor/bootstrap/css/scrolling-nav.css">
-	 
-	
-	 
-
-	 
-
 </head>
 <body id="page-top">
 
 <!-- include nav -->
 <%@include file ="common/nav.jsp" %>
 
+<!-- 전체 점별 막대그래프 -->
   <header class="bg-primary text-white">
     <div class="container text-center">
-      <h1>Welcome to Scrolling Nav</h1>
-      <p class="lead">A landing page template freshly redesigned for Bootstrap 4</p>
+      <h1>전체 점별 막대그래프</h1>
+      <p class="lead">전체 점별 막대그래프</p>
+        
+  <div id="chart_div"></div>
     </div>
   </header>
 
-  <section id="about">
+
+<!--  여기서부터 foreach를 써서 section마다 각 점별 막대그래프 출력 -->
+  <section id="about"> <!-- status 카운터로 짝수마다 class로 색깔 주기 -->
     <div class="container">
       <div class="row">
         <div class="col-lg-8 mx-auto">
-          <h2>About this page</h2>
+          <h2>각 점별 막대그래프 나올 곳</h2>
           <p class="lead">This is a great place to talk about your webpage. This template is purposefully unstyled so you can use it as a boilerplate or starting point for you own landing page designs! This template features:</p>
           <ul>
             <li>Clickable nav links that smooth scroll to page sections</li>
@@ -52,7 +51,7 @@
     </div>
   </section>
 
-  <section id="services" class="bg-light">
+  <section id="services" class="bg-light"> 
     <div class="container">
       <div class="row">
         <div class="col-lg-8 mx-auto">
@@ -81,8 +80,11 @@
 <script src="<%=request.getContextPath()%>/resources/vendor/jquery-easing/jquery.easing.min.js"></script>
 <!-- JQuery JavaScript -->
 <script src="<%=request.getContextPath()%>/resources/vendor/jquery/jquery-3.5.1.min.js"></script>
+<!-- Google Chart Loader -->
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <!-- Custom JavaScript for this theme -->
 <script src="<%=request.getContextPath()%>/resources/vendor/bootstrap/js/scrolling-nav.js"></script>
+<script src="<%=request.getContextPath()%>/resources/vendor/bootstrap/js/chart-all-dep.js"></script>
 <!-- SCRIPT ---------------------------------------------------------- -->
 </body>
 </html>

@@ -11,16 +11,9 @@
 
 	<!-- Bootstrap core CSS -->
 	<link href="<%=request.getContextPath()%>/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-	
-
 
 	<!-- Custom styles for this template -->
 	<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/vendor/bootstrap/css/scrolling-nav.css">
-	 
-	
-	 
-
-	 
 
 </head>
 

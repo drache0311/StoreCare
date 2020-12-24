@@ -101,7 +101,8 @@
 <script src="<%=request.getContextPath()%>/resources/vendor/jquery/jquery-3.5.1.min.js"></script>
 
 <!-- Custom JavaScript for this theme -->
-<script src="<%=request.getContextPath()%>/resources/vendor/bootstrap/js/sign-up.js"></script>
+<script src="<%=request.getContextPath()%>/resources/vendor/bootstrap/js/password-check.js"></script>
+<script src="<%=request.getContextPath()%>/resources/vendor/bootstrap/js/id-check.js"></script>
 <!-- SCRIPT ---------------------------------------------------------- -->
 </body>
 </html>
