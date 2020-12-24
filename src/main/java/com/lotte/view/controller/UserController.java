@@ -5,6 +5,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.lotte.storecare.user.UserVO;
@@ -14,20 +15,31 @@ import com.lotte.storecare.user.impl.UserDAO;
 @Controller
 public class UserController {
 	
-	// 글 등록 전 페이지 완료
-	@RequestMapping(value = "/insertUser", method=RequestMethod.POST)
-	public String insertUser() {
-		System.out.println("여긴 POST");
-		return "insertUser";
+
+	
+	// 유저 추가
+	@RequestMapping(value = "/insertUser.do", method=RequestMethod.POST)
+	public String insertUser_POST(UserVO vo, UserDAO userDAO) {
+		if (userDAO.getUser(vo) != null) {
+			// 아이디가 있는지 여기서 비교할 필요가 없다. jsp에서 스크립트로 비교문 추가하자
+			return "signUp";
+		}else {
+			userDAO.insertUser(vo);
+			return "login";
+		}
+	}
+	// 유저 아이디 중복 체크
+	@RequestMapping(value="/idCheck.do", method=RequestMethod.GET)
+	@ResponseBody
+	public int idCheckUser(UserVO vo, UserDAO userDAO) {
+		int resultCnt=0;
+		System.out.println("===> 333333333333333333"+ resultCnt);
+		resultCnt = userDAO.getIdUser(vo);
+		System.out.println("===> 4444444444444444444444444444" + resultCnt+ "type=");
+		return resultCnt;
 	}
 	
-	// 글 등록 완료
-	@RequestMapping("/insertUser.do")
-	public String insertUser(UserVO vo, UserDAO userDAO) {
-		userDAO.insertUser(vo);
-		return "getUserList.do";
-	}
-
+	
 	// 글 수정 완료
 	@RequestMapping("/updateUser.do")
 	public String updateUser(UserVO vo, UserDAO userDAO) {

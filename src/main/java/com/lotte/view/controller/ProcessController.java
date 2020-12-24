@@ -46,4 +46,13 @@ public class ProcessController {
 	public String UPDATEBOARD_GET() {	
 		return "checkBoard";
 	}	
+	
+	
+	
+	@RequestMapping(value="/insertUser", method=RequestMethod.POST)
+	public String INSERTUSER_POST() {	
+		return "signUp";
+	}	
+	
+	
 }

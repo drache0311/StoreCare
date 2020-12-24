@@ -13,7 +13,6 @@ import org.springframework.stereotype.Repository;
 import com.lotte.storecare.user.UserVO;
 import com.lotte.storecare.common.JDBCUtil;
 
-
 // DAO(Data Access Object)
 @Repository("userDAO")
 public class UserDAO {
@@ -23,11 +22,11 @@ public class UserDAO {
 	private ResultSet rs = null;
 	// SQL 명령어들
 	private final String USER_GET = "select * from users where id=? and password=?";
-	private final String USER_INSERT = "insert into users() values(?,?,?,?,?,?)";
+	private final String USER_IDGET = "select id from users where id=?";
+	private final String USER_INSERT = "insert into users(id,password,role) values(?,?,2)";
 	private final String USER_UPDATE = "";
 	private final String USER_DELETE = "";
 	private final String USER_LIST = "";
-
 
 	// CRUD 기능의 메소드 구현
 	// 회원 등록
@@ -54,21 +53,45 @@ public class UserDAO {
 		}
 		return user;
 	}
-
-	// 글 등록 
+	// 유저 검색
+	public int getIdUser(UserVO vo) {
+		UserVO user = null;
+		try {
+			System.out.println("===> JDBC로 getIdUser() 기능 처리");
+			conn = JDBCUtil.getConnection();
+			stmt = conn.prepareStatement(USER_IDGET);
+			stmt.setString(1, vo.getId());
+			rs = stmt.executeQuery();
+			if (rs.next()) {
+				user = new UserVO();
+				user.setId(rs.getString("ID"));
+			}
+			System.out.println("===> JDBC로 getIdUser() 기능 처리 완료");
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JDBCUtil.close(rs, stmt, conn);
+		}
+		if(user != null) {	// Id가 있으면 1 리턴
+			System.out.println("===> 111111111111111");
+			return 1;
+		}else {	// ID가 없으면 0 리턴
+			System.out.println("===> 222222222222222");
+			return 0;
+		}
+	}
+	// 글 등록
 	public void insertUser(UserVO vo) {
 		System.out.println("===> JDBC로 insertUser() 기능 처리");
 		try {
 			conn = JDBCUtil.getConnection();
 			stmt = conn.prepareStatement(USER_INSERT);
-			/*
-			 * stmt.setInt(1, vo.getFloor()); stmt.setInt(2, vo.getProblem_code());
-			 * stmt.setInt(3, vo.getProblem_place_code()); stmt.setString(4,
-			 * vo.getUsers_id()); stmt.setInt(5, vo.getDepartment_code());
-			 * stmt.setTimestamp(6, vo.getDatetime());
-			 */
+			
+			stmt.setString(1, vo.getId());
+			stmt.setString(2, vo.getPassword());
+			
 			stmt.executeUpdate();
-		System.out.println("===> JDBC로 insertUser() 기능 처리 완료");
+			System.out.println("===> JDBC로 insertUser() 기능 처리 완료");
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -76,7 +99,7 @@ public class UserDAO {
 		}
 	}
 
-	// 글 수정  
+	// 글 수정
 	public void updateUser(UserVO vo) {
 		System.out.println("===> JDBC로 updateUser() 기능 처리");
 		try {
@@ -111,8 +134,9 @@ public class UserDAO {
 			JDBCUtil.close(stmt, conn);
 		}
 	}
-	// 글 목록 조회 
-	public List<UserVO> getUserList(UserVO vo,HttpSession session) {
+
+	// 글 목록 조회
+	public List<UserVO> getUserList(UserVO vo, HttpSession session) {
 		System.out.println("===> JDBC로 getUserList() 기능 처리");
 		List<UserVO> userList = new ArrayList<UserVO>();
 		String id = session.getAttribute("login").toString();
@@ -144,6 +168,5 @@ public class UserDAO {
 		}
 		return userList;
 	}
-	
-	
+
 }
