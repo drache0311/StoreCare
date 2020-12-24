@@ -21,7 +21,6 @@ public class UserController {
 	@RequestMapping(value = "/insertUser.do", method=RequestMethod.POST)
 	public String insertUser_POST(UserVO vo, UserDAO userDAO) {
 		if (userDAO.getUser(vo) != null) {
-			// 아이디가 있는지 여기서 비교할 필요가 없다. jsp에서 스크립트로 비교문 추가하자
 			return "signUp";
 		}else {
 			userDAO.insertUser(vo);

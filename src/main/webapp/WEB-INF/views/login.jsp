@@ -17,12 +17,10 @@
 	<link href="<%=request.getContextPath()%>/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
 
-
-    
     <!-- Custom styles for this template -->
     <link href="<%=request.getContextPath()%>/resources/vendor/bootstrap/css/signin.css" rel="stylesheet">
   </head>
-  <body class="text-center">
+<body class="text-center">
     
 <main class="form-signin">
   <form action="login.do" method="post">
