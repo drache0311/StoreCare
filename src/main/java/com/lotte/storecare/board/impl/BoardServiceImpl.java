@@ -32,7 +32,10 @@ public class BoardServiceImpl implements BoardService {
 		return boardDAO.getBoard(vo);
 	}
 
-	public List<BoardVO> getBoardList(BoardVO vo ,HttpSession session) {
+	public List<BoardVO> getBoardUserList(BoardVO vo ,HttpSession session) {
+		return boardDAO.getBoardUserList(vo, session);
+	}
+	public List<BoardVO> getBoardList(BoardVO vo, HttpSession session) {
 		return boardDAO.getBoardList(vo, session);
 	}
 }

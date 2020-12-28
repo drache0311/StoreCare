@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!doctype html>
 <head>
     <meta charset="utf-8">
@@ -24,29 +25,58 @@
 <%@include file ="common/nav.jsp" %>
 
 
-  <header class="bg-primary text-white">
-    <div class="container text-center">
-      <h1>Welcome to Scrolling Nav</h1>
-      <p class="lead">A landing page template freshly redesigned for Bootstrap 4</p>
-    </div>
-  </header>
+	<header class="bg-primary text-white">
+		<div class="container text-center">
+			<h1>관리자 페이지</h1>
+			<p class="lead">전체 접수내역 조회 페이지</p>
+		</div>
+	</header>
 
-  <section id="about">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-8 mx-auto">
-          <h2>About this page</h2>
-          <p class="lead">This is a great place to talk about your webpage. This template is purposefully unstyled so you can use it as a boilerplate or starting point for you own landing page designs! This template features:</p>
-          <ul>
-            <li>Clickable nav links that smooth scroll to page sections</li>
-            <li>Responsive behavior when clicking nav links perfect for a one page website</li>
-            <li>Bootstrap's scrollspy feature which highlights which section of the page you're on in the navbar</li>
-            <li>Minimal custom CSS so you are free to explore your own unique design options</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
+	<section id="about">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-8 mx-auto">
+					<h2>전체 내역</h2>
+					<table class="table table-striped table-hover">
+						<thead>
+							<tr>
+								<th>접수일자</th>
+								<th>접수내용</th>
+								<th>처리현황</th>
+								<th>처리시간</th>
+							</tr>
+						</thead>
+						<tbody>
+
+						<c:forEach items="${boardList}" var="board">
+							<tr>
+								<td>${board.datetime}</td>
+								<td>${board.place_detail}
+								${board.problem_detail}</td>
+								<td>${board.flag}</td>
+								<td>${board.clearTime}</td>
+							</tr>
+						</c:forEach>
+						</tbody>
+					</table>
+					<div class="text-center">
+						<ul class="pagination">
+							<!-- li태그의 클래스에 disabled를 넣으면 마우스를 위에 올렸을 때 클릭 금지 마크가 나오고 클릭도 되지 않는다.-->
+							<!-- disabled의 의미는 앞의 페이지가 존재하지 않다는 뜻이다. -->
+							<li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
+							<li class="page-item active"><a class="page-link" href="#">1</a></li>
+							<li class="page-item"><a class="page-link" href="#">2</a></li>
+							<li class="page-item"><a class="page-link" href="#">3</a></li>
+							<li class="page-item"><a class="page-link" href="#">4</a></li>
+							<li class="page-item"><a class="page-link" href="#">5</a></li>
+							<li class="page-item"><a class="page-link" href="#">Next</a></li>
+						</ul>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</section>
 
   <section id="services" class="bg-light">
     <div class="container">

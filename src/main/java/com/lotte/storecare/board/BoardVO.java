@@ -17,7 +17,25 @@ public class BoardVO {
 	private String problem_detail;
 	private String place_detail;
 	private String department_name;
+	private Timestamp clearTime;
+	private int flag;
 	
+	public Timestamp getClearTime() {
+		return clearTime;
+	}
+
+	public void setClearTime(Timestamp clearTime) {
+		this.clearTime = clearTime;
+	}
+
+	public int getFlag() {
+		return flag;
+	}
+
+	public void setFlag(int flag) {
+		this.flag = flag;
+	}
+
 	public String getDepartment_name() {
 		return department_name;
 	}

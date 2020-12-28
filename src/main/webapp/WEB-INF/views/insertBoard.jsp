@@ -36,7 +36,7 @@
 <div class="card w-75">
 	<div class="card-body">
 	    <h5 class="card-title">이전</h5>
-	    <a href="getBoardList.do" class="btn btn-primary">내 문의 목록 보기</a>
+	    <a href="getBoardUserList.do" class="btn btn-primary">내 문의 목록 보기</a>
 	</div>
 </div>
 <!-- 내문의 보기 여기까지   ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ          -->

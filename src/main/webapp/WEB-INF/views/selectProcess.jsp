@@ -56,7 +56,7 @@
 					<td>
 					<button type="submit" value="dep_code" >등록하기</button>
 					<!-- 내 문의내역 BUTTON  -->
-					<button type="button" value="dep_code" onclick="location.href='getBoardList.do' ">내 문의내역</button>
+					<button type="button" value="dep_code" onclick="location.href='getBoardUserList.do' ">내 문의내역</button>
 					</td>
 					</tr>
 				</table>
