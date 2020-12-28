@@ -16,6 +16,7 @@
 	<dependencies>
 	
 	<!-- self input start -->
+		<!-- Spring JDBC -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-jdbc</artifactId>
@@ -25,7 +26,7 @@
         <dependency>
             <groupId>org.mybatis</groupId>
             <artifactId>mybatis</artifactId>
-            <version>3.4.1</version>
+            <version>3.5.6</version>
         </dependency>				
 		<!-- Mysql Connector -->
 		<dependency>
@@ -35,9 +36,9 @@
 		</dependency>	
 		<!-- Mybatis-Spring -->
 		<dependency>
-			<groupId>org.mybatis</groupId>
-			<artifactId>mybatis-spring</artifactId>
-			<version>1.2.2</version>
+		    <groupId>org.mybatis</groupId>
+		    <artifactId>mybatis-spring</artifactId>
+		    <version>2.0.6</version>
 		</dependency>
 		<!--  Apache Common -->
 		<dependency>
@@ -50,6 +51,12 @@
 		    <groupId>com.fasterxml.jackson.core</groupId>
 		    <artifactId>jackson-databind</artifactId>
 		    <version>2.12.0</version>
+		</dependency>
+		<!-- Spring Test -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<version>${org.springframework-version}</version>
 		</dependency>
 	<!--  self input stop -->
 		<!-- Spring -->
