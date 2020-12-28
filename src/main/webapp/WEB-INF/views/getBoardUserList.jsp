@@ -8,15 +8,21 @@
 <!DOCTYPE html>
 <head>
 
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
-
-  <title>나의 StoreCare</title>
-
-  <!-- Bootstrap core CSS -->
-  <link href="<%=request.getContextPath()%>/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	
+	<title>나의 StoreCare</title>
+	
+	<!-- JQuery JavaScript -->
+	<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/vendor/bootstrap/css/jquery-ui.css" type="text/css" />  
+	<script src="<%=request.getContextPath()%>/resources/vendor/jquery/jquery.min.js"></script>  
+	<script src="<%=request.getContextPath()%>/resources/vendor/jquery/jquery-ui.min.js"></script>
+	
+	<!-- Bootstrap core CSS -->
+	<link href="<%=request.getContextPath()%>/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	
 
 </head>
 
@@ -26,9 +32,23 @@
 <%@include file ="common/nav.jsp" %>
 
   <!-- Page Content -->
+
+
+<!--  검색 Form -->
+<form name="searchUserBoard" method="post">
+  검색하기
+  <br>  
+From: <input type="text" id="startDate" placeholder="시작날짜" >
+<br>
+To: <input type="text" id="endDate"   placeholder="끝날짜" >
+</form>
+
+
+  
+  
   <!-- 여기도 null이 아니라 [] 빈 리스트인데 이거 나중에 생각해보자  -->
 <c:choose>
-<c:when test="${boardList ne '[]'}">
+<c:when test="${boardUserList ne '[]'}">
  	<div class = "container-fluid" >
 		<c:forEach items="${boardUserList}" var="board">
 			<div class = "card mt-4">
@@ -63,8 +83,11 @@
   
 
   <!-- Bootstrap core JavaScript -->
-  <script src="<%=request.getContextPath()%>/resources/vendor/jquery/jquery.slim.min.js"></script>
+ 
   <script src="<%=request.getContextPath()%>/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  
+  <!-- Custom JavaScript for this theme -->
+  <script src="<%=request.getContextPath()%>/resources/vendor/bootstrap/js/datepicker.js"></script>
 
 </body>
 

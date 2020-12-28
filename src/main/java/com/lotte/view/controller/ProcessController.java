@@ -15,7 +15,7 @@ public class ProcessController {
 	
 	// 
 	@RequestMapping(value="/getBoardUserList", method=RequestMethod.GET)
-	public String GETBOARDLIST_POST() {	
+	public String GETBOARDLIST_GET() {	
 		return "getBoardUserList";
 	}
 	
