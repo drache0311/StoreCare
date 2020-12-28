@@ -19,19 +19,14 @@
 <body>
 	
 <div class="container">
-<br>  <p class="text-center">StoreCare</p>
-<hr>
+
+
 
 <div class="card bg-light">
 	<article class="card-body mx-auto" style="max-width: 400px;">
-	<h4 class="card-title mt-3 text-center">Create Account</h4>
-	<p class="text-center">Get started with your free account</p>
-	<p>
-		<a href="" class="btn btn-block btn-twitter"> <i class="fab fa-twitter"></i>   Login via Twitter</a>
-		<a href="" class="btn btn-block btn-facebook"> <i class="fab fa-facebook-f"></i>   Login via facebook</a>
-	</p>
+	<h4 class="card-title mt-3 text-center">STORE CARE</h4>
 	<p class="divider-text">
-        <span class="bg-light">OR</span>
+        <span class="bg-light">롯데백화점</span>
     </p>
 	<form  method="post" action="insertUser.do">
 	<!-- 아이디 -->

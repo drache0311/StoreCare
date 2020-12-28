@@ -14,9 +14,9 @@ public class ProcessController {
 	}
 	
 	// 
-	@RequestMapping(value="/getBoardList", method=RequestMethod.GET)
+	@RequestMapping(value="/getBoardUserList", method=RequestMethod.GET)
 	public String GETBOARDLIST_POST() {	
-		return "getBoardList";
+		return "getBoardUserList";
 	}
 	
 	@RequestMapping(value="/getBoard", method=RequestMethod.GET)
@@ -26,7 +26,7 @@ public class ProcessController {
 	
 	@RequestMapping(value="/deleteBoard", method=RequestMethod.GET)
 	public String DELETEBOARD_GET() {	
-		return "getBoardList";
+		return "getBoardUserList";
 	}
 	
 	@RequestMapping(value="/insertBoard", method=RequestMethod.GET)

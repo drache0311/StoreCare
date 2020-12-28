@@ -69,11 +69,11 @@ public class HomeController {
 	public String LOGIN_POST(UserVO vo, UserDAO userDAO,HttpSession session) {	
 		
 		if (userDAO.getUser(vo).getRole() == 0) {	// role = 0 은 총괄 관리자이다.
-			session.setAttribute("login", userDAO.getUser(vo).getId());
+			session.setAttribute("role", userDAO.getUser(vo).getId());
 			return "headAdmin";
 		}else if(userDAO.getUser(vo).getRole() == 1){	// role = 1 은 각 점 관리자이다.
-			session.setAttribute("login", userDAO.getUser(vo).getId());
-			return "admin";
+			session.setAttribute("role", userDAO.getUser(vo).getDepartment_code());
+			return "getBoardList.do";
 		}else if (userDAO.getUser(vo) != null) {	// 나머지 role = 2 들은 일반 사용자들이다.
 			session.setAttribute("login", userDAO.getUser(vo).getId());
 			return "getDepartmentList.do";
@@ -101,6 +101,12 @@ public class HomeController {
 	@RequestMapping(value = "/headAdmin", method=RequestMethod.POST)
 	public String LOGIN_HAEDADMIN_POST() {
 		return "adminHead";
+	}
+	
+	//admin 은 admin 페이지로
+	@RequestMapping(value = "/admin", method=RequestMethod.POST)
+	public String LOGIN_ADMIN_POST() {
+		return "admin";
 	}
 	
 }

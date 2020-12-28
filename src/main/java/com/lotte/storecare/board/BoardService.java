@@ -23,4 +23,6 @@ public interface BoardService {
 
 	// �� ��� ��ȸ
 	List<BoardVO> getBoardList(BoardVO vo, HttpSession session);
+	
+	List<BoardVO> getBoardUserList(BoardVO vo, HttpSession session);
 }

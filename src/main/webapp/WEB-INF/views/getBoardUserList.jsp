@@ -30,7 +30,7 @@
 <c:choose>
 <c:when test="${boardList ne '[]'}">
  	<div class = "container-fluid" >
-		<c:forEach items="${boardList}" var="board">
+		<c:forEach items="${boardUserList}" var="board">
 			<div class = "card mt-4">
 			    <div class ="card-body">
 					<span class='text-primary'> ${board.datetime} </span>
