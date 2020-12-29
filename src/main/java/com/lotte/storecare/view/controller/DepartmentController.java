@@ -1,5 +1,9 @@
 ﻿package com.lotte.storecare.view.controller;
 
+import java.util.List;
+
+import javax.annotation.Resource;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -9,6 +13,11 @@ import com.lotte.storecare.department.impl.DepartmentDAO;
 
 @Controller
 public class DepartmentController {
+	
+	@Resource(name = "departmentDAO")
+	private DepartmentDAO dao;
+	
+	
 	// 글 등록
 	@RequestMapping("/insertDepartment.do")
 	public String insertDepartment(DepartmentVO vo, DepartmentDAO departmentDAO) {
@@ -40,8 +49,9 @@ public class DepartmentController {
 
 	// 글 목록 검색
 	@RequestMapping("/getDepartmentList.do")
-	public ModelAndView getDepartmentList(DepartmentVO vo, DepartmentDAO departmentDAO, ModelAndView mav) {
-		mav.addObject("departmentList", departmentDAO.getDepartmentList(vo)); // Model 정보 저장
+	public ModelAndView getDepartmentList(ModelAndView mav) {
+		List<DepartmentVO> vo = dao.selectAll();
+		mav.addObject("departmentList", vo); // Model 정보 저장
 		mav.setViewName("selectProcess"); // View 정보 저장
 		return mav;
 	}

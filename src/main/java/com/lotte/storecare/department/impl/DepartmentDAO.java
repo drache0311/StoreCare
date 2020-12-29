@@ -5,13 +5,54 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.annotation.Resource;
+
+import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 import com.lotte.storecare.department.DepartmentVO;
+import com.lotte.storecare.user.UserVO;
 import com.lotte.storecare.common.JDBCUtil;
 
 // DAO(Data Access Object)
 @Repository("departmentDAO")
 public class DepartmentDAO {
+	
+	
+	
+	
+	
+	@Resource(name="sqlSessoinTemplate")
+	private SqlSessionTemplate session;
+	
+	// 1개만 select
+	public DepartmentVO select(String id) {
+
+		DepartmentVO department = session.selectOne("departmentDB.selectUser", id);
+		return department;
+	}
+	
+	// 여러 개 select
+	public List<DepartmentVO> selectAll() {
+		System.out.println("여기는 departmentDao의 selectALL");
+		List<DepartmentVO> departmentList = session.selectList("departmentDB.selectDepartmentAll");
+		return departmentList;		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	// JDBC 관련 변수
 	private Connection conn = null;
 	private PreparedStatement stmt = null;
@@ -92,26 +133,26 @@ public class DepartmentDAO {
 		}
 		return department;
 	}
-
-	// 글 목록 조회
-	public List<DepartmentVO> getDepartmentList(DepartmentVO vo) {
-		System.out.println("===> JDBC로 getDepartmentList() 기능 처리");
-		List<DepartmentVO> departmentList = new ArrayList<DepartmentVO>();
-		try {
-			conn = JDBCUtil.getConnection();
-			stmt = conn.prepareStatement(DEPARTMENT_LIST);
-			rs = stmt.executeQuery();
-			while (rs.next()) {
-				DepartmentVO department = new DepartmentVO();
-				department.setCode(rs.getInt("CODE"));
-				department.setDep_name(rs.getString("DEP_NAME"));
-				departmentList.add(department);
-			}	
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			JDBCUtil.close(rs, stmt, conn);
-		}
-		return departmentList;
-	}
+//
+//	// 글 목록 조회
+//	public List<DepartmentVO> getDepartmentList(DepartmentVO vo) {
+//		System.out.println("===> JDBC로 getDepartmentList() 기능 처리");
+//		List<DepartmentVO> departmentList = new ArrayList<DepartmentVO>();
+//		try {
+//			conn = JDBCUtil.getConnection();
+//			stmt = conn.prepareStatement(DEPARTMENT_LIST);
+//			rs = stmt.executeQuery();
+//			while (rs.next()) {
+//				DepartmentVO department = new DepartmentVO();
+//				department.setCode(rs.getInt("CODE"));
+//				department.setDep_name(rs.getString("DEP_NAME"));
+//				departmentList.add(department);
+//			}	
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		} finally {
+//			JDBCUtil.close(rs, stmt, conn);
+//		}
+//		return departmentList;
+//	}
 }

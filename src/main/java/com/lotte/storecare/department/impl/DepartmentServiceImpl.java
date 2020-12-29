@@ -33,7 +33,12 @@ public class DepartmentServiceImpl implements DepartmentService {
 		return departmentDAO.getDepartment(vo);
 	}
 
-	public List<DepartmentVO> getDepartmentList(DepartmentVO vo) {
-		return departmentDAO.getDepartmentList(vo);
+
+	
+	public List<DepartmentVO> selectAll(){
+		System.out.println("여기는 dep_serviceimp");
+		return departmentDAO.selectAll();
 	}
+	
+	
 }
