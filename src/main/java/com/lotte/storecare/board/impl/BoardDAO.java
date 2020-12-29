@@ -25,22 +25,36 @@ public class BoardDAO {
 	@Resource(name="sqlSessoinTemplate")
 	private SqlSessionTemplate session;
 	
-	// 1개만 select
+	// 문의 1개만 select
 	public BoardVO select(String id) {
 
 		BoardVO board = session.selectOne("boardDB.selectUser", id);
 		return board;
 	}
 	
-	// 여러 개 select
+	// 문의 여러 개 select
 	public List<BoardVO> selectUserBoardList(String id) {
 		System.out.println("여기는 boardDao의 selectUserBoardList");
 		List<BoardVO> boardList = session.selectList("boardDB.selectUserBoardList", id);
 		return boardList;		
 	}
 
-	
-	
+	// 문의 update
+	public void updateBoard(BoardVO vo) {
+		//BoardVO vo = new BoardVO();
+//		vo.setProblem_code(3);
+//		vo.setDatetime("");
+//		vo.setProblem_place_code();
+//		vo.setFloor();
+//		vo.setSeq();
+		session.update("boardDB.updateBoard", vo);
+		
+	}
+//	stmt.setInt(1, vo.getProblem_code());
+//	stmt.setTimestamp(2, vo.getDatetime());
+//	stmt.setInt(3, vo.getProblem_place_code());
+//	stmt.setInt(4, vo.getFloor());
+//	stmt.setInt(5, vo.getSeq());
 	
 	
 	
@@ -85,25 +99,25 @@ public class BoardDAO {
 		}
 	}
 
-	// 글 수정  
-	public void updateBoard(BoardVO vo) {
-		System.out.println("===> JDBC로 updateBoard() 기능 처리");
-		try {
-			conn = JDBCUtil.getConnection();
-			stmt = conn.prepareStatement(BOARD_UPDATE);
-			stmt.setInt(1, vo.getProblem_code());
-			stmt.setTimestamp(2, vo.getDatetime());
-			stmt.setInt(3, vo.getProblem_place_code());
-			stmt.setInt(4, vo.getFloor());
-			stmt.setInt(5, vo.getSeq());
-			stmt.executeUpdate();
-			System.out.println("===> JDBC로 updateBoard() 기능 처리 완료");
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			JDBCUtil.close(stmt, conn);
-		}
-	}
+//	// 글 수정  
+//	public void updateBoard(BoardVO vo) {
+//		System.out.println("===> JDBC로 updateBoard() 기능 처리");
+//		try {
+//			conn = JDBCUtil.getConnection();
+//			stmt = conn.prepareStatement(BOARD_UPDATE);
+//			stmt.setInt(1, vo.getProblem_code());
+//			stmt.setTimestamp(2, vo.getDatetime());
+//			stmt.setInt(3, vo.getProblem_place_code());
+//			stmt.setInt(4, vo.getFloor());
+//			stmt.setInt(5, vo.getSeq());
+//			stmt.executeUpdate();
+//			System.out.println("===> JDBC로 updateBoard() 기능 처리 완료");
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		} finally {
+//			JDBCUtil.close(stmt, conn);
+//		}
+//	}
 
 	// 글 삭제
 	public void deleteBoard(BoardVO vo) {

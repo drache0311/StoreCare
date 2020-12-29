@@ -7,7 +7,8 @@
 	<select id="selectBoard"  parameterType="String" resultType="BoardVO">
 		select * from board where id=#{id}
 	</select>
-		<!-- select 쿼리 (ALL) -->
+	
+	<!-- select 쿼리 (ALL) -->
 	<select id="selectUserBoardList" parameterType="String" resultType="BoardVO">
 		select * 
 		from board,problem,place,department 
@@ -17,4 +18,11 @@
 		and board.department_code=department.code 
 		and users_id=#{id}
 	</select>
+	
+	<!-- update 쿼리 -->	
+	<update id="updateBoard" parameterType="boardVO">
+		update board
+		set problem_code=#{problem_code}, datetime=#{datetime}, problem_place_code=#{problem_place_code}, floor=#{floor} 
+		where seq=#{seq}
+	</update>
 </mapper>

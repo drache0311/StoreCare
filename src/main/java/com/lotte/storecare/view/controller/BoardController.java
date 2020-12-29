@@ -41,7 +41,7 @@ public class BoardController {
 
 	// 글 수정 완료
 	@RequestMapping("/updateBoard.do")
-	public String updateBoard(BoardVO vo, BoardDAO boardDAO) {
+	public String updateBoard(BoardVO vo) {
 		boardDAO.updateBoard(vo);
 		return "getBoardUserList.do";
 	}
