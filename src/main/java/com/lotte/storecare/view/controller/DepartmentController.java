@@ -15,7 +15,7 @@ import com.lotte.storecare.department.impl.DepartmentDAO;
 public class DepartmentController {
 	
 	@Resource(name = "departmentDAO")
-	private DepartmentDAO dao;
+	private DepartmentDAO departmentDAO;
 	
 	
 	// 글 등록
@@ -50,7 +50,7 @@ public class DepartmentController {
 	// 글 목록 검색
 	@RequestMapping("/getDepartmentList.do")
 	public ModelAndView getDepartmentList(ModelAndView mav) {
-		List<DepartmentVO> vo = dao.selectAll();
+		List<DepartmentVO> vo = departmentDAO.selectAll();
 		mav.addObject("departmentList", vo); // Model 정보 저장
 		mav.setViewName("selectProcess"); // View 정보 저장
 		return mav;

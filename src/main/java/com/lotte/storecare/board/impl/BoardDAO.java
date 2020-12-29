@@ -6,16 +6,49 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
+import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 import com.lotte.storecare.board.BoardVO;
 import com.lotte.storecare.common.JDBCUtil;
+import com.lotte.storecare.department.DepartmentVO;
 
 
 // DAO(Data Access Object)
 @Repository("boardDAO")
 public class BoardDAO {
+	
+	
+	
+	@Resource(name="sqlSessoinTemplate")
+	private SqlSessionTemplate session;
+	
+	// 1개만 select
+	public BoardVO select(String id) {
+
+		BoardVO board = session.selectOne("boardDB.selectUser", id);
+		return board;
+	}
+	
+	// 여러 개 select
+	public List<BoardVO> selectUserBoardList(String id) {
+		System.out.println("여기는 boardDao의 selectUserBoardList");
+		List<BoardVO> boardList = session.selectList("boardDB.selectUserBoardList", id);
+		return boardList;		
+	}
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	// JDBC 관련 변수
 	private Connection conn = null;
 	private PreparedStatement stmt = null;
@@ -141,38 +174,38 @@ public class BoardDAO {
 		return board;
 	}
 
-	// 유저 문의 목록 조회 
-	public List<BoardVO> getBoardUserList(BoardVO vo,HttpSession session) {
-		System.out.println("===> JDBC로 getBoardUserList() 기능 처리");
-		List<BoardVO> boardList = new ArrayList<BoardVO>();
-		String id = session.getAttribute("login").toString();
-		try {
-			conn = JDBCUtil.getConnection();
-			stmt = conn.prepareStatement(BOARD_USERLIST);
-			stmt.setString(1, id);
-			rs = stmt.executeQuery();
-			while (rs.next()) {
-				BoardVO board = new BoardVO();
-				board.setSeq(rs.getInt("SEQ"));
-				board.setFloor(rs.getInt("FLOOR"));
-				board.setProblem_code(rs.getInt("PROBLEM_CODE"));
-				board.setProblem_place_code(rs.getInt("PROBLEM_PLACE_CODE"));
-				board.setUsers_id(rs.getString("USERS_ID"));
-				board.setDepartment_code(rs.getInt("DEPARTMENT_CODE"));
-				board.setDatetime(rs.getTimestamp("DATETIME"));
-				board.setPlace_detail(rs.getString("PLACE_DETAIL"));
-				board.setProblem_detail(rs.getString("PROBLEM_DETAIL"));
-				board.setDepartment_name(rs.getString("DEP_NAME"));
-				boardList.add(board);
-			}
-			System.out.println("===> JDBC로 getBoardUserList() 기능 처리 완료");
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			JDBCUtil.close(rs, stmt, conn);
-		}
-		return boardList;
-	}
+//	// 유저 문의 목록 조회 
+//	public List<BoardVO> getBoardUserList(BoardVO vo,HttpSession session) {
+//		System.out.println("===> JDBC로 getBoardUserList() 기능 처리");
+//		List<BoardVO> boardList = new ArrayList<BoardVO>();
+//		String id = session.getAttribute("login").toString();
+//		try {
+//			conn = JDBCUtil.getConnection();
+//			stmt = conn.prepareStatement(BOARD_USERLIST);
+//			stmt.setString(1, id);
+//			rs = stmt.executeQuery();
+//			while (rs.next()) {
+//				BoardVO board = new BoardVO();
+//				board.setSeq(rs.getInt("SEQ"));
+//				board.setFloor(rs.getInt("FLOOR"));
+//				board.setProblem_code(rs.getInt("PROBLEM_CODE"));
+//				board.setProblem_place_code(rs.getInt("PROBLEM_PLACE_CODE"));
+//				board.setUsers_id(rs.getString("USERS_ID"));
+//				board.setDepartment_code(rs.getInt("DEPARTMENT_CODE"));
+//				board.setDatetime(rs.getTimestamp("DATETIME"));
+//				board.setPlace_detail(rs.getString("PLACE_DETAIL"));
+//				board.setProblem_detail(rs.getString("PROBLEM_DETAIL"));
+//				board.setDepartment_name(rs.getString("DEP_NAME"));
+//				boardList.add(board);
+//			}
+//			System.out.println("===> JDBC로 getBoardUserList() 기능 처리 완료");
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		} finally {
+//			JDBCUtil.close(rs, stmt, conn);
+//		}
+//		return boardList;
+//	}
 	
 	// 전체 문의 목록 조회 
 	public List<BoardVO> getBoardList(BoardVO vo, HttpSession session) {

@@ -1,5 +1,8 @@
 ﻿package com.lotte.storecare.view.controller;
 
+import java.util.List;
+
+import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -9,10 +12,18 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.lotte.storecare.board.BoardVO;
 import com.lotte.storecare.board.impl.BoardDAO;
+import com.lotte.storecare.department.DepartmentVO;
+import com.lotte.storecare.department.impl.DepartmentDAO;
 
 
 @Controller
 public class BoardController {
+	
+	@Resource(name = "boardDAO")
+	private BoardDAO boardDAO;
+	
+	
+	
 	
 	// 글 등록 전 페이지 완료
 	@RequestMapping(value = "/insertBoard", method=RequestMethod.POST)
@@ -60,8 +71,10 @@ public class BoardController {
 	
 	// 유저 문의내역 검색 완료
 	@RequestMapping("/getBoardUserList.do")
-	public ModelAndView getBoardUserList(BoardVO vo, BoardDAO boardDAO, ModelAndView mav, HttpSession session) {
-		mav.addObject("boardUserList", boardDAO.getBoardUserList(vo, session)); // Model 정보 저장
+	public ModelAndView getBoardUserList(ModelAndView mav, HttpSession session) {
+		String id = (String) session.getAttribute("login");
+		List<BoardVO> vo = boardDAO.selectUserBoardList(id);
+		mav.addObject("boardUserList", vo); // Model 정보 저장
 		mav.setViewName("getBoardUserList"); // View 정보 저장
 		return mav;
 	}
