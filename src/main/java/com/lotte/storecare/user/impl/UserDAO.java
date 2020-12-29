@@ -6,8 +6,10 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
+import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.lotte.storecare.user.UserVO;
@@ -16,6 +18,33 @@ import com.lotte.storecare.common.JDBCUtil;
 // DAO(Data Access Object)
 @Repository("userDAO")
 public class UserDAO {
+	
+	
+	
+	@Resource(name="sqlSessoinTemplate")
+	private SqlSessionTemplate session;
+	
+	// 1개만 select
+	public UserVO select(String id) {
+
+		UserVO user = session.selectOne("userDB.selectUser", id);
+		return user;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	// JDBC 관련 변수
 	private Connection conn = null;
 	private PreparedStatement stmt = null;

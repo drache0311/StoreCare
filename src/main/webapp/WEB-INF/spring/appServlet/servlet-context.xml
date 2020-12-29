@@ -21,7 +21,10 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean> 
 	
-	<context:component-scan base-package="com.lotte.view" />
+	<!-- full path -->
+
+		
+	<context:component-scan base-package="com.lotte.storecare" />
 	
 	
 	
