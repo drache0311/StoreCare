@@ -3,6 +3,8 @@
 "http://mybatis.org/dtd/mybatis-3-config.dtd"> 
 
 <configuration> 
-
-
+	<typeAliases>
+		<typeAlias alias="UserVO" type="com.lotte.storecare.user.UserVO" />
+		<typeAlias alias="BoardVO" type="com.lotte.storecare.board.BoardVO" />
+	</typeAliases>
 </configuration>

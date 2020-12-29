@@ -1,4 +1,4 @@
-﻿package com.lotte.view.controller;
+﻿package com.lotte.storecare.view.controller;
 
 import javax.servlet.http.HttpSession;
 

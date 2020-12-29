@@ -1,4 +1,4 @@
-﻿package com.lotte.view.controller;
+﻿package com.lotte.storecare.view.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,7 +29,6 @@ public class DepartmentController {
 		departmentDAO.deleteDepartment(vo);
 		return "getDepartmentList.do";
 	}
-
 	// 글 상세 조회
 	@RequestMapping("/getDepartment.do")
 	public ModelAndView getDepartment(DepartmentVO vo, DepartmentDAO departmentDAO, ModelAndView mav) {
@@ -46,4 +45,5 @@ public class DepartmentController {
 		mav.setViewName("selectProcess"); // View 정보 저장
 		return mav;
 	}
+
 }
