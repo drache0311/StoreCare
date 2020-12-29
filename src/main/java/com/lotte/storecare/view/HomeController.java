@@ -98,14 +98,15 @@ public class HomeController {
 		String id = httpServletRequest.getParameter("id");
 		
 		UserVO vo = dao.select(id);
-		System.out.println("id : " + id);
+		System.out.println("vo :" + vo);
 
 		if(vo == null) {	// 아이디,비밀번호 틀리면 다시 로그인 페이지로
 			return "login";
 		}else if(vo.getRole() == 0) {	// role이 0 이면 총괄 관리자 페이지로
 			return "adminHead";
 		}else if(vo.getRole() == 1) {	// role이 1이면 각 점 관리자 페이지로
-			return "admin";
+			session.setAttribute("department_code", vo.getDepartment_code());
+			return "getBoardList.do";
 		}else{	// 나머지 role = 2 들은 일반 사용자들로 사용자들페이지로
 			session.setAttribute("login", vo.getId());
 			return "getDepartmentList.do";
@@ -135,7 +136,7 @@ public class HomeController {
 
 	
 	//headAdmin 은 headAdmin 페이지로
-	@RequestMapping(value = "/headAdmin", method=RequestMethod.POST)
+	@RequestMapping(value = "/adminHead", method=RequestMethod.POST)
 	public String LOGIN_HAEDADMIN_POST() {
 		return "adminHead";
 	}
