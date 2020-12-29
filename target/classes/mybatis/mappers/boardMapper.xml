@@ -25,4 +25,12 @@
 		set problem_code=#{problem_code}, datetime=#{datetime}, problem_place_code=#{problem_place_code}, floor=#{floor} 
 		where seq=#{seq}
 	</update>
+	
+	<!-- delete 쿼리 -->
+	<delete id="deleteBoard" parameterType="int">
+		delete from board where seq=#{seq}
+	</delete>	
+	
+	
+	
 </mapper>

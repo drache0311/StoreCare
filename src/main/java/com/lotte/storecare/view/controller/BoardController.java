@@ -48,7 +48,7 @@ public class BoardController {
 
 	// 글 삭제 미완
 	@RequestMapping("/deleteBoard.do")
-	public String deleteBoard(BoardVO vo, BoardDAO boardDAO) {
+	public String deleteBoard(BoardVO vo) {
 		boardDAO.deleteBoard(vo);
 		return "getBoardUserList.do";
 	}

@@ -41,21 +41,13 @@ public class BoardDAO {
 
 	// 문의 update
 	public void updateBoard(BoardVO vo) {
-		//BoardVO vo = new BoardVO();
-//		vo.setProblem_code(3);
-//		vo.setDatetime("");
-//		vo.setProblem_place_code();
-//		vo.setFloor();
-//		vo.setSeq();
 		session.update("boardDB.updateBoard", vo);
-		
 	}
-//	stmt.setInt(1, vo.getProblem_code());
-//	stmt.setTimestamp(2, vo.getDatetime());
-//	stmt.setInt(3, vo.getProblem_place_code());
-//	stmt.setInt(4, vo.getFloor());
-//	stmt.setInt(5, vo.getSeq());
-	
+
+	// 문의 delete
+	public void deleteBoard(BoardVO vo) {
+		session.delete("boardDB.deleteBoard", vo.getSeq());
+	}
 	
 	
 	
@@ -119,21 +111,23 @@ public class BoardDAO {
 //		}
 //	}
 
-	// 글 삭제
-	public void deleteBoard(BoardVO vo) {
-		System.out.println("===> JDBC로 deleteBoard() 기능 처리");
-		try {
-			conn = JDBCUtil.getConnection();
-			stmt = conn.prepareStatement(BOARD_DELETE);
-			stmt.setInt(1, vo.getSeq());
-			stmt.executeUpdate();
-			System.out.println("===> JDBC로 deleteBoard() 기능 처리 완료");
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			JDBCUtil.close(stmt, conn);
-		}
-	}
+//	// 글 삭제
+//	public void deleteBoard(BoardVO vo) {
+//		System.out.println("===> JDBC로 deleteBoard() 기능 처리");
+//		try {
+//			conn = JDBCUtil.getConnection();
+//			stmt = conn.prepareStatement(BOARD_DELETE);
+//			stmt.setInt(1, vo.getSeq());
+//			stmt.executeUpdate();
+//			System.out.println("===> JDBC로 deleteBoard() 기능 처리 완료");
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		} finally {
+//			JDBCUtil.close(stmt, conn);
+//		}
+//	}
+	
+	
 	// 층 수 조회 floor 
 	public BoardVO getFloor(BoardVO vo) {
 		System.out.println("===> JDBC로 getFloor() 기능 처리");
