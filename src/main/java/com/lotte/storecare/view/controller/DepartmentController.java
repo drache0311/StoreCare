@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.lotte.storecare.board.BoardVO;
 import com.lotte.storecare.department.DepartmentVO;
 import com.lotte.storecare.department.impl.DepartmentDAO;
 
@@ -47,6 +48,16 @@ public class DepartmentController {
 		return mav;
 	}
 
+	// 층 수 조회
+	@RequestMapping("/checkBoard.do")
+	public ModelAndView getFloor(BoardVO vo, ModelAndView mav) {
+		mav.addObject("board", departmentDAO.selectFloor(vo)); // Model 정보 저장
+		mav.setViewName("checkBoard"); // View 정보 저장
+		return mav;
+	}
+	
+	
+	
 	// 글 목록 검색
 	@RequestMapping("/getDepartmentList.do")
 	public ModelAndView getDepartmentList(ModelAndView mav) {

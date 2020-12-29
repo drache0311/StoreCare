@@ -45,7 +45,7 @@ To: <input type="text" id="endDate"   placeholder="끝날짜" >
 
 
   
-  
+
   <!-- 여기도 null이 아니라 [] 빈 리스트인데 이거 나중에 생각해보자  -->
 <c:choose>
 <c:when test="${boardUserList ne '[]'}">
@@ -59,7 +59,7 @@ To: <input type="text" id="endDate"   placeholder="끝날짜" >
 					  ${board.problem_detail}
 					</div>
 					<div class ="card-text mb-2">   ${board.floor }F   </div>
-					<div class ="card-text mb-2">  <span class= "text-muted">${board.department_name } </span></div>
+					<div class ="card-text mb-2">  <span class= "text-muted">${board.dep_name } </span></div>
 					<a href="getProblemList.do?seq=${board.seq}&dep_code=${board.department_code}" class="btn btn-primary">수정하기</a>
 					<a href="deleteBoard.do?seq=${board.seq}" class="btn btn-primary">삭제하기</a>
 				</div>

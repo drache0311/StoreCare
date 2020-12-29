@@ -12,6 +12,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 import com.lotte.storecare.department.DepartmentVO;
 import com.lotte.storecare.user.UserVO;
+import com.lotte.storecare.board.BoardVO;
 import com.lotte.storecare.common.JDBCUtil;
 
 // DAO(Data Access Object)
@@ -31,7 +32,16 @@ public class DepartmentDAO {
 		DepartmentVO department = session.selectOne("departmentDB.selectUser", id);
 		return department;
 	}
-	
+	// 층 수 조회
+	public DepartmentVO selectFloor(BoardVO vo) {	// 안돼면 board의 dep_code로 해보자
+		System.out.println("여기는 departmentDao의 selectFloor / department_code = " + vo.getDepartment_code());
+		
+		DepartmentVO floor = session.selectOne("departmentDB.selectFloor", vo.getDepartment_code());
+		
+		System.out.println("여기는 departmentDao의 selectFloor 이후 //  " + floor);
+		
+		return floor;
+	}
 	// 여러 개 select
 	public List<DepartmentVO> selectAll() {
 		System.out.println("여기는 departmentDao의 selectALL");

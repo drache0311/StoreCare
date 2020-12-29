@@ -6,9 +6,18 @@ package com.lotte.storecare.department;
 public class DepartmentVO {
 	private int code;
 	private String dep_name;
-
+	private int department_floor;
+	
 	public int getCode() {
 		return code;
+	}
+
+	public int getDepartment_floor() {
+		return department_floor;
+	}
+
+	public void setDepartment_floor(int department_floor) {
+		this.department_floor = department_floor;
 	}
 
 	public void setCode(int code) {
@@ -26,6 +35,6 @@ public class DepartmentVO {
 	// 이 부분이랑 그 사이트 참고하면 될듯 !!!
 	@Override
 	public String toString() {
-		return "DepartmentVO [code=" + code + ", dep_name=" + dep_name +"]";
+		return "DepartmentVO [code=" + code + ", dep_name=" + dep_name +" department_floor = " + department_floor + "]";
 	}
 }

@@ -5,15 +5,11 @@
 
 	<!-- select 쿼리 (1개) ==> 아직 안씀 -->
 	<select id="selectBoard"  parameterType="String" resultType="BoardVO">
-		select * from board where id=#{id}
+		select *
+		from board 
+		where id=#{id}
 	</select>
-	
-	<!-- select 쿼리 (floor 조회) -->
-	<select id="selectFloor"  parameterType="int" resultType="BoardVO">
-		select distinct department_floor,dep_name 
-		from board,department 
-		where department.code=#{department_code}
-	</select>	
+
 	
 	<!-- select 쿼리 (ALL) -->
 	<select id="selectUserBoardList" parameterType="String" resultType="BoardVO">

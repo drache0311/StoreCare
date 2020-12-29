@@ -32,19 +32,16 @@ public class BoardDAO {
 		return board;
 	}
 	
-	// 층 수 조회
-	public BoardVO selectFloor(BoardVO vo) {
-		System.out.println("여기는 boardDao의 selectFloor / department_code = " + vo.getDepartment_code());
-		
-		BoardVO board = session.selectOne("boardDB.selectFloor", vo.getDepartment_code());
-		return board;
-	}
+
 	
 	// 문의 여러 개 select
 	public List<BoardVO> selectUserBoardList(String id) {
 		System.out.println("여기는 boardDao의 selectUserBoardList");
 		
 		List<BoardVO> boardList = session.selectList("boardDB.selectUserBoardList", id);
+		
+		System.out.println("여기는 boardDao의 selectUserBoardList 이후 //  dep_name = " + boardList.get(1).getDep_name());
+		
 		return boardList;		
 	}
 
@@ -244,7 +241,7 @@ public class BoardDAO {
 				board.setDatetime(rs.getTimestamp("DATETIME"));
 				board.setPlace_detail(rs.getString("PLACE_DETAIL"));
 				board.setProblem_detail(rs.getString("PROBLEM_DETAIL"));
-				board.setDepartment_name(rs.getString("DEP_NAME"));
+				board.setDep_name(rs.getString("DEP_NAME"));
 				board.setClearTime(rs.getTimestamp("CLEARTIME"));
 				board.setFlag(rs.getInt("FLAG"));
 				board.setDepartment_code(rs.getInt("DEPARTMENT_CODE"));
