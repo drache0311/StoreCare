@@ -13,6 +13,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.lotte.storecare.user.UserVO;
+import com.lotte.storecare.board.BoardVO;
 import com.lotte.storecare.common.JDBCUtil;
 
 // DAO(Data Access Object)
@@ -24,14 +25,24 @@ public class UserDAO {
 	@Resource(name="sqlSessoinTemplate")
 	private SqlSessionTemplate session;
 	
-	// 1개만 select
+	// id로 select
 	public UserVO select(String id) {
 
-		UserVO user = session.selectOne("userDB.selectUser", id);
+		UserVO user = session.selectOne("userDB.selectUserId", id);
 		return user;
 	}
 	
+	// vo로  select
+	public UserVO select(UserVO vo) {
+
+		UserVO user = session.selectOne("userDB.selectUserVo", vo);
+		return user;
+	}	
 	
+	// 유저 insert
+	public void insertUser(UserVO vo) {
+		session.insert("userDB.insertUser", vo);
+	}	
 	
 	
 	
@@ -52,36 +63,36 @@ public class UserDAO {
 	// SQL 명령어들
 	private final String USER_GET = "select * from users where id=? and password=?";
 	private final String USER_IDGET = "select id from users where id=?";
-	private final String USER_INSERT = "insert into users(id,password,role) values(?,?,2)";
+//	private final String USER_INSERT = "insert into users(id,password,role) values(?,?,2)";
 	private final String USER_UPDATE = "";
 	private final String USER_DELETE = "";
 	private final String USER_LIST = "";
 
 	// CRUD 기능의 메소드 구현
 	// 회원 등록
-	public UserVO getUser(UserVO vo) {
-		UserVO user = null;
-		try {
-			System.out.println("===> JDBC로 getUser() 기능 처리");
-			conn = JDBCUtil.getConnection();
-			stmt = conn.prepareStatement(USER_GET);
-			stmt.setString(1, vo.getId());
-			stmt.setString(2, vo.getPassword());
-			rs = stmt.executeQuery();
-			if (rs.next()) {
-				user = new UserVO();
-				user.setId(rs.getString("ID"));
-				user.setPassword(rs.getString("PASSWORD"));
-				user.setRole(rs.getInt("ROLE"));
-				user.setDepartment_code(rs.getInt("DEPARTMENT_CODE"));
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			JDBCUtil.close(rs, stmt, conn);
-		}
-		return user;
-	}
+//	public UserVO getUser(UserVO vo) {
+//		UserVO user = null;
+//		try {
+//			System.out.println("===> JDBC로 getUser() 기능 처리");
+//			conn = JDBCUtil.getConnection();
+//			stmt = conn.prepareStatement(USER_GET);
+//			stmt.setString(1, vo.getId());
+//			stmt.setString(2, vo.getPassword());
+//			rs = stmt.executeQuery();
+//			if (rs.next()) {
+//				user = new UserVO();
+//				user.setId(rs.getString("ID"));
+//				user.setPassword(rs.getString("PASSWORD"));
+//				user.setRole(rs.getInt("ROLE"));
+//				user.setDepartment_code(rs.getInt("DEPARTMENT_CODE"));
+//			}
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		} finally {
+//			JDBCUtil.close(rs, stmt, conn);
+//		}
+//		return user;
+//	}
 	// 유저 검색
 	public int getIdUser(UserVO vo) {
 		UserVO user = null;
@@ -110,23 +121,23 @@ public class UserDAO {
 		}
 	}
 	// 글 등록
-	public void insertUser(UserVO vo) {
-		System.out.println("===> JDBC로 insertUser() 기능 처리");
-		try {
-			conn = JDBCUtil.getConnection();
-			stmt = conn.prepareStatement(USER_INSERT);
-			
-			stmt.setString(1, vo.getId());
-			stmt.setString(2, vo.getPassword());
-			
-			stmt.executeUpdate();
-			System.out.println("===> JDBC로 insertUser() 기능 처리 완료");
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			JDBCUtil.close(stmt, conn);
-		}
-	}
+//	public void insertUser(UserVO vo) {
+//		System.out.println("===> JDBC로 insertUser() 기능 처리");
+//		try {
+//			conn = JDBCUtil.getConnection();
+//			stmt = conn.prepareStatement(USER_INSERT);
+//			
+//			stmt.setString(1, vo.getId());
+//			stmt.setString(2, vo.getPassword());
+//			
+//			stmt.executeUpdate();
+//			System.out.println("===> JDBC로 insertUser() 기능 처리 완료");
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		} finally {
+//			JDBCUtil.close(stmt, conn);
+//		}
+//	}
 
 	// 글 수정
 	public void updateUser(UserVO vo) {
