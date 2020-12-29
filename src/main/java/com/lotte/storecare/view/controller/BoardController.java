@@ -3,6 +3,7 @@
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -75,8 +76,10 @@ public class BoardController {
 	
 	// 전체 문의내역 목록 검색 완료
 	@RequestMapping("/getBoardList.do")
-	public ModelAndView getBoardList(BoardVO vo, BoardDAO boardDAO, ModelAndView mav, HttpSession session) {
-		mav.addObject("boardList", boardDAO.getBoardList(vo, session)); // Model 정보 저장
+	public ModelAndView getBoardList(ModelAndView mav,  HttpSession session) {
+		int department_code = (int) session.getAttribute("department_code");
+		List<BoardVO> vo = boardDAO.selectBoardList(department_code);
+		mav.addObject("boardList", vo); // Model 정보 저장
 		mav.setViewName("admin"); // View 정보 저장
 		return mav;
 	}

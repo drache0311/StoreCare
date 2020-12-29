@@ -11,7 +11,7 @@
 	</select>
 
 	
-	<!-- select 쿼리 (ALL) -->
+	<!-- select 쿼리 (유저별 문의 내역) -->
 	<select id="selectUserBoardList" parameterType="String" resultType="BoardVO">
 		select * 
 		from board,problem,place,department 
@@ -20,6 +20,20 @@
 		and board.problem_place_code=place.code 
 		and board.department_code=department.code 
 		and users_id=#{id}
+	</select>
+	
+	<!-- select 쿼리 (각 점별 문의 내역) -->
+	<select id="selectBoardList" parameterType="int" resultType="BoardVO">
+		SELECT seq,datetime,clearTime,place_detail,problem_detail,flag,department_code,dep_name,floor,users_id 
+		FROM board 
+		join problem 
+		join place 
+		join department 
+		ON board.problem_code = problem.code 
+		and problem.place_code=place.code 
+		and board.problem_place_code=place.code 
+		and board.department_code=department.code 
+		and board.department_code=#{department_code}
 	</select>
 	
 	<!-- update 쿼리 -->	
