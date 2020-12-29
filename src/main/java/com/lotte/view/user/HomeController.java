@@ -9,6 +9,8 @@ import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -28,7 +30,7 @@ public class HomeController {
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	// 루트컨테이너에서 빈(Bean)을 받아와서 자동으로 넣어줌
 	@Inject
-	private DataSource dataSource;
+	private SqlSessionFactory sqlFactory;
 	
 	
 	
@@ -44,9 +46,10 @@ public class HomeController {
 		
 		
 		try {
-		Connection conn = (Connection) dataSource.getConnection();
-		System.out.println("성공 : " + conn);
-		
+
+			SqlSession session = sqlFactory.openSession();
+			System.out.println("성공 : " + session);
+				
 		} catch (Exception ex){
 			System.out.println("실패..!");
 			ex.printStackTrace();

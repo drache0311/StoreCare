@@ -12,6 +12,7 @@
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd">
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
+	
 	<!-- 커넥션풀 DataSource 객체 -->
 	<bean id="dataSource"
 		class="org.apache.commons.dbcp2.BasicDataSource">
@@ -20,4 +21,18 @@
 		<property name="username" value="root" />
 		<property name="password" value="Dlwlrma0516*" />
 	</bean>
+	
+	<!-- sqlSessionFactory --> 
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="configLocation" value="classpath:/mybatis/mybatisConfig.xml" />
+		<property name="mapperLocations" value="classpath:/mybatis/mybatisMapper.xml" />
+	</bean>
+	
+	<!-- SqlSessionTemplate -->
+	<bean id="sqlSessoinTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory" />
+	</bean>
+	
+	
 </beans>
