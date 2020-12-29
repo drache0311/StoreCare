@@ -32,21 +32,21 @@ public class BoardController {
 		return "insertBoard";
 	}
 	
-	// 글 등록 완료
+	// 문의 등록 미안
 	@RequestMapping("/insertBoard.do")
-	public String insertBoard(BoardVO vo, BoardDAO boardDAO) {
+	public String insertBoard(BoardVO vo) {
 		boardDAO.insertBoard(vo);
 		return "getBoardUserList.do";
 	}
 
-	// 글 수정 완료
+	// 문의 수정 완료
 	@RequestMapping("/updateBoard.do")
 	public String updateBoard(BoardVO vo) {
 		boardDAO.updateBoard(vo);
 		return "getBoardUserList.do";
 	}
 
-	// 글 삭제 미완
+	// 문의 삭제 완료
 	@RequestMapping("/deleteBoard.do")
 	public String deleteBoard(BoardVO vo) {
 		boardDAO.deleteBoard(vo);

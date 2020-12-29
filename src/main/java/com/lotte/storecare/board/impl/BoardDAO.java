@@ -49,7 +49,10 @@ public class BoardDAO {
 		session.delete("boardDB.deleteBoard", vo.getSeq());
 	}
 	
-	
+	// 문의 insert
+	public void insertBoard(BoardVO vo) {
+		session.insert("boardDB.insertBoard", vo);
+	}	
 	
 	
 	
@@ -62,34 +65,34 @@ public class BoardDAO {
 	// SQL 명령어들
 	//private final String BOARD_INSERT = "insert into board(seq, title, writer, content) values((select nvl(max(seq), 0)+1 from board),?,?,?)";
 	private final String BOARD_INSERT = "insert into board(floor, problem_code,problem_place_code,users_id,department_code,datetime) values(?,?,?,?,?,?)";
-	private final String BOARD_UPDATE = "update board set problem_code=? ,datetime=?, problem_place_code=?,floor=? where seq=?";
-	private final String BOARD_DELETE = "delete from board where seq=?";
+//	private final String BOARD_UPDATE = "update board set problem_code=? ,datetime=?, problem_place_code=?,floor=? where seq=?";
+//	private final String BOARD_DELETE = "delete from board where seq=?";
 	private final String BOARD_GET = "select * from board where seq=?";
 	private final String BOARD_FLOOR = "select distinct department_floor,dep_name from board,department where department.code=?";
-	private final String BOARD_USERLIST = "select * from board,problem,place,department where problem.place_code=place.code and board.problem_code=problem.code and board.problem_place_code=place.code and board.department_code=department.code and users_id=?";
+//	private final String BOARD_USERLIST = "select * from board,problem,place,department where problem.place_code=place.code and board.problem_code=problem.code and board.problem_place_code=place.code and board.department_code=department.code and users_id=?";
 	private final String BOARD_LIST = "SELECT seq,datetime,clearTime,place_detail,problem_detail,flag,department_code,dep_name,floor,users_id FROM board join problem join place join department ON board.problem_code = problem.code and problem.place_code=place.code and board.problem_place_code=place.code and board.department_code=department.code and board.department_code=?";
 
 	// CRUD 기능의 메소드 구현
-	// 글 등록 
-	public void insertBoard(BoardVO vo) {
-		System.out.println("===> JDBC로 insertBoard() 기능 처리");
-		try {
-			conn = JDBCUtil.getConnection();
-			stmt = conn.prepareStatement(BOARD_INSERT);
-			stmt.setInt(1, vo.getFloor());
-			stmt.setInt(2, vo.getProblem_code());
-			stmt.setInt(3, vo.getProblem_place_code());
-			stmt.setString(4, vo.getUsers_id());
-			stmt.setInt(5, vo.getDepartment_code());
-			stmt.setTimestamp(6, vo.getDatetime());
-			stmt.executeUpdate();
-		System.out.println("===> JDBC로 insertBoard() 기능 처리 완료");
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			JDBCUtil.close(stmt, conn);
-		}
-	}
+//	// 글 등록 
+//	public void insertBoard(BoardVO vo) {
+//		System.out.println("===> JDBC로 insertBoard() 기능 처리");
+//		try {
+//			conn = JDBCUtil.getConnection();
+//			stmt = conn.prepareStatement(BOARD_INSERT);
+//			stmt.setInt(1, vo.getFloor());
+//			stmt.setInt(2, vo.getProblem_code());
+//			stmt.setInt(3, vo.getProblem_place_code());
+//			stmt.setString(4, vo.getUsers_id());
+//			stmt.setInt(5, vo.getDepartment_code());
+//			stmt.setTimestamp(6, vo.getDatetime());
+//			stmt.executeUpdate();
+//		System.out.println("===> JDBC로 insertBoard() 기능 처리 완료");
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		} finally {
+//			JDBCUtil.close(stmt, conn);
+//		}
+//	}
 
 //	// 글 수정  
 //	public void updateBoard(BoardVO vo) {
