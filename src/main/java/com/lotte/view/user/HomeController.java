@@ -1,10 +1,13 @@
 package com.lotte.view.user;
 
+import java.sql.Connection;
 import java.text.DateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
+import javax.sql.DataSource;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,6 +26,11 @@ import com.lotte.storecare.user.impl.UserDAO;
 public class HomeController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
+	// 루트컨테이너에서 빈(Bean)을 받아와서 자동으로 넣어줌
+	@Inject
+	private DataSource dataSource;
+	
+	
 	
 	//	.jsp로 보여줄려면 
 	//	com.lotte.view 에서 return 해야 .jsp로 된다.
@@ -33,6 +41,25 @@ public class HomeController {
 	 */
 	@RequestMapping(value = "/", method=RequestMethod.GET)
 	public String LOGIN_GET(Locale locale, Model model) {
+		
+		
+		try {
+		Connection conn = (Connection) dataSource.getConnection();
+		System.out.println("성공 : " + conn);
+		
+		} catch (Exception ex){
+			System.out.println("실패..!");
+			ex.printStackTrace();
+		}
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		logger.info("Welcome home! The client locale is {}.", locale);
 		
 		Date date = new Date();
