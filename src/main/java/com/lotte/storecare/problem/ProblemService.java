@@ -17,5 +17,5 @@ public interface ProblemService {
 	ProblemVO getProblem(ProblemVO vo);
 
 	// �� ��� ��ȸ
-	List<ProblemVO> getProblemList(ProblemVO vo);
+	List<ProblemVO> selectProblemList(ProblemVO vo);
 }

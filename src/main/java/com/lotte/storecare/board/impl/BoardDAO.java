@@ -25,16 +25,25 @@ public class BoardDAO {
 	@Resource(name="sqlSessoinTemplate")
 	private SqlSessionTemplate session;
 	
-	// 문의 1개만 select
+	// 문의 1개만 select   ==> 아직 안씀
 	public BoardVO select(String id) {
 
-		BoardVO board = session.selectOne("boardDB.selectUser", id);
+		BoardVO board = session.selectOne("boardDB.selectBoard", id);
+		return board;
+	}
+	
+	// 층 수 조회
+	public BoardVO selectFloor(BoardVO vo) {
+		System.out.println("여기는 boardDao의 selectFloor / department_code = " + vo.getDepartment_code());
+		
+		BoardVO board = session.selectOne("boardDB.selectFloor", vo.getDepartment_code());
 		return board;
 	}
 	
 	// 문의 여러 개 select
 	public List<BoardVO> selectUserBoardList(String id) {
 		System.out.println("여기는 boardDao의 selectUserBoardList");
+		
 		List<BoardVO> boardList = session.selectList("boardDB.selectUserBoardList", id);
 		return boardList;		
 	}
@@ -53,8 +62,7 @@ public class BoardDAO {
 	public void insertBoard(BoardVO vo) {
 		session.insert("boardDB.insertBoard", vo);
 	}	
-	
-	
+
 	
 	
 	
@@ -64,11 +72,11 @@ public class BoardDAO {
 	private ResultSet rs = null;
 	// SQL 명령어들
 	//private final String BOARD_INSERT = "insert into board(seq, title, writer, content) values((select nvl(max(seq), 0)+1 from board),?,?,?)";
-	private final String BOARD_INSERT = "insert into board(floor, problem_code,problem_place_code,users_id,department_code,datetime) values(?,?,?,?,?,?)";
+//	private final String BOARD_INSERT = "insert into board(floor, problem_code,problem_place_code,users_id,department_code,datetime) values(?,?,?,?,?,?)";
 //	private final String BOARD_UPDATE = "update board set problem_code=? ,datetime=?, problem_place_code=?,floor=? where seq=?";
 //	private final String BOARD_DELETE = "delete from board where seq=?";
 	private final String BOARD_GET = "select * from board where seq=?";
-	private final String BOARD_FLOOR = "select distinct department_floor,dep_name from board,department where department.code=?";
+//	private final String BOARD_FLOOR = "select distinct department_floor,dep_name from board,department where department.code=?";
 //	private final String BOARD_USERLIST = "select * from board,problem,place,department where problem.place_code=place.code and board.problem_code=problem.code and board.problem_place_code=place.code and board.department_code=department.code and users_id=?";
 	private final String BOARD_LIST = "SELECT seq,datetime,clearTime,place_detail,problem_detail,flag,department_code,dep_name,floor,users_id FROM board join problem join place join department ON board.problem_code = problem.code and problem.place_code=place.code and board.problem_place_code=place.code and board.department_code=department.code and board.department_code=?";
 
@@ -131,31 +139,31 @@ public class BoardDAO {
 //	}
 	
 	
-	// 층 수 조회 floor 
-	public BoardVO getFloor(BoardVO vo) {
-		System.out.println("===> JDBC로 getFloor() 기능 처리");
-		System.out.print("=========>dep_code===>");
-		System.out.println(vo.getDepartment_code());
-		BoardVO board = null;
-		try {
-			conn = JDBCUtil.getConnection();
-			stmt = conn.prepareStatement(BOARD_FLOOR);
-			stmt.setInt(1, vo.getDepartment_code());
-			rs = stmt.executeQuery();
-			if (rs.next()) {
-				board = new BoardVO();
-				board.setFloor(rs.getInt("DEPARTMENT_FLOOR"));
-				board.setDepartment_name(rs.getString("DEP_NAME"));
-				System.out.println("===> JDBC로 getFloor() 기능 처리 완료");
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			JDBCUtil.close(rs, stmt, conn);
-		}
-		return board;
-	}
-	
+//	// 층 수 조회 floor 
+//	public BoardVO getFloor(BoardVO vo) {
+//		System.out.println("===> JDBC로 getFloor() 기능 처리");
+//		System.out.print("=========>dep_code===>");
+//		System.out.println(vo.getDepartment_code());
+//		BoardVO board = null;
+//		try {
+//			conn = JDBCUtil.getConnection();
+//			stmt = conn.prepareStatement(BOARD_FLOOR);
+//			stmt.setInt(1, vo.getDepartment_code());
+//			rs = stmt.executeQuery();
+//			if (rs.next()) {
+//				board = new BoardVO();
+//				board.setFloor(rs.getInt("DEPARTMENT_FLOOR"));
+//				board.setDepartment_name(rs.getString("DEP_NAME"));
+//				System.out.println("===> JDBC로 getFloor() 기능 처리 완료");
+//			}
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		} finally {
+//			JDBCUtil.close(rs, stmt, conn);
+//		}
+//		return board;
+//	}
+//	
 	
 	
 	// 글 상세 조회 

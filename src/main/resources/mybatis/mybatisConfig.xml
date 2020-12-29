@@ -7,5 +7,6 @@
 		<typeAlias alias="UserVO" type="com.lotte.storecare.user.UserVO" />
 		<typeAlias alias="BoardVO" type="com.lotte.storecare.board.BoardVO" />
 		<typeAlias alias="DepartmentVO" type="com.lotte.storecare.department.DepartmentVO" />
+		<typeAlias alias="ProblemVO" type="com.lotte.storecare.problem.ProblemVO" />
 	</typeAliases>
 </configuration>

@@ -61,10 +61,10 @@ public class BoardController {
 		return mav;
 	}
 	
-	// 글 상세 조회 미완
+	// 층 수 조회
 	@RequestMapping("/checkBoard.do")
-	public ModelAndView getFloor(BoardVO vo, BoardDAO boardDAO, ModelAndView mav) {
-		mav.addObject("board", boardDAO.getFloor(vo)); // Model 정보 저장
+	public ModelAndView getFloor(BoardVO vo, ModelAndView mav) {
+		mav.addObject("board", boardDAO.selectFloor(vo)); // Model 정보 저장
 		mav.setViewName("checkBoard"); // View 정보 저장
 		return mav;
 	}

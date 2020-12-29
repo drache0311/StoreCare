@@ -33,7 +33,7 @@ public class ProblemServiceImpl implements ProblemService {
 		return problemDAO.getProblem(vo);
 	}
 
-	public List<ProblemVO> getProblemList(ProblemVO vo) {
-		return problemDAO.getProblemList(vo);
+	public List<ProblemVO> selectProblemList(ProblemVO vo) {
+		return problemDAO.selectProblemList(vo);
 	}
 }
