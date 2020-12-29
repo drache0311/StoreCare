@@ -3,10 +3,17 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="departmentDB">
 
-	<!-- select 쿼리 (1개) -->
+	<!-- select 쿼리 (1개) ==> 아직 안씀 -->
 	<select id="selectDepartment"  parameterType="String" resultType="DepartmentVO">
 		select * from department
 	</select>
+		
+	<!-- select 쿼리 (floor 조회) -->
+	<select id="selectFloor"  parameterType="int" resultType="DepartmentVO">
+		select distinct department_floor,dep_name 
+		from department,board
+		where department.code=#{department_code}
+	</select>	
 	
 	<!-- select 쿼리 (ALL) -->
 	<select id="selectDepartmentAll" resultType="DepartmentVO">

@@ -3,9 +3,41 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="boardDB">
 
-	<!-- select 쿼리 (1개) -->
+	<!-- select 쿼리 (1개) ==> 아직 안씀 -->
 	<select id="selectBoard"  parameterType="String" resultType="BoardVO">
-		select * from board where id=#{id}
+		select *
+		from board 
+		where id=#{id}
 	</select>
+
+	
+	<!-- select 쿼리 (ALL) -->
+	<select id="selectUserBoardList" parameterType="String" resultType="BoardVO">
+		select * 
+		from board,problem,place,department 
+		where problem.place_code=place.code
+		and board.problem_code=problem.code 
+		and board.problem_place_code=place.code 
+		and board.department_code=department.code 
+		and users_id=#{id}
+	</select>
+	
+	<!-- update 쿼리 -->	
+	<update id="updateBoard" parameterType="boardVO">
+		update board
+		set problem_code=#{problem_code}, datetime=#{datetime}, problem_place_code=#{problem_place_code}, floor=#{floor} 
+		where seq=#{seq}
+	</update>
+	
+	<!-- delete 쿼리 -->
+	<delete id="deleteBoard" parameterType="int">
+		delete from board where seq=#{seq}
+	</delete>	
+	
+	<!--  insert 쿼리 -->
+	<insert id="insertBoard" parameterType="BoardVO">
+		insert into board(floor, problem_code,problem_place_code,users_id,department_code,datetime)
+		values(#{floor},#{problem_code},#{problem_place_code},#{users_id},#{department_code},#{datetime})
+	</insert>
 	
 </mapper>

@@ -1,5 +1,6 @@
 package com.lotte.storecare.view.controller;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -8,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.lotte.storecare.board.impl.BoardDAO;
 import com.lotte.storecare.user.UserVO;
 import com.lotte.storecare.user.impl.UserDAO;
 
@@ -15,12 +17,14 @@ import com.lotte.storecare.user.impl.UserDAO;
 @Controller
 public class UserController {
 	
-
 	
-	// 유저 추가
+	@Resource(name = "userDAO")
+	private UserDAO userDAO;
+	
+	// 유저 중복 체크 후 유저추가
 	@RequestMapping(value = "/insertUser.do", method=RequestMethod.POST)
-	public String insertUser_POST(UserVO vo, UserDAO userDAO) {
-		if (userDAO.getUser(vo) != null) {
+	public String insertUser_POST(UserVO vo) {
+		if (userDAO.select(vo) != null) {
 			return "signUp";
 		}else {
 			userDAO.insertUser(vo);
@@ -53,13 +57,13 @@ public class UserController {
 		return "getUserList.do";
 	}
 
-	// 글 상세 조회 미완
-	@RequestMapping("/getUser.do")
-	public ModelAndView getUser(UserVO vo, UserDAO userDAO, ModelAndView mav) {
-		mav.addObject("user", userDAO.getUser(vo)); // Model 정보 저장
-		mav.setViewName("getUser"); // View 정보 저장
-		return mav;
-	}
+//	// 글 상세 조회 미완
+//	@RequestMapping("/getUser.do")
+//	public ModelAndView getUser(UserVO vo, UserDAO userDAO, ModelAndView mav) {
+//		mav.addObject("user", userDAO.getUser(vo)); // Model 정보 저장
+//		mav.setViewName("getUser"); // View 정보 저장
+//		return mav;
+//	}
 	
 	// 글 상세 조회 미완
 	@RequestMapping("/checkUser.do")

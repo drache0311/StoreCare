@@ -72,7 +72,7 @@ Timestamp now = new Timestamp(System.currentTimeMillis());
 			    <input name="users_id" type="hidden" value="<%=id%>" />
 			    	<h5 class="card-header">현재 방문 백화점</h5>
 			    	<input name="department_code" type="hidden" value="<%=department_code %>" />
-					<h1 class = "card-title"> ${board.department_name}  </h1>
+					<h1 class = "card-title"> ${board.dep_name}  </h1>
 				</div>
 				<div class ="card-body">
 			    	<h5 class="card-header">요청내용</h5>
@@ -85,7 +85,7 @@ Timestamp now = new Timestamp(System.currentTimeMillis());
 			    	<h5 class="card-header">백화점 층 수</h5>
 			    	
 			    		<select name="floor">
-								<c:forEach var="floor" begin="1" end="${board.floor}">
+								<c:forEach var="floor" begin="1" end="${board.department_floor}">
 										<option value="${floor}">${floor}F</option>
 								</c:forEach>
 						</select>
