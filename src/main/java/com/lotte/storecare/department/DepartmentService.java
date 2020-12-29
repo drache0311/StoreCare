@@ -16,6 +16,6 @@ public interface DepartmentService {
 	// �� �� ��ȸ
 	DepartmentVO getDepartment(DepartmentVO vo);
 
-	// �� ��� ��ȸ
-	List<DepartmentVO> getDepartmentList(DepartmentVO vo);
+
+	List<DepartmentVO> selectAll();
 }

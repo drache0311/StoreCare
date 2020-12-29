@@ -4,8 +4,8 @@
 <mapper namespace="boardDB">
 
 	<!-- select 쿼리 (1개) -->
-	<select id="selectUser"  parameterType="String" resultType="UserVO">
-		select * from users where id=#{id}
+	<select id="selectBoard"  parameterType="String" resultType="BoardVO">
+		select * from board where id=#{id}
 	</select>
 	
 </mapper>
