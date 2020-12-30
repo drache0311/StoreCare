@@ -47,17 +47,18 @@ public class BoardDAO {
 	}
 
 
+
 	// 각 점별 문의 내역 select
 	public List<BoardVO> selectBoardList(HashMap<String,String> param){
 		
 		List<BoardVO> boardList = session.selectList("boardDB.selectBoardList", param);
+
 
 		
 		
 		return boardList;
 	}
 	
-
 	// 문의 update
 	public void updateBoard(BoardVO vo) {
 		session.update("boardDB.updateBoard", vo);
