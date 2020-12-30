@@ -27,9 +27,15 @@
 	String code = request.getParameter("searchCondition");
 	if(code == null)
 		code = request.getParameter("dep_code");
+	
 	String seq = (String) request.getParameter("seq");
 	if(seq==null){
 		seq = "0";
+	}
+	
+	String flag = request.getParameter("flag");
+	if(flag==null){
+		flag = "0";
 	}
 %>
 <!-- 내 문의보기  ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ  -->
@@ -66,7 +72,7 @@
 		<h5 class="card-title">${problem.place_detail}</h5>
 </c:when>
 </c:choose>
-		    <a href="checkBoard.do?problem_code=${problem.code}&department_code=<%=code%>&place_code=${problem.place_code}&problem_detail=${problem.problem_detail}&place_detail=${problem.place_detail}&seq=<%=seq%>" class="btn btn-primary">${problem.problem_detail}</a>
+		    <a href="checkBoard.do?problem_code=${problem.code}&department_code=<%=code%>&place_code=${problem.place_code}&problem_detail=${problem.problem_detail}&place_detail=${problem.place_detail}&seq=<%=seq%>&flag=<%=flag %>" class="btn btn-primary">${problem.problem_detail}</a>
 </c:forEach>
 			</div>
 	</div>

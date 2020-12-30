@@ -67,13 +67,13 @@
 					  ${board.problem_detail}
 					</div>
 					<div class ="card-text mb-2">	${board.dep_name } ${board.floor }F   </div>
-					<c:if test="${board.flag eq 0 }">
-						<div class ="card-text mb-2"><span class= "text-muted">   처리 중	</span></div>
-					</c:if>
 					<c:if test="${board.flag eq 1 }">
 						<div class ="card-text mb-2"><span class= "text-muted">   처리 완료	</span></div>
 					</c:if>
-					<a href="getProblemList.do?seq=${board.seq}&dep_code=${board.department_code}" class="btn btn-primary">수정하기</a>
+					<c:if test="${board.flag eq 0 }">
+						<div class ="card-text mb-2"><span class= "text-muted">   처리 중	</span></div>
+						<a href="getProblemList.do?seq=${board.seq}&dep_code=${board.department_code}&flag=${board.flag}" class="btn btn-primary">수정하기</a>
+					</c:if>
 					<a href="deleteBoard.do?seq=${board.seq}" class="btn btn-primary">삭제하기</a>
 				</div>
 		</c:forEach>

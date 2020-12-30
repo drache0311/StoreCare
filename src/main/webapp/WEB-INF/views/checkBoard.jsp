@@ -31,10 +31,9 @@ String problem_detail = request.getParameter("problem_detail");
 String seq = (String) request.getParameter("seq");
 String id = (String) session.getAttribute("login");
 String department_code = request.getParameter("department_code");
-
+String flag = request.getParameter("flag");
 
 Timestamp now = new Timestamp(System.currentTimeMillis());
-
 
 %>
 
@@ -48,6 +47,7 @@ Timestamp now = new Timestamp(System.currentTimeMillis());
     <!-- Page Content -->
 <c:set var="seq" value="<%=seq%>" />    
 <c:set var="id" value="<%=id%>" />    
+<c:set var="flag" value="<%=flag%>" />
 
 <!--  지금은 null이 String이라서 'null'로 비교하는데  -->
 <!-- 앞에서 POST로 던져주고 진짜 null로 비교하는식으로 변경  -->
@@ -92,12 +92,12 @@ Timestamp now = new Timestamp(System.currentTimeMillis());
 				</div>
    			</div>
    			<c:choose>
-	   			<c:when test="${seq eq '0'}">
+	   			<c:when test="${seq eq 0}">
 					<button class="btn btn-primary" type="submit" >등록하기</button>
 				</c:when>
-				<c:otherwise>
+				<c:when test="${flag eq 0}">
 					<button class="btn btn-primary" type="submit" >수정하기</button>
-				</c:otherwise>
+				</c:when>
 			</c:choose>
 	</div>
 </form>
