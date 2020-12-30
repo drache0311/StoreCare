@@ -143,7 +143,15 @@ public class HomeController {
 	
 	//admin 은 admin 페이지로
 	@RequestMapping(value = "/admin", method=RequestMethod.POST)
-	public String LOGIN_ADMIN_POST() {
+	public String LOGIN_ADMIN_POST(HttpServletRequest request) {
+		
+		String searchCondition = request.getParameter("searchCondition");
+		String startDate = request.getParameter("startDate");
+		String endDate = request.getParameter("endDate");
+		
+
+		System.out.println("searchCondition = "+searchCondition + " \n startDate = "+ startDate + "\n endDate = " + endDate);
+		
 		return "admin";
 	}
 	

@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -44,10 +45,15 @@ public class BoardDAO {
 		
 		return boardList;		
 	}
+
+
+
 	// 각 점별 문의 내역 select
-	public List<BoardVO> selectBoardList(int department_code){
+	public List<BoardVO> selectBoardList(HashMap<String,String> param){
 		
-		List<BoardVO> boardList = session.selectList("boardDB.selectBoardList", department_code);
+		List<BoardVO> boardList = session.selectList("boardDB.selectBoardList", param);
+
+
 		
 		
 		return boardList;

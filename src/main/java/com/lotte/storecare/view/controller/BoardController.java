@@ -1,5 +1,7 @@
 ﻿package com.lotte.storecare.view.controller;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -76,9 +78,36 @@ public class BoardController {
 	
 	// 전체 문의내역 목록 검색 완료
 	@RequestMapping("/getBoardList.do")
-	public ModelAndView getBoardList(ModelAndView mav,  HttpSession session) {
-		int department_code = (int) session.getAttribute("department_code");
-		List<BoardVO> vo = boardDAO.selectBoardList(department_code);
+	public ModelAndView getBoardList(ModelAndView mav,  HttpSession session, HttpServletRequest request) {
+		String department_code = session.getAttribute("department_code").toString();
+		
+		System.out.println("deP_code = "+department_code);
+		
+		String searchCondition = request.getParameter("searchCondition");
+		String startDate = request.getParameter("startDate");
+		String endDate = request.getParameter("endDate");
+		
+		if(startDate == "") {
+			System.out.println("startDate is nuLL ? : " + startDate);
+			startDate = null;
+			System.out.println("startDate is nuLL ? : " + startDate);
+		}
+		if(endDate == "") {
+			System.out.println("endDate is nuLL ? : " + endDate);
+			endDate = null;
+			System.out.println("endDate is nuLL ? : " + endDate);
+		}
+		
+		
+		HashMap<String,String> param = new HashMap<String,String>();
+		param.put("searchCondition", searchCondition);
+		param.put("startDate", startDate);
+		param.put("endDate", endDate);
+		param.put("department_code", department_code);
+		
+		System.out.println("HASH MAP - deP_code = "+param.get(department_code));
+		List<BoardVO> vo = boardDAO.selectBoardList(param);
+
 		mav.addObject("boardList", vo); // Model 정보 저장
 		mav.setViewName("admin"); // View 정보 저장
 		return mav;

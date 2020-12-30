@@ -22,8 +22,10 @@
 		and users_id=#{id}
 	</select>
 	
+
 	<!-- select 쿼리 (각 점별 문의 내역) -->
-	<select id="selectBoardList" parameterType="int" resultType="BoardVO">
+	<select id="selectBoardList" parameterType="HashMap" resultType="BoardVO">
+
 		SELECT seq,datetime,clearTime,place_detail,problem_detail,flag,department_code,dep_name,floor,users_id 
 		FROM board 
 		join problem 
@@ -34,8 +36,67 @@
 		and board.problem_place_code=place.code 
 		and board.department_code=department.code 
 		and board.department_code=#{department_code}
+
+		<choose>
+			<when test="searchCondition == 'all'">
+				<if test="startDate != null and endDate == null"> <!-- 시작날짜가 null이 아니고 끝날짜가 null 일 때 -->
+					where  dateTime  &gt; #{startDate}
+				</if>
+				<!-- 시작날짜가 null이 아니고 끝날짜가 null이 아닐 때 -->
+				<!-- endDate+1을 하는 이유는 범위가 endDate 미만 까지여서 endDate를 포함시키기 위함  -->
+				<if test="startDate != null and endDate != null">
+					where dateTime between #{startDate} and #{endDate}+1
+				</if>
+				<if test="startDate == null and endDate != null"> <!-- 시작날짜가 null이고 끝날짜가 null이 아닐 때 -->
+					where dateTime &lt; #{endDate}+1
+				</if>
+				<if test=" startDate == null and endDate == null"> <!-- 시작날짜가 null이고 끝날짜가 null일 때 -->
+					order by seq desc
+				</if>
+			</when>
+			<!-- 문의처리현황이 처리 중 일 때 -->
+			<when test="searchCondition == 'doing'">
+				<if test="startDate != null and endDate == null"> <!-- 시작날짜가 null이 아니고 끝날짜가 null 일 때 -->
+					where  flag=0
+					and dateTime  &gt; #{startDate}
+				</if>
+				<if test="startDate != null and endDate != null"><!-- 시작날짜가 null이 아니고 끝날짜가 null이 아닐 때 -->
+					where flag=0
+					and dateTime between #{startDate} and #{endDate}
+				</if>
+				<if test="startDate == null and endDate != null"> <!-- 시작날짜가 null이고 끝날짜가 null이 아닐 때 -->
+					where flag=0
+					and dateTime &lt; #{endDate}
+				</if>
+				<if test=" startDate == null and endDate == null"> <!-- 시작날짜가 null이고 끝날짜가 null일 때 -->
+					where flag=0
+					order by seq desc
+				</if>
+			</when>
+			<!-- 문의처리현황이 처리완료 일 때 -->
+			<when test="searchCondition == 'done'">
+				<if test="startDate != null and endDate == null"> <!-- 시작날짜가 null이 아니고 끝날짜가 null 일 때 -->
+					where  flag=1
+					and dateTime  &gt; #{startDate}
+				</if>
+				<if test="startDate != null and endDate != null"><!-- 시작날짜가 null이 아니고 끝날짜가 null이 아닐 때 -->
+					where flag=1
+					and dateTime between #{startDate} and #{endDate}
+				</if>
+				<if test="startDate == null and endDate != null"> <!-- 시작날짜가 null이고 끝날짜가 null이 아닐 때 -->
+					where flag=1
+					and dateTime &lt; #{endDate}
+				</if>
+				<if test=" startDate == null and endDate == null"> <!-- 시작날짜가 null이고 끝날짜가 null일 때 -->
+					where flag=1
+					order by seq desc
+				</if>
+			</when>		
+		</choose>
+		
 	</select>
 	
+
 	<!-- update 쿼리 -->	
 	<update id="updateBoard" parameterType="boardVO">
 		update board

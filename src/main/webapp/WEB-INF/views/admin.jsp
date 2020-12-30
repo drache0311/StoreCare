@@ -3,6 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!doctype html>
 <head>
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
@@ -10,11 +11,17 @@
     <meta name="generator" content="Hugo 0.79.0">
     <title>headAdmin</title>
 
+	<!-- JQuery JavaScript -->
+	<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/vendor/bootstrap/css/jquery-ui.css" type="text/css" />  
+	<script src="<%=request.getContextPath()%>/resources/vendor/jquery/jquery.min.js"></script>  
+	<script src="<%=request.getContextPath()%>/resources/vendor/jquery/jquery-ui.min.js"></script>
+
 	<!-- Bootstrap core CSS -->
 	<link href="<%=request.getContextPath()%>/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
 	<!-- Custom styles for this template -->
 	<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/vendor/bootstrap/css/scrolling-nav.css">
+
 
 </head>
 
@@ -37,6 +44,23 @@
 			<div class="row">
 				<div class="col-lg-8 mx-auto">
 					<h2>전체 내역</h2>
+					<!--  검색 FORM -->
+					<div align="center">
+						<form name="searchDepBoard"  method="post" action="getBoardList.do">
+							<!-- 처리현황별 검색 SELECT -->
+							<select name="searchCondition">
+								<option value="all">전체</option>
+								<option value="doing">처리중</option>
+								<option value="done">처리완료</option>
+							</select>
+							<br/><br/> 
+							From: <input type="text" id="startDate" name="startDate" placeholder="시작날짜" >&nbsp;
+							
+							To: <input type="text" id="endDate" name="endDate"  placeholder="끝날짜" >
+							
+							<button type="submit" id="btnSearch">검색</button>
+						</form>
+					</div>	
 					<table class="table table-striped table-hover">
 						<thead>
 							<tr>
@@ -53,7 +77,7 @@
 								<td>${board.datetime}</td>
 								<td>${board.place_detail}
 								${board.problem_detail}</td>
-								<td>${board.flag}</td>
+								<td><c:if test="${board.flag eq 0}" >처리 중</c:if> <c:if test="${board.flag eq 1}" >처리완료</c:if></td>
 								<td>${board.clearTime}</td>
 							</tr>
 						</c:forEach>
@@ -99,16 +123,18 @@
       </div>
     </div>
   </section>
-
+  
+  
+  
+<!-- SCRIPT ---------------------------------------------------------- -->
 <!-- Bootstrap core JavaScript -->
-<script src="<%=request.getContextPath()%>/resources/vendor/jquery/jquery.min.js"></script>
-<script src="<%=request.getContextPath()%>/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<script src="<%=request.getContextPath()%>/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- Plugin JavaScript -->
-<script src="<%=request.getContextPath()%>/resources/vendor/jquery-easing/jquery.easing.min.js"></script>
-<!-- JQuery JavaScript -->
-<script src="<%=request.getContextPath()%>/resources/vendor/jquery/jquery-3.5.1.min.js"></script>
+	<script src="<%=request.getContextPath()%>/resources/vendor/jquery-easing/jquery.easing.min.js"></script>
+
 <!-- Custom JavaScript for this theme -->
-<script src="<%=request.getContextPath()%>/resources/vendor/bootstrap/js/admin.js"></script>
+	<script src="<%=request.getContextPath()%>/resources/vendor/bootstrap/js/admin.js"></script>
+	<script src="<%=request.getContextPath()%>/resources/vendor/bootstrap/js/datepicker.js"></script>
 <!-- SCRIPT ---------------------------------------------------------- -->
 </body>
 </html>
