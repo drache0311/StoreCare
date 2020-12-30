@@ -130,4 +130,5 @@ public class BoardVO {
 		return "BoardVO [seq=" + seq + ", floor=" + floor + ", problem_code=" + problem_code + ", problem_place_code=" + problem_place_code + ", users_id="
 				+ users_id + ", department_code=" +department_code +"department_name = " + dep_name + "datetime=" + datetime +"place_detail="+ place_detail + "problem_detail=" + problem_detail +"]";
 	}
+	
 }

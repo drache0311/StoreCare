@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -34,7 +35,7 @@ public class BoardDAO {
 	
 
 	
-	// 문의 여러 개 select
+	// 유저별 문의 내역 select
 	public List<BoardVO> selectUserBoardList(String id) {
 		System.out.println("여기는 boardDao의 selectUserBoardList");
 		
@@ -44,6 +45,18 @@ public class BoardDAO {
 		
 		return boardList;		
 	}
+
+
+	// 각 점별 문의 내역 select
+	public List<BoardVO> selectBoardList(HashMap<String,String> param){
+		
+		List<BoardVO> boardList = session.selectList("boardDB.selectBoardList", param);
+
+		
+		
+		return boardList;
+	}
+	
 
 	// 문의 update
 	public void updateBoard(BoardVO vo) {
@@ -75,7 +88,7 @@ public class BoardDAO {
 	private final String BOARD_GET = "select * from board where seq=?";
 //	private final String BOARD_FLOOR = "select distinct department_floor,dep_name from board,department where department.code=?";
 //	private final String BOARD_USERLIST = "select * from board,problem,place,department where problem.place_code=place.code and board.problem_code=problem.code and board.problem_place_code=place.code and board.department_code=department.code and users_id=?";
-	private final String BOARD_LIST = "SELECT seq,datetime,clearTime,place_detail,problem_detail,flag,department_code,dep_name,floor,users_id FROM board join problem join place join department ON board.problem_code = problem.code and problem.place_code=place.code and board.problem_place_code=place.code and board.department_code=department.code and board.department_code=?";
+//	private final String BOARD_LIST = "SELECT seq,datetime,clearTime,place_detail,problem_detail,flag,department_code,dep_name,floor,users_id FROM board join problem join place join department ON board.problem_code = problem.code and problem.place_code=place.code and board.problem_place_code=place.code and board.department_code=department.code and board.department_code=?";
 
 	// CRUD 기능의 메소드 구현
 //	// 글 등록 
@@ -223,36 +236,36 @@ public class BoardDAO {
 //		return boardList;
 //	}
 	
-	// 전체 문의 목록 조회 
-	public List<BoardVO> getBoardList(BoardVO vo, HttpSession session) {
-		System.out.println("===> JDBC로 getBoardList() 기능 처리");
-		List<BoardVO> boardList = new ArrayList<BoardVO>();
-		String dep_code = session.getAttribute("role").toString();
-		try {
-			conn = JDBCUtil.getConnection();
-			stmt = conn.prepareStatement(BOARD_LIST);
-			stmt.setString(1, dep_code);
-			rs = stmt.executeQuery();
-			while (rs.next()) {
-				BoardVO board = new BoardVO();
-				board.setSeq(rs.getInt("SEQ"));
-				board.setFloor(rs.getInt("FLOOR"));
-				board.setUsers_id(rs.getString("USERS_ID"));
-				board.setDatetime(rs.getTimestamp("DATETIME"));
-				board.setPlace_detail(rs.getString("PLACE_DETAIL"));
-				board.setProblem_detail(rs.getString("PROBLEM_DETAIL"));
-				board.setDep_name(rs.getString("DEP_NAME"));
-				board.setClearTime(rs.getTimestamp("CLEARTIME"));
-				board.setFlag(rs.getInt("FLAG"));
-				board.setDepartment_code(rs.getInt("DEPARTMENT_CODE"));
-				boardList.add(board);
-			}
-			System.out.println("===> JDBC로 getBoardList() 기능 처리 완료");
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			JDBCUtil.close(rs, stmt, conn);
-		}
-		return boardList;
-	}
+//	// 전체 문의 목록 조회 
+//	public List<BoardVO> getBoardList(BoardVO vo, HttpSession session) {
+//		System.out.println("===> JDBC로 getBoardList() 기능 처리");
+//		List<BoardVO> boardList = new ArrayList<BoardVO>();
+//		String dep_code = session.getAttribute("role").toString();
+//		try {
+//			conn = JDBCUtil.getConnection();
+//			stmt = conn.prepareStatement(BOARD_LIST);
+//			stmt.setString(1, dep_code);
+//			rs = stmt.executeQuery();
+//			while (rs.next()) {
+//				BoardVO board = new BoardVO();
+//				board.setSeq(rs.getInt("SEQ"));
+//				board.setFloor(rs.getInt("FLOOR"));
+//				board.setUsers_id(rs.getString("USERS_ID"));
+//				board.setDatetime(rs.getTimestamp("DATETIME"));
+//				board.setPlace_detail(rs.getString("PLACE_DETAIL"));
+//				board.setProblem_detail(rs.getString("PROBLEM_DETAIL"));
+//				board.setDep_name(rs.getString("DEP_NAME"));
+//				board.setClearTime(rs.getTimestamp("CLEARTIME"));
+//				board.setFlag(rs.getInt("FLAG"));
+//				board.setDepartment_code(rs.getInt("DEPARTMENT_CODE"));
+//				boardList.add(board);
+//			}
+//			System.out.println("===> JDBC로 getBoardList() 기능 처리 완료");
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		} finally {
+//			JDBCUtil.close(rs, stmt, conn);
+//		}
+//		return boardList;
+//	}
 }
