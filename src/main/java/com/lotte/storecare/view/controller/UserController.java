@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.lotte.storecare.board.impl.BoardDAO;
+import com.lotte.storecare.common.BoardDAO;
 import com.lotte.storecare.user.UserVO;
 import com.lotte.storecare.user.impl.UserDAO;
 

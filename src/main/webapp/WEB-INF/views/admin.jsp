@@ -65,6 +65,7 @@
 					<table class="table table-striped table-hover">
 						<thead>
 							<tr>
+								
 								<th>접수일자</th>
 								<th>접수내용</th>
 								<th>처리현황</th>
