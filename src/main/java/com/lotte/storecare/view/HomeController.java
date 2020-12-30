@@ -103,11 +103,14 @@ public class HomeController {
 		if(vo == null) {	// 아이디,비밀번호 틀리면 다시 로그인 페이지로
 			return "login";
 		}else if(vo.getRole() == 0) {	// role이 0 이면 총괄 관리자 페이지로
+			session.setAttribute("role", vo.getRole());
 			return "adminHead";
 		}else if(vo.getRole() == 1) {	// role이 1이면 각 점 관리자 페이지로
+			session.setAttribute("role", vo.getRole());
 			session.setAttribute("department_code", vo.getDepartment_code());
 			return "getBoardList.do";
 		}else{	// 나머지 role = 2 들은 일반 사용자들로 사용자들페이지로
+			session.setAttribute("role", vo.getRole());
 			session.setAttribute("login", vo.getId());
 			return "getDepartmentList.do";
 		}
@@ -137,22 +140,25 @@ public class HomeController {
 	
 	//headAdmin 은 headAdmin 페이지로
 	@RequestMapping(value = "/adminHead", method=RequestMethod.POST)
-	public String LOGIN_HAEDADMIN_POST() {
+	public String LOGIN_ADMINHEAD_POST() {
+		return "adminHead";
+	}
+	
+	// nav를 통한 headAdmin 은 headAdmin 페이지로
+	@RequestMapping(value = "/adminHead", method=RequestMethod.GET)
+	public String NAV_ADMINHEAD_GET() {
 		return "adminHead";
 	}
 	
 	//admin 은 admin 페이지로
 	@RequestMapping(value = "/admin", method=RequestMethod.POST)
-	public String LOGIN_ADMIN_POST(HttpServletRequest request) {
-		
-		String searchCondition = request.getParameter("searchCondition");
-		String startDate = request.getParameter("startDate");
-		String endDate = request.getParameter("endDate");
-		
-
-		System.out.println("searchCondition = "+searchCondition + " \n startDate = "+ startDate + "\n endDate = " + endDate);
-		
+	public String LOGIN_ADMIN_POST() {
 		return "admin";
 	}
-	
+	//nav를 통한 admin 은 admin 페이지로
+	@RequestMapping(value = "/admin", method=RequestMethod.GET)
+	public String NAV_ADMIN_GET() {
+		return "admin";
+	}
+		
 }
