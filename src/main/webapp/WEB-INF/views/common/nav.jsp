@@ -37,6 +37,12 @@
             <a class="nav-link" href="#">관리</a>
           </li>
           </c:if>
+          <c:if test="${role eq '0'}">
+          <!-- 문의 뎁스별 추가,수정,삭제 페이지 -->
+          <li class="nav-item">
+            <a class="nav-link" href="#">문의 관리</a>
+          </li>
+          </c:if>
           <li class="nav-item">
             <a class="nav-link" href="logout.do">Log-out</a>
           </li>
