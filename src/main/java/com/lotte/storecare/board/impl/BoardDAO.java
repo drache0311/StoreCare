@@ -36,26 +36,15 @@ public class BoardDAO {
 
 	
 	// 유저별 문의 내역 select
-	public List<BoardVO> selectUserBoardList(String id) {
+	public List<BoardVO> selectUserBoardList(HashMap<String,String> param) {
 		System.out.println("여기는 boardDao의 selectUserBoardList");
-		
-		List<BoardVO> boardList = session.selectList("boardDB.selectUserBoardList", id);
-		
-		System.out.println("여기는 boardDao의 selectUserBoardList 이후 //  dep_name = " + boardList.get(1).getDep_name());
-		
+		List<BoardVO> boardList = session.selectList("boardDB.selectUserBoardList", param);
 		return boardList;		
 	}
 
-
-
 	// 각 점별 문의 내역 select
 	public List<BoardVO> selectBoardList(HashMap<String,String> param){
-		
 		List<BoardVO> boardList = session.selectList("boardDB.selectBoardList", param);
-
-
-		
-		
 		return boardList;
 	}
 	

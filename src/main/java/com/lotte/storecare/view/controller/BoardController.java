@@ -68,9 +68,27 @@ public class BoardController {
 	
 	// 유저 문의내역 검색 완료
 	@RequestMapping("/getBoardUserList.do")
-	public ModelAndView getBoardUserList(ModelAndView mav, HttpSession session) {
-		String id = (String) session.getAttribute("login");
-		List<BoardVO> vo = boardDAO.selectUserBoardList(id);
+	public ModelAndView getBoardUserList(ModelAndView mav, HttpSession session, HttpServletRequest request) {
+		String id = session.getAttribute("login").toString();
+		String searchCondition = request.getParameter("searchCondition");
+		String startDate = request.getParameter("startDate");
+		String endDate = request.getParameter("endDate");
+		
+		// 날짜선택 안할 때 "" 빈값으로 넘어오기 때문에 null로 변경해줌
+		if(startDate == "") {
+			startDate = null;
+		}
+		if(endDate == "") {
+			endDate = null;
+		}
+		
+		HashMap<String,String> param = new HashMap<String,String>();
+		param.put("searchCondition", searchCondition);
+		param.put("startDate", startDate);
+		param.put("endDate", endDate);
+		param.put("id", id);
+		
+		List<BoardVO> vo = boardDAO.selectUserBoardList(param);
 		mav.addObject("boardUserList", vo); // Model 정보 저장
 		mav.setViewName("getBoardUserList"); // View 정보 저장
 		return mav;
@@ -80,22 +98,16 @@ public class BoardController {
 	@RequestMapping("/getBoardList.do")
 	public ModelAndView getBoardList(ModelAndView mav,  HttpSession session, HttpServletRequest request) {
 		String department_code = session.getAttribute("department_code").toString();
-		
-		System.out.println("deP_code = "+department_code);
-		
 		String searchCondition = request.getParameter("searchCondition");
 		String startDate = request.getParameter("startDate");
 		String endDate = request.getParameter("endDate");
 		
+		// 날짜선택 안할 때 "" 빈값으로 넘어오기 때문에 null로 변경해줌
 		if(startDate == "") {
-			System.out.println("startDate is nuLL ? : " + startDate);
 			startDate = null;
-			System.out.println("startDate is nuLL ? : " + startDate);
 		}
 		if(endDate == "") {
-			System.out.println("endDate is nuLL ? : " + endDate);
 			endDate = null;
-			System.out.println("endDate is nuLL ? : " + endDate);
 		}
 		
 		

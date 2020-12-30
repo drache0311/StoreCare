@@ -33,15 +33,24 @@
   <!-- Page Content -->
 
 
-<!--  검색 Form -->
-<form name="searchUserBoard" method="post">
-  검색하기
-  <br>  
-From: <input type="text" id="startDate" placeholder="시작날짜" >
-<br>
-To: <input type="text" id="endDate"   placeholder="끝날짜" >
-</form>
 
+<!--  검색 FORM -->
+<div align="center">
+	<form name="searchUserBoard"  method="post" action="getBoardUserList.do">
+		<!-- 처리현황별 검색 SELECT -->
+		<select name="searchCondition">
+			<option value="all">전체</option>
+			<option value="doing">처리중</option>
+			<option value="done">처리완료</option>
+		</select>
+		<br/><br/> 
+		From: <input type="text" id="startDate" name="startDate" placeholder="시작날짜" >&nbsp;
+		
+		To: <input type="text" id="endDate" name="endDate"  placeholder="끝날짜" >
+		
+		<button type="submit" id="btnSearch">검색</button>
+	</form>
+</div>
 
   
 

@@ -31,12 +31,12 @@
             </a>
           </c:if>
           </li>
+          <c:if test="${role eq '0'}">
+          <!-- 백화점 및 관리자를 배정,추가,수정,삭제 하는 페이지 -->
           <li class="nav-item">
-            <a class="nav-link" href="#">About</a>
+            <a class="nav-link" href="#">관리</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Services</a>
-          </li>
+          </c:if>
           <li class="nav-item">
             <a class="nav-link" href="logout.do">Log-out</a>
           </li>

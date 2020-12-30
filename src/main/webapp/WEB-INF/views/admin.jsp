@@ -44,6 +44,7 @@
 			<div class="row">
 				<div class="col-lg-8 mx-auto">
 					<h2>전체 내역</h2>
+					
 					<!--  검색 FORM -->
 					<div align="center">
 						<form name="searchDepBoard"  method="post" action="getBoardList.do">
