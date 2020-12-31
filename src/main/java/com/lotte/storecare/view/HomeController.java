@@ -1,27 +1,13 @@
 package com.lotte.storecare.view;
 
-import java.sql.Connection;
-import java.text.DateFormat;
-import java.util.Date;
-import java.util.Locale;
-
-import javax.annotation.Resource;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import javax.sql.DataSource;
-
-import org.apache.ibatis.session.SqlSession;
-import org.apache.ibatis.session.SqlSessionFactory;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
-import com.lotte.storecare.user.UserVO;
-import com.lotte.storecare.user.impl.UserDAO;
+import com.lotte.storecare.user.service.UserService;
+import com.lotte.storecare.vo.UserVO;
 
 /**
  * Handles requests for the application home page.
@@ -29,14 +15,8 @@ import com.lotte.storecare.user.impl.UserDAO;
 @Controller
 public class HomeController {
 	
-	
-	// 루트컨테이너에서 빈(Bean)을 받아와서 자동으로 넣어줌
 	@Inject
-	private SqlSessionFactory sqlFactory;
-	
-	// 루트 컨테이너에서 DAO 객체를 가져와 저장
-	@Resource(name = "userDAO")
-	private UserDAO dao;
+	private UserService service;
 	
 	//	.jsp로 보여줄려면 
 	//	com.lotte.view 에서 return 해야 .jsp로 된다.
@@ -48,24 +28,8 @@ public class HomeController {
 		return "/";
 	}
 	
-	
-	/**
-	 * Simply selects the home view to render by returning its name.
-	 */
 	@RequestMapping(value = "/", method=RequestMethod.GET)
 	public String LOGIN_GET() {
-		
-		
-		try {
-
-			SqlSession session = sqlFactory.openSession();
-			System.out.println("성공 : " + session);
-				
-		} catch (Exception ex){
-			System.out.println("실패..!");
-			ex.printStackTrace();
-		}
-		
 		return "login";
 	}
 
@@ -97,7 +61,7 @@ public class HomeController {
 		
 		String id = httpServletRequest.getParameter("id");
 		
-		UserVO vo = dao.select(id);
+		UserVO vo = service.select(id);
 		System.out.println("vo :" + vo);
 
 		if(vo == null) {	// 아이디,비밀번호 틀리면 다시 로그인 페이지로

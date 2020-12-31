@@ -1,4 +1,4 @@
-package com.lotte.storecare.user;
+package com.lotte.storecare.vo;
 
 //VO(Value Object)
 public class UserVO {

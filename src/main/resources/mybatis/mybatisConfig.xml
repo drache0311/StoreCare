@@ -4,7 +4,7 @@
 
 <configuration> 
 	<typeAliases>
-		<typeAlias alias="UserVO" type="com.lotte.storecare.user.UserVO" />
+		<typeAlias alias="UserVO" type="com.lotte.storecare.vo.UserVO" />
 		<typeAlias alias="BoardVO" type="com.lotte.storecare.vo.BoardVO" />
 		<typeAlias alias="DepartmentVO" type="com.lotte.storecare.vo.DepartmentVO" />
 		<typeAlias alias="ProblemVO" type="com.lotte.storecare.vo.ProblemVO" />

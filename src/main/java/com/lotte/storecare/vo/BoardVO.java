@@ -2,8 +2,6 @@ package com.lotte.storecare.vo;
 
 import java.sql.Timestamp;
 
-import com.lotte.storecare.user.UserVO;
-
 //VO(Value Object)
 public class BoardVO {
 	private int seq;
