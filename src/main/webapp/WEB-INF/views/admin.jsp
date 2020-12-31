@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!doctype html>
 <head>
 
@@ -87,20 +88,38 @@
 						</tbody>
 					</table>
 					<input type="button" value="문의처리하기" class="btn btn-primary" onclick="deleteValue();">
+					<!-- 페이지 번호 -->	
 					<div class="text-center">
-						<ul class="pagination">
-							<!-- li태그의 클래스에 disabled를 넣으면 마우스를 위에 올렸을 때 클릭 금지 마크가 나오고 클릭도 되지 않는다.-->
-							<!-- disabled의 의미는 앞의 페이지가 존재하지 않다는 뜻이다. -->
-							<li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
-							<li class="page-item active"><a class="page-link" href="#">1</a></li>
-							<li class="page-item"><a class="page-link" href="#">2</a></li>
-							<li class="page-item"><a class="page-link" href="#">3</a></li>
-							<li class="page-item"><a class="page-link" href="#">4</a></li>
-							<li class="page-item"><a class="page-link" href="#">5</a></li>
-							<li class="page-item"><a class="page-link" href="#">Next</a></li>
-						</ul>
+						<nav aria-label="pagination">
+							<ul class="pagination">
+							
+								<!-- prev 버튼 -->
+								<li id="page-prev">
+									<a href="getBoardList.do${pageMaker.makeQuery(pageMaker.startPage-1)}" aria-label="Prev">
+										<span aria-hidden="true">«</span>
+									</a>
+								</li>
+								
+								<!-- 페이지 번호 (시작 페이지 번호부터 끝 페이지 번호까지) -->
+								<c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
+								    <li id="page${idx}">
+									    <a href="getBoardList.do${pageMaker.makeQuery(idx)}">
+									    	<!-- 시각 장애인을 위한 추가 -->
+									      	<span>${idx}<span class="sr-only">(current)</span></span>
+									    </a>
+								    </li>
+								</c:forEach>
+								
+								<!-- next 버튼 -->
+								<li id="page-next">
+								    <a href="getBoardList.do${pageMaker.makeQuery(pageMaker.endPage + 1)}" aria-label="Next">
+								    	<span aria-hidden="true">»</span>
+								    </a>
+								</li>
+								
+							</ul>
+						</nav>
 					</div>
-
 				</div>
 			</div>
 		</div>
@@ -140,6 +159,7 @@
 	<script src="<%=request.getContextPath()%>/resources/vendor/bootstrap/js/admin.js"></script>
 	<script src="<%=request.getContextPath()%>/resources/vendor/bootstrap/js/datepicker.js"></script>
 	<script src="<%=request.getContextPath()%>/resources/vendor/bootstrap/js/check-board-delete.js"></script>
+	<script src="<%=request.getContextPath()%>/resources/vendor/bootstrap/js/board-paging.js"></script>
 <!-- SCRIPT ---------------------------------------------------------- -->
 </body>
 </html>

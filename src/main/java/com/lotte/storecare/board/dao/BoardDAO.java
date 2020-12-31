@@ -3,7 +3,7 @@ package com.lotte.storecare.board.dao;
 import java.util.HashMap;
 import java.util.List;
 
-
+import com.lotte.storecare.commons.Criteria;
 import com.lotte.storecare.vo.BoardVO;
 
 
@@ -24,4 +24,9 @@ public interface BoardDAO {
 	public List<BoardVO> selectUserBoardList(HashMap<String,String> param);
 	
 	public List<BoardVO> selectBoardList(HashMap<String,String> param);
+
+	public List<BoardVO> selectBoardList(Criteria cri);
+	
+	int getTotalCount(Criteria cri);
+
 }
