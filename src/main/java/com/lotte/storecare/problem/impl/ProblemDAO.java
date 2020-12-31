@@ -11,7 +11,7 @@ import javax.annotation.Resource;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 import com.lotte.storecare.problem.ProblemVO;
-import com.lotte.storecare.board.BoardVO;
+import com.lotte.storecare.vo.BoardVO;
 import com.lotte.storecare.common.JDBCUtil;
 
 // DAO(Data Access Object)

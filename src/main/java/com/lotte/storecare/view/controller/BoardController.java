@@ -14,10 +14,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.lotte.storecare.board.BoardVO;
-import com.lotte.storecare.board.impl.BoardService;
-import com.lotte.storecare.department.DepartmentVO;
-import com.lotte.storecare.department.impl.DepartmentDAO;
+import com.lotte.storecare.board.service.BoardService;
+
+import com.lotte.storecare.vo.BoardVO;
+
 
 
 @Controller

@@ -1,4 +1,4 @@
-package com.lotte.storecare.board;
+package com.lotte.storecare.board.dao;
 
 import java.util.HashMap;
 import java.util.List;
@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.lotte.storecare.user.UserVO;
 import com.lotte.storecare.user.impl.UserDAO;
+import com.lotte.storecare.vo.BoardVO;
 
 
 public interface BoardDAO {

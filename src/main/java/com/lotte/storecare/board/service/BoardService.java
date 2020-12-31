@@ -1,10 +1,9 @@
-package com.lotte.storecare.board.impl;
+package com.lotte.storecare.board.service;
 
 import java.util.HashMap;
 import java.util.List;
 
-
-import com.lotte.storecare.board.BoardVO;
+import com.lotte.storecare.vo.BoardVO;
 
 public interface BoardService {
 	public List<BoardVO> selectUserBoardList(HashMap<String,String> param);

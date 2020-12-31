@@ -1,4 +1,4 @@
-package com.lotte.storecare.board;
+package com.lotte.storecare.board.dao;
 
 import java.util.HashMap;
 import java.util.List;
@@ -8,6 +8,8 @@ import javax.servlet.http.HttpSession;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
+
+import com.lotte.storecare.vo.BoardVO;
 
 @Repository
 public class BoardDAOImpl implements BoardDAO {

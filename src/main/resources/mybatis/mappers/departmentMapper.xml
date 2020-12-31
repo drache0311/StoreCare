@@ -4,7 +4,7 @@
 <mapper namespace="departmentDB">
 
 	<!-- select 쿼리 (1개) ==> 아직 안씀 -->
-	<select id="selectDepartment"  parameterType="String" resultType="DepartmentVO">
+	<select id="selectDepartment"   resultType="DepartmentVO">
 		select * from department
 	</select>
 		

@@ -1,4 +1,4 @@
-package com.lotte.storecare.department;
+package com.lotte.storecare.vo;
 
 
 

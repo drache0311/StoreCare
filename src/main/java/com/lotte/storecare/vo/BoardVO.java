@@ -1,4 +1,4 @@
-package com.lotte.storecare.board;
+package com.lotte.storecare.vo;
 
 import java.sql.Timestamp;
 

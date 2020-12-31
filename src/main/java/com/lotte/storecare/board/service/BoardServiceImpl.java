@@ -1,16 +1,11 @@
-package com.lotte.storecare.board.impl;
+package com.lotte.storecare.board.service;
 
 import java.util.HashMap;
 import java.util.List;
-
-import javax.annotation.Resource;
 import javax.inject.Inject;
-
 import org.springframework.stereotype.Service;
-
-import com.lotte.storecare.board.BoardDAO;
-import com.lotte.storecare.board.BoardVO;
-//import com.lotte.storecare.view.controller.BoardService;
+import com.lotte.storecare.board.dao.BoardDAO;
+import com.lotte.storecare.vo.BoardVO;
 
 
 @Service
@@ -18,9 +13,6 @@ public class BoardServiceImpl implements BoardService {
 
 	@Inject
 	private BoardDAO boardDAO;
-	
-//	@Resource(name = "boardDAO")
-//	private BoardDAO boardDAO;
 	
 
 
