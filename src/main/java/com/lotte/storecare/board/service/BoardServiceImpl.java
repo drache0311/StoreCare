@@ -21,6 +21,8 @@ public class BoardServiceImpl implements BoardService {
 		// TODO Auto-generated method stub
 		boardDAO.insertBoard(vo);
 	}
+	
+
 
 	@Override
 	public void updateBoard(BoardVO vo) {
@@ -28,6 +30,13 @@ public class BoardServiceImpl implements BoardService {
 		boardDAO.updateBoard(vo);
 	}
 
+	// 관리자가 선택한 문의 update
+	@Override
+	public void updateBoard(String seq) {
+		// TODO Auto-generated method stub
+		boardDAO.updateBoard(seq);
+	}	
+	
 	@Override
 	public void deleteBoard(BoardVO vo) {
 		// TODO Auto-generated method stub

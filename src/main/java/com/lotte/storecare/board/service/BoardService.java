@@ -14,9 +14,11 @@ public interface BoardService {
 
 	void updateBoard(BoardVO vo);
 
+	void updateBoard(String seq);
 
 	void deleteBoard(BoardVO vo);
 	
+
 	
 	
 	

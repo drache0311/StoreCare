@@ -77,7 +77,7 @@
 						<div class ="card-text mb-2"><span class= "text-muted">   처리 중	</span></div>
 						<a href="getProblemList.do?seq=${board.seq}&dep_code=${board.department_code}&flag=${board.flag}" class="btn btn-primary">수정하기</a>
 					</c:if>
-					<a href="deleteBoard.do?seq=${board.seq}" class="btn btn-primary">삭제하기</a>
+					<a href="deleteUserBoard.do?seq=${board.seq}" class="btn btn-primary">삭제하기</a>
 				</div>
 		</c:forEach>
    			</div>

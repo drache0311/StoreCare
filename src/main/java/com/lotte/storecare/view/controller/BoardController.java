@@ -39,18 +39,30 @@ public class BoardController {
 	}
 
 	// 문의 수정 완료
-	@RequestMapping("/updateBoard.do")
+	@RequestMapping("/updateUserBoard.do")
 	public String updateBoard(BoardVO vo) {
 		service.updateBoard(vo);
 		return "getBoardUserList.do";
 	}
-
+	
+	// 문의 처리 완료
+	@RequestMapping("/updateBoard.do")
+	public String deleteBoard(HttpServletRequest request) {
+		String[] ajaxMsg = request.getParameterValues("valueArr");
+		int size = ajaxMsg.length;
+		for(int i=0;i<size;i++) {
+			service.updateBoard(ajaxMsg[i]);
+		}
+		return "getBoardList.do";
+	}
+	
 	// 문의 삭제 완료
-	@RequestMapping("/deleteBoard.do")
-	public String deleteBoard(BoardVO vo) {
+	@RequestMapping("/deleteUserBoard.do")
+	public String deleteUserBoard(BoardVO vo) {
 		service.deleteBoard(vo);
 		return "getBoardUserList.do";
 	}
+	
 
 
 	

@@ -65,7 +65,7 @@
 					<table class="table table-striped table-hover">
 						<thead>
 							<tr>
-								
+								<th><input id="allCheck" type="checkbox" name="allCheck"/></th>
 								<th>접수일자</th>
 								<th>접수내용</th>
 								<th>처리현황</th>
@@ -76,6 +76,7 @@
 
 						<c:forEach items="${boardList}" var="board">
 							<tr>
+								<td><input name="RowCheck" type="checkbox" value="${board.seq }"/></td>
 								<td>${board.datetime}</td>
 								<td>${board.place_detail}
 								${board.problem_detail}</td>
@@ -85,6 +86,7 @@
 						</c:forEach>
 						</tbody>
 					</table>
+					<input type="button" value="문의처리하기" class="btn btn-primary" onclick="deleteValue();">
 					<div class="text-center">
 						<ul class="pagination">
 							<!-- li태그의 클래스에 disabled를 넣으면 마우스를 위에 올렸을 때 클릭 금지 마크가 나오고 클릭도 되지 않는다.-->
@@ -137,6 +139,7 @@
 <!-- Custom JavaScript for this theme -->
 	<script src="<%=request.getContextPath()%>/resources/vendor/bootstrap/js/admin.js"></script>
 	<script src="<%=request.getContextPath()%>/resources/vendor/bootstrap/js/datepicker.js"></script>
+	<script src="<%=request.getContextPath()%>/resources/vendor/bootstrap/js/check-board-delete.js"></script>
 <!-- SCRIPT ---------------------------------------------------------- -->
 </body>
 </html>

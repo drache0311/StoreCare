@@ -59,7 +59,7 @@ Timestamp now = new Timestamp(System.currentTimeMillis());
 		<form action="insertBoard.do" method="get">
 	</c:when>
 	<c:otherwise>
-		<form action="updateBoard.do" method="get">
+		<form action="updateUserBoard.do" method="get">
 	</c:otherwise>
 </c:choose>
  	<div class = "container-fluid" >

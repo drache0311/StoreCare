@@ -47,17 +47,26 @@
 		
 	</select>
 	
-	<!-- update 쿼리 -->	
-	<update id="updateBoard" parameterType="boardVO">
+	<!-- update 쿼리 (사용자가 문의 수정)-->	
+	<update id="updateUserBoard" parameterType="boardVO">
 		update board
 		set problem_code=#{problem_code}, datetime=#{datetime}, problem_place_code=#{problem_place_code}, floor=#{floor} 
 		where seq=#{seq}
 	</update>
 	
-	<!-- delete 쿼리 -->
+	<!-- update 쿼리 (관리가자 문의 처리)-->	
+	<update id="updateBoard" parameterType="String">
+		update board
+		set flag=1,clearTime=now() 
+		where seq=#{seq}
+	</update>	
+	
+	<!-- delete 쿼리 (사용자가 삭제하는 문의)-->
 	<delete id="deleteBoard" parameterType="int">
 		delete from board where seq=#{seq}
-	</delete>	
+	</delete>
+		
+
 	
 	<!--  insert 쿼리 -->
 	<insert id="insertBoard" parameterType="BoardVO">

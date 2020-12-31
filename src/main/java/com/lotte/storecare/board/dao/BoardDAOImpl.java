@@ -19,7 +19,8 @@ public class BoardDAOImpl implements BoardDAO {
 	@Resource(name="sqlSessoinTemplate")
 	private SqlSessionTemplate session;
 	
-	
+
+
 	// 문의 insert
 	@Override
 	public void insertBoard(BoardVO vo) {
@@ -31,7 +32,14 @@ public class BoardDAOImpl implements BoardDAO {
 	@Override
 	public void updateBoard(BoardVO vo) {
 		// TODO Auto-generated method stub
-		session.update("boardDB.updateBoard", vo);
+		session.update("boardDB.updateUserBoard", vo);
+	}
+	
+	// 관리자가 선택한 문의 update
+	@Override
+	public void updateBoard(String seq) {
+		// TODO Auto-generated method stub
+		session.delete("boardDB.updateBoard",seq);
 	}
 
 	// 문의 delete
@@ -40,7 +48,6 @@ public class BoardDAOImpl implements BoardDAO {
 		// TODO Auto-generated method stub
 		session.delete("boardDB.deleteBoard", vo.getSeq());	
 	}
-
 
 	// 유저별 문의 내역 select
 	@Override
