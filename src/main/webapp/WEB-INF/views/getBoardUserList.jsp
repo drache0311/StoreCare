@@ -61,7 +61,10 @@
 		<c:forEach items="${boardUserList}" var="board">
 			<div class = "card mt-4">
 			    <div class ="card-body">
-					<span class='text-primary'> ${board.datetime} </span>
+					<span class='text-primary'> 문의시간 ${board.datetime}</span>
+					<c:if test="${board.flag eq 1 }">
+						<span class='text-primary'> 처리시간 ${board.clearTime}</span>
+					</c:if>
 					<h1 class = "card-title"> ${board.place_detail}</h1>
 					<div class = "card-subtitle text-muted mb-2">
 					  ${board.problem_detail}

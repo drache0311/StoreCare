@@ -47,7 +47,6 @@
 		
 	</select>
 	
-
 	<!-- update 쿼리 -->	
 	<update id="updateBoard" parameterType="boardVO">
 		update board
@@ -62,8 +61,8 @@
 	
 	<!--  insert 쿼리 -->
 	<insert id="insertBoard" parameterType="BoardVO">
-		insert into board(floor, problem_code,problem_place_code,users_id,department_code,datetime)
-		values(#{floor},#{problem_code},#{problem_place_code},#{users_id},#{department_code},#{datetime})
+		insert into board(floor, problem_code,problem_place_code,users_id,department_code)
+		values(#{floor},#{problem_code},#{problem_place_code},#{users_id},#{department_code})
 	</insert>
 	
 	
