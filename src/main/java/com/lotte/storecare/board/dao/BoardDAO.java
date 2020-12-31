@@ -14,9 +14,12 @@ public interface BoardDAO {
 
 
 	void updateBoard(BoardVO vo);
-
+	
+	void updateBoard(String seq);
 
 	void deleteBoard(BoardVO vo);
+	
+
 
 	public List<BoardVO> selectUserBoardList(HashMap<String,String> param);
 	
