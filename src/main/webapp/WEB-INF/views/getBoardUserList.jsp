@@ -33,15 +33,24 @@
   <!-- Page Content -->
 
 
-<!--  검색 Form -->
-<form name="searchUserBoard" method="post">
-  검색하기
-  <br>  
-From: <input type="text" id="startDate" placeholder="시작날짜" >
-<br>
-To: <input type="text" id="endDate"   placeholder="끝날짜" >
-</form>
 
+<!--  검색 FORM -->
+<div align="center">
+	<form name="searchUserBoard"  method="post" action="getBoardUserList.do">
+		<!-- 처리현황별 검색 SELECT -->
+		<select name="searchCondition">
+			<option value="all">전체</option>
+			<option value="doing">처리중</option>
+			<option value="done">처리완료</option>
+		</select>
+		<br/><br/> 
+		From: <input type="text" id="startDate" name="startDate" placeholder="시작날짜" >&nbsp;
+		
+		To: <input type="text" id="endDate" name="endDate"  placeholder="끝날짜" >
+		
+		<button type="submit" id="btnSearch">검색</button>
+	</form>
+</div>
 
   
 
@@ -52,14 +61,22 @@ To: <input type="text" id="endDate"   placeholder="끝날짜" >
 		<c:forEach items="${boardUserList}" var="board">
 			<div class = "card mt-4">
 			    <div class ="card-body">
-					<span class='text-primary'> ${board.datetime} </span>
+					<span class='text-primary'> 문의시간 ${board.datetime}</span>
+					<c:if test="${board.flag eq 1 }">
+						<span class='text-primary'> 처리시간 ${board.clearTime}</span>
+					</c:if>
 					<h1 class = "card-title"> ${board.place_detail}</h1>
 					<div class = "card-subtitle text-muted mb-2">
 					  ${board.problem_detail}
 					</div>
-					<div class ="card-text mb-2">   ${board.floor }F   </div>
-					<div class ="card-text mb-2">  <span class= "text-muted">${board.dep_name } </span></div>
-					<a href="getProblemList.do?seq=${board.seq}&dep_code=${board.department_code}" class="btn btn-primary">수정하기</a>
+					<div class ="card-text mb-2">	${board.dep_name } ${board.floor }F   </div>
+					<c:if test="${board.flag eq 1 }">
+						<div class ="card-text mb-2"><span class= "text-muted">   처리 완료	</span></div>
+					</c:if>
+					<c:if test="${board.flag eq 0 }">
+						<div class ="card-text mb-2"><span class= "text-muted">   처리 중	</span></div>
+						<a href="getProblemList.do?seq=${board.seq}&dep_code=${board.department_code}&flag=${board.flag}" class="btn btn-primary">수정하기</a>
+					</c:if>
 					<a href="deleteBoard.do?seq=${board.seq}" class="btn btn-primary">삭제하기</a>
 				</div>
 		</c:forEach>

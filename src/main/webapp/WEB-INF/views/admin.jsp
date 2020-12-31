@@ -44,6 +44,7 @@
 			<div class="row">
 				<div class="col-lg-8 mx-auto">
 					<h2>전체 내역</h2>
+					
 					<!--  검색 FORM -->
 					<div align="center">
 						<form name="searchDepBoard"  method="post" action="getBoardList.do">
@@ -64,6 +65,7 @@
 					<table class="table table-striped table-hover">
 						<thead>
 							<tr>
+								
 								<th>접수일자</th>
 								<th>접수내용</th>
 								<th>처리현황</th>
