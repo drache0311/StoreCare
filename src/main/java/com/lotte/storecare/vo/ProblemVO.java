@@ -1,4 +1,4 @@
-package com.lotte.storecare.problem;
+package com.lotte.storecare.vo;
 
 
 
