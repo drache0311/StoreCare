@@ -117,11 +117,13 @@ public class HomeController {
 	//admin 은 admin 페이지로
 	@RequestMapping(value = "/admin", method=RequestMethod.POST)
 	public String LOGIN_ADMIN_POST() {
+		System.out.println("여긴 admin POST");
 		return "admin";
 	}
 	//nav를 통한 admin 은 admin 페이지로
 	@RequestMapping(value = "/admin", method=RequestMethod.GET)
 	public String NAV_ADMIN_GET() {
+		System.out.println("여긴 admin GET");
 		return "admin";
 	}
 		

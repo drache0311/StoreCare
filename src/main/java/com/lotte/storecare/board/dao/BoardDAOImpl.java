@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.lotte.storecare.commons.Criteria;
 import com.lotte.storecare.vo.BoardVO;
 
 @Repository
@@ -56,11 +57,23 @@ public class BoardDAOImpl implements BoardDAO {
 		return session.selectList("boardDB.selectUserBoardList", param);
 	}
 
-	// 각 점별 문의 내역 select
+//	// 각 점별 문의 내역 select
 	@Override
 	public List<BoardVO> selectBoardList(HashMap<String, String> param) {
 		// TODO Auto-generated method stub
 		return session.selectList("boardDB.selectBoardList", param);
 	}
 
+	// 각 점별 문의 내역 select
+	@Override
+	public List<BoardVO> selectBoardList(Criteria cri) {
+		// TODO Auto-generated method stub
+		return session.selectList("boardDB.selectBoardList", cri);
+	}
+
+	@Override
+	public int getTotalCount(Criteria cri) {
+		// TODO Auto-generated method stub
+		return session.selectOne("boardDB.gettotalcount",cri);
+	}
 }
