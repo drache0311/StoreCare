@@ -7,10 +7,13 @@ import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import com.lotte.storecare.board.service.BoardService;
+import com.lotte.storecare.commons.Criteria;
+import com.lotte.storecare.commons.PageMaker;
 import com.lotte.storecare.vo.BoardVO;
 
 
@@ -96,14 +99,24 @@ public class BoardController {
 		return mav;
 	}
 	
-	// 전체 문의내역 목록 검색 완료
+	// 페이징
 	@RequestMapping("/getBoardList.do")
-	public ModelAndView getBoardList(ModelAndView mav,  HttpSession session, HttpServletRequest request) {
+	public ModelAndView getBoardList_GET(ModelAndView mav,  HttpSession session, HttpServletRequest request,Criteria cri) {
 		String department_code = session.getAttribute("department_code").toString();
-		String searchCondition = request.getParameter("searchCondition");
-		String startDate = request.getParameter("startDate");
-		String endDate = request.getParameter("endDate");
+		session.setAttribute("searchCondition",request.getParameter("searchCondition"));
+		session.setAttribute("startDate",request.getParameter("startDate"));
+		session.setAttribute("endDate",request.getParameter("endDate"));
+		String searchCondition = "all";
+		String startDate = "";
+		String endDate = "";
+		if(session.getAttribute("searchCondition") != null) {
+			searchCondition = session.getAttribute("searchCondition").toString();
+			startDate = session.getAttribute("startDate").toString();
+			endDate = session.getAttribute("endDate").toString();
+		}
 		
+
+		System.out.println("DEPARTMENT_CODE 11111111111111111 = "+department_code);
 		// 날짜선택 안할 때 "" 빈값으로 넘어오기 때문에 null로 변경해줌
 		if(startDate == "") {
 			startDate = null;
@@ -112,18 +125,86 @@ public class BoardController {
 			endDate = null;
 		}
 		
-		
 		HashMap<String,String> param = new HashMap<String,String>();
 		param.put("searchCondition", searchCondition);
 		param.put("startDate", startDate);
 		param.put("endDate", endDate);
 		param.put("department_code", department_code);
-		
-		System.out.println("HASH MAP - deP_code = "+param.get(department_code));
-		List<BoardVO> vo = service.selectBoardList(param);
 
-		mav.addObject("boardList", vo); // Model 정보 저장
+		System.out.println("3333333333333333333333333333333");
+		System.out.println("DEPARTMENT_CODE 222222222222222222 = "+param.get("department_code"));
+		System.out.println("HASH MAP - deP_code = "+param.get("department_code"));
+		
+		//cri쪽 에러가 나면 이거 해보자 !!!!!!!!!!!!!!!!!!!!!!!!
+		//
+		//cri = new Criteria(param);
+		//
+		
+		cri.setDepartment_code(department_code);
+		cri.setEndDate(endDate);
+		cri.setSearchCondition(searchCondition);
+		cri.setStartDate(startDate);
+		System.out.println("ddddddddddddddddddddd "+cri.getPage());
+        //현재 페이지에 해당하는 게시물을 조회해 옴 
+		List<BoardVO> vo = service.selectBoardList(cri);
+		
+		System.out.println(vo);
+		System.out.println(cri.getPageStart());
+        //모델에 추가
+		mav.addObject("boardList",vo); // boardList -> list check
+        //PageMaker 객체 생성
+		PageMaker pageMaker = new PageMaker(cri);
+        //전체 게시물 수를 구함
+		int totalCount = service.getTotalCount(cri);
+        //pageMaker로 전달 -> pageMaker는 startPage, endPage, prev, next를 계산함
+		pageMaker.setTotalCount(totalCount);
+        //모델에 추가
+		mav.addObject("pageMaker", pageMaker);
+		
+		
+		
+//		mav.addObject("boardList", vo); // Model 정보 저장
 		mav.setViewName("admin"); // View 정보 저장
 		return mav;
 	}
+//	
+//	// 전체 문의내역 목록 검색 완료
+//	@RequestMapping("/getBoardList.do")
+//	public ModelAndView getBoardList(ModelAndView mav,  HttpSession session, HttpServletRequest request) {
+//		String department_code = session.getAttribute("department_code").toString();
+//		String searchCondition = request.getParameter("searchCondition");
+//		String startDate = request.getParameter("startDate");
+//		String endDate = request.getParameter("endDate");
+//		
+//		// 날짜선택 안할 때 "" 빈값으로 넘어오기 때문에 null로 변경해줌
+//		if(startDate == "") {
+//			startDate = null;
+//		}
+//		if(endDate == "") {
+//			endDate = null;
+//		}
+//		
+//		
+//		HashMap<String,String> param = new HashMap<String,String>();
+//		param.put("searchCondition", searchCondition);
+//		param.put("startDate", startDate);
+//		param.put("endDate", endDate);
+//		param.put("department_code", department_code);
+//		
+//		System.out.println("HASH MAP - deP_code = "+param.get(department_code));
+//		List<BoardVO> vo = service.selectBoardList(param);
+//
+//		mav.addObject("boardList", vo); // Model 정보 저장
+//		mav.setViewName("admin"); // View 정보 저장
+//		return mav;
+//	}	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
