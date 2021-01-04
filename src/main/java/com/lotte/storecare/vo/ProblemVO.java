@@ -4,39 +4,52 @@ package com.lotte.storecare.vo;
 
 //VO(Value Object)
 public class ProblemVO {
-	private int place_code;
-	private int code;
+	private int category_category_code;
+	private int problem_code;
 	private String problem_detail;
-	private String place_detail;
+	private String category_detail;
 
-	public String getPlace_detail() {
-		return place_detail;
+
+
+	public int getCategory_category_code() {
+		return category_category_code;
 	}
 
 
-	public void setPlace_detail(String place_detail) {
-		this.place_detail = place_detail;
+	public void setCategory_category_code(int category_category_code) {
+		this.category_category_code = category_category_code;
+	}
+
+
+	public int getProblem_code() {
+		return problem_code;
+	}
+
+
+	public void setProblem_code(int problem_code) {
+		this.problem_code = problem_code;
+	}
+
+
+	public String getCategory_detail() {
+		return category_detail;
+	}
+
+
+	public void setCategory_detail(String category_detail) {
+		this.category_detail = category_detail;
 	}
 
 
 	public int getPlace_code() {
-		return place_code;
+		return category_category_code;
 	}
 
 
-	public void setPlace_code(int place_code) {
-		this.place_code = place_code;
+	public void setPlace_code(int category_category_code) {
+		this.category_category_code = category_category_code;
 	}
 
-
-	public int getCode() {
-		return code;
-	}
-
-
-	public void setCode(int code) {
-		this.code = code;
-	}
 
 
 	public String getProblem_detail() {
@@ -51,6 +64,6 @@ public class ProblemVO {
 
 	@Override
 	public String toString() {
-		return "ProblemVO [place_code=" + place_code + ", code=" + code + ", problem_detail=" + problem_detail + ", place_detail=" + place_detail + "]";
+		return "ProblemVO [category_category_code=" + category_category_code + ", problem_code=" + problem_code + ", problem_detail=" + problem_detail + ", category_detail=" + category_detail + "]";
 	}
 }

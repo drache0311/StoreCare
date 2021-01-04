@@ -26,7 +26,7 @@
 <%
 	String code = request.getParameter("searchCondition");
 	if(code == null)
-		code = request.getParameter("dep_code");
+		code = request.getParameter("department_department_code");
 	
 	String seq = (String) request.getParameter("seq");
 	if(seq==null){
@@ -58,21 +58,21 @@
 <c:choose>
 
 
-<c:when test="${problem.place_code != temp}">
+<c:when test="${problem.category_category_code != temp}">
 
-<c:if test="${problem.place_code>1}">
+<c:if test="${problem.category_category_code>1}">
 			</div>
 	</div>
 </c:if>
 	
-	<c:set var="temp" value="${problem.place_code}" />
+	<c:set var="temp" value="${problem.category_category_code}" />
 	
 	<div class="card w-75">
 		<div class="card-body">
-		<h5 class="card-title">${problem.place_detail}</h5>
+		<h5 class="card-title">${problem.category_detail}</h5>
 </c:when>
 </c:choose>
-		    <a href="checkBoard.do?problem_code=${problem.code}&department_code=<%=code%>&place_code=${problem.place_code}&problem_detail=${problem.problem_detail}&place_detail=${problem.place_detail}&seq=<%=seq%>&flag=<%=flag %>" class="btn btn-primary">${problem.problem_detail}</a>
+		    <a href="checkBoard.do?problem_problem_code=${problem.problem_code}&department_department_code=<%=code%>&problem_category_code=${problem.category_category_code}&problem_detail=${problem.problem_detail}&category_detail=${problem.category_detail}&seq=<%=seq%>&flag=<%=flag %>" class="btn btn-primary">${problem.problem_detail}</a>
 </c:forEach>
 			</div>
 	</div>

@@ -44,7 +44,7 @@ public class ProcessController {
 		return "checkBoard";
 	}	
 	
-	// 12/22 11:35 테스트중 삽입
+	
 	@RequestMapping(value="/updateBoard", method=RequestMethod.GET)
 	public String UPDATEBOARD_GET() {	
 		return "checkBoard";
@@ -57,5 +57,8 @@ public class ProcessController {
 		return "signUp";
 	}	
 	
-	
+	@RequestMapping(value="/updateQuestion", method=RequestMethod.GET)
+	public String UPDATEQUESTION_GET() {	
+		return "updateQuestion";
+	}	
 }

@@ -10,9 +10,9 @@
 		
 	<!-- select 쿼리 (floor 조회) -->
 	<select id="selectFloor"  parameterType="int" resultType="DepartmentVO">
-		select distinct department_floor,dep_name 
+		select distinct department_floor,department_name 
 		from department,board
-		where department.code=#{department_code}
+		where department.department_code=#{department_department_code}
 	</select>	
 	
 	<!-- select 쿼리 (ALL) -->

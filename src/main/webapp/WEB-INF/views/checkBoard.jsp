@@ -24,13 +24,13 @@
 
 <%
 
-String place_code = request.getParameter("place_code");
-String problem_code = request.getParameter("problem_code");
-String place_detail = request.getParameter("place_detail");
+String category_code = request.getParameter("problem_category_code");
+String problem_code = request.getParameter("problem_problem_code");
+String category_detail = request.getParameter("category_detail");
 String problem_detail = request.getParameter("problem_detail");
 String seq = (String) request.getParameter("seq");
 String id = (String) session.getAttribute("login");
-String department_code = request.getParameter("department_code");
+String department_code = request.getParameter("department_department_code");
 String flag = request.getParameter("flag");
 
 Timestamp now = new Timestamp(System.currentTimeMillis());
@@ -53,6 +53,7 @@ Timestamp now = new Timestamp(System.currentTimeMillis());
 <!-- 앞에서 POST로 던져주고 진짜 null로 비교하는식으로 변경  -->
 <!-- GET은 버리고 POST로 다 변경하장  -->
 
+out.println(${board});
 
 <c:choose>
 	<c:when test="${seq eq '0'}" >
@@ -71,14 +72,14 @@ Timestamp now = new Timestamp(System.currentTimeMillis());
 			    <input name="datetime" type="hidden" value="<%=now%>" />
 			    <input name="users_id" type="hidden" value="<%=id%>" />
 			    	<h5 class="card-header">현재 방문 백화점</h5>
-			    	<input name="department_code" type="hidden" value="<%=department_code %>" />
-					<h1 class = "card-title"> ${board.dep_name}  </h1>
+			    	<input name="department_department_code" type="hidden" value="<%=department_code %>" />
+					<h1 class = "card-title">  ${board.department_name}  </h1>
 				</div>
 				<div class ="card-body">
 			    	<h5 class="card-header">요청내용</h5>
-			    	<input name="problem_place_code" type="hidden" value="<%=place_code %>" />
-					<span class='text-primary'> <%=place_detail %> </span>
-					<input name="problem_code" type="hidden" value="<%=problem_code %>" />			
+			    	<input name="problem_category_code" type="hidden" value="<%=category_code %>" />
+					<span class='text-primary'> <%=category_detail %> </span>
+					<input name="problem_problem_code" type="hidden" value="<%=problem_code %>" />			
 					<h1 class = "card-title"> <%=problem_detail %> </h1>
 				</div>
 				<div class ="card-body">

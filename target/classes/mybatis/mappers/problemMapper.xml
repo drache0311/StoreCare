@@ -3,14 +3,51 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="problemDB">
 
-
+	<!-- resultMap ( HashMap ) -->
+	<resultMap type="HashMap" id="problemMap">
+		<id column="category_code" property="category_code" />
+		<id column="category_detail" property="category_detail" />
+		<id column="problem_code" property="problem_code" />
+		<id column="problem_detail" property="problem_detail" />
+		<id column="place_code" property="place_code" />
+		<id column="place_detail" property="place_detail" />
+		<id column="depth" property="depth" />
+	</resultMap>
 
 
 	<!-- select 쿼리 (여러개) -->
 	<select id="selectProblemList"   resultType="ProblemVO">
-		select place_code,problem.code,problem_detail,place_detail 
-		from storecare.problem, storecare.place 
-		where problem.place_code=place.code
+		select category_category_code,problem.problem_code,problem_detail,category_detail 
+		from storecare.problem, storecare.category 
+		where problem.category_category_code=category.category_code
 	</select>
 	
+	<!-- select 쿼리 ( 문의 뎁스별로 검색 ) -->
+	<select id="selectProblemListTest"   resultMap="problemMap" parameterType="HashMap">
+		<choose>
+			<!-- 1뎁스 일 때 -->
+			<when test="depth == 1">
+				select category_code, category_detail
+				from category
+			</when>
+			<!-- 2뎁스 일 때 -->
+			<when test="depth == 2">
+				select category_code, category_detail, problem_code,problem_detail,problem.depth
+				from category
+				join problem
+				on category.category_code = problem.category_category_code
+				where category_code = #{category_code}
+			</when>
+			<!-- 3뎁스 일 때 -->
+			<when test="depth == 3">
+				select category_code, category_detail, problem_code,problem_detail, place_code, place_detail,place.depth
+				from category
+				join problem
+				join place
+				on problem.category_category_code = place.category_category_code
+				and category.category_code = problem.category_category_code
+				where category_code = #{category_code} and problem_code = #{problem_code}
+			</when>
+		</choose>
+	</select>	
 </mapper>

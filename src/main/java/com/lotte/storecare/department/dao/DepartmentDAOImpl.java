@@ -41,7 +41,7 @@ public class DepartmentDAOImpl implements DepartmentDAO {
 	@Override
 	public DepartmentVO selectFloor(BoardVO vo) {
 		// TODO Auto-generated method stub
-		return session.selectOne("departmentDB.selectFloor", vo.getDepartment_code());
+		return session.selectOne("departmentDB.selectFloor", vo.getDepartment_department_code());
 	}
 	
 	// 여러 개 select
