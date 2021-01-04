@@ -150,7 +150,9 @@ public class BoardController {
 		
 		System.out.println(vo);
 		System.out.println(cri.getPageStart());
-        //모델에 추가
+		System.out.println("StartDate = "+cri.getStartDate() + "EndDate = "+cri.getEndDate() + "\n");
+		
+		//모델에 추가
 		mav.addObject("boardList",vo); // boardList -> list check
         //PageMaker 객체 생성
 		PageMaker pageMaker = new PageMaker(cri);

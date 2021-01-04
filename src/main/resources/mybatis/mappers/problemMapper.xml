@@ -8,9 +8,9 @@
 
 	<!-- select 쿼리 (여러개) -->
 	<select id="selectProblemList"   resultType="ProblemVO">
-		select place_code,problem.code,problem_detail,place_detail 
-		from storecare.problem, storecare.place 
-		where problem.place_code=place.code
+		select category_category_code,problem.problem_code,problem_detail,category_detail 
+		from storecare.problem, storecare.category 
+		where problem.category_category_code=category.category_code
 	</select>
 	
 </mapper>

@@ -65,17 +65,17 @@
 					<c:if test="${board.flag eq 1 }">
 						<span class='text-primary'> 처리시간 ${board.clearTime}</span>
 					</c:if>
-					<h1 class = "card-title"> ${board.place_detail}</h1>
+					<h1 class = "card-title"> ${board.category_detail}</h1>
 					<div class = "card-subtitle text-muted mb-2">
 					  ${board.problem_detail}
 					</div>
-					<div class ="card-text mb-2">	${board.dep_name } ${board.floor }F   </div>
+					<div class ="card-text mb-2">	${board.department_name } ${board.floor }F   </div>
 					<c:if test="${board.flag eq 1 }">
 						<div class ="card-text mb-2"><span class= "text-muted">   처리 완료	</span></div>
 					</c:if>
 					<c:if test="${board.flag eq 0 }">
 						<div class ="card-text mb-2"><span class= "text-muted">   처리 중	</span></div>
-						<a href="getProblemList.do?seq=${board.seq}&dep_code=${board.department_code}&flag=${board.flag}" class="btn btn-primary">수정하기</a>
+						<a href="getProblemList.do?seq=${board.seq}&department_department_code=${board.department_department_code}&flag=${board.flag}" class="btn btn-primary">수정하기</a>
 					</c:if>
 					<a href="deleteUserBoard.do?seq=${board.seq}" class="btn btn-primary">삭제하기</a>
 				</div>

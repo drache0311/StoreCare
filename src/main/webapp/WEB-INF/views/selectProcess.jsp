@@ -47,16 +47,16 @@
 						<td align="center">
 						<select name="searchCondition">
 								<c:forEach items="${departmentList}" var="department">
-										<option value="${department.code}">${department.dep_name}</option>
+										<option value="${department.department_code}">${department.department_name}</option>
 								</c:forEach>
 						</select>
 						</td>
 					</tr>
 					<tr>
 					<td>
-					<button type="submit" value="dep_code" >등록하기</button>
+					<button type="submit" value="department_code" >등록하기</button>
 					<!-- 내 문의내역 BUTTON  -->
-					<button type="button" value="dep_code" onclick="location.href='getBoardUserList.do' ">내 문의내역</button>
+					<button type="button" value="department_code" onclick="location.href='getBoardUserList.do' ">내 문의내역</button>
 					</td>
 					</tr>
 				</table>

@@ -4,7 +4,7 @@ package com.lotte.storecare.vo;
 public class UserVO {
 	private String id;
 	private String password;
-	private int department_code;
+	private int department_department_code;
 	private int role;
 
 	public String getId() {
@@ -24,11 +24,11 @@ public class UserVO {
 	}
 
 	public int getDepartment_code() {
-		return department_code;
+		return department_department_code;
 	}
 
-	public void setDepartment_code(int department_code) {
-		this.department_code = department_code;
+	public void setDepartment_code(int department_department_code) {
+		this.department_department_code = department_department_code;
 	}
 
 	public int getRole() {
@@ -41,6 +41,6 @@ public class UserVO {
 
 	@Override
 	public String toString() {
-		return "UserVO [id=" + id + ", password=" + password + ", department_code=" + department_code + ", role=" + role + "]";
+		return "UserVO [id=" + id + ", password=" + password + ", department_department_code=" + department_department_code + ", role=" + role + "]";
 	}
 }

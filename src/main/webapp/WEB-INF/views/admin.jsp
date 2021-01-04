@@ -90,7 +90,7 @@
 							<tr>
 								<td><input name="RowCheck" type="checkbox" value="${board.seq }"/></td>
 								<td>${board.datetime}</td>
-								<td>${board.place_detail}
+								<td>${board.category_detail}
 								${board.problem_detail}</td>
 								<td><c:if test="${board.flag eq 0}" >처리 중</c:if> <c:if test="${board.flag eq 1}" >처리완료</c:if></td>
 								<td>${board.clearTime}</td>
