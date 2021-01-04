@@ -40,7 +40,7 @@
           <c:if test="${role eq '0'}">
           <!-- 문의 뎁스별 추가,수정,삭제 페이지 -->
           <li class="nav-item">
-            <a class="nav-link" href="#">문의 관리</a>
+            <a class="nav-link" href="updateQuestion.do?depth=1">문의 관리</a>
           </li>
           </c:if>
           <li class="nav-item">
