@@ -44,31 +44,53 @@
       <div class="row">
         <div class="col-lg-8 mx-auto">
         <!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
+        <!-- method ===> GET이나 POST로 정해서 하자 -->
+        <form  method="#">
         	<c:choose>
         		<c:when test="${depth eq 1}">
-        		<c:forEach items="${problemList }" var="problem">
-        			<a href="updateQuestion.do?category_code=${problem.category_code }" class="btn btn-primary">${problem.category_detail}</a>
-        			<!--  -->
-        			<!-- 여기서 category_code의 값을 넘겨줘야 뎁스2가 정해진다 -->
-        			<!--  -->
-        			</c:forEach>
+	        		<c:forEach items="${problemList }" var="problem">
+	        			<a href="updateQuestion.do?category_code=${problem.category_code }" class="btn btn-primary">${problem.category_detail}</a>
+	        			<!--  -->
+	        			<!-- 여기서 category_code의 값을 넘겨줘야 뎁스2가 정해진다 -->
+	        			<!--  -->
+	        		</c:forEach>
+	        		<!-- 문의 추가 버튼 -->	
+	        		<!-- depth를 추가로 보내서 해당 depth에 input값을 추가하는 식으로 ??? -->
+	        		<input name="depth" type="hidden" value="${depth }" />
+	        		<input type="text" id="inputQuestion" name="category_detail" class="form-control" placeholder="${problem.category_detail}" >
+	        		<button class="btn btn-primary" type="submit" formaction="insertQuestion.do" >추가하기</button>
         		</c:when>
          		<c:when test="${depth eq 2}">
-         		${problemList[0].category_detail }
-        		<c:forEach items="${problemList }" var="problem">
-        			<a href="updateQuestion.do?category_code=${problem.category_code }&problem_code=${problem.problem_code }" class="btn btn-primary">${problem.problem_detail}</a>
-        			<!--  -->
-        			<!-- 여기서 category_code와 problem_code의 값을 넘겨줘야 뎁스2가 정해진다 -->
-        			<!--  -->
-        			</c:forEach>
+	         		${problemList[0].category_detail }
+	        		<c:forEach items="${problemList }" var="problem">
+	        			<a href="updateQuestion.do?category_code=${problem.category_code }&problem_code=${problem.problem_code }" class="btn btn-primary">${problem.problem_detail}</a>
+	        			<!--  -->
+	        			<!-- 여기서 category_code와 problem_code의 값을 넘겨줘야 뎁스2가 정해진다 -->
+	        			<!--  -->
+	        		</c:forEach>
+	        		<!-- 문의 추가 버튼 -->	
+	        		<input name="depth" type="hidden" value="${depth }" />
+	        		<input type="text" id="inputQuestion" name="problem_detail" class="form-control" placeholder="${problem.problem_detail}" >
+	        		<button class="btn btn-primary" type="submit" formaction="insertQuestion.do" >추가하기</button>
         		</c:when> 
          		<c:when test="${depth eq 3}">
-         		${problemList[0].category_detail } === ${problemList[0].problem_detail } 
-        		<c:forEach items="${problemList }" var="problem">
-        			<a href="#" class="btn btn-primary">${problem.place_detail}</a>
-        			</c:forEach>
+	         		${problemList[0].category_detail } === ${problemList[0].problem_detail } 
+	        		<c:forEach items="${problemList }" var="problem">
+	        			<a href="#" class="btn btn-primary">${problem.place_detail}</a>
+	        		</c:forEach>
+	        		<!-- 문의 추가 버튼 -->	
+	        		<input name="depth" type="hidden" value="${depth }" />
+	        		<input type="text" id="inputQuestion" name="place_detail" class="form-control" placeholder="${problem.place_detail}" >
+	        		<button class="btn btn-primary" type="submit" formaction="insertQuestion.do" >추가하기</button>
         		</c:when>
         	</c:choose>
+        	<!-- 추가 / 수정 / 삭제 버튼 -->
+        	
+
+        	</form>
+        	
+        	<button class="btn btn-primary" type="submit" >수정하기</button>
+        	<button class="btn btn-primary" type="submit" >삭제하기</button>
          <!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
           <h2>문의 1뎁스 choose -> when 으로 1뎁스면 여기섹션 출력 ==> href=updateQuestion.jsp 계속 돌리면서 뎁스 수정하게하기</h2>
           <!-- category.category_code가 널이면 category_detail 출력 -> 선택하면 null이 아니니까 problem_detail 출력(2뎁스)   -->
