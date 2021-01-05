@@ -1,5 +1,6 @@
 package com.lotte.storecare.problem.service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -20,5 +21,5 @@ public interface ProblemService {
 	public void updateProblem(ProblemVO vo);
 
 	// 뎁스 1,2,3 별 문의사항 삭제
-	public void deleteProblem(ProblemVO vo);
+	public void deleteProblem(HashMap<String,String> param);
 }

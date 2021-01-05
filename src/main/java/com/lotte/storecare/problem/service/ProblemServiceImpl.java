@@ -1,5 +1,6 @@
 package com.lotte.storecare.problem.service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -41,9 +42,8 @@ public class ProblemServiceImpl implements ProblemService {
 
 	// 뎁스 1,2,3 별 문의 삭제
 	@Override
-	public void deleteProblem(ProblemVO vo) {
-		// TODO Auto-generated method stub
-		
+	public void deleteProblem(HashMap<String,String> param) {
+		problemDAO.deleteProblem(param);
 	}
 
 

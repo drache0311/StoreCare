@@ -1,5 +1,6 @@
 package com.lotte.storecare.problem.dao;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -20,5 +21,5 @@ public interface ProblemDAO {
 	void updateProblem(String seq);
 	
 	// 뎁스 1,2,3 별 문의 삭제
-	void deleteProblem(ProblemVO vo);
+	void deleteProblem(HashMap<String,String> param);
 }

@@ -1,7 +1,9 @@
 package com.lotte.storecare.view.controller;
 
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
@@ -64,8 +66,22 @@ public class ProblemController {
 	
 	// 문의사항 삭제 
 	@RequestMapping("/deleteProblem.do")
-	public String deleteProblem(ProblemVO vo) {
-		service.deleteProblem(vo);
+	public String deleteProblem(HttpServletRequest request) {
+		System.out.println("딜리트 컨틀롤\n");
+		String[] ajaxMsg = request.getParameterValues("valueArr");
+		String depth = request.getParameter("depth");
+		HashMap<String,String> param2 = new HashMap<String,String>();
+
+		System.out.println("depth ===================>"+depth.toString());
+		
+		int size = ajaxMsg.length;
+		for(int i=0;i<size;i++) {
+			param2.put("depth",depth);
+			param2.put("param", ajaxMsg[i]);
+			System.out.println(param2);
+			service.deleteProblem(param2);
+		}
+		
 		return "updateProblem.do";
 	}
 	

@@ -1,5 +1,6 @@
 package com.lotte.storecare.problem.dao;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -27,9 +28,8 @@ public class ProblemDAOImpl implements ProblemDAO {
 	}
 
 	@Override
-	public void deleteProblem(ProblemVO vo) {
-		// TODO Auto-generated method stub
-		
+	public void deleteProblem(HashMap<String,String> param) {
+		session.delete("problemDB.deleteProblem", param );
 	}
 
 	// 뎁스 1,2,3 별 문의 추가
