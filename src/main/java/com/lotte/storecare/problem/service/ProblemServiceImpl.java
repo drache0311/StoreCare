@@ -25,18 +25,32 @@ public class ProblemServiceImpl implements ProblemService {
 	}
 
 	
-	// 뎁스 1,2,3 별 문의 추가
 	@Override
-	public void insertProblem(HashMap<String, String> param) {
-		problemDAO.insertProblem(param);
+	public void updateProblem(ProblemVO vo) {
+		// TODO Auto-generated method stub
+		
 	}
 
+
+	// 뎁스 1,2,3 별 문의 추가
+	@Override
+	public void insertProblem(ProblemVO vo) {
+		problemDAO.insertProblem(vo);
+	}
+
+
+	// 뎁스 1,2,3 별 문의 삭제
+	@Override
+	public void deleteProblem(ProblemVO vo) {
+		// TODO Auto-generated method stub
+		
+	}
 
 
 	// 뎁스 1,2,3 별 문의 검색
 	@Override
-	public List<Map<String,String>> selectProblemListTest(HashMap<String,String> param) {
+	public List<Map<String,String>> selectProblemListTest(ProblemVO vo) {
 		// TODO Auto-generated method stub
-		return problemDAO.selectProblemListTest(param);
+		return problemDAO.selectProblemListTest(vo);
 	}
 }

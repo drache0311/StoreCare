@@ -4,6 +4,7 @@
 <mapper namespace="problemDB">
 
 	<!-- resultMap ( HashMap ) -->
+	<!-- VO로 바꿔서 안씀 -->
 	<resultMap type="HashMap" id="problemMap">
 		<id column="category_code" property="category_code" />
 		<id column="category_detail" property="category_detail" />
@@ -23,7 +24,7 @@
 	</select>
 	
 	<!-- select 쿼리 ( 문의 뎁스별로 검색 ) -->
-	<select id="selectProblemListTest"   resultMap="problemMap" parameterType="HashMap">
+	<select id="selectProblemListTest"   resultType="ProblemVO" parameterType="ProblemVO">
 		<choose>
 			<!-- 1뎁스 일 때 -->
 			<when test="depth == 1">
@@ -54,7 +55,7 @@
 	
 	
 	<!--  insert 쿼리 -->
-	<insert id="insertProblem" parameterType="HashMap">
+	<insert id="insertProblem" parameterType="ProblemVO">
 		<choose>
 			<!-- 1뎁스 일 때 -->
 			<when test="depth == 1">

@@ -59,6 +59,8 @@
 	        		<input name="depth" type="hidden" value="${depth }" />
 	        		<input name="category_detail" type="text" id="inputProblem" class="form-control" placeholder="여기에 입력하여 추가하세요" >
 	        		<button class="btn btn-primary" type="submit" formaction="insertProblem.do" >추가하기</button>
+	        		<button class="btn btn-primary" type="submit" formaction="fixProblem.do" >수정하기</button>
+        			<button class="btn btn-primary" type="submit" formaction="deleteProblem.do" >삭제하기</button>
         		</c:when>
          		<c:when test="${depth eq 2}">
 	         		${problemList[0].category_detail } >>>>>>${problemList[0].category_code }
@@ -73,6 +75,8 @@
 	        		<input name="category_code" type="hidden" value="${problemList[0].category_code }" />
 	        		<input name="problem_detail" type="text" id="inputProblem"  class="form-control" placeholder="여기에 입력하여 추가하세요" >
 	        		<button class="btn btn-primary" type="submit" formaction="insertProblem.do" >추가하기</button>
+	        		<button class="btn btn-primary" type="submit" formaction="fixProblem.do" >수정하기</button>
+        			<button class="btn btn-primary" type="submit" formaction="deleteProblem.do" >삭제하기</button>
         		</c:when> 
          		<c:when test="${depth eq 3}">
 	         		${problemList[0].category_detail } === ${problemList[0].problem_detail }
@@ -85,6 +89,8 @@
 	        		<input name="problem_code" type="hidden" value="${problemList[0].problem_code }" />
 	        		<input name="place_detail" type="text" id="inputProblem"  class="form-control" placeholder="여기에 입력하여 추가하세요" >
 	        		<button class="btn btn-primary" type="submit" formaction="insertProblem.do" >추가하기</button>
+	        		<button class="btn btn-primary" type="submit" formaction="fixProblem.do" >수정하기</button>
+        			<button class="btn btn-primary" type="submit" formaction="deleteProblem.do" >삭제하기</button>
         		</c:when>
         	</c:choose>
         	<!-- 추가 / 수정 / 삭제 버튼 -->
@@ -92,8 +98,7 @@
 
         	</form>
         	
-        	<button class="btn btn-primary" type="submit" >수정하기</button>
-        	<button class="btn btn-primary" type="submit" >삭제하기</button>
+
          <!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
           <h2>문의 1뎁스 choose -> when 으로 1뎁스면 여기섹션 출력 ==> href=updateProblem.jsp 계속 돌리면서 뎁스 수정하게하기</h2>
           <!-- category.category_code가 널이면 category_detail 출력 -> 선택하면 null이 아니니까 problem_detail 출력(2뎁스)   -->
