@@ -22,8 +22,6 @@ function deleteValue(){
 	var list = $("input[name='RowCheck']");
 	var depth = $("input[name='depth']");
 
-	
-	
 	for(var i=0;i<list.length;i++){
 		if(list[i].checked){
 			valueArr.push(list[i].value);

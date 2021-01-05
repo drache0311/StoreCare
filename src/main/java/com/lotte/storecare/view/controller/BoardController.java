@@ -99,7 +99,7 @@ public class BoardController {
 		return mav;
 	}
 	
-	// 페이징
+	// 관리자 문의내역 및 페이징
 	@RequestMapping("/getBoardList.do")
 	public ModelAndView getBoardList_GET(ModelAndView mav,  HttpSession session, HttpServletRequest request,Criteria cri) {
 		String department_code = session.getAttribute("department_code").toString();
