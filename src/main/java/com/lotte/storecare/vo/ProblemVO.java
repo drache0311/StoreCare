@@ -102,6 +102,6 @@ public class ProblemVO {
 
 	@Override
 	public String toString() {
-		return "ProblemVO [category_category_code=" + category_category_code + ", problem_code=" + problem_code + ", problem_detail=" + problem_detail + ", category_detail=" + category_detail + "]";
+		return "ProblemVO [depth=" + depth + ", problem_code=" + problem_code + ", problem_detail=" + problem_detail + ", category_detail=" + category_detail + "]";
 	}
 }

@@ -43,14 +43,15 @@ public class ProblemController {
 	@RequestMapping(value="/updateProblem.do", method=RequestMethod.GET)
 	public ModelAndView updateProblemList_GET(ModelAndView mav, ProblemVO vo) {
 		
-		System.out.println("category_code = " + vo.getCategory_code() +"problem_code = " + vo.getProblem_code());
+		System.out.println("depth =====> "+vo.getDepth()+ "category_code = " + vo.getCategory_code() +"problem_code = " + vo.getProblem_code());
 		
-		// 뎁스1 선택한 상황이라면 뎁스2로 바꿈 // 뎁스1,2 선택한 상황이라면 뎁스3으로 바꿈
-		if(vo.getCategory_code() != null && vo.getProblem_code() == null) {
-			vo.setDepth(2);
-		}else if(vo.getProblem_code() != null) {
-			vo.setDepth(3);
-		}
+//		// 뎁스1 선택한 상황이라면 뎁스2로 바꿈 // 뎁스1,2 선택한 상황이라면 뎁스3으로 바꿈
+//		if(vo.getCategory_code() != null && vo.getProblem_code() == null) {
+//			vo.setDepth(2);
+//		}else if(vo.getProblem_code() != null) {
+//			vo.setDepth(3);
+//		}
+		System.out.println("depth =====> "+vo.getDepth()+ "category_code = " + vo.getCategory_code() +"problem_code = " + vo.getProblem_code());
 		
 		mav.addObject("problemList", service.selectProblemListTest(vo)); // Model 정보 저장
 		mav.setViewName("updateProblem"); // View 정보 저장
@@ -64,7 +65,7 @@ public class ProblemController {
 		return "updateProblem.do";
 	}
 	
-	// 문의사항 삭제 
+	// 문의사항 삭제 완료
 	@RequestMapping("/deleteProblem.do")
 	public String deleteProblem(HttpServletRequest request) {
 		System.out.println("딜리트 컨틀롤\n");
