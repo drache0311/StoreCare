@@ -25,11 +25,10 @@ public class ProblemServiceImpl implements ProblemService {
 		return problemDAO.selectProblemList();
 	}
 
-	
+	// 뎁스 1,2,3 별 문의 수정
 	@Override
-	public void updateProblem(ProblemVO vo) {
-		// TODO Auto-generated method stub
-		
+	public void updateProblem(HashMap<String,String> param) {
+		problemDAO.updateProblem(param);
 	}
 
 

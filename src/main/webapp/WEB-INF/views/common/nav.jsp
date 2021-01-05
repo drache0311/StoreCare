@@ -19,6 +19,14 @@
             <a class="nav-link" href="adminHead">Home
               <span class="sr-only">(current)</span>
             </a>
+          <!-- 백화점 및 관리자를 배정,추가,수정,삭제 하는 페이지 -->
+          <li class="nav-item">
+            <a class="nav-link" href="#">관리</a>
+          </li>
+          <!-- 문의 뎁스별 추가,수정,삭제 페이지 -->
+          <li class="nav-item">
+            <a class="nav-link" href="updateProblem.do?depth=1">문의 관리</a>
+          </li>
           </c:if>
           <c:if test="${role eq '1'}">
             <a class="nav-link" href="getBoardList.do">Home
@@ -26,23 +34,16 @@
             </a>
           </c:if>
           <c:if test="${role eq '2'}">
+          	<!-- Home 페이지 -->
             <a class="nav-link" href="getDepartmentList.do">Home
               <span class="sr-only">(current)</span>
             </a>
-          </c:if>
-          </li>
-          <c:if test="${role eq '0'}">
-          <!-- 백화점 및 관리자를 배정,추가,수정,삭제 하는 페이지 -->
+          <!-- 문의 추가 페이지 -->
           <li class="nav-item">
-            <a class="nav-link" href="#">관리</a>
+            <a class="nav-link" href="insertBoardTemp">문의 등록 임시 --> 나중에 내문의내역으로 변경 ㄱㄱ</a>
           </li>
           </c:if>
-          <c:if test="${role eq '0'}">
-          <!-- 문의 뎁스별 추가,수정,삭제 페이지 -->
-          <li class="nav-item">
-            <a class="nav-link" href="updateProblem.do?depth=1">문의 관리</a>
           </li>
-          </c:if>
           <li class="nav-item">
             <a class="nav-link" href="logout.do">Log-out</a>
           </li>

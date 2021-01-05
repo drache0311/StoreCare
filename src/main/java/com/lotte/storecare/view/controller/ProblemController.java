@@ -60,8 +60,34 @@ public class ProblemController {
 	
 	// 문의사항 수정 
 	@RequestMapping("/fixProblem.do")
-	public String updateProblem(ProblemVO vo) {
-		service.updateProblem(vo);
+	public String updateProblem(HttpServletRequest request) {
+		System.out.println("fix 컨틀롤\n");
+		
+		String[] ajaxMsg = request.getParameterValues("valueArr");
+		String depth = request.getParameter("depth");
+		String detail = request.getParameter("detail");
+		String category_detail = request.getParameter("category_detail");
+		String problem_detail = request.getParameter("problem_detail");
+		String place_detail = request.getParameter("place_detail");
+
+		
+		HashMap<String,String> paramMap = new HashMap<String,String>();
+		
+		System.out.println("depth ===================>"+depth.toString());
+		
+		paramMap.put("category_detail",category_detail);
+		paramMap.put("problem_detail",problem_detail);
+		paramMap.put("place_detail",place_detail);
+		paramMap.put("detail", detail);
+		
+		int size = ajaxMsg.length;
+		for(int i=0;i<size;i++) {
+			paramMap.put("depth",depth);
+			paramMap.put("param", ajaxMsg[i]);
+			System.out.println(paramMap);
+			service.updateProblem(paramMap);;
+		}
+		
 		return "updateProblem.do";
 	}
 	
@@ -71,16 +97,16 @@ public class ProblemController {
 		System.out.println("딜리트 컨틀롤\n");
 		String[] ajaxMsg = request.getParameterValues("valueArr");
 		String depth = request.getParameter("depth");
-		HashMap<String,String> param2 = new HashMap<String,String>();
+		HashMap<String,String> paramMap = new HashMap<String,String>();
 
 		System.out.println("depth ===================>"+depth.toString());
 		
 		int size = ajaxMsg.length;
 		for(int i=0;i<size;i++) {
-			param2.put("depth",depth);
-			param2.put("param", ajaxMsg[i]);
-			System.out.println(param2);
-			service.deleteProblem(param2);
+			paramMap.put("depth",depth);
+			paramMap.put("param", ajaxMsg[i]);
+			System.out.println(paramMap);
+			service.deleteProblem(paramMap);
 		}
 		
 		return "updateProblem.do";
