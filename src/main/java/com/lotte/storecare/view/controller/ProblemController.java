@@ -31,7 +31,7 @@ public class ProblemController {
 		return "updateProblem.do";
 	}
 
-	// 문의사항 뎁스들 조회 ==> 사용자 측에서 지금 사용 중
+	// 문의사항 뎁스들 조회 ==> 사용자 측에서 기존에 사용 중 이던거 -- 후에 다른걸루 바꿔야 함
 	@RequestMapping("/getProblemList.do")
 	public ModelAndView getProblemList(ModelAndView mav) {
 		mav.addObject("problemList", service.selectProblemList()); // Model 정보 저장
@@ -51,8 +51,7 @@ public class ProblemController {
 //		}else if(vo.getProblem_code() != null) {
 //			vo.setDepth(3);
 //		}
-		System.out.println("depth =====> "+vo.getDepth()+ "category_code = " + vo.getCategory_code() +"problem_code = " + vo.getProblem_code());
-		
+
 		mav.addObject("problemList", service.selectProblemListTest(vo)); // Model 정보 저장
 		mav.setViewName("updateProblem"); // View 정보 저장
 		return mav;

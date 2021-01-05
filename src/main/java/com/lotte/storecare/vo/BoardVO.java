@@ -17,8 +17,22 @@ public class BoardVO {
 	private String department_name;
 	private Timestamp clearTime;
 	private int flag;
+	private int place_place_code;
 	
-	
+
+
+	public int getPlace_place_code() {
+		return place_place_code;
+	}
+
+
+
+
+	public void setPlace_place_code(int place_place_code) {
+		this.place_place_code = place_place_code;
+	}
+
+
 
 
 	public int getSeq() {

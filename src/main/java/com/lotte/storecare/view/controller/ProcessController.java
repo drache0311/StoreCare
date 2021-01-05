@@ -62,10 +62,11 @@ public class ProcessController {
 		return "updateProblem";
 	}	
 	
+//	// TEST ING
+//	@RequestMapping(value="/insertBoardTemp", method=RequestMethod.GET)
+//	public String INSERTBOARDTEMP_GET() {	
+//		return "insertBoardTemp";
+//	}	
 	
-	@RequestMapping(value="/insertBoardTemp", method=RequestMethod.GET)
-	public String INSERTBOARDTEMP_GET() {	
-		return "insertBoardTemp";
-	}		
 	
 }

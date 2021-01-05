@@ -47,7 +47,7 @@
         	<c:choose>
         		<c:when test="${depth eq 1}">
 	        		<c:forEach items="${problemList }" var="problem">
-	        			<a href="updateProblem.do?category_code=${problem.category_code }&depth=2" class="btn btn-primary">${problem.category_detail}</a>
+	        			<a href="insertBoardTemp?category_code=${problem.category_code }&depth=2" class="btn btn-primary">${problem.category_detail}</a>
 	        			<!--  -->
 	        			<!-- 여기서 category_code의 값을 넘겨줘야 뎁스2가 정해진다 -->
 	        			<!--  -->
@@ -56,7 +56,7 @@
          		<c:when test="${depth eq 2}">
 	         		${problemList[0].category_detail } >>>>>>${problemList[0].category_code }
 	        		<c:forEach items="${problemList }" var="problem">
-	        			<a href="updateProblem.do?category_code=${problem.category_code }&problem_code=${problem.problem_code }&depth=3" class="btn btn-primary">${problem.problem_detail}</a>
+	        			<a href="insertBoardTemp?category_code=${problem.category_code }&problem_code=${problem.problem_code }&depth=3" class="btn btn-primary">${problem.problem_detail}</a>
 	        			<!--  -->
 	        			<!-- 여기서 category_code와 problem_code의 값을 넘겨줘야 뎁스3가 정해진다 -->
 	        			<!--  -->
@@ -64,12 +64,25 @@
         		</c:when> 
          		<c:when test="${depth eq 3}">
 	         		${problemList[0].category_detail } === ${problemList[0].problem_detail }
-	        		<c:forEach items="${problemList }" var="problem">
-	        			<a href="#" class="btn btn-primary">${problem.place_detail}</a>
-	        		</c:forEach>
+	         		<form method="post" action="checkBoard.do">
+		         		<input name="problem_problem_code" type="hidden" value="${problemList[0].problem_code }" />
+<%-- 		        		<input name="department_department_code" type="hidden" value="<%=department_department_code %>" /> --%>
+		        		<input name="problem_category_code" type="hidden" value="${problemList[0].category_code }" />
+		        		<input name="problem_detail" type="hidden" value="${problemList[0].problem_detail }" />
+		        		<input name="category_detail" type="hidden" value="${problemList[0].category_detail }" />
+<%-- 		        		<input name="seq" type="hidden" value="<%=seq %>" />		         		
+						<input name="flag" type="hidden" value="<%=flag %>" />	 --%>
+		        		<c:forEach items="${problemList }" var="problem">
+			        		<input name="place_place_code" type="hidden" value="${problem.place_code }" />
+			        		<input name="place_place_detail" type="hidden" value="${problem.place_detail }" />
+			        		<button class="w-100 btn btn-lg btn-primary" type="submit" >${problem.place_detail}</button>
+			        		
+		        		</c:forEach>
+	        		</form>
         		</c:when>
         	</c:choose>
         	</form>
+
          <!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
           <h2>예시용</h2>
           <!-- category.category_code가 널이면 category_detail 출력 -> 선택하면 null이 아니니까 problem_detail 출력(2뎁스)   -->
