@@ -57,8 +57,8 @@ public class ProcessController {
 		return "signUp";
 	}	
 	
-	@RequestMapping(value="/updateQuestion", method=RequestMethod.GET)
-	public String UPDATEQUESTION_GET() {	
-		return "updateQuestion";
+	@RequestMapping(value="/updateProblem", method=RequestMethod.GET)
+	public String UPDATEPROBLEM_GET() {	
+		return "updateProblem";
 	}	
 }

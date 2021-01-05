@@ -4,6 +4,7 @@
 <mapper namespace="problemDB">
 
 	<!-- resultMap ( HashMap ) -->
+	<!-- VO로 바꿔서 안씀 -->
 	<resultMap type="HashMap" id="problemMap">
 		<id column="category_code" property="category_code" />
 		<id column="category_detail" property="category_detail" />
@@ -23,7 +24,7 @@
 	</select>
 	
 	<!-- select 쿼리 ( 문의 뎁스별로 검색 ) -->
-	<select id="selectProblemListTest"   resultMap="problemMap" parameterType="HashMap">
+	<select id="selectProblemListTest"   resultType="ProblemVO" parameterType="ProblemVO">
 		<choose>
 			<!-- 1뎁스 일 때 -->
 			<when test="depth == 1">
@@ -50,4 +51,75 @@
 			</when>
 		</choose>
 	</select>	
+	
+	
+	
+	<!--  insert 쿼리 -->
+	<insert id="insertProblem" parameterType="ProblemVO">
+		<choose>
+			<!-- 1뎁스 일 때 -->
+			<when test="depth == 1">
+				insert into category(category_detail)
+				values(#{category_detail})
+			</when>
+			<!-- 2뎁스 일 때 -->
+			<when test="depth == 2">
+				insert into problem(category_category_code,problem_detail)
+				values(#{category_code},#{problem_detail})
+			</when>
+			<!-- 3뎁스 일 때 -->
+			<when test="depth == 3">
+				insert into place(category_category_code,place_detail)
+				values(#{category_code},#{place_detail})
+			</when>
+		</choose>
+	</insert>
+	
+	<!-- update 쿼리 (관리가자 문의 처리)-->	
+	<update id="updateProblem" parameterType="ProblemVO">
+		<choose>
+			<!-- 1뎁스 일 때 -->
+			<when test="depth == 1">
+				insert into category(category_detail)
+				values(#{category_detail})
+			</when>
+			<!-- 2뎁스 일 때 -->
+			<when test="depth == 2">
+				insert into problem(category_category_code,problem_detail)
+				values(#{category_code},#{problem_detail})
+			</when>
+			<!-- 3뎁스 일 때 -->
+			<when test="depth == 3">
+				insert into place(category_category_code,place_detail)
+				values(#{category_code},#{place_detail})
+			</when>
+		</choose>
+	</update>	
+	
+	<!-- delete 쿼리 (사용자가 삭제하는 문의)-->
+	<delete id="deleteProblem" parameterType="HashMap">
+		<choose>
+			<!-- 1뎁스 일 때 -->
+			<when test="depth == 1">
+				delete 
+				from category
+				where category_code = #{param}
+			</when>
+			<!-- 2뎁스 일 때 -->
+			<when test="depth == 2">
+				delete 
+				from problem
+				where problem_code = ${param}
+			</when>
+			<!-- 3뎁스 일 때 -->
+			<when test="depth == 3">
+				delete 
+				from place
+				where place_code = #{param}
+			</when>
+		</choose>
+	</delete>
+		
+	
+	
 </mapper>

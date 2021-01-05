@@ -1,5 +1,6 @@
 package com.lotte.storecare.problem.service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -25,11 +26,31 @@ public class ProblemServiceImpl implements ProblemService {
 	}
 
 	
-
-	// 뎁스 1,2,3 포함한 쿼리 테스트 중
 	@Override
-	public List<Map<String,String>> selectProblemListTest(HashMap<String,String> param) {
+	public void updateProblem(ProblemVO vo) {
 		// TODO Auto-generated method stub
-		return problemDAO.selectProblemListTest(param);
+		
+	}
+
+
+	// 뎁스 1,2,3 별 문의 추가
+	@Override
+	public void insertProblem(ProblemVO vo) {
+		problemDAO.insertProblem(vo);
+	}
+
+
+	// 뎁스 1,2,3 별 문의 삭제
+	@Override
+	public void deleteProblem(HashMap<String,String> param) {
+		problemDAO.deleteProblem(param);
+	}
+
+
+	// 뎁스 1,2,3 별 문의 검색
+	@Override
+	public List<Map<String,String>> selectProblemListTest(ProblemVO vo) {
+		// TODO Auto-generated method stub
+		return problemDAO.selectProblemListTest(vo);
 	}
 }

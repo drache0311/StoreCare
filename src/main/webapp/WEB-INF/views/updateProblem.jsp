@@ -44,33 +44,68 @@
       <div class="row">
         <div class="col-lg-8 mx-auto">
         <!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
+        <!-- method ===> GET이나 POST로 정해서 하자 -->
+        <input id="allCheck" type="checkbox" name="allCheck"/>
+        <form  method="GET">
         	<c:choose>
         		<c:when test="${depth eq 1}">
-        		<c:forEach items="${problemList }" var="problem">
-        			<a href="updateQuestion.do?category_code=${problem.category_code }" class="btn btn-primary">${problem.category_detail}</a>
-        			<!--  -->
-        			<!-- 여기서 category_code의 값을 넘겨줘야 뎁스2가 정해진다 -->
-        			<!--  -->
-        			</c:forEach>
+	        		<c:forEach items="${problemList }" var="problem">
+	        			<!-- 문의 삭제 체크박스 -->
+	        			<input name="RowCheck" type="checkbox" value="${problem.category_code }"/>
+	        			<a href="updateProblem.do?category_code=${problem.category_code }" class="btn btn-primary">${problem.category_detail}</a>
+	        			<!--  -->
+	        			<!-- 여기서 category_code의 값을 넘겨줘야 뎁스2가 정해진다 -->
+	        			<!--  -->
+	        		</c:forEach>
+	        		<!-- 문의 추가 버튼 -->	
+	        		<!-- depth를 추가로 보내서 해당 depth에 input값을 추가하는 식으로 ??? -->
+	        		<input name="depth" type="hidden" value="${depth }" />
+	        		<input name="category_detail" type="text" id="inputProblem" class="form-control" placeholder="여기에 입력하여 추가하세요" >
+	        		<button class="btn btn-primary" type="submit" formaction="insertProblem.do" >추가하기</button>
+	        		<button class="btn btn-primary" type="submit" formaction="fixProblem.do" >수정하기</button>
+        			<button class="btn btn-primary" type="submit" formaction="deleteProblem.do" >삭제하기</button>
         		</c:when>
          		<c:when test="${depth eq 2}">
-         		${problemList[0].category_detail }
-        		<c:forEach items="${problemList }" var="problem">
-        			<a href="updateQuestion.do?category_code=${problem.category_code }&problem_code=${problem.problem_code }" class="btn btn-primary">${problem.problem_detail}</a>
-        			<!--  -->
-        			<!-- 여기서 category_code와 problem_code의 값을 넘겨줘야 뎁스2가 정해진다 -->
-        			<!--  -->
-        			</c:forEach>
+	         		${problemList[0].category_detail } >>>>>>${problemList[0].category_code }
+	        		<c:forEach items="${problemList }" var="problem">
+	        			<!-- 문의 삭제 체크박스 -->
+	        			<input name="RowCheck" type="checkbox" value="${problem.problem_code }"/>
+	        			<a href="updateProblem.do?category_code=${problem.category_code }&problem_code=${problem.category_code }" class="btn btn-primary">${problem.problem_detail}</a>
+	        			<!--  -->
+	        			<!-- 여기서 category_code와 problem_code의 값을 넘겨줘야 뎁스3가 정해진다 -->
+	        			<!--  -->
+	        		</c:forEach>
+	        		<!-- 문의 추가 버튼 -->	
+	        		<input name="depth" type="hidden" value="${depth }" />
+	        		<input name="category_code" type="hidden" value="${problemList[0].category_code }" />
+	        		<input name="problem_detail" type="text" id="inputProblem"  class="form-control" placeholder="여기에 입력하여 추가하세요" >
+	        		<button class="btn btn-primary" type="submit" formaction="insertProblem.do" >추가하기</button>
+	        		<button class="btn btn-primary" type="submit" formaction="fixProblem.do" >수정하기</button>
+        			<button class="btn btn-primary" type="submit" formaction="deleteProblem.do" >삭제하기</button>
         		</c:when> 
          		<c:when test="${depth eq 3}">
-         		${problemList[0].category_detail } === ${problemList[0].problem_detail } 
-        		<c:forEach items="${problemList }" var="problem">
-        			<a href="#" class="btn btn-primary">${problem.place_detail}</a>
-        			</c:forEach>
+	         		${problemList[0].category_detail } === ${problemList[0].problem_detail }
+	        		<c:forEach items="${problemList }" var="problem">
+	        			<!-- 문의 삭제 체크박스 -->
+	        			<input name="RowCheck" type="checkbox" value="${problem.place_code }"/>
+	        			<a href="#" class="btn btn-primary">${problem.place_detail}</a>
+	        		</c:forEach>
+	        		<!-- 문의 추가 버튼 -->	
+	        		<input name="depth" type="hidden" value="${depth }" />
+	        		<input name="category_code" type="hidden" value="${problemList[0].category_code }" />
+	        		<input name="problem_code" type="hidden" value="${problemList[0].problem_code }" />
+	        		<input name="place_detail" type="text" id="inputProblem"  class="form-control" placeholder="여기에 입력하여 추가하세요" >
+	        		<button class="btn btn-primary" type="submit" formaction="insertProblem.do" >추가하기</button>
+	        		<button class="btn btn-primary" type="submit" formaction="fixProblem.do" >수정하기</button>
+        			<button class="btn btn-primary" type="submit" formaction="deleteProblem.do" >삭제하기</button>
         		</c:when>
         	</c:choose>
+        	<!-- 추가 / 수정 / 삭제 버튼 -->
+        	</form>
+        	<input type="button" value="문의사항 삭제하기" class="btn btn-primary" onclick="deleteValue();">
+
          <!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
-          <h2>문의 1뎁스 choose -> when 으로 1뎁스면 여기섹션 출력 ==> href=updateQuestion.jsp 계속 돌리면서 뎁스 수정하게하기</h2>
+          <h2>문의 1뎁스 choose -> when 으로 1뎁스면 여기섹션 출력 ==> href=updateProblem.jsp 계속 돌리면서 뎁스 수정하게하기</h2>
           <!-- category.category_code가 널이면 category_detail 출력 -> 선택하면 null이 아니니까 problem_detail 출력(2뎁스)   -->
           <!-- 2뎁스도 널이 아니면 3뎁스의 place_detail 출력 -->
           <p class="lead">This is a great place to talk about your webpage. This template is purposefully unstyled so you can use it as a boilerplate or starting point for you own landing page designs! This template features:</p>
@@ -116,7 +151,7 @@
 <script src="<%=request.getContextPath()%>/resources/vendor/jquery/jquery-3.5.1.min.js"></script>
 
 <!-- Custom JavaScript for this theme -->
-
+<script src="<%=request.getContextPath()%>/resources/vendor/bootstrap/js/check-problem-delete1.js"></script>
 <!-- SCRIPT ---------------------------------------------------------- -->
 </body>
 </html>
