@@ -11,4 +11,7 @@ public interface ProblemDAO {
 	
 	// 뎁스 1,2,3 포함한 쿼리 테스트 중
 	public List<Map<String,String>> selectProblemListTest(HashMap<String,String> param);
+	
+	// 뎁스 1,2,3 별 문의 추가 
+	void insertProblem(HashMap<String,String> param);
 }

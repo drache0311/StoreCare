@@ -50,4 +50,30 @@
 			</when>
 		</choose>
 	</select>	
+	
+	
+	
+	<!--  insert 쿼리 -->
+	<insert id="insertProblem" parameterType="HashMap">
+		<choose>
+			<!-- 1뎁스 일 때 -->
+			<when test="depth == 1">
+				insert into category(category_detail)
+				values(#{category_detail})
+			</when>
+			<!-- 2뎁스 일 때 -->
+			<when test="depth == 2">
+				insert into problem(category_category_code,problem_detail)
+				values(#{category_code},#{problem_detail})
+			</when>
+			<!-- 3뎁스 일 때 -->
+			<when test="depth == 3">
+				insert into place(category_category_code,place_detail)
+				values(#{category_code},#{place_detail})
+			</when>
+		</choose>
+	</insert>
+	
+	
+	
 </mapper>

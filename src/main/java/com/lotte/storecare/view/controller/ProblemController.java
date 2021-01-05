@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import com.lotte.storecare.problem.service.ProblemService;
+import com.lotte.storecare.vo.BoardVO;
 import com.lotte.storecare.vo.ProblemVO;
 
 
@@ -21,6 +22,28 @@ public class ProblemController {
 	@Inject
 	private ProblemService service;
 	
+	// 문의 등록 미안
+	@RequestMapping("/insertProblem.do")
+	public String insertProblem(HttpServletRequest request) {
+		String depth = request.getParameter("depth");	
+		String category_code = request.getParameter("category_code");
+		String category_detail = request.getParameter("category_detail");
+		String problem_detail = request.getParameter("problem_detail");
+		String place_detail = request.getParameter("place_detail");
+		String problem_code = request.getParameter("problem_code");
+		
+		HashMap<String,String> param = new HashMap<String,String>();
+		param.put("depth", depth);
+		param.put("category_code", category_code);
+		param.put("category_detail", category_detail);
+		param.put("problem_detail", problem_detail);
+		param.put("place_detail", place_detail);
+		param.put("problem_code", problem_code);
+		
+		service.insertProblem(param);
+
+		return "updateProblem.do";
+	}
 
 	// 문의 뎁스들 조회
 	@RequestMapping("/getProblemList.do")
@@ -31,7 +54,7 @@ public class ProblemController {
 	}
 	
 	// 문의 뎁스 수정
-	@RequestMapping(value="/updateQuestion.do", method=RequestMethod.GET)
+	@RequestMapping(value="/updateProblem.do", method=RequestMethod.GET)
 	public ModelAndView updateProblemList_GET(ModelAndView mav, HttpServletRequest request) {
 		String depth = request.getParameter("depth");
 		String category_code = request.getParameter("category_code");
@@ -51,7 +74,7 @@ public class ProblemController {
 		
 		
 		mav.addObject("problemList", service.selectProblemListTest(param)); // Model 정보 저장
-		mav.setViewName("updateQuestion"); // View 정보 저장
+		mav.setViewName("updateProblem"); // View 정보 저장
 		return mav;
 	}
 	

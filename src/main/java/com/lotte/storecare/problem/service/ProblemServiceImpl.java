@@ -25,8 +25,15 @@ public class ProblemServiceImpl implements ProblemService {
 	}
 
 	
+	// 뎁스 1,2,3 별 문의 추가
+	@Override
+	public void insertProblem(HashMap<String, String> param) {
+		problemDAO.insertProblem(param);
+	}
 
-	// 뎁스 1,2,3 포함한 쿼리 테스트 중
+
+
+	// 뎁스 1,2,3 별 문의 검색
 	@Override
 	public List<Map<String,String>> selectProblemListTest(HashMap<String,String> param) {
 		// TODO Auto-generated method stub
