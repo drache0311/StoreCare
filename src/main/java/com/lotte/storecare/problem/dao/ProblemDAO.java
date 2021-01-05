@@ -18,7 +18,7 @@ public interface ProblemDAO {
 	void insertProblem(ProblemVO vo);
 	
 	// 뎁스 1,2,3 별 문의 수정
-	void updateProblem(String seq);
+	void updateProblem(HashMap<String,String> param);
 	
 	// 뎁스 1,2,3 별 문의 삭제
 	void deleteProblem(HashMap<String,String> param);

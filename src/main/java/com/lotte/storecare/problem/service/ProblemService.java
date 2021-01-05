@@ -18,7 +18,7 @@ public interface ProblemService {
 	void insertProblem(ProblemVO vo);
 
 	// 뎁스 1,2,3 별 문의사항 수정
-	public void updateProblem(ProblemVO vo);
+	public void updateProblem(HashMap<String,String> param);
 
 	// 뎁스 1,2,3 별 문의사항 삭제
 	public void deleteProblem(HashMap<String,String> param);

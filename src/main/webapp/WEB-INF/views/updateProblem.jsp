@@ -60,7 +60,7 @@
 	        		<!-- 문의 추가 버튼 -->	
 	        		<!-- depth를 추가로 보내서 해당 depth에 input값을 추가하는 식으로 ??? -->
 	        		<input name="depth" type="hidden" value="${depth }" />
-	        		<input name="category_detail" type="text" id="inputProblem" class="form-control" placeholder="여기에 입력하여 추가하세요" >
+	        		<input name="category_detail" type="text" id="detail" class="form-control" placeholder="여기에 입력하세요" onkeyup='getDetail()'>
 	        		<button class="btn btn-primary" type="submit" formaction="insertProblem.do" >추가하기</button>
 	        		<button class="btn btn-primary" type="submit" formaction="fixProblem.do" >수정하기</button>
         		</c:when>
@@ -77,7 +77,7 @@
 	        		<!-- 문의 추가 버튼 -->	
 	        		<input name="depth" type="hidden" value="${depth }" />
 	        		<input name="category_code" type="hidden" value="<%=category_code %>" />
-	        		<input name="problem_detail" type="text" id="inputProblem"  class="form-control" placeholder="여기에 입력하여 추가하세요" >
+	        		<input name="problem_detail" type="text" id="detail"  class="form-control" placeholder="여기에 입력하세요" onkeyup='getDetail()'>
 	        		<button class="btn btn-primary" type="submit" formaction="insertProblem.do" >추가하기</button>
 	        		<button class="btn btn-primary" type="submit" formaction="fixProblem.do" >수정하기</button>
         		</c:when> 
@@ -92,7 +92,7 @@
 	        		<input name="depth" type="hidden" value="${depth }" />
 	        		<input name="category_code" type="hidden" value="<%=category_code %>" />
 	        		<input name="problem_code" type="hidden" value="<%=problem_code %>" />
-	        		<input name="place_detail" type="text" id="inputProblem"  class="form-control" placeholder="여기에 입력하여 추가하세요" >
+	        		<input name="place_detail" type="text" id="detail"  class="form-control" placeholder="여기에 입력하세요" onkeyup='getDetail()'>
 	        		<button class="btn btn-primary" type="submit" formaction="insertProblem.do" >추가하기</button>
 	        		<button class="btn btn-primary" type="submit" formaction="fixProblem.do" >수정하기</button>
         		</c:when>
@@ -100,7 +100,7 @@
         	<!-- 추가 / 수정 / 삭제 버튼 -->
         	</form>
         	<input type="button" value="삭제하기" class="btn btn-primary" onclick="deleteValue();">
-
+			<input type="button" value="수정하기true" class="btn btn-primary" onclick="fixValue();">
          <!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
           <h2>예시용</h2>
           <!-- category.category_code가 널이면 category_detail 출력 -> 선택하면 null이 아니니까 problem_detail 출력(2뎁스)   -->
@@ -145,7 +145,7 @@
 <script src="<%=request.getContextPath()%>/resources/vendor/jquery/jquery-3.5.1.min.js"></script>
 
 <!-- Custom JavaScript for this theme -->
-<script src="<%=request.getContextPath()%>/resources/vendor/bootstrap/js/check-problem-delete1.js"></script>
+<script src="<%=request.getContextPath()%>/resources/vendor/bootstrap/js/check-problem-ud.js"></script>
 <!-- SCRIPT ---------------------------------------------------------- -->
 </body>
 </html>

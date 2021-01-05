@@ -22,9 +22,8 @@ public class ProblemDAOImpl implements ProblemDAO {
 	private SqlSessionTemplate session;
 	
 	@Override
-	public void updateProblem(String seq) {
-		// TODO Auto-generated method stub
-		
+	public void updateProblem(HashMap<String,String> param) {
+		session.update("problemDB.updateProblem", param );
 	}
 
 	@Override

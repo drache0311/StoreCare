@@ -76,22 +76,25 @@
 	</insert>
 	
 	<!-- update 쿼리 (관리가자 문의 처리)-->	
-	<update id="updateProblem" parameterType="ProblemVO">
+	<update id="updateProblem" parameterType="HashMap">
 		<choose>
 			<!-- 1뎁스 일 때 -->
 			<when test="depth == 1">
-				insert into category(category_detail)
-				values(#{category_detail})
+				update category
+				set category_detail = #{detail}
+				where category_code = ${param}
 			</when>
 			<!-- 2뎁스 일 때 -->
 			<when test="depth == 2">
-				insert into problem(category_category_code,problem_detail)
-				values(#{category_code},#{problem_detail})
+				update problem
+				set problem_detail = #{detail}
+				where problem_code = ${param}
 			</when>
 			<!-- 3뎁스 일 때 -->
 			<when test="depth == 3">
-				insert into place(category_category_code,place_detail)
-				values(#{category_code},#{place_detail})
+				update place
+				set place_detail = #{detail}
+				where place_code = ${param}
 			</when>
 		</choose>
 	</update>	
