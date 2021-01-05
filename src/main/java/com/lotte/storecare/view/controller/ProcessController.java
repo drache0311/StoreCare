@@ -61,4 +61,11 @@ public class ProcessController {
 	public String UPDATEPROBLEM_GET() {	
 		return "updateProblem";
 	}	
+	
+	
+	@RequestMapping(value="/insertBoardTemp", method=RequestMethod.GET)
+	public String INSERTBOARDTEMP_GET() {	
+		return "insertBoardTemp";
+	}		
+	
 }
