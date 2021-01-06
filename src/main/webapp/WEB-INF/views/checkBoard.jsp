@@ -106,7 +106,7 @@ out.println(${board});
 				</c:when>
 			</c:choose>
 	</div>
-</form>
+		</form>
   
   
   

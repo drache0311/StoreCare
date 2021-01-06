@@ -11,6 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 
 import com.lotte.storecare.department.service.DepartmentService;
+import com.lotte.storecare.user.service.UserService;
 import com.lotte.storecare.vo.BoardVO;
 import com.lotte.storecare.vo.DepartmentVO;
 
@@ -20,34 +21,38 @@ public class DepartmentController {
 	@Inject
 	private DepartmentService service;
 	@Inject
-	private DepartmentService departmentService;
+	private UserService userService;
 	
-	// 글 등록
+	// 백화점 및 관리자 등록
 	@RequestMapping("/insertDepartment.do")
 	public String insertDepartment(DepartmentVO vo) {
+//		service.insertDepartment(vo);
+		
 		service.insertDepartment(vo);
-		return "getDepartmentList.do";
+		userService.insertAdmin(vo);
+		
+		return "getDepartmentList";
 	}
 
 	// 글 수정
 	@RequestMapping("/updateDepartment.do")
 	public String updateDepartment(DepartmentVO vo) {
-		service.updateDepartment(vo);
-		return "getDepartmentList.do";
+//		service.updateDepartment(vo);
+		return "getDepartmentList";
 	}
 
 	// 글 삭제
 	@RequestMapping("/deleteDepartment.do")
 	public String deleteDepartment(DepartmentVO vo) {
-		service.deleteDepartment(vo);
-		return "getDepartmentList.do";
+//		service.deleteDepartment(vo);
+		return "getDepartmentList";
 	}
 
 	// 층 수 조회
 	@RequestMapping("/checkBoard.do")
 	public ModelAndView getFloor(BoardVO vo, ModelAndView mav) {
 		
-		List<DepartmentVO> depList = departmentService.selectAll();
+		List<DepartmentVO> depList = service.selectAll();
 		mav.addObject("departmentList", depList); // Model 정보 저장
 		
 		mav.addObject("board", service.selectFloor(vo)); // Model 정보 저장

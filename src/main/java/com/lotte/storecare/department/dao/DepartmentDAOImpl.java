@@ -20,8 +20,7 @@ public class DepartmentDAOImpl implements DepartmentDAO {
 
 	@Override
 	public void insertDepartment(DepartmentVO vo) {
-		// TODO Auto-generated method stub
-		
+		session.insert("departmentDB.insertDepartment", vo);
 	}
 
 	@Override

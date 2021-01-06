@@ -28,5 +28,9 @@
 		on department_code=department_department_code
 	</select>
 
-	
+	<!--  insert 쿼리 -->
+	<insert id="insertDepartment" parameterType="DepartmentVO">
+		insert into department(department_name)
+		values(#{department_name})
+	</insert>
 </mapper>

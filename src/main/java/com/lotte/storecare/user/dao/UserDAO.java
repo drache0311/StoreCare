@@ -1,5 +1,6 @@
 package com.lotte.storecare.user.dao;
 
+import com.lotte.storecare.vo.DepartmentVO;
 import com.lotte.storecare.vo.UserVO;
 
 public interface UserDAO {
@@ -17,4 +18,6 @@ public interface UserDAO {
 	// 유저 insert
 	public void insertUser(UserVO vo);
 	
+	// 관리자 insert
+	public void insertAdmin(DepartmentVO vo);	
 }

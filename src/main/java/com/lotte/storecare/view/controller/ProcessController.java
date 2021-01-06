@@ -59,10 +59,13 @@ public class ProcessController {
 	}	
 	
 
-//	@RequestMapping(value="/getDepartmentList", method=RequestMethod.GET)
-//	public String GETDEPARTMENTLIST_GET() {	
-//		return "getDepartmentList";
-//	}	
+	@RequestMapping(value="/getDepartment", method=RequestMethod.GET)
+	public String GETDEPARTMENT_GET() {	
+		return "getDepartment";
+	}	
 	
-	
+	@RequestMapping(value="/insertDepartment", method=RequestMethod.GET)
+	public String INSERTDEPARTMENT_GET() {	
+		return "insertDepartment";
+	}	
 }

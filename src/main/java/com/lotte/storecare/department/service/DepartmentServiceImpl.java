@@ -15,6 +15,7 @@ public class DepartmentServiceImpl implements DepartmentService {
 	@Inject
 	private DepartmentDAO departmentDAO;
 	
+	// 백화점 추가
 	@Override
 	public void insertDepartment(DepartmentVO vo) {
 		departmentDAO.insertDepartment(vo);

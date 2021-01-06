@@ -58,14 +58,14 @@
 
 						<c:forEach items="${departmentList}" var="list">
 							<tr>
-								<td>${list.department_name}</td>
+								<td><a href="getDepartment?department_code=${list.department_code }&id=${list.id }&department_name=${list.department_name }">${list.department_name}</a></td>
 								<td>${list.id}
 							</tr>
 						</c:forEach>
 						</tbody>
 					</table>
 					<!-- 수정/삭제는 백화점 이름 클릭해서 들어간 후에 한다. -->
-					<input type="button" value="백화점 추가하기" class="btn btn-primary" >
+					<button class="btn btn-primary" onclick="location.href='insertDepartment'">백화점 추가하기</button>
 				</div>
 			</div>
 		</div>

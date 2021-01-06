@@ -3,6 +3,8 @@ package com.lotte.storecare.user.dao;
 import javax.annotation.Resource;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
+
+import com.lotte.storecare.vo.DepartmentVO;
 import com.lotte.storecare.vo.UserVO;
 
 @Repository
@@ -45,8 +47,12 @@ public class UserDAOImpl implements UserDAO {
 	// 유저 insert
 	@Override
 	public void insertUser(UserVO vo) {
-		// TODO Auto-generated method stub
 		session.insert("userDB.insertUser", vo);
+	}
+	// 관리자 insert
+	@Override
+	public void insertAdmin(DepartmentVO vo) {
+		session.insert("userDB.insertAdmin", vo);
 	}
 
 }
