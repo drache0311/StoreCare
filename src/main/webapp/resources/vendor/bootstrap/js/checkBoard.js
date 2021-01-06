@@ -17,6 +17,14 @@ function departmentChange(e) {
     if(e.value == '롯데백화점_본점') var d = head;
     else if(e.value == '롯데백화점_잠실점') var d = jamsil;
     else if(e.value == '롯데백화점_미아점') var d = mia;
+    else if(e.value == '롯데백화점_영등포점') var d = mia;
+    else if(e.value == '롯데백화점_청량리점') var d = mia;
+    else if(e.value == '롯데백화점_강남점') var d = mia;
+    else if(e.value == '롯데백화점_노원점') var d = mia;
+    else if(e.value == '롯데백화점_관악점') var d = mia;
+    else if(e.value == '롯데백화점_캐슬플라자') var d = mia;
+    else if(e.value == '롯데백화점_건대스타시티점') var d = mia;
+    else if(e.value == '롯데백화점_김포공항점') var d = mia;
 
 
 
