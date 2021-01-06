@@ -19,4 +19,14 @@
 	<select id="selectDepartmentAll" resultType="DepartmentVO">
 		select * from department
 	</select>
+	
+	<!-- select 쿼리 (department와 관리자 조회) -->
+	<select id="selectDepartmentList" resultType="DepartmentVO">
+		select department_code,department_name,id
+		from department
+		join users
+		on department_code=department_department_code
+	</select>
+
+	
 </mapper>

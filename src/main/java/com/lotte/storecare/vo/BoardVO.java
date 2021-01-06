@@ -19,7 +19,21 @@ public class BoardVO {
 	private Timestamp clearTime;
 	private int flag;
 	private int place_place_code;
-	
+	private String place_detail;
+
+
+	public String getPlace_detail() {
+		return place_detail;
+	}
+
+
+
+
+	public void setPlace_detail(String place_detail) {
+		this.place_detail = place_detail;
+	}
+
+
 
 
 	public String getDepartment_department_name() {

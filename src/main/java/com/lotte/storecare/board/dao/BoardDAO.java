@@ -20,13 +20,16 @@ public interface BoardDAO {
 	void deleteBoard(BoardVO vo);
 	
 
-
+	// 사용자별 문의내역 조회
 	public List<BoardVO> selectUserBoardList(HashMap<String,String> param);
 	
+	// ?
 	public List<BoardVO> selectBoardList(HashMap<String,String> param);
 
+	// 각 점별 5개씩 문의내역 조회
 	public List<BoardVO> selectBoardList(Criteria cri);
 	
+	// 각 점별 총 문의내역 수
 	int getTotalCount(Criteria cri);
 
 }

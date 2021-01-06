@@ -42,5 +42,12 @@ public class DepartmentServiceImpl implements DepartmentService {
 		return departmentDAO.selectAll();
 	}
 	
+	// 백화점과 관리자 리스트 조회
+	@Override
+	public List<DepartmentVO> selectDepartmentList() {
+		// TODO Auto-generated method stub
+		return departmentDAO.selectDepartmentList();
+	}
+	
 	
 }

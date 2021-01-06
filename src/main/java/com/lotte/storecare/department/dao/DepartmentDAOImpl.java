@@ -16,7 +16,8 @@ public class DepartmentDAOImpl implements DepartmentDAO {
 	@Resource(name="sqlSessoinTemplate")
 	private SqlSessionTemplate session;
 
-	
+
+
 	@Override
 	public void insertDepartment(DepartmentVO vo) {
 		// TODO Auto-generated method stub
@@ -40,16 +41,18 @@ public class DepartmentDAOImpl implements DepartmentDAO {
 //	}
 	@Override
 	public DepartmentVO selectFloor(BoardVO vo) {
-		// TODO Auto-generated method stub
 		return session.selectOne("departmentDB.selectFloor", vo.getDepartment_department_code());
 	}
 	
 	// 여러 개 select
 	@Override
 	public List<DepartmentVO> selectAll() {
-		// TODO Auto-generated method stub
 		return session.selectList("departmentDB.selectDepartmentAll");
 	}
 	
-	
+	// 백화점과 관리자 리스트 조회
+	@Override
+	public List<DepartmentVO> selectDepartmentList() {
+		return session.selectList("departmentDB.selectDepartmentList");
+	}
 }

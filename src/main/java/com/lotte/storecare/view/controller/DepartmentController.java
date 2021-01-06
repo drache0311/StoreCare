@@ -57,13 +57,13 @@ public class DepartmentController {
 	
 	
 	
-//	// 백화점 목록 검색
-//	@RequestMapping("/getDepartmentList.do")
-//	public ModelAndView getDepartmentList(ModelAndView mav) {
-//		List<DepartmentVO> vo = service.selectAll();
-//		mav.addObject("departmentList", vo); // Model 정보 저장
-//		mav.setViewName("selectProcess"); // View 정보 저장
-//		return mav;
-//	}
+	// 백화점과 관리자 목록 검색
+	@RequestMapping("/getDepartmentList")
+	public ModelAndView getDepartmentList(ModelAndView mav) {
+		List<DepartmentVO> vo = service.selectDepartmentList();
+		mav.addObject("departmentList", vo); // Model 정보 저장
+		mav.setViewName("getDepartmentList"); // View 정보 저장
+		return mav;
+	}
 
 }

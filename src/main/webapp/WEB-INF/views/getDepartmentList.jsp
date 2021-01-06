@@ -37,7 +37,7 @@
 	<header class="bg-primary text-white">
 		<div class="container text-center">
 			<h1>관리자 페이지</h1>
-			<p class="lead">백화점 조회 페이지</p>
+			<p class="lead">백화점 관리 페이지</p>
 		</div>
 	</header>
 
@@ -47,48 +47,25 @@
 				<div class="col-lg-8 mx-auto">
 					<h2>전체 내역</h2>
 					
-					<!--  검색 FORM -->
-					<div align="center">
-						<form name="searchDepBoard"  method="post" action="getBoardList.do">
-							<!-- 처리현황별 검색 SELECT -->
-							<select name="searchCondition">
-								<option value="all">전체</option>
-								<option value="doing">처리중</option>
-								<option value="done">처리완료</option>
-							</select>
-							<br/><br/> 
-							From: <input type="text" id="startDate" name="startDate" placeholder="시작날짜" >&nbsp;
-							
-							To: <input type="text" id="endDate" name="endDate"  placeholder="끝날짜" >
-							
-							<button type="submit" id="btnSearch">검색</button>
-						</form>
-					</div>	
 					<table class="table table-striped table-hover">
 						<thead>
 							<tr>
-								<th><input id="allCheck" type="checkbox" name="allCheck"/></th>
-								<th>접수일자</th>
-								<th>접수내용</th>
-								<th>처리현황</th>
-								<th>처리시간</th>
+								<th>백화점 명</th>
+								<th>관리자 아이디</th>
 							</tr>
 						</thead>
 						<tbody>
 
-						<c:forEach items="${boardList}" var="board">
+						<c:forEach items="${departmentList}" var="list">
 							<tr>
-								<td><input name="RowCheck" type="checkbox" value="${board.seq }"/></td>
-								<td>${board.datetime}</td>
-								<td>${board.category_detail}
-								${board.problem_detail}</td>
-								<td><c:if test="${board.flag eq 0}" >처리 중</c:if> <c:if test="${board.flag eq 1}" >처리완료</c:if></td>
-								<td>${board.clearTime}</td>
+								<td>${list.department_name}</td>
+								<td>${list.id}
 							</tr>
 						</c:forEach>
 						</tbody>
 					</table>
-					<input type="button" value="문의처리하기" class="btn btn-primary" onclick="deleteValue();">
+					<!-- 수정/삭제는 백화점 이름 클릭해서 들어간 후에 한다. -->
+					<input type="button" value="백화점 추가하기" class="btn btn-primary" >
 				</div>
 			</div>
 		</div>
@@ -102,7 +79,7 @@
 	<script src="<%=request.getContextPath()%>/resources/vendor/jquery-easing/jquery.easing.min.js"></script>
 
 <!-- Custom JavaScript for this theme -->
-	<script src="<%=request.getContextPath()%>/resources/vendor/bootstrap/js/check-board-delete.js"></script>
+
 <!-- SCRIPT ---------------------------------------------------------- -->
 </body>
 </html>

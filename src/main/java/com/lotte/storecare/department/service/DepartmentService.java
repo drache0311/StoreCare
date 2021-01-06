@@ -17,7 +17,9 @@ public interface DepartmentService {
 
 
 	public DepartmentVO selectFloor(BoardVO vo);
-
+	
+	// 백화점과 관리자 리스트 조회
+	public List<DepartmentVO> selectDepartmentList();
 
 	
 	public List<DepartmentVO> selectAll();
