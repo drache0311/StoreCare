@@ -33,10 +33,17 @@ public class BoardController {
 	
 	// 문의 등록 
 	@RequestMapping(value="/insertBoard", method=RequestMethod.GET)
-	public ModelAndView INSERTBOARDTEMP_GET(ModelAndView mav, ProblemVO vo) {
-			
+	public ModelAndView INSERTBOARDTEMP_GET(ModelAndView mav, ProblemVO vo) {			
 		System.out.println("depth =====> "+vo.getDepth()+ "category_code = " + vo.getCategory_code() +"problem_code = " + vo.getProblem_code());
-		
+
+		mav.addObject("problemList", problemService.selectProblemListTest(vo)); // Model 정보 저장
+		mav.setViewName("insertBoard"); // View 정보 저장
+		return mav;
+	}
+	// 문의 등록 
+	@RequestMapping(value="/insertBoard", method=RequestMethod.POST)
+	public ModelAndView INSERTBOARDTEMP_POST(ModelAndView mav, ProblemVO vo) {			
+		System.out.println("depth =====> "+vo.getDepth()+ "category_code = " + vo.getCategory_code() +"problem_code = " + vo.getProblem_code());
 
 		mav.addObject("problemList", problemService.selectProblemListTest(vo)); // Model 정보 저장
 		mav.setViewName("insertBoard"); // View 정보 저장

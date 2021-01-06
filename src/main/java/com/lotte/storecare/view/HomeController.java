@@ -81,7 +81,7 @@ public class HomeController {
 		}else{	// 나머지 role = 2 들은 일반 사용자들로 사용자들페이지로
 			session.setAttribute("role", vo.getRole());
 			session.setAttribute("login", vo.getId());
-			return "getDepartmentList.do";
+			return "insertBoard?depth=1";
 		}
 		
 		

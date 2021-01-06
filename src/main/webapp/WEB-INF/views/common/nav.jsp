@@ -40,7 +40,11 @@
             </a>
           <!-- 문의 추가 페이지 -->
           <li class="nav-item">
-            <a class="nav-link" href="insertBoard?depth=1">문의 등록 임시 --> 나중에 내문의내역으로 변경 ㄱㄱ</a>
+            <a class="nav-link" href="insertBoard?depth=1">문의 등록</a>
+          </li>
+          <!-- 문의 내역 페이지 -->
+          <li class="nav-item">
+            <a class="nav-link" href="getBoardUserList.do">문의 내역</a>
           </li>
           </c:if>
           </li>
