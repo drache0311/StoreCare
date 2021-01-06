@@ -30,7 +30,7 @@ String category_detail = request.getParameter("category_detail");
 String problem_detail = request.getParameter("problem_detail");
 String seq = (String) request.getParameter("seq");
 String id = (String) session.getAttribute("login");
-String department_code = request.getParameter("department_department_code");
+/* String department_code = request.getParameter("department_department_code"); */
 String flag = request.getParameter("flag");
 String place_place_code = request.getParameter("place_place_code");
 
@@ -74,7 +74,12 @@ out.println(${board});
 			    <input name="place_place_code" type="hidden" value="<%=place_place_code%>" />
 			    <input name="users_id" type="hidden" value="<%=id%>" />
 			    	<h5 class="card-header">현재 방문 백화점</h5>
-			    	<input name="department_department_code" type="hidden" value="<%=department_code %>" />
+<%-- 			    	<input name="department_department_code" type="hidden" value="<%=department_code %>" /> --%>
+      				<select name="department_department_name" id="department_department_code" onchange="departmentChange(this)">
+						<c:forEach items="${departmentList}" var="department">
+							<option value="${department.department_name}">${department.department_name}</option>
+						</c:forEach>
+					</select>
 					<h1 class = "card-title">  ${board.department_name}  </h1>
 				</div>
 				<div class ="card-body">
@@ -87,10 +92,8 @@ out.println(${board});
 				<div class ="card-body">
 			    	<h5 class="card-header">백화점 층 수</h5>
 			    	
-			    		<select name="floor">
-								<c:forEach var="floor" begin="1" end="${board.department_floor}">
-										<option value="${floor}">${floor}F</option>
-								</c:forEach>
+			    		<select name="floor" id="floor">
+							<option>선택해주세요.</option>
 						</select>
 				</div>
    			</div>
@@ -103,7 +106,7 @@ out.println(${board});
 				</c:when>
 			</c:choose>
 	</div>
-</form>
+		</form>
   
   
   
@@ -116,8 +119,13 @@ out.println(${board});
   
   
   	
-	  <!-- Bootstrap core JavaScript -->
+<!-- Bootstrap core JavaScript -->
   <script src="<%=request.getContextPath()%>/resources/vendor/jquery/jquery.slim.min.js"></script>
   <script src="<%=request.getContextPath()%>/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  
+<!-- Custom JavaScript for this theme -->
+  <script src="<%=request.getContextPath()%>/resources/vendor/bootstrap/js/checkBoard.js"></script>
+  
+  
 </body>
 </html>

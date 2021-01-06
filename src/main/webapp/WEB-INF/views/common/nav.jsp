@@ -21,7 +21,7 @@
             </a>
           <!-- 백화점 및 관리자를 배정,추가,수정,삭제 하는 페이지 -->
           <li class="nav-item">
-            <a class="nav-link" href="#">관리</a>
+            <a class="nav-link" href="getDepartmentList">백화점 관리</a>
           </li>
           <!-- 문의 뎁스별 추가,수정,삭제 페이지 -->
           <li class="nav-item">
@@ -34,14 +34,15 @@
             </a>
           </c:if>
           <c:if test="${role eq '2'}">
-          	<!-- Home 페이지 -->
-            <a class="nav-link" href="getDepartmentList.do">Home
+          	<!-- 문의 내역 페이지 -->
+            <a class="nav-link" href="getBoardUserList.do">문의 내역
               <span class="sr-only">(current)</span>
             </a>
           <!-- 문의 추가 페이지 -->
           <li class="nav-item">
-            <a class="nav-link" href="insertBoard?depth=1">문의 등록 임시 --> 나중에 내문의내역으로 변경 ㄱㄱ</a>
+            <a class="nav-link" href="insertBoard?depth=1">문의 등록</a>
           </li>
+
           </c:if>
           </li>
           <li class="nav-item">

@@ -21,8 +21,19 @@
 	
 
 		
-	<!--  insert 쿼리 -->
+	<!--  insert 쿼리 이건 아마 사용자 폰번호로하면 안 쓸 듯-->
 	<insert id="insertUser" parameterType="UserVO">
 		insert into users(id,password,role) values(#{id},#{password},2)
 	</insert>
+	
+	<!--  insert 쿼리 ( 관리자 )  -->
+	<insert id="insertAdmin" parameterType="DepartmentVO">
+		insert into users(id,password,role,department_department_code) 
+		values(#{id},"lotte",1,(select department_code from department where department_name=#{department_name}))
+	</insert>
+	
+	
+	
+	
+	
 </mapper>

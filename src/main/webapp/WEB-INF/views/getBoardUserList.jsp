@@ -69,7 +69,7 @@
 					<div class = "card-subtitle text-muted mb-2">
 					  ${board.problem_detail}
 					</div>
-					<div class ="card-text mb-2">	${board.department_name } ${board.floor }F   </div>
+					<div class ="card-text mb-2">	${board.department_name } ${board.floor }   </div>
 					<c:if test="${board.flag eq 1 }">
 						<div class ="card-text mb-2"><span class= "text-muted">   처리 완료	</span></div>
 					</c:if>

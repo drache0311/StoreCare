@@ -8,10 +8,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class ProcessController {
 
-	@RequestMapping("/selectProcessdddd")
-	public String selectProcess() {		
-		return "selectProcess";
-	}
 	
 	// 
 	@RequestMapping(value="/getBoardUserList", method=RequestMethod.GET)
@@ -62,11 +58,14 @@ public class ProcessController {
 		return "updateProblem";
 	}	
 	
-//	// TEST ING
-//	@RequestMapping(value="/insertBoardTemp", method=RequestMethod.GET)
-//	public String INSERTBOARDTEMP_GET() {	
-//		return "insertBoardTemp";
-//	}	
+
+	@RequestMapping(value="/getDepartment", method=RequestMethod.GET)
+	public String GETDEPARTMENT_GET() {	
+		return "getDepartment";
+	}	
 	
-	
+	@RequestMapping(value="/insertDepartment", method=RequestMethod.GET)
+	public String INSERTDEPARTMENT_GET() {	
+		return "insertDepartment";
+	}	
 }

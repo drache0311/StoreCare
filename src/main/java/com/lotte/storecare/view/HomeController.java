@@ -32,7 +32,12 @@ public class HomeController {
 	public String LOGIN_GET() {
 		return "login";
 	}
-
+	
+	@RequestMapping(value = "/super", method=RequestMethod.GET)
+	public String LOGIN_SUPER_GET() {
+		return "loginAdmin";
+	}
+	
 	// logout.do로 받아서 session 끊고 login으로 get방식으루 보냄
 	@RequestMapping(value="/logout.do", method=RequestMethod.GET)
 	public String LOGOUT_GET(HttpSession session) {
@@ -76,24 +81,13 @@ public class HomeController {
 		}else{	// 나머지 role = 2 들은 일반 사용자들로 사용자들페이지로
 			session.setAttribute("role", vo.getRole());
 			session.setAttribute("login", vo.getId());
-			return "getDepartmentList.do";
+			return "insertBoard?depth=1";
 		}
 		
 		
 	}
 	
-	// 위에 getDpartMent에서 일로 넘어와서 selectProcess.jsp 보여줌
-	@RequestMapping(value="/selectProcess", method=RequestMethod.POST)
-	public String selectProcess_POST() {		
-		System.out.println(" 여기는 selectProcess_POST");
-		return "selectProcess";
-	}
-	
-	@RequestMapping(value="/selectProcess", method=RequestMethod.GET)
-	public String selectProcess_GET() {		
-		System.out.println(" 여기는 selectProcess_GET");
-		return "selectProcess";
-	}
+
 
 	// 입력한 아이디/비밀번호 맞으면 getDpartMent.do로 , 틀리면 다시 login.jsp로
 	@RequestMapping(value="/signUp", method=RequestMethod.GET)

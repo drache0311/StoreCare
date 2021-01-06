@@ -7,7 +7,15 @@ public class DepartmentVO {
 	private int department_code;
 	private String department_name;
 	private int department_floor;
-	
+	private String id;
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
 
 	public int getDepartment_code() {
 		return department_code;

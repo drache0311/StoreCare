@@ -15,6 +15,7 @@ public class DepartmentServiceImpl implements DepartmentService {
 	@Inject
 	private DepartmentDAO departmentDAO;
 	
+	// 백화점 추가
 	@Override
 	public void insertDepartment(DepartmentVO vo) {
 		departmentDAO.insertDepartment(vo);
@@ -40,6 +41,13 @@ public class DepartmentServiceImpl implements DepartmentService {
 	public List<DepartmentVO> selectAll(){
 		System.out.println("여기는 dep_serviceimp");
 		return departmentDAO.selectAll();
+	}
+	
+	// 백화점과 관리자 리스트 조회
+	@Override
+	public List<DepartmentVO> selectDepartmentList() {
+		// TODO Auto-generated method stub
+		return departmentDAO.selectDepartmentList();
 	}
 	
 	

@@ -5,11 +5,12 @@ import java.sql.Timestamp;
 //VO(Value Object)
 public class BoardVO {
 	private int seq;
-	private int floor;
+	private String floor;
 	private int problem_problem_code;
 	private int problem_category_code;
 	private String users_id;
 	private int department_department_code;
+	private String department_department_name;
 	private Timestamp datetime;
 	private UserVO uvo;
 	private String problem_detail;
@@ -18,7 +19,35 @@ public class BoardVO {
 	private Timestamp clearTime;
 	private int flag;
 	private int place_place_code;
-	
+	private String place_detail;
+
+
+	public String getPlace_detail() {
+		return place_detail;
+	}
+
+
+
+
+	public void setPlace_detail(String place_detail) {
+		this.place_detail = place_detail;
+	}
+
+
+
+
+	public String getDepartment_department_name() {
+		return department_department_name;
+	}
+
+
+
+
+	public void setDepartment_department_name(String department_department_name) {
+		this.department_department_name = department_department_name;
+	}
+
+
 
 
 	public int getPlace_place_code() {
@@ -49,14 +78,17 @@ public class BoardVO {
 
 
 
-	public int getFloor() {
+
+
+
+	public String getFloor() {
 		return floor;
 	}
 
 
 
 
-	public void setFloor(int floor) {
+	public void setFloor(String floor) {
 		this.floor = floor;
 	}
 

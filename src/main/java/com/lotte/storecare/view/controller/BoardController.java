@@ -14,8 +14,10 @@ import org.springframework.web.servlet.ModelAndView;
 import com.lotte.storecare.board.service.BoardService;
 import com.lotte.storecare.commons.Criteria;
 import com.lotte.storecare.commons.PageMaker;
+import com.lotte.storecare.department.service.DepartmentService;
 import com.lotte.storecare.problem.service.ProblemService;
 import com.lotte.storecare.vo.BoardVO;
+import com.lotte.storecare.vo.DepartmentVO;
 import com.lotte.storecare.vo.ProblemVO;
 
 
@@ -25,28 +27,43 @@ public class BoardController {
 	
 	@Inject
 	private BoardService service;
-	
+
 	@Inject
 	private ProblemService problemService;
 	
+	// 문의 등록 
+	@RequestMapping(value="/insertBoard", method=RequestMethod.GET)
+	public ModelAndView INSERTBOARDTEMP_GET(ModelAndView mav, ProblemVO vo) {			
+		System.out.println("depth =====> "+vo.getDepth()+ "category_code = " + vo.getCategory_code() +"problem_code = " + vo.getProblem_code());
+
+		mav.addObject("problemList", problemService.selectProblemListTest(vo)); // Model 정보 저장
+		mav.setViewName("insertBoard"); // View 정보 저장
+		return mav;
+	}
+	// 문의 등록 
+	@RequestMapping(value="/insertBoard", method=RequestMethod.POST)
+	public ModelAndView INSERTBOARDTEMP_POST(ModelAndView mav, ProblemVO vo) {			
+		System.out.println("depth =====> "+vo.getDepth()+ "category_code = " + vo.getCategory_code() +"problem_code = " + vo.getProblem_code());
+
+		mav.addObject("problemList", problemService.selectProblemListTest(vo)); // Model 정보 저장
+		mav.setViewName("insertBoard"); // View 정보 저장
+		return mav;
+	}
+	// 문의 등록  DO
+	@RequestMapping(value="/insertBoard.do", method=RequestMethod.GET)
+	public String INSERTBOARDTEMPDO_GET(BoardVO vo) {
+			
 	
-//	// 글 등록 전 페이지 완료
-//	@RequestMapping(value = "/insertBoard", method=RequestMethod.POST)
-//	public String insertBoard() {
-//		System.out.println("여긴 POST");
-//		return "insertBoard";
-//	}
+		service.insertBoard(vo);
+
+		return "getBoardUserList.do";
+	}	
 	
-//	// 문의 등록 미안
-//	@RequestMapping("/insertBoard.do")
-//	public String insertBoard(BoardVO vo) {
-//		service.insertBoard(vo);
-//		return "getBoardUserList.do";
-//	}
 
 	// 문의 수정 완료
 	@RequestMapping("/updateUserBoard.do")
 	public String updateBoard(BoardVO vo) {
+		System.out.println("VO=>>>>>>>>>>>>>>>>>>>>>>>>>>"+vo.getDepartment_department_name());
 		service.updateBoard(vo);
 		return "getBoardUserList.do";
 	}
@@ -166,68 +183,12 @@ public class BoardController {
         //모델에 추가
 		mav.addObject("pageMaker", pageMaker);
 		
-		
-		
-//		mav.addObject("boardList", vo); // Model 정보 저장
 		mav.setViewName("admin"); // View 정보 저장
 		return mav;
 	}
-//	
-//	// 전체 문의내역 목록 검색 완료
-//	@RequestMapping("/getBoardList.do")
-//	public ModelAndView getBoardList(ModelAndView mav,  HttpSession session, HttpServletRequest request) {
-//		String department_code = session.getAttribute("department_code").toString();
-//		String searchCondition = request.getParameter("searchCondition");
-//		String startDate = request.getParameter("startDate");
-//		String endDate = request.getParameter("endDate");
-//		
-//		// 날짜선택 안할 때 "" 빈값으로 넘어오기 때문에 null로 변경해줌
-//		if(startDate == "") {
-//			startDate = null;
-//		}
-//		if(endDate == "") {
-//			endDate = null;
-//		}
-//		
-//		
-//		HashMap<String,String> param = new HashMap<String,String>();
-//		param.put("searchCondition", searchCondition);
-//		param.put("startDate", startDate);
-//		param.put("endDate", endDate);
-//		param.put("department_code", department_code);
-//		
-//		System.out.println("HASH MAP - deP_code = "+param.get(department_code));
-//		List<BoardVO> vo = service.selectBoardList(param);
-//
-//		mav.addObject("boardList", vo); // Model 정보 저장
-//		mav.setViewName("admin"); // View 정보 저장
-//		return mav;
-//	}	
-	
 	
 
-	// 문의 등록 
-	@RequestMapping(value="/insertBoard", method=RequestMethod.GET)
-	public ModelAndView INSERTBOARDTEMP_GET(ModelAndView mav, ProblemVO vo) {
-			
-		System.out.println("depth =====> "+vo.getDepth()+ "category_code = " + vo.getCategory_code() +"problem_code = " + vo.getProblem_code());
-		
 
-		mav.addObject("problemList", problemService.selectProblemListTest(vo)); // Model 정보 저장
-		mav.setViewName("insertBoard"); // View 정보 저장
-		return mav;
-	}
-	// 문의 등록  DO
-	@RequestMapping(value="/insertBoard.do", method=RequestMethod.GET)
-	public String INSERTBOARDTEMPDO_GET(BoardVO vo) {
-			
-	
-		service.insertBoard(vo);
-
-		return "getBoardUserList.do";
-	}	
-	
-	
 	
 	
 }

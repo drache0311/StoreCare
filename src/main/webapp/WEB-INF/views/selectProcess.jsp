@@ -47,11 +47,11 @@
 					<tr>
 						<td align="center">
 						<input name="depth" type="hidden" value="1" />
-						<select name="searchCondition">
+<%-- 						<select name="searchCondition">
 								<c:forEach items="${departmentList}" var="department">
 										<option value="${department.department_code}">${department.department_name}</option>
 								</c:forEach>
-						</select>
+						</select> --%>
 						</td>
 					</tr>
 					<tr>

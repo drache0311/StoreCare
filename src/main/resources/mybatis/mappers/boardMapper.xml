@@ -33,19 +33,20 @@
 	<!-- select 쿼리 (각 점별 문의 내역) -->
 	<select id="selectBoardList" parameterType="com.lotte.storecare.commons.Criteria" resultType="BoardVO">
 
-		SELECT seq,datetime,clearTime,category_detail,problem_detail,flag,department_code,department_name,floor,users_id 
+		SELECT seq,datetime,clearTime,category_detail,problem_detail,flag,department_code,department_name,floor,users_id ,place_detail
 		FROM board 
 		join problem 
 		join category 
 		join department 
+		join place
 		ON board.problem_problem_code = problem.problem_code 
 		and problem.category_category_code=category.category_code 
 		and board.problem_category_code=category.category_code 
-		and board.department_department_code=department.department_code 
+		and board.department_department_code=department.department_code
+		and board.place_place_code=place.place_code 
 		and board.department_department_code=#{department_code}  <!-- board.department_department_code와 #{department_code} -> 1,2,3 등과 비교해서 각 점 선택 -->
 
 		<include refid="searchPaging" />
-		
 	</select>
 	
 	<!-- 전체 문의 개수 -->
@@ -54,11 +55,11 @@
 		from board
 		where seq > 0;
 	</select>
-	
+
 	<!-- update 쿼리 (사용자가 문의 수정)-->	
 	<update id="updateUserBoard" parameterType="boardVO">
 		update board
-		set problem_problem_code=#{problem_problem_code}, datetime=#{datetime}, problem_category_code=#{problem_category_code}, floor=#{floor} 
+		set problem_problem_code=#{problem_problem_code}, datetime=#{datetime}, problem_category_code=#{problem_category_code}, floor=#{floor} ,department_department_code=(select department_code from department where department_name=#{department_department_name})
 		where seq=#{seq}
 	</update>
 	
@@ -79,7 +80,7 @@
 	<!--  insert 쿼리 -->
 	<insert id="insertBoard" parameterType="BoardVO">
 		insert into board(floor, problem_problem_code,problem_category_code,users_id,department_department_code,place_place_code)
-		values(#{floor},#{problem_problem_code},#{problem_category_code},#{users_id},#{department_department_code},#{place_place_code})
+		values(#{floor},#{problem_problem_code},#{problem_category_code},#{users_id},(select department_code from department where department_name=#{department_department_name}),#{place_place_code})
 	</insert>
 	
 	
