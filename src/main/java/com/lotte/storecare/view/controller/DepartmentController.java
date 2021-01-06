@@ -34,17 +34,19 @@ public class DepartmentController {
 		return "getDepartmentList";
 	}
 
-	// 글 수정
+	// 백화점 및 관리자 수정
 	@RequestMapping("/updateDepartment.do")
 	public String updateDepartment(DepartmentVO vo) {
 //		service.updateDepartment(vo);
 		return "getDepartmentList";
 	}
 
-	// 글 삭제
+	// 백화점 및 관리자  삭제
 	@RequestMapping("/deleteDepartment.do")
 	public String deleteDepartment(DepartmentVO vo) {
-//		service.deleteDepartment(vo);
+		
+		userService.deleteAdmin(vo);
+		service.deleteDepartment(vo);
 		return "getDepartmentList";
 	}
 

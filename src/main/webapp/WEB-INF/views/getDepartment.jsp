@@ -48,7 +48,7 @@ String id = request.getParameter("id");
  	<div class = "container-fluid" >
 			<div class = "card mt-4">
 			    <div class ="card-body">
-			  	  <input name="seq" type="hidden" value="${department_code }" />
+			  	  <input name="department_name" type="hidden" value="${department_name }" />
 			    	<h5 class="card-header">백화점 명</h5>
  			    	<input name="department_code" type="hidden" value="${department_code }" />
 					<h1 class = "card-title">  ${department_name }  </h1>

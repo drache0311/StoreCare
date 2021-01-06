@@ -29,10 +29,10 @@ public class DepartmentDAOImpl implements DepartmentDAO {
 		
 	}
 
+	// 백화점 삭제
 	@Override
 	public void deleteDepartment(DepartmentVO vo) {
-		// TODO Auto-generated method stub
-		
+		session.delete("departmentDB.deleteDepartment", vo);
 	}
 //	@Override
 //	public DepartmentVO select(String id) {
