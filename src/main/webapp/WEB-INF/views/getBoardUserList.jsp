@@ -75,7 +75,7 @@
 					</c:if>
 					<c:if test="${board.flag eq 0 }">
 						<div class ="card-text mb-2"><span class= "text-muted">   처리 중	</span></div>
-						<a href="getProblemList.do?seq=${board.seq}&department_department_code=${board.department_department_code}&flag=${board.flag}" class="btn btn-primary">수정하기</a>
+						<a href="insertBoardTemp?seq=${board.seq}&department_department_code=${board.department_department_code}&flag=${board.flag}&depth=1" class="btn btn-primary">수정하기</a>
 					</c:if>
 					<a href="deleteUserBoard.do?seq=${board.seq}" class="btn btn-primary">삭제하기</a>
 				</div>
