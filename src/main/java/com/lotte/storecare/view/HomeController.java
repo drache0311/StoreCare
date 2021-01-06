@@ -87,18 +87,7 @@ public class HomeController {
 		
 	}
 	
-	// 위에 getDpartMent에서 일로 넘어와서 selectProcess.jsp 보여줌
-	@RequestMapping(value="/selectProcess", method=RequestMethod.POST)
-	public String selectProcess_POST() {		
-		System.out.println(" 여기는 selectProcess_POST");
-		return "selectProcess";
-	}
-	
-	@RequestMapping(value="/selectProcess", method=RequestMethod.GET)
-	public String selectProcess_GET() {		
-		System.out.println(" 여기는 selectProcess_GET");
-		return "selectProcess";
-	}
+
 
 	// 입력한 아이디/비밀번호 맞으면 getDpartMent.do로 , 틀리면 다시 login.jsp로
 	@RequestMapping(value="/signUp", method=RequestMethod.GET)
