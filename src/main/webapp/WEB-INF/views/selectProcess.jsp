@@ -42,7 +42,7 @@
           <li>		
           <!-- 문의할 백화점 선택 FORM -->
 <!-- 			<form action="getProblemList.do" method="post"> -->
-				<form action="insertBoardTemp?depth=1" method="get">
+				<form action="insertBoard?depth=1" method="get">
 				<table align="center">
 					<tr>
 						<td align="center">

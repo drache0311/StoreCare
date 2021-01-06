@@ -61,7 +61,6 @@
 	        		<input name="depth" type="hidden" value="${depth }" />
 	        		<input name="category_detail" type="text" id="detail" class="form-control" placeholder="여기에 입력하세요" onkeyup='getDetail()'>
 	        		<button class="btn btn-primary" type="submit" formaction="insertProblem.do" >추가하기</button>
-	        		<button class="btn btn-primary" type="submit" formaction="fixProblem.do" >수정하기</button>
         		</c:when>
          		<c:when test="${depth eq 2}">
 	         		${problemList[0].category_detail } >>>>>>${problemList[0].category_code }
@@ -78,7 +77,6 @@
 	        		<input name="category_code" type="hidden" value="<%=category_code %>" />
 	        		<input name="problem_detail" type="text" id="detail"  class="form-control" placeholder="여기에 입력하세요" onkeyup='getDetail()'>
 	        		<button class="btn btn-primary" type="submit" formaction="insertProblem.do" >추가하기</button>
-	        		<button class="btn btn-primary" type="submit" formaction="fixProblem.do" >수정하기</button>
         		</c:when> 
          		<c:when test="${depth eq 3}">
 	         		${problemList[0].category_detail } === ${problemList[0].problem_detail }
@@ -93,13 +91,12 @@
 	        		<input name="problem_code" type="hidden" value="<%=problem_code %>" />
 	        		<input name="place_detail" type="text" id="detail"  class="form-control" placeholder="여기에 입력하세요" onkeyup='getDetail()'>
 	        		<button class="btn btn-primary" type="submit" formaction="insertProblem.do" >추가하기</button>
-	        		<button class="btn btn-primary" type="submit" formaction="fixProblem.do" >수정하기</button>
         		</c:when>
         	</c:choose>
         	<!-- 추가 / 수정 / 삭제 버튼 -->
         	</form>
         	<input type="button" value="삭제하기" class="btn btn-primary" onclick="deleteValue();">
-			<input type="button" value="수정하기true" class="btn btn-primary" onclick="fixValue();">
+			<input type="button" value="수정하기" class="btn btn-primary" onclick="fixValue();">
          <!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
           <h2>예시용</h2>
           <!-- category.category_code가 널이면 category_detail 출력 -> 선택하면 null이 아니니까 problem_detail 출력(2뎁스)   -->

@@ -30,19 +30,19 @@ public class BoardController {
 	private ProblemService problemService;
 	
 	
-	// 글 등록 전 페이지 완료
-	@RequestMapping(value = "/insertBoard", method=RequestMethod.POST)
-	public String insertBoard() {
-		System.out.println("여긴 POST");
-		return "insertBoard";
-	}
+//	// 글 등록 전 페이지 완료
+//	@RequestMapping(value = "/insertBoard", method=RequestMethod.POST)
+//	public String insertBoard() {
+//		System.out.println("여긴 POST");
+//		return "insertBoard";
+//	}
 	
-	// 문의 등록 미안
-	@RequestMapping("/insertBoard.do")
-	public String insertBoard(BoardVO vo) {
-		service.insertBoard(vo);
-		return "getBoardUserList.do";
-	}
+//	// 문의 등록 미안
+//	@RequestMapping("/insertBoard.do")
+//	public String insertBoard(BoardVO vo) {
+//		service.insertBoard(vo);
+//		return "getBoardUserList.do";
+//	}
 
 	// 문의 수정 완료
 	@RequestMapping("/updateUserBoard.do")
@@ -206,19 +206,19 @@ public class BoardController {
 	
 	
 
-	// 문의 등록 TEST
-	@RequestMapping(value="/insertBoardTemp", method=RequestMethod.GET)
+	// 문의 등록 
+	@RequestMapping(value="/insertBoard", method=RequestMethod.GET)
 	public ModelAndView INSERTBOARDTEMP_GET(ModelAndView mav, ProblemVO vo) {
 			
 		System.out.println("depth =====> "+vo.getDepth()+ "category_code = " + vo.getCategory_code() +"problem_code = " + vo.getProblem_code());
 		
 
 		mav.addObject("problemList", problemService.selectProblemListTest(vo)); // Model 정보 저장
-		mav.setViewName("insertBoardTemp"); // View 정보 저장
+		mav.setViewName("insertBoard"); // View 정보 저장
 		return mav;
 	}
-	// 문의 등록 TEST DO
-	@RequestMapping(value="/insertBoardTemp.do", method=RequestMethod.GET)
+	// 문의 등록  DO
+	@RequestMapping(value="/insertBoard.do", method=RequestMethod.GET)
 	public String INSERTBOARDTEMPDO_GET(BoardVO vo) {
 			
 	
