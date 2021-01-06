@@ -32,7 +32,12 @@ public class HomeController {
 	public String LOGIN_GET() {
 		return "login";
 	}
-
+	
+	@RequestMapping(value = "/super", method=RequestMethod.GET)
+	public String LOGIN_SUPER_GET() {
+		return "loginAdmin";
+	}
+	
 	// logout.do로 받아서 session 끊고 login으로 get방식으루 보냄
 	@RequestMapping(value="/logout.do", method=RequestMethod.GET)
 	public String LOGOUT_GET(HttpSession session) {

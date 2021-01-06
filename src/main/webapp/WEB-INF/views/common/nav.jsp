@@ -21,7 +21,7 @@
             </a>
           <!-- 백화점 및 관리자를 배정,추가,수정,삭제 하는 페이지 -->
           <li class="nav-item">
-            <a class="nav-link" href="#">관리</a>
+            <a class="nav-link" href="getDepartmentList">백화점 관리</a>
           </li>
           <!-- 문의 뎁스별 추가,수정,삭제 페이지 -->
           <li class="nav-item">

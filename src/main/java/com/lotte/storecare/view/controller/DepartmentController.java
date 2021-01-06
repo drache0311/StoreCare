@@ -19,7 +19,8 @@ public class DepartmentController {
 	
 	@Inject
 	private DepartmentService service;
-	
+	@Inject
+	private DepartmentService departmentService;
 	
 	// 글 등록
 	@RequestMapping("/insertDepartment.do")
@@ -45,6 +46,10 @@ public class DepartmentController {
 	// 층 수 조회
 	@RequestMapping("/checkBoard.do")
 	public ModelAndView getFloor(BoardVO vo, ModelAndView mav) {
+		
+		List<DepartmentVO> depList = departmentService.selectAll();
+		mav.addObject("departmentList", depList); // Model 정보 저장
+		
 		mav.addObject("board", service.selectFloor(vo)); // Model 정보 저장
 		mav.setViewName("checkBoard"); // View 정보 저장
 		return mav;
@@ -52,7 +57,7 @@ public class DepartmentController {
 	
 	
 	
-	// 글 목록 검색
+	// 백화점 목록 검색
 	@RequestMapping("/getDepartmentList.do")
 	public ModelAndView getDepartmentList(ModelAndView mav) {
 		List<DepartmentVO> vo = service.selectAll();
