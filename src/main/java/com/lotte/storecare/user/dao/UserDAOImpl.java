@@ -55,4 +55,9 @@ public class UserDAOImpl implements UserDAO {
 		session.insert("userDB.insertAdmin", vo);
 	}
 
+	@Override
+	public void deleteAdmin(DepartmentVO vo) {
+		session.delete("userDB.deleteAdmin", vo);
+	}
+
 }

@@ -20,4 +20,8 @@ public interface UserDAO {
 	
 	// 관리자 insert
 	public void insertAdmin(DepartmentVO vo);	
+	
+	// 관리자 delete
+	public void deleteAdmin(DepartmentVO vo);
+	
 }

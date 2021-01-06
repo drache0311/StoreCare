@@ -21,11 +21,13 @@ public class DepartmentServiceImpl implements DepartmentService {
 		departmentDAO.insertDepartment(vo);
 	}
 	
+	//
 	@Override
 	public void updateDepartment(DepartmentVO vo) {
 		departmentDAO.updateDepartment(vo);
 	}
 	
+	// 백화점 삭제
 	@Override
 	public void deleteDepartment(DepartmentVO vo) {
 		departmentDAO.deleteDepartment(vo);

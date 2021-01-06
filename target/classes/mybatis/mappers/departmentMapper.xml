@@ -33,4 +33,12 @@
 		insert into department(department_name)
 		values(#{department_name})
 	</insert>
+	
+	<!--  delete 쿼리 ( 백화점 )  -->
+	<delete id="deleteDepartment" parameterType="DepartmentVO">
+		delete from department
+		where department_code=${department_code}
+	</delete>	
+	
+	
 </mapper>

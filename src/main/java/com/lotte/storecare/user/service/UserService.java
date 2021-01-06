@@ -17,6 +17,10 @@ public interface UserService {
 	// 관리자 insert
 	public void insertAdmin(DepartmentVO vo);	
 	
+	// 관리자 delete
+	public void deleteAdmin(DepartmentVO vo);
+	
 	// vo로 id 있는지 check
 	public int check(UserVO vo);
+	
 }

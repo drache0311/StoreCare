@@ -32,6 +32,12 @@
 		values(#{id},"lotte",1,(select department_code from department where department_name=#{department_name}))
 	</insert>
 	
+	<!--  delete 쿼리 ( 관리자 )  -->
+	<delete id="deleteAdmin" parameterType="DepartmentVO">
+		delete from users
+		where department_department_code=${department_code}
+	</delete>
+	
 	
 	
 	

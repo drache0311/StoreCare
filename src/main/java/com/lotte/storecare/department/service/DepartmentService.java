@@ -12,8 +12,8 @@ public interface DepartmentService {
 	// 
 	void updateDepartment(DepartmentVO vo);
 
-	// 
-	void deleteDepartment(DepartmentVO vo);
+	// 백화점 삭제
+	public void deleteDepartment(DepartmentVO vo);
 
 
 	public DepartmentVO selectFloor(BoardVO vo);

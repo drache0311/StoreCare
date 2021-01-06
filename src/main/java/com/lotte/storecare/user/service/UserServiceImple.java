@@ -37,6 +37,11 @@ public class UserServiceImple implements UserService {
 	public void insertAdmin(DepartmentVO vo) {
 		userDAO.insertAdmin(vo);
 	}
+	// 관리자 delete
+	@Override
+	public void deleteAdmin(DepartmentVO vo) {
+		userDAO.deleteAdmin(vo);
+	}
 
 	// vo로 id 있는지 check
 	@Override

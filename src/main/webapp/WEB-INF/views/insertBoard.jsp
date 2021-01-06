@@ -24,13 +24,6 @@
 	String category_code = request.getParameter("category_code");
 	String problem_code = request.getParameter("problem_code");
 
-
-	
-/* 	
-	String department_department_code = request.getParameter("searchCondition");
-	if(department_department_code == null)
-		department_department_code = request.getParameter("department_department_code");
-	 */
 	String seq = (String) request.getParameter("seq");
 	if(seq==null){
 		seq = "0";
