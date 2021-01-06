@@ -41,10 +41,12 @@
           <li>문의하실 백화점을 선택하세요</li>
           <li>		
           <!-- 문의할 백화점 선택 FORM -->
-			<form action="getProblemList.do" method="post">
+<!-- 			<form action="getProblemList.do" method="post"> -->
+				<form action="insertBoardTemp?depth=1" method="get">
 				<table align="center">
 					<tr>
 						<td align="center">
+						<input name="depth" type="hidden" value="1" />
 						<select name="searchCondition">
 								<c:forEach items="${departmentList}" var="department">
 										<option value="${department.department_code}">${department.department_name}</option>

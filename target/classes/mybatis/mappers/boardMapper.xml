@@ -78,8 +78,8 @@
 	
 	<!--  insert 쿼리 -->
 	<insert id="insertBoard" parameterType="BoardVO">
-		insert into board(floor, problem_problem_code,problem_category_code,users_id,department_department_code)
-		values(#{floor},#{problem_problem_code},#{problem_category_code},#{users_id},#{department_department_code})
+		insert into board(floor, problem_problem_code,problem_category_code,users_id,department_department_code,place_place_code)
+		values(#{floor},#{problem_problem_code},#{problem_category_code},#{users_id},#{department_department_code},#{place_place_code})
 	</insert>
 	
 	
