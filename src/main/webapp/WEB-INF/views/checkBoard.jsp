@@ -32,6 +32,7 @@ String seq = (String) request.getParameter("seq");
 String id = (String) session.getAttribute("login");
 String department_code = request.getParameter("department_department_code");
 String flag = request.getParameter("flag");
+String place_place_code = request.getParameter("place_place_code");
 
 Timestamp now = new Timestamp(System.currentTimeMillis());
 
@@ -70,6 +71,7 @@ out.println(${board});
 			  	  <input name="seq" type="hidden" value="<%=seq%>" />
 			    </c:if>
 			    <input name="datetime" type="hidden" value="<%=now%>" />
+			    <input name="place_place_code" type="hidden" value="<%=place_place_code%>" />
 			    <input name="users_id" type="hidden" value="<%=id%>" />
 			    	<h5 class="card-header">현재 방문 백화점</h5>
 			    	<input name="department_department_code" type="hidden" value="<%=department_code %>" />

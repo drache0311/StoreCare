@@ -14,7 +14,9 @@ import org.springframework.web.servlet.ModelAndView;
 import com.lotte.storecare.board.service.BoardService;
 import com.lotte.storecare.commons.Criteria;
 import com.lotte.storecare.commons.PageMaker;
+import com.lotte.storecare.problem.service.ProblemService;
 import com.lotte.storecare.vo.BoardVO;
+import com.lotte.storecare.vo.ProblemVO;
 
 
 
@@ -24,22 +26,23 @@ public class BoardController {
 	@Inject
 	private BoardService service;
 	
+	@Inject
+	private ProblemService problemService;
 	
 	
+//	// 글 등록 전 페이지 완료
+//	@RequestMapping(value = "/insertBoard", method=RequestMethod.POST)
+//	public String insertBoard() {
+//		System.out.println("여긴 POST");
+//		return "insertBoard";
+//	}
 	
-	// 글 등록 전 페이지 완료
-	@RequestMapping(value = "/insertBoard", method=RequestMethod.POST)
-	public String insertBoard() {
-		System.out.println("여긴 POST");
-		return "insertBoard";
-	}
-	
-	// 문의 등록 미안
-	@RequestMapping("/insertBoard.do")
-	public String insertBoard(BoardVO vo) {
-		service.insertBoard(vo);
-		return "getBoardUserList.do";
-	}
+//	// 문의 등록 미안
+//	@RequestMapping("/insertBoard.do")
+//	public String insertBoard(BoardVO vo) {
+//		service.insertBoard(vo);
+//		return "getBoardUserList.do";
+//	}
 
 	// 문의 수정 완료
 	@RequestMapping("/updateUserBoard.do")
@@ -202,9 +205,27 @@ public class BoardController {
 //	}	
 	
 	
+
+	// 문의 등록 
+	@RequestMapping(value="/insertBoard", method=RequestMethod.GET)
+	public ModelAndView INSERTBOARDTEMP_GET(ModelAndView mav, ProblemVO vo) {
+			
+		System.out.println("depth =====> "+vo.getDepth()+ "category_code = " + vo.getCategory_code() +"problem_code = " + vo.getProblem_code());
+		
+
+		mav.addObject("problemList", problemService.selectProblemListTest(vo)); // Model 정보 저장
+		mav.setViewName("insertBoard"); // View 정보 저장
+		return mav;
+	}
+	// 문의 등록  DO
+	@RequestMapping(value="/insertBoard.do", method=RequestMethod.GET)
+	public String INSERTBOARDTEMPDO_GET(BoardVO vo) {
+			
 	
-	
-	
+		service.insertBoard(vo);
+
+		return "getBoardUserList.do";
+	}	
 	
 	
 	

@@ -32,11 +32,11 @@ public class ProcessController {
 		return "getBoardUserList";
 	}
 	
-	@RequestMapping(value="/insertBoard", method=RequestMethod.GET)
-	public String INSERTBOARD_GET() {	
-		System.out.println("여긴 GET");
-		return "insertBoard";
-	}
+//	@RequestMapping(value="/insertBoard", method=RequestMethod.GET)
+//	public String INSERTBOARD_GET() {	
+//		System.out.println("여긴 GET");
+//		return "insertBoard";
+//	}
 	
 	
 	@RequestMapping(value="/checkBoard", method=RequestMethod.GET)
@@ -62,10 +62,11 @@ public class ProcessController {
 		return "updateProblem";
 	}	
 	
+//	// TEST ING
+//	@RequestMapping(value="/insertBoardTemp", method=RequestMethod.GET)
+//	public String INSERTBOARDTEMP_GET() {	
+//		return "insertBoardTemp";
+//	}	
 	
-	@RequestMapping(value="/insertBoardTemp", method=RequestMethod.GET)
-	public String INSERTBOARDTEMP_GET() {	
-		return "insertBoardTemp";
-	}		
 	
 }
