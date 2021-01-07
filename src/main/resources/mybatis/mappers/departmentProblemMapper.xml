@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="departmentProblemDB">
+
+
+	<!-- select 쿼리 ( 문의 뎁스별로 검색 ) -->
+	<select id="selectDepProblemList"   resultType="DepartmentProblemVO" parameterType="DepartmentProblemVO">
+		<choose>
+			<!-- 1뎁스 일 때 -->
+			<when test="depth == 1">
+				select distinct category_category_code, category_detail
+				from depProblem
+				join category
+				on category_category_code=category_code
+				where department_department_code=${department_code} <!-- department_code가 이름이 맞는지 나중에 확인 -->
+			</when>
+			<!-- 2뎁스 일 때 -->
+			<when test="depth == 2">
+				<!--  select category_category_code, category_detail, problem_problem_code,problem_detail  이거 category_category_code가 problem테이블이랑 중복되서 안되는데 굳이 필요할까? 아닌거같은데-->
+				 <!-- ,problem.depth as depth 이거 depth를 파라미터로 줄지 VO로 줄지 생각하고 쓰자-->
+				select problem_problem_code,problem_detail 
+				from depProblem
+				join category
+				join problem 
+				on category_category_code = category_code
+				on problem_problem_code = problem_code
+				where department_department_code=${department_code} 
+				and category_code = ${category_code}
+			</when>
+			<!-- 3뎁스 일 때 -->
+			<when test="depth == 3">
+				select category_category_code, category_detail, problem_problem_code,problem_detail, place_place_code, place_detail <!-- ,place.depth as depth 위와동일 -->
+				from depProblem
+				where department_department_code=${department_code}
+			</when>
+		</choose>
+	</select>	
+	
+	
+	
+	<!--  insert 쿼리 -->
+	<insert id="insertDepProblem" parameterType="DepartmentProblemVO">
+		<choose>
+			<!-- 1뎁스 일 때 -->
+			<when test="depth == 1">
+				insert into category(category_detail)
+				values(#{category_detail})
+			</when>
+			<!-- 2뎁스 일 때 -->
+			<when test="depth == 2">
+				insert into problem(category_category_code,problem_detail)
+				values(#{category_code},#{problem_detail})
+			</when>
+			<!-- 3뎁스 일 때 -->
+			<when test="depth == 3">
+				insert into place(category_category_code,place_detail)
+				values(#{category_code},#{place_detail})
+			</when>
+		</choose>
+	</insert>
+	
+	<!-- update 쿼리 (관리가자 문의 처리)-->	
+	<update id="updateDepProblem" parameterType="HashMap">
+		<choose>
+			<!-- 1뎁스 일 때 -->
+			<when test="depth == 1">
+				update category
+				set category_detail = #{detail}
+				where category_code = ${param}
+			</when>
+			<!-- 2뎁스 일 때 -->
+			<when test="depth == 2">
+				update problem
+				set problem_detail = #{detail}
+				where problem_code = ${param}
+			</when>
+			<!-- 3뎁스 일 때 -->
+			<when test="depth == 3">
+				update place
+				set place_detail = #{detail}
+				where place_code = ${param}
+			</when>
+		</choose>
+	</update>	
+	
+	<!-- delete 쿼리 (사용자가 삭제하는 문의)-->
+	<delete id="deleteDepProblem" parameterType="HashMap">
+		<choose>
+			<!-- 1뎁스 일 때 -->
+			<when test="depth == 1">
+				delete 
+				from category
+				where category_code = #{param}
+			</when>
+			<!-- 2뎁스 일 때 -->
+			<when test="depth == 2">
+				delete 
+				from problem
+				where problem_code = ${param}
+			</when>
+			<!-- 3뎁스 일 때 -->
+			<when test="depth == 3">
+				delete 
+				from place
+				where place_code = #{param}
+			</when>
+		</choose>
+	</delete>
+		
+	
+	
+</mapper>
