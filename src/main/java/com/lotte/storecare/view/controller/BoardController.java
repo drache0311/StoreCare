@@ -36,20 +36,20 @@ public class BoardController {
 	@Inject
 	private UserService userService;
 	
-	// 문의 등록 
+	// 문의 등록 GET
 	@RequestMapping(value="/insertBoard", method=RequestMethod.GET)
 	public ModelAndView INSERTBOARDTEMP_GET(ModelAndView mav, ProblemVO vo) {			
 		System.out.println("depth =====> "+vo.getDepth()+ "category_code = " + vo.getCategory_code() +"problem_code = " + vo.getProblem_code());
-
+		System.out.println("여긴 insertBoard GET");
 		mav.addObject("problemList", problemService.selectProblemListTest(vo)); // Model 정보 저장
 		mav.setViewName("insertBoard"); // View 정보 저장
 		return mav;
 	}
-	// 문의 등록 
+	// 문의 등록 POST
 	@RequestMapping(value="/insertBoard", method=RequestMethod.POST)
 	public ModelAndView INSERTBOARDTEMP_POST(ModelAndView mav, ProblemVO vo) {			
 		System.out.println("depth =====> "+vo.getDepth()+ "category_code = " + vo.getCategory_code() +"problem_code = " + vo.getProblem_code());
-
+		System.out.println("여긴 insertBoard POST");
 		mav.addObject("problemList", problemService.selectProblemListTest(vo)); // Model 정보 저장
 		mav.setViewName("insertBoard"); // View 정보 저장
 		return mav;
@@ -147,10 +147,6 @@ public class BoardController {
 			session.setAttribute("role", userVO.getRole());
 			session.setAttribute("department_code", userVO.getDepartment_code());
 
-
-			
-
-			
 			String department_code = session.getAttribute("department_code").toString();
 			session.setAttribute("searchCondition",request.getParameter("searchCondition"));
 			session.setAttribute("startDate",request.getParameter("startDate"));
@@ -163,9 +159,7 @@ public class BoardController {
 				startDate = session.getAttribute("startDate").toString();
 				endDate = session.getAttribute("endDate").toString();
 			}
-			
 
-			System.out.println("DEPARTMENT_CODE 11111111111111111 = "+department_code);
 			// 날짜선택 안할 때 "" 빈값으로 넘어오기 때문에 null로 변경해줌
 			if(startDate == "") {
 				startDate = null;
@@ -214,20 +208,10 @@ public class BoardController {
 			
 			mav.setViewName("admin"); // View 정보 저장
 			return mav;
-			
-
 		}else {	// 아이디가 있지만 role이 1이 아니면 일반 사용자이기 때문에 다시 login 페이지로 보낸다.
 			mav.setViewName("login"); // View 정보 저장
 			return mav;
 		}
-		
-		
-		
-		
-		
-		
-		
-
 	}
 	
 
