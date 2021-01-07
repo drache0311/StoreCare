@@ -23,15 +23,19 @@
           <li class="nav-item">
             <a class="nav-link" href="getDepartmentList">백화점 관리</a>
           </li>
-          <!-- 문의 뎁스별 추가,수정,삭제 페이지 -->
-          <li class="nav-item">
-            <a class="nav-link" href="updateProblem.do?depth=1">문의 관리</a>
-          </li>
           </c:if>
           <c:if test="${role eq '1'}">
-            <a class="nav-link" href="${id}">Home
-              <span class="sr-only">(current)</span>
-            </a>
+			<a class="nav-link" href="getBoardList.do">Home
+			  <span class="sr-only">(current)</span>
+			</a>
+	        <!-- 전체 문의 뎁스별 추가,수정,삭제 페이지 -->
+	        <li class="nav-item">
+	          <a class="nav-link" href="updateProblem.do?depth=1">전체 문의 관리</a>
+	        </li>
+	        <!-- 각 점별 뎁스별 문의 검색,삭제 페이지 -->
+	        <li class="nav-item">
+	          <a class="nav-link" href="departmentProblem.do?depth=1">내 백화점 문의관리</a>
+	        </li>
           </c:if>
           <c:if test="${role eq '2'}">
           	<!-- 문의 내역 페이지 -->

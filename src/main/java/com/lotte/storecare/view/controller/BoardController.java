@@ -125,28 +125,9 @@ public class BoardController {
 	}
 	
 	// 	// 관리자들은 직접 주소를 입력해 들어온다. + 관리자 문의내역 및 페이징
-	@RequestMapping(value = "/lotte*", method=RequestMethod.GET)
+	@RequestMapping("/getBoardList.do")
 	public ModelAndView getBoardList_GET(ModelAndView mav,  HttpSession session, HttpServletRequest request,Criteria cri) {
 		
-		String id = request.getServletPath();
-		id = id.replace("/","");
-		System.out.println("id :"+id);
-		
-		UserVO userVO = userService.select(id);
-		System.out.println("vo :" + userVO);
-
-		if(userVO == null) {	// 아이디,비밀번호 틀리면 다시 로그인 페이지로
-			mav.setViewName("login"); // View 정보 저장
-			return mav;
-		}else if(userVO.getRole() == 0) {	// role이 0 이면 총괄 관리자 페이지로
-			session.setAttribute("role", userVO.getRole());
-			mav.setViewName("adminHead"); // View 정보 저장
-			return mav;
-		}else if(userVO.getRole() == 1) {	// role이 1이면 각 점 관리자 페이지로
-			session.setAttribute("id",userVO.getId());
-			session.setAttribute("role", userVO.getRole());
-			session.setAttribute("department_code", userVO.getDepartment_code());
-
 			String department_code = session.getAttribute("department_code").toString();
 			session.setAttribute("searchCondition",request.getParameter("searchCondition"));
 			session.setAttribute("startDate",request.getParameter("startDate"));
@@ -208,10 +189,6 @@ public class BoardController {
 			
 			mav.setViewName("admin"); // View 정보 저장
 			return mav;
-		}else {	// 아이디가 있지만 role이 1이 아니면 일반 사용자이기 때문에 다시 login 페이지로 보낸다.
-			mav.setViewName("login"); // View 정보 저장
-			return mav;
-		}
 	}
 	
 

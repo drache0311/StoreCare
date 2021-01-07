@@ -43,7 +43,7 @@ public class ProblemDAOImpl implements ProblemDAO {
 		return session.selectList("problemDB.selectProblemList");
 	}
 	
-	// 뎁스 1,2,3 포함한 쿼리 테스트 중
+	// 뎁스 1,2,3 포함한 쿼리
 	@Override
 	public List<Map<String,String>> selectProblemListTest(ProblemVO vo) {
 		return session.selectList("problemDB.selectProblemListTest", vo);

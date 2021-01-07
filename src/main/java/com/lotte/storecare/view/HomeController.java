@@ -67,10 +67,20 @@ public class HomeController {
 		
 		String id = httpServletRequest.getParameter("id");
 		
-		session.setAttribute("role", 2);
-		session.setAttribute("login", id);
-		return "insertBoard?depth=1";
-
+		UserVO vo = service.select(id); 
+		
+		if(vo == null){
+			session.setAttribute("role", 2);
+			session.setAttribute("login", id);
+			return "insertBoard?depth=1";
+		}else if(vo.getRole() == 0) { // role이 0 이면 총괄 관리자 페이지로
+			session.setAttribute("role", vo.getRole());
+			return "adminHead";
+		}else{ // role이 1이면 각 점 관리자 페이지로
+			 session.setAttribute("role", vo.getRole());
+			 session.setAttribute("department_code", vo.getDepartment_code());
+			 return "getBoardList.do";
+		}
 	}
 	
 

@@ -31,7 +31,6 @@
     <label for="inputPassword" class="visually-hidden">Password</label>
     <input type="password" id="inputPassword" name="password" class="form-control" placeholder="Password" required>
     <button class="w-100 btn btn-lg btn-primary" type="submit" value="로그인" >Sign In</button>
-    <button class="w-100 btn btn-lg btn-primary" type="button" onclick="location.href='signUp'" value="signUp" >Sign Up</button>
     <p class="mt-5 mb-3 text-muted">&copy; 2017-2020</p>
   </form>
 </main>

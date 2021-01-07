@@ -9,7 +9,7 @@
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.79.0">
     
-    <title>총괄 관리자</title>
+    <title>??점 문의 관리</title>
     
 	
 	<!-- Bootstrap core CSS -->
@@ -23,16 +23,6 @@
 	String depth = request.getParameter("depth");
 	String category_code = request.getParameter("category_code");
 	String problem_code = request.getParameter("problem_code");
-
-	String seq = (String) request.getParameter("seq");
-	if(seq==null){
-		seq = "0";
-	}
-	
-	String flag = request.getParameter("flag");
-	if(flag==null){
-		flag = "0";
-	}
 %>
 <c:set var="depth" value="<%=depth %>" />
 
@@ -53,11 +43,16 @@
       <div class="row">
         <div class="col-lg-8 mx-auto">
         <!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
+        <input id="allCheck" type="checkbox" name="allCheck"/>
+        전체선택
+        <form  method="GET">
         	<c:choose>
         		<c:when test="${depth eq 1}">
 	        		<c:forEach items="${problemList }" var="problem">
+	        			<!-- 문의 삭제 체크박스 -->
 	        			<h2>
-	        				<a href="insertBoard?category_code=${problem.category_code }&<%-- department_department_code=<%=department_department_code %>& --%>seq=<%=seq %>&depth=2" class="btn btn-primary">
+	        				<input name="RowCheck" type="checkbox" value="${problem.category_code }"/>
+	        				<a href="updateProblem.do?category_code=${problem.category_code }&depth=2" class="btn btn-primary">
 	        					${problem.category_detail}
 	        				</a>
 	        			</h2>
@@ -65,12 +60,19 @@
 	        			<!-- 여기서 category_code의 값을 넘겨줘야 뎁스2가 정해진다 -->
 	        			<!--  -->
 	        		</c:forEach>
+	        		<!-- 문의 추가 버튼 -->	
+	        		<!-- depth를 추가로 보내서 해당 depth에 input값을 추가하는 식으로 ??? -->
+	        		<input name="depth" type="hidden" value="${depth }" />
+	        		<input name="category_detail" type="text" id="detail" class="form-control" placeholder="여기에 입력하세요" onkeyup='getDetail()'>
+	        		<button class="btn btn-primary" type="submit" formaction="insertProblem.do" >추가하기</button>
         		</c:when>
          		<c:when test="${depth eq 2}">
-	         		<h2>${problemList[0].category_detail }</h2>
+	         		${problemList[0].category_detail } >>>>>>${problemList[0].category_code }
 	        		<c:forEach items="${problemList }" var="problem">
+	        			<!-- 문의 삭제 체크박스 -->
 	        			<h2>
-		        			<a href="insertBoard?category_code=${problem.category_code }&problem_code=${problem.problem_code }<%-- &department_department_code=<%=department_department_code %> --%>&seq=<%=seq %>&depth=3" class="btn btn-primary">
+	        				<input name="RowCheck" type="checkbox" value="${problem.problem_code }"/>
+		        			<a href="updateProblem.do?category_code=${problem.category_code }&problem_code=${problem.problem_code }&depth=3" class="btn btn-primary">
 		        				${problem.problem_detail}
 		        			</a>
 	        			</h2>
@@ -78,28 +80,50 @@
 	        			<!-- 여기서 category_code와 problem_code의 값을 넘겨줘야 뎁스3가 정해진다 -->
 	        			<!--  -->
 	        		</c:forEach>
+	        		<!-- 문의 추가 버튼 -->	
+	        		<input name="depth" type="hidden" value="${depth }" />
+	        		<input name="category_code" type="hidden" value="<%=category_code %>" />
+	        		<input name="problem_detail" type="text" id="detail"  class="form-control" placeholder="여기에 입력하세요" onkeyup='getDetail()'>
+	        		<button class="btn btn-primary" type="submit" formaction="insertProblem.do" >추가하기</button>
         		</c:when> 
          		<c:when test="${depth eq 3}">
-	         		<h2>${problemList[0].category_detail } </h2>
-	         		<p>${problemList[0].problem_detail }</p>
-		        		<c:forEach items="${problemList }" var="problem">
-									<h2>
-										<a href="checkBoard.do?problem_category_code=${problem.category_code }&problem_problem_code=${problem.problem_code }&problem_detail=${problem.problem_detail }&category_detail=${problem.category_detail }&place_place_code=${problem.place_code }&place_place_detail=${problem.place_detail }&<%-- department_department_code=${department_department_code }& --%>seq=<%=seq %>&flag=<%=flag %>&depth=3" class="btn btn-primary">
-											${problem.place_detail}
-										</a>
-									</h2>	
-			       		</c:forEach>
+	         		${problemList[0].category_detail } === ${problemList[0].problem_detail }
+	        		<c:forEach items="${problemList }" var="problem">
+	        			<h2>
+	        			<!-- 문의 삭제 체크박스 -->
+	        				<input name="RowCheck" type="checkbox" value="${problem.place_code }"/>
+		        			<a href="#" class="btn btn-primary">
+		        				${problem.place_detail}
+		        			</a>
+	        			</h2>
+	        		</c:forEach>
+	        		<!-- 문의 추가 버튼 -->	
+	        		<input name="depth" type="hidden" value="${depth }" />
+	        		<input name="category_code" type="hidden" value="<%=category_code %>" />
+	        		<input name="problem_code" type="hidden" value="<%=problem_code %>" />
+	        		<input name="place_detail" type="text" id="detail"  class="form-control" placeholder="여기에 입력하세요" onkeyup='getDetail()'>
+	        		<button class="btn btn-primary" type="submit" formaction="insertProblem.do" >추가하기</button>
         		</c:when>
         	</c:choose>
-
-
+        	<!-- 추가 / 수정 / 삭제 버튼 -->
+        	</form>
+        	<input type="button" value="삭제하기" class="btn btn-primary" onclick="deleteValue();">
+			<input type="button" value="수정하기" class="btn btn-primary" onclick="fixValue();">
          <!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
+          <h2>예시용</h2>
+          <!-- category.category_code가 널이면 category_detail 출력 -> 선택하면 null이 아니니까 problem_detail 출력(2뎁스)   -->
+          <!-- 2뎁스도 널이 아니면 3뎁스의 place_detail 출력 -->
+          <p class="lead">예시용</p>
+          <ul>
+            <li>예시용</li>
+          </ul>
         </div>
       </div>
     </div>
   </section>
 
- 
+
+
 <!-- Bootstrap core JavaScript -->
 <script src="<%=request.getContextPath()%>/resources/vendor/jquery/jquery.min.js"></script>
 <script src="<%=request.getContextPath()%>/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -109,7 +133,7 @@
 <script src="<%=request.getContextPath()%>/resources/vendor/jquery/jquery-3.5.1.min.js"></script>
 
 <!-- Custom JavaScript for this theme -->
-
+<script src="<%=request.getContextPath()%>/resources/vendor/bootstrap/js/check-problem-ud.js"></script>
 <!-- SCRIPT ---------------------------------------------------------- -->
 </body>
 </html>
