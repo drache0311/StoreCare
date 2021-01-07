@@ -27,7 +27,7 @@
     <img class="mb-4" src="../assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">
     <h1 class="h3 mb-3 fw-normal">StoreCare</h1>
     <label for="inputId" class="visually-hidden">Phone Number</label>
-    <input type="text" id="inputId" name="id" class="form-control" placeholder="010-0000-0000" required autofocus>
+    <input type="text" id="inputId" name="id" class="form-control" placeholder="01012345678" required autofocus>
     <button class="w-100 btn btn-lg btn-primary" type="submit" value="로그인" >Sign In</button>
     <p class="mt-5 mb-3 text-muted">&copy; 2017-2020</p>
   </form>
