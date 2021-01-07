@@ -29,7 +29,7 @@
           </li>
           </c:if>
           <c:if test="${role eq '1'}">
-            <a class="nav-link" href="getBoardList.do">Home
+            <a class="nav-link" href="${id}">Home
               <span class="sr-only">(current)</span>
             </a>
           </c:if>

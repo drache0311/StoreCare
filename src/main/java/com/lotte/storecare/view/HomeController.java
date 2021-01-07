@@ -120,5 +120,24 @@ public class HomeController {
 		System.out.println("여긴 admin GET");
 		return "admin";
 	}
-		
+	// 관리자들은 직접 주소를 입력해 들어온다.
+	/*
+	 * @RequestMapping(value = "/lotte*", method=RequestMethod.GET) public String
+	 * ADMIN_GET(HttpServletRequest httpServletRequest, HttpSession session) {
+	 * 
+	 * String id = httpServletRequest.getServletPath(); id = id.replace("/","");
+	 * System.out.println("id :"+id);
+	 * 
+	 * UserVO vo = service.select(id); System.out.println("vo :" + vo);
+	 * 
+	 * if(vo == null) { // 아이디,비밀번호 틀리면 다시 로그인 페이지로 return "login"; }else
+	 * if(vo.getRole() == 0) { // role이 0 이면 총괄 관리자 페이지로
+	 * session.setAttribute("role", vo.getRole()); return "adminHead"; }else
+	 * if(vo.getRole() == 1) { // role이 1이면 각 점 관리자 페이지로
+	 * session.setAttribute("role", vo.getRole());
+	 * session.setAttribute("department_code", vo.getDepartment_code()); return
+	 * "admin"; }else { // 아이디가 있지만 role이 1이 아니면 일반 사용자이기 때문에 다시 login 페이지로 보낸다.
+	 * return "login"; } }
+	 */
+
 }
