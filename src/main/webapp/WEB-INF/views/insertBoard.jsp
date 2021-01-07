@@ -56,39 +56,44 @@
         	<c:choose>
         		<c:when test="${depth eq 1}">
 	        		<c:forEach items="${problemList }" var="problem">
-	        			<a href="insertBoard?category_code=${problem.category_code }&<%-- department_department_code=<%=department_department_code %>& --%>seq=<%=seq %>&depth=2" class="btn btn-primary">${problem.category_detail}</a>
+	        			<h2>
+	        				<a href="insertBoard?category_code=${problem.category_code }&<%-- department_department_code=<%=department_department_code %>& --%>seq=<%=seq %>&depth=2" class="btn btn-primary">
+	        					${problem.category_detail}
+	        				</a>
+	        			</h2>
 	        			<!--  -->
 	        			<!-- 여기서 category_code의 값을 넘겨줘야 뎁스2가 정해진다 -->
 	        			<!--  -->
 	        		</c:forEach>
         		</c:when>
          		<c:when test="${depth eq 2}">
-	         		${problemList[0].category_detail } >>>>>>${problemList[0].category_code }
+	         		<h2>${problemList[0].category_detail }</h2>
 	        		<c:forEach items="${problemList }" var="problem">
-	        			<a href="insertBoard?category_code=${problem.category_code }&problem_code=${problem.problem_code }<%-- &department_department_code=<%=department_department_code %> --%>&seq=<%=seq %>&depth=3" class="btn btn-primary">${problem.problem_detail}</a>
+	        			<h2>
+		        			<a href="insertBoard?category_code=${problem.category_code }&problem_code=${problem.problem_code }<%-- &department_department_code=<%=department_department_code %> --%>&seq=<%=seq %>&depth=3" class="btn btn-primary">
+		        				${problem.problem_detail}
+		        			</a>
+	        			</h2>
 	        			<!--  -->
 	        			<!-- 여기서 category_code와 problem_code의 값을 넘겨줘야 뎁스3가 정해진다 -->
 	        			<!--  -->
 	        		</c:forEach>
         		</c:when> 
          		<c:when test="${depth eq 3}">
-
-	         		${problemList[0].category_detail } === ${problemList[0].problem_detail }
+	         		<h2>${problemList[0].category_detail } </h2>
+	         		<p>${problemList[0].problem_detail }</p>
 		        		<c:forEach items="${problemList }" var="problem">
-									<a href="checkBoard.do?problem_category_code=${problem.category_code }&problem_problem_code=${problem.problem_code }&problem_detail=${problem.problem_detail }&category_detail=${problem.category_detail }&place_place_code=${problem.place_code }&place_place_detail=${problem.place_detail }&<%-- department_department_code=${department_department_code }& --%>seq=<%=seq %>&flag=<%=flag %>&depth=3" class="btn btn-primary">${problem.place_detail}</a>
+									<h2>
+										<a href="checkBoard.do?problem_category_code=${problem.category_code }&problem_problem_code=${problem.problem_code }&problem_detail=${problem.problem_detail }&category_detail=${problem.category_detail }&place_place_code=${problem.place_code }&place_place_detail=${problem.place_detail }&<%-- department_department_code=${department_department_code }& --%>seq=<%=seq %>&flag=<%=flag %>&depth=3" class="btn btn-primary">
+											${problem.place_detail}
+										</a>
+									</h2>	
 			       		</c:forEach>
         		</c:when>
         	</c:choose>
 
 
          <!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
-          <h2>예시용</h2>
-          <!-- category.category_code가 널이면 category_detail 출력 -> 선택하면 null이 아니니까 problem_detail 출력(2뎁스)   -->
-          <!-- 2뎁스도 널이 아니면 3뎁스의 place_detail 출력 -->
-          <p class="lead">예시용</p>
-          <ul>
-            <li>예시용</li>
-          </ul>
         </div>
       </div>
     </div>

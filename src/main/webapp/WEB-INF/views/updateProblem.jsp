@@ -50,8 +50,12 @@
         		<c:when test="${depth eq 1}">
 	        		<c:forEach items="${problemList }" var="problem">
 	        			<!-- 문의 삭제 체크박스 -->
-	        			<input name="RowCheck" type="checkbox" value="${problem.category_code }"/>
-	        			<a href="updateProblem.do?category_code=${problem.category_code }&depth=2" class="btn btn-primary">${problem.category_detail}</a>
+	        			<h2>
+	        				<input name="RowCheck" type="checkbox" value="${problem.category_code }"/>
+	        				<a href="updateProblem.do?category_code=${problem.category_code }&depth=2" class="btn btn-primary">
+	        					${problem.category_detail}
+	        				</a>
+	        			</h2>
 	        			<!--  -->
 	        			<!-- 여기서 category_code의 값을 넘겨줘야 뎁스2가 정해진다 -->
 	        			<!--  -->
@@ -66,8 +70,12 @@
 	         		${problemList[0].category_detail } >>>>>>${problemList[0].category_code }
 	        		<c:forEach items="${problemList }" var="problem">
 	        			<!-- 문의 삭제 체크박스 -->
-	        			<input name="RowCheck" type="checkbox" value="${problem.problem_code }"/>
-	        			<a href="updateProblem.do?category_code=${problem.category_code }&problem_code=${problem.problem_code }&depth=3" class="btn btn-primary">${problem.problem_detail}</a>
+	        			<h2>
+	        				<input name="RowCheck" type="checkbox" value="${problem.problem_code }"/>
+		        			<a href="updateProblem.do?category_code=${problem.category_code }&problem_code=${problem.problem_code }&depth=3" class="btn btn-primary">
+		        				${problem.problem_detail}
+		        			</a>
+	        			</h2>
 	        			<!--  -->
 	        			<!-- 여기서 category_code와 problem_code의 값을 넘겨줘야 뎁스3가 정해진다 -->
 	        			<!--  -->
@@ -81,9 +89,13 @@
          		<c:when test="${depth eq 3}">
 	         		${problemList[0].category_detail } === ${problemList[0].problem_detail }
 	        		<c:forEach items="${problemList }" var="problem">
+	        			<h2>
 	        			<!-- 문의 삭제 체크박스 -->
-	        			<input name="RowCheck" type="checkbox" value="${problem.place_code }"/>
-	        			<a href="#" class="btn btn-primary">${problem.place_detail}</a>
+	        				<input name="RowCheck" type="checkbox" value="${problem.place_code }"/>
+		        			<a href="#" class="btn btn-primary">
+		        				${problem.place_detail}
+		        			</a>
+	        			</h2>
 	        		</c:forEach>
 	        		<!-- 문의 추가 버튼 -->	
 	        		<input name="depth" type="hidden" value="${depth }" />
