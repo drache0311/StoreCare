@@ -7,6 +7,7 @@
 	String searchCondition="all";
 	String startDate = "";
 	String endDate = "";
+	String id = session.getAttribute("id").toString();
 	if(session.getAttribute("searchCondition") != null){
 		searchCondition = session.getAttribute("searchCondition").toString();
 		startDate = session.getAttribute("startDate").toString();
@@ -107,7 +108,7 @@
 							
 								<!-- prev 버튼 -->
 								<li id="page-prev">
-									<a href="getBoardList.do${pageMaker.makeQuery(pageMaker.startPage-1)}&searchCondition=<%=searchCondition %>&startDate=<%=startDate %>&endDate=<%=endDate %>" aria-label="Prev">
+									<a href="${id}${pageMaker.makeQuery(pageMaker.startPage-1)}&searchCondition=<%=searchCondition %>&startDate=<%=startDate %>&endDate=<%=endDate %>" aria-label="Prev">
 										<span aria-hidden="true">«</span>
 									</a>
 								</li>
@@ -115,7 +116,7 @@
 								<!-- 페이지 번호 (시작 페이지 번호부터 끝 페이지 번호까지) -->
 								<c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
 								    <li id="page${idx}">
-									    <a href="getBoardList.do${pageMaker.makeQuery(idx)}&searchCondition=<%=searchCondition %>&startDate=<%=startDate %>&endDate=<%=endDate %>">
+									    <a href="${id}${pageMaker.makeQuery(idx)}&searchCondition=<%=searchCondition %>&startDate=<%=startDate %>&endDate=<%=endDate %>">
 									    	<!-- 시각 장애인을 위한 추가 -->
 									      	<span>${idx}<span class="sr-only">(current)</span></span>
 									    </a>
@@ -124,7 +125,7 @@
 								
 								<!-- next 버튼 -->
 								<li id="page-next">
-								    <a href="getBoardList.do${pageMaker.makeQuery(pageMaker.endPage + 1)}&searchCondition=<%=searchCondition %>&startDate=<%=startDate %>&endDate=<%=endDate %>" aria-label="Next">
+								    <a href="${id}${pageMaker.makeQuery(pageMaker.endPage + 1)}&searchCondition=<%=searchCondition %>&startDate=<%=startDate %>&endDate=<%=endDate %>" aria-label="Next">
 								    	<span aria-hidden="true">»</span>
 								    </a>
 								</li>

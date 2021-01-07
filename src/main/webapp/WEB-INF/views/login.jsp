@@ -26,12 +26,9 @@
   <form action="login.do" method="post">
     <img class="mb-4" src="../assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">
     <h1 class="h3 mb-3 fw-normal">StoreCare</h1>
-    <label for="inputId" class="visually-hidden">ID</label>
-    <input type="text" id="inputId" name="id" class="form-control" placeholder="Your ID" required autofocus>
-    <label for="inputPassword" class="visually-hidden">Password</label>
-    <input type="password" id="inputPassword" name="password" class="form-control" placeholder="Password" required>
+    <label for="inputId" class="visually-hidden">Phone Number</label>
+    <input type="text" id="inputId" name="id" class="form-control" placeholder="01012345678" required autofocus>
     <button class="w-100 btn btn-lg btn-primary" type="submit" value="로그인" >Sign In</button>
-    <button class="w-100 btn btn-lg btn-primary" type="button" onclick="location.href='signUp'" value="signUp" >Sign Up</button>
     <p class="mt-5 mb-3 text-muted">&copy; 2017-2020</p>
   </form>
 </main>

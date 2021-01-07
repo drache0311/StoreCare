@@ -33,6 +33,7 @@ public class HomeController {
 		return "login";
 	}
 	
+	// 관리자 로그인 페이지인데 나중에 필요하면 쓰자
 	@RequestMapping(value = "/super", method=RequestMethod.GET)
 	public String LOGIN_SUPER_GET() {
 		return "loginAdmin";
@@ -60,31 +61,16 @@ public class HomeController {
 		return "login";
 	}
 	
-	// 입력한 아이디/비밀번호 맞으면 getDpartMent.do로 , 틀리면 다시 login.jsp로
+	// 입력한 아이디/비밀번호 맞으면 insertBoard로 , 틀리면 다시 login.jsp로
 	@RequestMapping(value="/login.do", method=RequestMethod.POST)
 	public String LOGIN_POST(HttpSession session,HttpServletRequest httpServletRequest) {	
 		
 		String id = httpServletRequest.getParameter("id");
 		
-		UserVO vo = service.select(id);
-		System.out.println("vo :" + vo);
+		session.setAttribute("role", 2);
+		session.setAttribute("login", id);
+		return "insertBoard?depth=1";
 
-		if(vo == null) {	// 아이디,비밀번호 틀리면 다시 로그인 페이지로
-			return "login";
-		}else if(vo.getRole() == 0) {	// role이 0 이면 총괄 관리자 페이지로
-			session.setAttribute("role", vo.getRole());
-			return "adminHead";
-		}else if(vo.getRole() == 1) {	// role이 1이면 각 점 관리자 페이지로
-			session.setAttribute("role", vo.getRole());
-			session.setAttribute("department_code", vo.getDepartment_code());
-			return "getBoardList.do";
-		}else{	// 나머지 role = 2 들은 일반 사용자들로 사용자들페이지로
-			session.setAttribute("role", vo.getRole());
-			session.setAttribute("login", vo.getId());
-			return "insertBoard?depth=1";
-		}
-		
-		
 	}
 	
 
@@ -120,5 +106,6 @@ public class HomeController {
 		System.out.println("여긴 admin GET");
 		return "admin";
 	}
-		
+
+
 }
