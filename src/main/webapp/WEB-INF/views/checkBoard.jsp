@@ -30,7 +30,7 @@ String category_detail = request.getParameter("category_detail");
 String problem_detail = request.getParameter("problem_detail");
 String seq = (String) request.getParameter("seq");
 String id = (String) session.getAttribute("login");
-/* String department_code = request.getParameter("department_department_code"); */
+String department_code = request.getParameter("department_department_code");
 String flag = request.getParameter("flag");
 String place_place_code = request.getParameter("place_place_code");
 
@@ -74,14 +74,14 @@ out.println(${board});
 			    <input name="place_place_code" type="hidden" value="<%=place_place_code%>" />
 			    <input name="users_id" type="hidden" value="<%=id%>" />
 			    	<h5 class="card-header">현재 방문 백화점</h5>
-<%-- 			    	<input name="department_department_code" type="hidden" value="<%=department_code %>" /> --%>
+		    	<input name="department_department_name" type="hidden" value="${board.department_name}" />
 <%--       				<select name="department_department_name" id="department_department_code" onchange="departmentChange(this)">
 						<c:forEach items="${departmentList}" var="department">
 							<option value="${department.department_name}">${department.department_name}</option>
 						</c:forEach> --%>
 
 					<h1 class = "card-title">${board.department_name}</h1>
-					<input id=changeDepartment" type="hidden" name="${board.department_name}" />
+					<input id="${board.department_name}" type="hidden" name="changeDepartment" />
 				</div>
 				<div class ="card-body">
 			    	<h5 class="card-header">요청내용</h5>

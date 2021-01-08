@@ -88,7 +88,7 @@
 			<div class = "card mt-4">
 			    <div class ="card-body">
 					<h1 class = "card-title"> 문의가 없네요 !! </h1>
-					 <a href="insertBoard?depth=1" class="btn btn-primary">문의 하러가기 </a>
+					 <a href="selectDepartment" class="btn btn-primary">문의 하러가기 </a>
 				</div>
 			</div>
 </div>
