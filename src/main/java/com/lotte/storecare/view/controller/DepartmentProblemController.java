@@ -32,7 +32,7 @@ public class DepartmentProblemController {
 	@RequestMapping(value="/departmentProblem.do", method=RequestMethod.GET)
 	public ModelAndView departmentProblemList_GET(ModelAndView mav, DepartmentProblemVO vo) {
 		
-		System.out.println("depth =====> "+vo.getDepth()+ "category_code = " + vo.getCategory_code() +"problem_code = " + vo.getProblem_code());
+		System.out.println("depth =====> "+vo.getDepth()+ "category_code = " + vo.getCategory_code() +"problem_code = " + vo.getProblem_problem_code());
 		
 //		// 뎁스1 선택한 상황이라면 뎁스2로 바꿈 // 뎁스1,2 선택한 상황이라면 뎁스3으로 바꿈
 //		if(vo.getCategory_code() != null && vo.getProblem_code() == null) {
@@ -41,8 +41,8 @@ public class DepartmentProblemController {
 //			vo.setDepth(3);
 //		}
 
-		mav.addObject("problemList", service.selectProblemList(vo)); // Model 정보 저장
-		mav.setViewName("updateProblem"); // View 정보 저장
+		mav.addObject("problemList", service.selectDepProblemList(vo)); // Model 정보 저장
+		mav.setViewName("departmentProblem"); // View 정보 저장
 		return mav;
 	}
 

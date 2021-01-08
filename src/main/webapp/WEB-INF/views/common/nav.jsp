@@ -3,6 +3,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%
 	String role = session.getAttribute("role").toString();
+	String department_department_code = session.getAttribute("department_code").toString();
+
 %>
 
   <!-- Navigation            ----------------------------------------------------------- -->
@@ -34,7 +36,7 @@
 	        </li>
 	        <!-- 각 점별 뎁스별 문의 검색,삭제 페이지 -->
 	        <li class="nav-item">
-	          <a class="nav-link" href="departmentProblem.do?depth=1">내 백화점 문의관리</a>
+	          <a class="nav-link" href="departmentProblem.do?depth=1&department_department_code=<%=department_department_code%>">내 백화점 문의관리</a>
 	        </li>
           </c:if>
           <c:if test="${role eq '2'}">
