@@ -117,7 +117,7 @@ public class DepartmentProblemController {
 			service.insertDepProblem(paramMap);;
 		}
 
-		return "updateProblem.do";
+		return "sendProblem.do";
 	}
 
 }

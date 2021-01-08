@@ -30,7 +30,7 @@
 			</when>
 			<!-- 3뎁스 일 때 -->
 			<when test="depth == 3">
-				select depProblem.category_category_code, category_detail,depProblem.problem_problem_code,problem_detail,depProblem.place_place_code,place_detail 
+				select distinct depProblem.category_category_code, category_detail,depProblem.problem_problem_code,problem_detail,depProblem.place_place_code,place_detail 
 				from depProblem
 				join category
 				join problem 
@@ -52,16 +52,16 @@
 		<choose>
 			<!-- 1뎁스 일 때 -->
 			<when test="depth == 1">
-				insert into depProblem(category_category_code,problem_problem_code,place_place_code,department_department_code)
+				replace into depProblem(category_category_code,problem_problem_code,place_place_code,department_department_code)
 				select category_category_code,problem_code,place_code,${department_department_code}
-				from problem
+				from problem 
 				left outer join place
 				on problem_code = problem_problem_code
-				where category_category_code = ${category_category_code}
+				where category_category_code = ${category_category_code}		
 			</when>
 			<!-- 2뎁스 일 때 -->
 			<when test="depth == 2">
-				insert into depProblem(category_category_code,problem_problem_code,place_place_code,department_department_code)
+				replace into depProblem(category_category_code,problem_problem_code,place_place_code,department_department_code)
 				select category_category_code,problem_code,place_code,${department_department_code}
 				from problem
 				left outer join place
@@ -71,7 +71,7 @@
 			</when>
 			<!-- 3뎁스 일 때 -->
 			<when test="depth == 3">
-				insert into depProblem(category_category_code,problem_problem_code,place_place_code,department_department_code)
+				replace into depProblem(category_category_code,problem_problem_code,place_place_code,department_department_code)
 				select category_category_code,problem_code,place_code,${department_department_code}
 				from problem
 				left outer join place

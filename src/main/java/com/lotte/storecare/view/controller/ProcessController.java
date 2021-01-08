@@ -58,6 +58,11 @@ public class ProcessController {
 		return "updateProblem";
 	}	
 	
+	@RequestMapping(value="/sendProblem", method=RequestMethod.GET)
+	public String SENDPROBLEM_GET() {	
+		return "sendProblem";
+	}		
+	
 	@RequestMapping(value="/departmentProblem", method=RequestMethod.GET)
 	public String DEPARTMENTPROBLEM_GET() {	
 		return "departmentProblem";
