@@ -33,7 +33,7 @@ public class HomeController {
 		return "login";
 	}
 	
-	// 관리자 로그인 페이지인데 나중에 필요하면 쓰자
+	// 관리자 로그인 페이지
 	@RequestMapping(value = "/super", method=RequestMethod.GET)
 	public String LOGIN_SUPER_GET() {
 		return "loginAdmin";

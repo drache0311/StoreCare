@@ -73,8 +73,8 @@ public class DepartmentController {
 		mav.setViewName("getDepartmentList"); // View 정보 저장
 		return mav;
 	}
-	// 층 수 조회
-	@RequestMapping(value="/selectDepartment" , method=RequestMethod.POST)
+	// 문의 등록 전 백화점 조회
+	@RequestMapping("/selectDepartment")
 	public ModelAndView selectDepartmentList_POST(BoardVO vo, ModelAndView mav) {
 		
 		List<DepartmentVO> depList = service.selectAll();
