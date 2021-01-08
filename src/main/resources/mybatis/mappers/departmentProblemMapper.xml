@@ -106,31 +106,32 @@
 			</when>
 		</choose>
 	</update>	
-	
-	<!-- delete 쿼리 (사용자가 삭제하는 문의)-->
+
+	<!-- delete 쿼리 (점 관리자가 점별 문의 중에서 삭제)-->
 	<delete id="deleteDepProblem" parameterType="HashMap">
 		<choose>
 			<!-- 1뎁스 일 때 -->
 			<when test="depth == 1">
 				delete 
-				from category
-				where category_code = #{param}
+				from depProblem
+				where category_category_code = ${param}
+				and department_department_code = ${department_department_code}
 			</when>
 			<!-- 2뎁스 일 때 -->
 			<when test="depth == 2">
 				delete 
-				from problem
-				where problem_code = ${param}
+				from depProblem
+				where problem_problem_code = ${param}
+				and department_department_code = ${department_department_code}
 			</when>
 			<!-- 3뎁스 일 때 -->
 			<when test="depth == 3">
 				delete 
-				from place
-				where place_code = #{param}
+				from depProblem
+				where place_place_code = ${param}
+				and department_department_code = ${department_department_code}
 			</when>
 		</choose>
 	</delete>
-		
-	
 	
 </mapper>

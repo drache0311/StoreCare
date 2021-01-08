@@ -95,7 +95,7 @@ public class ProblemController {
 		return "updateProblem.do";
 	}
 	
-	// 문의사항 삭제 완료
+	// 전체 문의사항 중에서 삭제 완료
 	@RequestMapping("/deleteProblem.do")
 	public String deleteProblem(HttpServletRequest request) {
 		System.out.println("딜리트 컨틀롤\n");
@@ -115,7 +115,6 @@ public class ProblemController {
 		
 		return "updateProblem.do";
 	}
-	
 	
 	
 	

@@ -11,4 +11,6 @@ public interface DepartmentProblemService {
 	public List<Map<String,String>> selectDepProblemList(DepartmentProblemVO vo);
 	// 뎁스 1,2,3 별 문의 추가 
 	void insertDepProblem(HashMap<String,String> param);
+	// 각 점의 뎁스 1,2,3 별 문의 삭제
+	void deleteDepProblem(HashMap<String,String> param);
 }

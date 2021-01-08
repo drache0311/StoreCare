@@ -99,7 +99,7 @@
 		</choose>
 	</update>	
 	
-	<!-- delete 쿼리 (사용자가 삭제하는 문의)-->
+	<!-- delete 쿼리 (총 관리자가 전체 문의에서 삭제)-->
 	<delete id="deleteProblem" parameterType="HashMap">
 		<choose>
 			<!-- 1뎁스 일 때 -->

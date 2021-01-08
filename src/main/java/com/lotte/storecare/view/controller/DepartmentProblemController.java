@@ -6,6 +6,7 @@ import java.util.List;
 import javax.annotation.Resource;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,16 +33,14 @@ public class DepartmentProblemController {
 
 	// 각 점별 문의 뎁스 검색 완료
 	@RequestMapping(value="/departmentProblem.do", method=RequestMethod.GET)
-	public ModelAndView departmentProblemList_GET(ModelAndView mav, DepartmentProblemVO vo) {
+	public ModelAndView departmentProblemList_GET(ModelAndView mav, DepartmentProblemVO vo ,HttpSession session) {
 		
-		System.out.println("depth =====> "+vo.getDepth()+ "category_code = " + vo.getCategory_code() +"problem_code = " + vo.getProblem_problem_code());
 		
-//		// 뎁스1 선택한 상황이라면 뎁스2로 바꿈 // 뎁스1,2 선택한 상황이라면 뎁스3으로 바꿈
-//		if(vo.getCategory_code() != null && vo.getProblem_code() == null) {
-//			vo.setDepth(2);
-//		}else if(vo.getProblem_code() != null) {
-//			vo.setDepth(3);
-//		}
+		String department_department_code = session.getAttribute("department_code").toString();
+		
+		vo.setDepartment_department_code(department_department_code);
+		
+		System.out.println("depth =====> "+vo.getDepth()+ "department_department_code = " + vo.getDepartment_department_code() +"problem_code = " + vo.getProblem_problem_code());
 
 		mav.addObject("problemList", service.selectDepProblemList(vo)); // Model 정보 저장
 		mav.setViewName("departmentProblem"); // View 정보 저장
@@ -50,11 +49,6 @@ public class DepartmentProblemController {
 	// 전체 문의사항 에서 각 점별로 문의사항 등록 
 	@RequestMapping("/insertDepartmentProblem.do")
 	public String insertDepartmentProblem(HttpServletRequest request) {
-		
-		
-		
-		
-		
 		
 		//String[] ajaxMsg = request.getParameterValues("valueArr");
 		String department_code = request.getParameter("department_code");
@@ -120,4 +114,29 @@ public class DepartmentProblemController {
 		return "sendProblem.do";
 	}
 
+	
+	
+	// 각 점에서 문의사항 삭제 완료
+	@RequestMapping("/deleteDepartmentProblem.do")
+	public String deleteDepartmentProblem(HttpServletRequest request) {
+		System.out.println("딜리트 dep 컨틀롤\n");
+		String[] ajaxMsg = request.getParameterValues("valueArr");
+		String depth = request.getParameter("depth");
+		String department_code = request.getParameter("department_code");
+		
+		HashMap<String,String> paramMap = new HashMap<String,String>();
+
+		System.out.println("depth ===================>"+depth.toString());
+		
+		paramMap.put("department_department_code", department_code);
+		int size = ajaxMsg.length;
+		for(int i=0;i<size;i++) {
+			paramMap.put("depth",depth);
+			paramMap.put("param", ajaxMsg[i]);
+			System.out.println(paramMap);
+			service.deleteDepProblem(paramMap);
+		}
+		
+		return "departmentProblem.do?depth=1&department_department_code="+department_code;
+	}
 }

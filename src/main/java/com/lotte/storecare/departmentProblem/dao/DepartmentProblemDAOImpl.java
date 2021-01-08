@@ -26,5 +26,10 @@ public class DepartmentProblemDAOImpl implements DepartmentProblemDAO {
 	public void insertDepProblem(HashMap<String,String> param) {
 		session.insert("departmentProblemDB.insertDepProblem", param);
 	}
+	// 각 점의 뎁스 1,2,3 별 문의 삭제
+	@Override
+	public void deleteDepProblem(HashMap<String, String> param) {
+		session.delete("departmentProblemDB.deleteDepProblem",param);
+	}
 
 }

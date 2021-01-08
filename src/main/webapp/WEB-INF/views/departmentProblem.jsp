@@ -46,6 +46,8 @@
         <input id="allCheck" type="checkbox" name="allCheck"/>
         전체선택
         <form  method="GET">
+            <!-- 다시 이 페이지로 새로고침하기 위해 dep_code가 필요하다 -->
+        	<input id="department_code" type="hidden" value="<%=department_department_code %>" />
         	<c:choose>
         		<c:when test="${depth eq 1}">
 	        		<c:forEach items="${problemList }" var="problem">
@@ -126,7 +128,7 @@
 <script src="<%=request.getContextPath()%>/resources/vendor/jquery/jquery-3.5.1.min.js"></script>
 
 <!-- Custom JavaScript for this theme -->
-<script src="<%=request.getContextPath()%>/resources/vendor/bootstrap/js/check-problem-ud.js"></script>
+<script src="<%=request.getContextPath()%>/resources/vendor/bootstrap/js/check-problem-delete-depAdmin.js?ver=2"></script>
 <!-- SCRIPT ---------------------------------------------------------- -->
 </body>
 </html>
