@@ -38,7 +38,7 @@
 			</a>
 	        <!-- 원하는 문의를 각 점에 추가하는 페이지 -->
 	        <li class="nav-item">
-	          <a class="nav-link" href="sendProblem.do?depth=1&department_department_code=<%=department_department_code%>">전체 문의 관리</a>
+	          <a class="nav-link" href="sendProblem.do?depth=1&department_department_code=<%=department_department_code%>">문의 추가</a>
 	        </li>
 	        <!-- 각 점별 뎁스별 문의 검색,삭제 페이지 -->
 	        <li class="nav-item">

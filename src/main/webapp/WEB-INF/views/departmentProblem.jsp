@@ -105,13 +105,6 @@
         	</form>
         	<input type="button" value="내 점에서 삭제하기" class="btn btn-primary" onclick="deleteValue();">
          <!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
-          <h2>예시용</h2>
-          <!-- category.category_code가 널이면 category_detail 출력 -> 선택하면 null이 아니니까 problem_detail 출력(2뎁스)   -->
-          <!-- 2뎁스도 널이 아니면 3뎁스의 place_detail 출력 -->
-          <p class="lead">예시용</p>
-          <ul>
-            <li>예시용</li>
-          </ul>
         </div>
       </div>
     </div>
