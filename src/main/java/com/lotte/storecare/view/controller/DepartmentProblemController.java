@@ -1,9 +1,11 @@
 package com.lotte.storecare.view.controller;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.annotation.Resource;
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,7 +30,7 @@ public class DepartmentProblemController {
 	private UserService userService;
 
 
-	// 문의 뎁스 검색 완료
+	// 각 점별 문의 뎁스 검색 완료
 	@RequestMapping(value="/departmentProblem.do", method=RequestMethod.GET)
 	public ModelAndView departmentProblemList_GET(ModelAndView mav, DepartmentProblemVO vo) {
 		
@@ -45,6 +47,77 @@ public class DepartmentProblemController {
 		mav.setViewName("departmentProblem"); // View 정보 저장
 		return mav;
 	}
+	// 전체 문의사항 에서 각 점별로 문의사항 등록 
+	@RequestMapping("/insertDepartmentProblem.do")
+	public String insertDepartmentProblem(HttpServletRequest request) {
+		
+		
+		
+		
+		
+		
+		//String[] ajaxMsg = request.getParameterValues("valueArr");
+		String department_code = request.getParameter("department_code");
+		String depth = request.getParameter("depth");
+		String[] ajaxMsg;
+		String category_code = null;
+		String problem_code = null;
+		
+		if(depth.equals("1")) {
+			ajaxMsg = request.getParameterValues("valueArr");
+		}else if( depth.equals("2")) {
+			ajaxMsg = request.getParameterValues("valueArr");
+			category_code = request.getParameter("category_code");
+		}else {
+			ajaxMsg = request.getParameterValues("valueArr");
+			category_code = request.getParameter("category_code");
+			problem_code = request.getParameter("problem_code");
+		}
+		
+		
+		
+		
+		HashMap<String,String> paramMap = new HashMap<String,String>();
+		
+		System.out.println("depth ===================>"+depth.toString());
+		
 
+		
+		int size = ajaxMsg.length;
+		
+		for(int i=0;i<size;i++) {
+			
+			paramMap.put("department_department_code", department_code);	// department_code
+			paramMap.put("depth",depth); // depth
+			
+			if(depth.equals("1")) {
+				paramMap.put("category_category_code", ajaxMsg[i]);	// category_code
+				System.out.println(paramMap);
+				service.insertDepProblem(paramMap);
+			}else if( depth.equals("2")) {
+				paramMap.put("problem_problem_code", ajaxMsg[i]);	// problem_code
+				paramMap.put("category_category_code", category_code);	// category_code
+				System.out.println(paramMap);
+				service.insertDepProblem(paramMap);
+			}else {
+				paramMap.put("place_place_code", ajaxMsg[i]);	// place_code
+				paramMap.put("category_category_code", category_code);	// category_code
+				paramMap.put("problem_problem_code", problem_code);	// category_code
+				System.out.println(paramMap);
+				service.insertDepProblem(paramMap);
+			}
+			
+			
+			
+			
+			
+			
+			paramMap.put("category_category_code", ajaxMsg[i]);	// category_code
+			System.out.println(paramMap);
+			service.insertDepProblem(paramMap);;
+		}
+
+		return "updateProblem.do";
+	}
 
 }

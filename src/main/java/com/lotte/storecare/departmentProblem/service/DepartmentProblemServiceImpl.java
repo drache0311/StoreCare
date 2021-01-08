@@ -1,5 +1,6 @@
 package com.lotte.storecare.departmentProblem.service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -19,6 +20,11 @@ public class DepartmentProblemServiceImpl implements DepartmentProblemService {
 	@Override
 	public List<Map<String, String>> selectDepProblemList(DepartmentProblemVO vo) {
 		return departmentProblemDAO.selectDepProblemList(vo);
+	}
+	// 뎁스 1,2,3 별 문의 추가 
+	@Override
+	public void insertDepProblem(HashMap<String,String> param) {
+		departmentProblemDAO.insertDepProblem(param);
 	}
 
 }

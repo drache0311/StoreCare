@@ -32,7 +32,7 @@
 			</a>
 	        <!-- 전체 문의 뎁스별 추가,수정,삭제 페이지 -->
 	        <li class="nav-item">
-	          <a class="nav-link" href="updateProblem.do?depth=1">전체 문의 관리</a>
+	          <a class="nav-link" href="updateProblem.do?depth=1&department_department_code=<%=department_department_code%>">전체 문의 관리</a>
 	        </li>
 	        <!-- 각 점별 뎁스별 문의 검색,삭제 페이지 -->
 	        <li class="nav-item">

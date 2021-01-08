@@ -45,8 +45,8 @@
 				from category
 				join problem
 				join place
-				on problem.category_category_code = place.category_category_code
-				and category.category_code = problem.category_category_code
+				on problem.category_category_code = category_code
+				and place.problem_problem_code = problem_code
 				where category_code = #{category_code} and problem_code = #{problem_code}
 			</when>
 		</choose>
@@ -69,8 +69,8 @@
 			</when>
 			<!-- 3뎁스 일 때 -->
 			<when test="depth == 3">
-				insert into place(category_category_code,place_detail)
-				values(#{category_code},#{place_detail})
+				insert into place(problem_problem_code,place_detail)
+				values(#{problem_code},#{place_detail})
 			</when>
 		</choose>
 	</insert>

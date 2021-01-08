@@ -46,6 +46,7 @@
         <input id="allCheck" type="checkbox" name="allCheck"/>
         전체선택
         <form  method="GET">
+        	<input id="department_code" name="department_code" type="hidden" value="<%=department_department_code %>" />
         	<c:choose>
         		<c:when test="${depth eq 1}">
 	        		<c:forEach items="${problemList }" var="problem">
@@ -82,7 +83,7 @@
 	        		</c:forEach>
 	        		<!-- 문의 추가 버튼 -->	
 	        		<input name="depth" type="hidden" value="${depth }" />
-	        		<input name="category_code" type="hidden" value="<%=category_code %>" />
+	        		<input id="category_code" name="category_code" type="hidden" value="<%=category_code %>" />
 	        		<input name="problem_detail" type="text" id="detail"  class="form-control" placeholder="여기에 입력하세요" onkeyup='getDetail()'>
 	        		<button class="btn btn-primary" type="submit" formaction="insertProblem.do" >추가하기</button>
         		</c:when> 
@@ -99,14 +100,15 @@
 	        		</c:forEach>
 	        		<!-- 문의 추가 버튼 -->	
 	        		<input name="depth" type="hidden" value="${depth }" />
-	        		<input name="category_code" type="hidden" value="<%=category_code %>" />
-	        		<input name="problem_code" type="hidden" value="<%=problem_code %>" />
+	        		<input id="category_code" name="category_code" type="hidden" value="<%=category_code %>" />
+	        		<input id="problem_code" name="problem_code" type="hidden" value="<%=problem_code %>" />
 	        		<input name="place_detail" type="text" id="detail"  class="form-control" placeholder="여기에 입력하세요" onkeyup='getDetail()'>
 	        		<button class="btn btn-primary" type="submit" formaction="insertProblem.do" >추가하기</button>
         		</c:when>
         	</c:choose>
         	<!-- 추가 / 수정 / 삭제 버튼 -->
         	</form>
+        	<input type="button" value="내 점에 추가하기" class="btn btn-primary" onclick="insertValue();">
         	<input type="button" value="삭제하기" class="btn btn-primary" onclick="deleteValue();">
 			<input type="button" value="수정하기" class="btn btn-primary" onclick="fixValue();">
          <!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
@@ -153,7 +155,7 @@
 <script src="<%=request.getContextPath()%>/resources/vendor/jquery/jquery-3.5.1.min.js"></script>
 
 <!-- Custom JavaScript for this theme -->
-<script src="<%=request.getContextPath()%>/resources/vendor/bootstrap/js/check-problem-ud.js"></script>
+<script src="<%=request.getContextPath()%>/resources/vendor/bootstrap/js/check-problem-ud.js?ver=1"></script>
 <!-- SCRIPT ---------------------------------------------------------- -->
 </body>
 </html>

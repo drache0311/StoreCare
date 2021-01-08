@@ -1,5 +1,6 @@
 package com.lotte.storecare.departmentProblem.dao;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -19,6 +20,11 @@ public class DepartmentProblemDAOImpl implements DepartmentProblemDAO {
 	@Override
 	public List<Map<String, String>> selectDepProblemList(DepartmentProblemVO vo) {
 		return session.selectList("departmentProblemDB.selectDepProblemList", vo);
+	}
+	// 뎁스 1,2,3 별 문의 추가 
+	@Override
+	public void insertDepProblem(HashMap<String,String> param) {
+		session.insert("departmentProblemDB.insertDepProblem", param);
 	}
 
 }
