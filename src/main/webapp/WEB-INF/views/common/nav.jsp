@@ -3,6 +3,10 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%
 	String role = session.getAttribute("role").toString();
+	String department_department_code = null;
+	if(session.getAttribute("department_code") != null){
+		department_department_code = session.getAttribute("department_code").toString();
+	}
 %>
 
   <!-- Navigation            ----------------------------------------------------------- -->
@@ -23,18 +27,22 @@
           <li class="nav-item">
             <a class="nav-link" href="getDepartmentList">백화점 관리</a>
           </li>
+	        <!-- 전체 문의 뎁스별 추가,수정,삭제 페이지 -->
+	        <li class="nav-item">
+	          <a class="nav-link" href="updateProblem.do?depth=1&department_department_code=<%=department_department_code%>">전체 문의 관리</a>
+	        </li>
           </c:if>
           <c:if test="${role eq '1'}">
 			<a class="nav-link" href="getBoardList.do">Home
 			  <span class="sr-only">(current)</span>
 			</a>
-	        <!-- 전체 문의 뎁스별 추가,수정,삭제 페이지 -->
+	        <!-- 원하는 문의를 각 점에 추가하는 페이지 -->
 	        <li class="nav-item">
-	          <a class="nav-link" href="updateProblem.do?depth=1">전체 문의 관리</a>
+	          <a class="nav-link" href="sendProblem.do?depth=1&department_department_code=<%=department_department_code%>">문의 추가</a>
 	        </li>
 	        <!-- 각 점별 뎁스별 문의 검색,삭제 페이지 -->
 	        <li class="nav-item">
-	          <a class="nav-link" href="departmentProblem.do?depth=1">내 백화점 문의관리</a>
+	          <a class="nav-link" href="departmentProblem.do?depth=1&department_department_code=<%=department_department_code%>">내 백화점 문의관리</a>
 	        </li>
           </c:if>
           <c:if test="${role eq '2'}">

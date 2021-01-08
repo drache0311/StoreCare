@@ -5,15 +5,51 @@ package com.lotte.storecare.vo;
 //VO(Value Object)
 public class DepartmentProblemVO {
 	private int category_category_code;
-	private Integer problem_code;
+	private int problem_problem_code;
 	private String problem_detail;
 	private String category_detail;
 	private int depth;
-	private Integer category_code;
+	private int category_code;
+	private int place_place_code;
 	private String place_detail;
+	private String department_department_code;
 
 
 
+
+	public String getDepartment_department_code() {
+		return department_department_code;
+	}
+
+
+	public void setDepartment_department_code(String department_department_code) {
+		this.department_department_code = department_department_code;
+	}
+
+
+	public int getProblem_problem_code() {
+		return problem_problem_code;
+	}
+
+
+	public void setProblem_problem_code(int problem_problem_code) {
+		this.problem_problem_code = problem_problem_code;
+	}
+
+
+	public int getPlace_place_code() {
+		return place_place_code;
+	}
+
+
+	public void setPlace_place_code(int place_place_code) {
+		this.place_place_code = place_place_code;
+	}
+
+
+	public void setCategory_code(int category_code) {
+		this.category_code = category_code;
+	}
 
 
 	public int getDepth() {
@@ -59,16 +95,6 @@ public class DepartmentProblemVO {
 
 
 
-	public Integer getProblem_code() {
-		return problem_code;
-	}
-
-
-	public void setProblem_code(Integer problem_code) {
-		this.problem_code = problem_code;
-	}
-
-
 	public String getCategory_detail() {
 		return category_detail;
 	}
@@ -102,6 +128,6 @@ public class DepartmentProblemVO {
 
 	@Override
 	public String toString() {
-		return "ProblemVO [depth=" + depth + ", problem_code=" + problem_code + ", problem_detail=" + problem_detail + ", category_detail=" + category_detail + "]";
+		return "ProblemVO [depth=" + depth + ", problem_problem_code=" + problem_problem_code + ", problem_detail=" + problem_detail + ", category_detail=" + category_detail + "]";
 	}
 }

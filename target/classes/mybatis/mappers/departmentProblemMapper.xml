@@ -13,26 +13,34 @@
 				from depProblem
 				join category
 				on category_category_code=category_code
-				where department_department_code=${department_code} <!-- department_code가 이름이 맞는지 나중에 확인 -->
+				where department_department_code=${department_department_code} <!-- department_code가 이름이 맞는지 나중에 확인 -->
 			</when>
 			<!-- 2뎁스 일 때 -->
 			<when test="depth == 2">
 				<!--  select category_category_code, category_detail, problem_problem_code,problem_detail  이거 category_category_code가 problem테이블이랑 중복되서 안되는데 굳이 필요할까? 아닌거같은데-->
 				 <!-- ,problem.depth as depth 이거 depth를 파라미터로 줄지 VO로 줄지 생각하고 쓰자-->
-				select problem_problem_code,problem_detail 
+				select distinct depProblem.category_category_code, category_detail,problem_problem_code,problem_detail 
 				from depProblem
 				join category
 				join problem 
 				on category_category_code = category_code
 				on problem_problem_code = problem_code
-				where department_department_code=${department_code} 
-				and category_code = ${category_code}
+				where department_department_code=${department_department_code} 
+				and category_code = ${category_category_code}
 			</when>
 			<!-- 3뎁스 일 때 -->
 			<when test="depth == 3">
-				select category_category_code, category_detail, problem_problem_code,problem_detail, place_place_code, place_detail <!-- ,place.depth as depth 위와동일 -->
+				select distinct depProblem.category_category_code, category_detail,depProblem.problem_problem_code,problem_detail,depProblem.place_place_code,place_detail 
 				from depProblem
-				where department_department_code=${department_code}
+				join category
+				join problem 
+				join place
+				on category_category_code = problem.category_category_code
+				on problem_problem_code = problem_code
+				on place_place_code = place_code
+				where department_department_code= ${department_department_code} 
+				and category_code = ${category_category_code}
+				and depProblem.problem_problem_code = ${problem_problem_code}
 			</when>
 		</choose>
 	</select>	
@@ -40,22 +48,37 @@
 	
 	
 	<!--  insert 쿼리 -->
-	<insert id="insertDepProblem" parameterType="DepartmentProblemVO">
+	<insert id="insertDepProblem" parameterType="HashMap">
 		<choose>
 			<!-- 1뎁스 일 때 -->
 			<when test="depth == 1">
-				insert into category(category_detail)
-				values(#{category_detail})
+				replace into depProblem(category_category_code,problem_problem_code,place_place_code,department_department_code)
+				select category_category_code,problem_code,place_code,${department_department_code}
+				from problem 
+				left outer join place
+				on problem_code = problem_problem_code
+				where category_category_code = ${category_category_code}		
 			</when>
 			<!-- 2뎁스 일 때 -->
 			<when test="depth == 2">
-				insert into problem(category_category_code,problem_detail)
-				values(#{category_code},#{problem_detail})
+				replace into depProblem(category_category_code,problem_problem_code,place_place_code,department_department_code)
+				select category_category_code,problem_code,place_code,${department_department_code}
+				from problem
+				left outer join place
+				on problem_code = problem_problem_code
+                where category_category_code = ${category_category_code}
+                and problem_code = ${problem_problem_code}
 			</when>
 			<!-- 3뎁스 일 때 -->
 			<when test="depth == 3">
-				insert into place(category_category_code,place_detail)
-				values(#{category_code},#{place_detail})
+				replace into depProblem(category_category_code,problem_problem_code,place_place_code,department_department_code)
+				select category_category_code,problem_code,place_code,${department_department_code}
+				from problem
+				left outer join place
+				on problem_code = problem_problem_code
+                where category_category_code = ${category_category_code}
+                and problem_code = ${problem_problem_code}
+                and place_code = ${place_place_code}
 			</when>
 		</choose>
 	</insert>
@@ -83,31 +106,32 @@
 			</when>
 		</choose>
 	</update>	
-	
-	<!-- delete 쿼리 (사용자가 삭제하는 문의)-->
+
+	<!-- delete 쿼리 (점 관리자가 점별 문의 중에서 삭제)-->
 	<delete id="deleteDepProblem" parameterType="HashMap">
 		<choose>
 			<!-- 1뎁스 일 때 -->
 			<when test="depth == 1">
 				delete 
-				from category
-				where category_code = #{param}
+				from depProblem
+				where category_category_code = ${param}
+				and department_department_code = ${department_department_code}
 			</when>
 			<!-- 2뎁스 일 때 -->
 			<when test="depth == 2">
 				delete 
-				from problem
-				where problem_code = ${param}
+				from depProblem
+				where problem_problem_code = ${param}
+				and department_department_code = ${department_department_code}
 			</when>
 			<!-- 3뎁스 일 때 -->
 			<when test="depth == 3">
 				delete 
-				from place
-				where place_code = #{param}
+				from depProblem
+				where place_place_code = ${param}
+				and department_department_code = ${department_department_code}
 			</when>
 		</choose>
 	</delete>
-		
-	
 	
 </mapper>

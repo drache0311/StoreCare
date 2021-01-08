@@ -20,11 +20,11 @@ $(function(){
 	});
 });
 function deleteValue(){
-	var url = "deleteProblem.do";	// Controller로 보내고자 하는 URL
+	var url = "deleteDepartmentProblem.do";	// Controller로 보내고자 하는 URL
 	var valueArr = new Array();
 	var list = $("input[name='RowCheck']");
 	var depth = $("input[name='depth']");
-
+	department_code = document.getElementById('department_code').value;
 
 	for(var i=0;i<list.length;i++){
 		if(list[i].checked){
@@ -41,12 +41,13 @@ function deleteValue(){
 			traditional : true,
 			data : {
 				valueArr : valueArr,	// 보내고자하는 data 변수 설정
-				depth	:	depth[0].value
+				depth	:	depth[0].value,
+				department_code : department_code
 			},
 			success : function(jdata){
 				if(jdata = 1){
 					alert("처리 완료");
-					location.replace("updateProblem.do?depth=1")	// 다시 수정페이지로 새로고침
+					location.replace("departmentProblem.do?depth=1")	// 다시 수정페이지로 새로고침
 				}else{
 					alert("처리 실패");
 				}
