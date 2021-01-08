@@ -41,25 +41,15 @@
           <li>문의하실 백화점을 선택하세요</li>
           <li>		
           <!-- 문의할 백화점 선택 FORM -->
-<!-- 			<form action="getProblemList.do" method="post"> -->
-				<form action="insertBoard?depth=1" method="get">
+				<form method="post">
 				<table align="center">
 					<tr>
 						<td align="center">
 						<input name="depth" type="hidden" value="1" />
-<%-- 						<select name="searchCondition">
-								<c:forEach items="${departmentList}" var="department">
-										<option value="${department.department_code}">${department.department_name}</option>
-								</c:forEach>
-						</select> --%>
+							<c:forEach items="${departmentList}" var="department">
+									<button class="btn btn-primary" type="submit" formaction="insertBoard?depth=1&department_department_code=${department.department_code }">${department.department_name}</button>
+							</c:forEach>
 						</td>
-					</tr>
-					<tr>
-					<td>
-					<button type="submit" value="department_code" >등록하기</button>
-					<!-- 내 문의내역 BUTTON  -->
-					<button type="button" value="department_code" onclick="location.href='getBoardUserList.do' ">내 문의내역</button>
-					</td>
 					</tr>
 				</table>
 			</form>

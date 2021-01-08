@@ -7,6 +7,7 @@ import javax.inject.Inject;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 
@@ -72,5 +73,14 @@ public class DepartmentController {
 		mav.setViewName("getDepartmentList"); // View 정보 저장
 		return mav;
 	}
-
+	// 층 수 조회
+	@RequestMapping(value="/selectDepartment" , method=RequestMethod.POST)
+	public ModelAndView selectDepartmentList_POST(BoardVO vo, ModelAndView mav) {
+		
+		List<DepartmentVO> depList = service.selectAll();
+		mav.addObject("departmentList", depList); // Model 정보 저장
+		
+		mav.setViewName("selectDepartment"); // View 정보 저장
+		return mav;
+	}
 }

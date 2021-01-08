@@ -72,7 +72,7 @@ public class HomeController {
 		if(vo == null){
 			session.setAttribute("role", 2);
 			session.setAttribute("login", id);
-			return "insertBoard?depth=1";
+			return "selectDepartment";
 		}else if(vo.getRole() == 0) { // role이 0 이면 총괄 관리자 페이지로
 			session.setAttribute("role", vo.getRole());
 			return "adminHead";

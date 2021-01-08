@@ -6,7 +6,10 @@
 	String department_department_code = null;
 	if(session.getAttribute("department_code") != null){
 		department_department_code = session.getAttribute("department_code").toString();
+	}else{
+		department_department_code = request.getParameter("department_department_code");
 	}
+	
 %>
 
   <!-- Navigation            ----------------------------------------------------------- -->
@@ -52,7 +55,7 @@
             </a>
           <!-- 문의 추가 페이지 -->
           <li class="nav-item">
-            <a class="nav-link" href="insertBoard?depth=1">문의 등록</a>
+            <a class="nav-link" href="selectDepartment">문의 등록</a>
           </li>
 
           </c:if>
