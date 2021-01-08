@@ -1,4 +1,4 @@
-function departmentChange(e) {
+var e = document.getElementById('changeDepartment').getAttribute("name");
     var head = ["B1", "1F", "2F", "3F", "4F", "5F", "6F", "7F", "8F", "9F", "10F", "11F", "12F", "13F", "14F"];
     var jamsil = ["B1", "1F", "2F", "3F", "4F", "5F", "6F", "7F", "8F", "9F", "10F", "11F", "12F"];
     var mia = ["B2","B1", "1F", "2F", "3F", "4F", "5F", "6F", "7F", "8F", "9F"];
@@ -37,4 +37,3 @@ function departmentChange(e) {
         opt.innerHTML = d[x];
         target.appendChild(opt);
     }   
-}

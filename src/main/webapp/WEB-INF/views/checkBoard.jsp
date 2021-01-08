@@ -75,12 +75,13 @@ out.println(${board});
 			    <input name="users_id" type="hidden" value="<%=id%>" />
 			    	<h5 class="card-header">현재 방문 백화점</h5>
 <%-- 			    	<input name="department_department_code" type="hidden" value="<%=department_code %>" /> --%>
-      				<select name="department_department_name" id="department_department_code" onchange="departmentChange(this)">
+<%--       				<select name="department_department_name" id="department_department_code" onchange="departmentChange(this)">
 						<c:forEach items="${departmentList}" var="department">
 							<option value="${department.department_name}">${department.department_name}</option>
-						</c:forEach>
-					</select>
-					<h1 class = "card-title">  ${board.department_name}  </h1>
+						</c:forEach> --%>
+
+					<h1 class = "card-title">${board.department_name}</h1>
+					<input id=changeDepartment" type="hidden" name="${board.department_name}" />
 				</div>
 				<div class ="card-body">
 			    	<h5 class="card-header">요청내용</h5>
@@ -124,7 +125,7 @@ out.println(${board});
   <script src="<%=request.getContextPath()%>/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   
 <!-- Custom JavaScript for this theme -->
-  <script src="<%=request.getContextPath()%>/resources/vendor/bootstrap/js/checkBoard.js"></script>
+  <script src="<%=request.getContextPath()%>/resources/vendor/bootstrap/js/checkBoard.js?ver=3"></script>
   
   
 </body>

@@ -15,9 +15,11 @@ import com.lotte.storecare.board.service.BoardService;
 import com.lotte.storecare.commons.Criteria;
 import com.lotte.storecare.commons.PageMaker;
 import com.lotte.storecare.department.service.DepartmentService;
+import com.lotte.storecare.departmentProblem.service.DepartmentProblemService;
 import com.lotte.storecare.problem.service.ProblemService;
 import com.lotte.storecare.user.service.UserService;
 import com.lotte.storecare.vo.BoardVO;
+import com.lotte.storecare.vo.DepartmentProblemVO;
 import com.lotte.storecare.vo.DepartmentVO;
 import com.lotte.storecare.vo.ProblemVO;
 import com.lotte.storecare.vo.UserVO;
@@ -32,25 +34,28 @@ public class BoardController {
 
 	@Inject
 	private ProblemService problemService;
+	
+	@Inject
+	private DepartmentProblemService departmentProblemService;
 
 	@Inject
 	private UserService userService;
 	
 	// 문의 등록 GET
 	@RequestMapping(value="/insertBoard", method=RequestMethod.GET)
-	public ModelAndView INSERTBOARDTEMP_GET(ModelAndView mav, ProblemVO vo) {			
-		System.out.println("depth =====> "+vo.getDepth()+ "category_code = " + vo.getCategory_code() +"problem_code = " + vo.getProblem_code());
+	public ModelAndView INSERTBOARD_GET(ModelAndView mav, DepartmentProblemVO vo) {			
+		System.out.println("depth =====> "+vo.getDepth()+ "category_code = " + vo.getCategory_code() +"problem_code = " + vo.getProblem_problem_code());
 		System.out.println("여긴 insertBoard GET");
-		mav.addObject("problemList", problemService.selectProblemListTest(vo)); // Model 정보 저장
+		mav.addObject("problemList", departmentProblemService.selectDepProblemList(vo)); // Model 정보 저장
 		mav.setViewName("insertBoard"); // View 정보 저장
 		return mav;
 	}
 	// 문의 등록 POST
 	@RequestMapping(value="/insertBoard", method=RequestMethod.POST)
-	public ModelAndView INSERTBOARDTEMP_POST(ModelAndView mav, ProblemVO vo) {			
-		System.out.println("depth =====> "+vo.getDepth()+ "category_code = " + vo.getCategory_code() +"problem_code = " + vo.getProblem_code());
-		System.out.println("여긴 insertBoard POST");
-		mav.addObject("problemList", problemService.selectProblemListTest(vo)); // Model 정보 저장
+	public ModelAndView INSERTBOARD_POST(ModelAndView mav, DepartmentProblemVO vo) {			
+		System.out.println("depth =====> "+vo.getDepth()+ "category_code = " + vo.getCategory_code() +"problem_code = " + vo.getProblem_problem_code());
+		System.out.println("여긴 insertBoard GET");
+		mav.addObject("problemList", departmentProblemService.selectDepProblemList(vo)); // Model 정보 저장
 		mav.setViewName("insertBoard"); // View 정보 저장
 		return mav;
 	}

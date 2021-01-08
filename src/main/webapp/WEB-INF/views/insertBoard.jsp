@@ -22,8 +22,7 @@
 <%
 	String depth = request.getParameter("depth");
 	String category_code = request.getParameter("category_code");
-	String problem_code = request.getParameter("problem_code");
-
+	String problem_problem_code = request.getParameter("problem_problem_code");
 	String seq = (String) request.getParameter("seq");
 	if(seq==null){
 		seq = "0";
@@ -47,7 +46,6 @@
 <!-- include nav -->
 <%@include file ="common/nav.jsp" %>
 
-<!--  여기서부터 foreach를 써서 section마다 각 점별 막대그래프 출력 -->
   <section id="about"> 
     <div class="container">
       <div class="row">
@@ -57,7 +55,7 @@
         		<c:when test="${depth eq 1}">
 	        		<c:forEach items="${problemList }" var="problem">
 	        			<h2>
-	        				<a href="insertBoard?category_code=${problem.category_code }&<%-- department_department_code=<%=department_department_code %>& --%>seq=<%=seq %>&depth=2" class="btn btn-primary">
+	        				<a href="insertBoard?category_category_code=${problem.category_category_code }&department_department_code=<%=department_department_code %>&depth=2&seq=<%=seq %>" class="btn btn-primary">
 	        					${problem.category_detail}
 	        				</a>
 	        			</h2>
@@ -70,7 +68,7 @@
 	         		<h2>${problemList[0].category_detail }</h2>
 	        		<c:forEach items="${problemList }" var="problem">
 	        			<h2>
-		        			<a href="insertBoard?category_code=${problem.category_code }&problem_code=${problem.problem_code }<%-- &department_department_code=<%=department_department_code %> --%>&seq=<%=seq %>&depth=3" class="btn btn-primary">
+		        			<a href="insertBoard?category_category_code=${problem.category_category_code }&problem_problem_code=${problem.problem_problem_code }&department_department_code=<%=department_department_code %>&depth=3&seq=<%=seq %>" class="btn btn-primary">
 		        				${problem.problem_detail}
 		        			</a>
 	        			</h2>
@@ -84,7 +82,7 @@
 	         		<p>${problemList[0].problem_detail }</p>
 		        		<c:forEach items="${problemList }" var="problem">
 									<h2>
-										<a href="checkBoard.do?problem_category_code=${problem.category_code }&problem_problem_code=${problem.problem_code }&problem_detail=${problem.problem_detail }&category_detail=${problem.category_detail }&place_place_code=${problem.place_code }&place_place_detail=${problem.place_detail }&<%-- department_department_code=${department_department_code }& --%>seq=<%=seq %>&flag=<%=flag %>&depth=3" class="btn btn-primary">
+										<a href="checkBoard.do?problem_category_code=${problem.category_category_code }&problem_problem_code=${problem.problem_problem_code }&problem_detail=${problem.problem_detail }&category_detail=${problem.category_detail }&place_place_code=${problem.place_place_code }&place_place_detail=${problem.place_detail }&department_department_code=<%=department_department_code %>&seq=<%=seq %>&flag=<%=flag %>&depth=3" class="btn btn-primary">
 											${problem.place_detail}
 										</a>
 									</h2>	
