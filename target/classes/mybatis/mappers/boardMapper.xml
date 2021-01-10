@@ -33,27 +33,51 @@
 	<!-- select 쿼리 (각 점별 문의 내역) -->
 	<select id="selectBoardList" parameterType="com.lotte.storecare.commons.Criteria" resultType="BoardVO">
 
-		SELECT seq,datetime,clearTime,category_detail,problem_detail,flag,department_code,department_name,floor,users_id ,place_detail
-		FROM board 
-		join problem 
-		join category 
-		join department 
-		join place
-		ON board.problem_problem_code = problem.problem_code 
-		and problem.category_category_code=category.category_code 
-		and board.problem_category_code=category.category_code 
-		and board.department_department_code=department.department_code
-		and board.place_place_code=place.place_code 
-		and board.department_department_code=#{department_code}  <!-- board.department_department_code와 #{department_code} -> 1,2,3 등과 비교해서 각 점 선택 -->
-
+		<choose>
+			<when test="department_code == 0">
+				SELECT seq,datetime,clearTime,category_detail,problem_detail,flag,department_code,department_name,floor,users_id ,place_detail
+				FROM board 
+				join problem 
+				join category 
+				join department 
+				join place
+				ON board.problem_problem_code = problem.problem_code 
+				and problem.category_category_code=category.category_code 
+				and board.problem_category_code=category.category_code 
+				and board.department_department_code=department.department_code
+				and board.place_place_code=place.place_code 
+			</when>
+			<otherwise>
+				SELECT seq,datetime,clearTime,category_detail,problem_detail,flag,department_code,department_name,floor,users_id ,place_detail
+				FROM board 
+				join problem 
+				join category 
+				join department 
+				join place
+				ON board.problem_problem_code = problem.problem_code 
+				and problem.category_category_code=category.category_code 
+				and board.problem_category_code=category.category_code 
+				and board.department_department_code=department.department_code
+				and board.place_place_code=place.place_code 
+				and board.department_department_code=#{department_code}  <!-- board.department_department_code와 #{department_code} -> 1,2,3 등과 비교해서 각 점 선택 -->
+			</otherwise>
+		</choose>
 		<include refid="searchPaging" />
 	</select>
 	
 	<!-- 전체 문의 개수 -->
-	<select id="gettotalcount" resultType="int">
-		select count(seq)
-		from board
-		where seq > 0;
+	<select id="gettotalcount" parameterType="com.lotte.storecare.commons.Criteria" resultType="int">
+		<choose>
+		<when test="department_code == 0">
+			select count(seq)
+			from board
+		</when>
+		<otherwise>
+			select count(seq)
+			from board
+			where board.department_department_code=#{department_code}
+		</otherwise>
+		</choose>
 	</select>
 
 	<!-- update 쿼리 (사용자가 문의 수정)-->	

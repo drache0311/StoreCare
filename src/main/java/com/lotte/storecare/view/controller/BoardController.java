@@ -133,19 +133,35 @@ public class BoardController {
 	@RequestMapping("/getBoardList.do")
 	public ModelAndView getBoardList_GET(ModelAndView mav,  HttpSession session, HttpServletRequest request,Criteria cri) {
 		
-			String department_code = session.getAttribute("department_code").toString();
+
+
 			session.setAttribute("searchCondition",request.getParameter("searchCondition"));
 			session.setAttribute("startDate",request.getParameter("startDate"));
 			session.setAttribute("endDate",request.getParameter("endDate"));
+			String role="";
+			String department_code ="0";
 			String searchCondition = "all";
 			String startDate = "";
 			String endDate = "";
+			// searchDepartment 설정
+			if(session.getAttribute("role").toString().equals("0") && request.getParameter("searchDepartment") == null && session.getAttribute("department_code")==null) {
+				// 총관리자이고 처음 들어왔을 때
+				System.out.println("처음들어왔을때");
+				session.setAttribute("department_code", 0);
+			}else if(session.getAttribute("role").toString().equals("0") && request.getParameter("searchDepartment") != null){
+				session.setAttribute("department_code", request.getParameter("searchDepartment"));
+			}
+			// searchCondition 설정
 			if(session.getAttribute("searchCondition") != null) {
 				searchCondition = session.getAttribute("searchCondition").toString();
+				department_code = session.getAttribute("department_code").toString();
 				startDate = session.getAttribute("startDate").toString();
 				endDate = session.getAttribute("endDate").toString();
 			}
-
+			// role 설정 - 총관리자이면 role이 null이 아니고 0임
+			if(session.getAttribute("role") != null) {
+				role = session.getAttribute("role").toString();
+			}
 			// 날짜선택 안할 때 "" 빈값으로 넘어오기 때문에 null로 변경해줌
 			if(startDate == "") {
 				startDate = null;
@@ -192,8 +208,13 @@ public class BoardController {
 	        //모델에 추가
 			mav.addObject("pageMaker", pageMaker);
 			
-			mav.setViewName("admin"); // View 정보 저장
-			return mav;
+			if(role.equals("0")) {	// 총관리자
+				mav.setViewName("selectDepartment"); // View 정보 저장
+				return mav;
+			}else {	// 각 점 관리자
+				mav.setViewName("admin"); // View 정보 저장
+				return mav;
+			}
 	}
 	
 

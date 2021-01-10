@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.annotation.Resource;
 import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -75,11 +76,15 @@ public class DepartmentController {
 	}
 	// 문의 등록 전 백화점 조회
 	@RequestMapping("/selectDepartment")
-	public ModelAndView selectDepartmentList_POST(BoardVO vo, ModelAndView mav) {
+	public ModelAndView selectDepartmentList_POST(BoardVO vo, ModelAndView mav,HttpSession session) {
 		
 		List<DepartmentVO> depList = service.selectAll();
 		mav.addObject("departmentList", depList); // Model 정보 저장
 		
+		if(session.getAttribute("role").toString().equals("0")) {
+			mav.setViewName("adminHead"); // View 정보 저장
+			return mav;
+		}
 		mav.setViewName("selectDepartment"); // View 정보 저장
 		return mav;
 	}
