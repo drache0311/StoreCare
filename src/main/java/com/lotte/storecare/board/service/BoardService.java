@@ -8,7 +8,7 @@ import com.lotte.storecare.vo.BoardVO;
 
 public interface BoardService {
 	
-	public List<BoardVO> selectUserBoardList(HashMap<String,String> param);
+	public List<BoardVO> selectUserBoardList(Criteria cri);
 	
 	public List<BoardVO> selectBoardList(HashMap<String,String> param);
 

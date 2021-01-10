@@ -21,7 +21,8 @@ public interface BoardDAO {
 	
 
 	// 사용자별 문의내역 조회
-	public List<BoardVO> selectUserBoardList(HashMap<String,String> param);
+	public List<BoardVO> selectUserBoardList(Criteria cri);
+	
 	
 	// ?
 	public List<BoardVO> selectBoardList(HashMap<String,String> param);
