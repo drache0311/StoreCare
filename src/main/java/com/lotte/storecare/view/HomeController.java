@@ -75,7 +75,7 @@ public class HomeController {
 			return "selectDepartment";
 		}else if(vo.getRole() == 0) { // role이 0 이면 총괄 관리자 페이지로
 			session.setAttribute("role", vo.getRole());
-			return "adminHead";
+			return "getBoardList.do";
 		}else{ // role이 1이면 각 점 관리자 페이지로
 			 session.setAttribute("role", vo.getRole());
 			 session.setAttribute("department_code", vo.getDepartment_code());

@@ -23,7 +23,7 @@
         <ul class="navbar-nav ml-auto">
           <li class="nav-item active">
           <c:if test="${role eq '0'}">
-            <a class="nav-link" href="adminHead">Home
+            <a class="nav-link" href="getBoardList.do">Home
               <span class="sr-only">(current)</span>
             </a>
           <!-- 백화점 및 관리자를 배정,추가,수정,삭제 하는 페이지 -->
