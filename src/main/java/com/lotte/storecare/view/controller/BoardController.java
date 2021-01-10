@@ -143,6 +143,9 @@ public class BoardController {
 			String searchCondition = "all";
 			String startDate = "";
 			String endDate = "";
+			
+			
+			
 			// searchDepartment 설정
 			if(session.getAttribute("role").toString().equals("0") && request.getParameter("searchDepartment") == null && session.getAttribute("department_code")==null) {
 				// 총관리자이고 처음 들어왔을 때
@@ -150,6 +153,8 @@ public class BoardController {
 				session.setAttribute("department_code", 0);
 			}else if(session.getAttribute("role").toString().equals("0") && request.getParameter("searchDepartment") != null){
 				session.setAttribute("department_code", request.getParameter("searchDepartment"));
+			}else if(session.getAttribute("role").toString().equals("1")) {
+				department_code = session.getAttribute("department_code").toString();
 			}
 			// searchCondition 설정
 			if(session.getAttribute("searchCondition") != null) {

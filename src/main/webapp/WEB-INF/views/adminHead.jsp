@@ -99,7 +99,7 @@
 						</c:forEach>
 						</tbody>
 					</table>
-					<!-- 페이지 번호 -->	
+					<!-- (페이지번호) -->
 					<div class="text-center">
 						<nav aria-label="pagination">
 							<ul class="pagination">

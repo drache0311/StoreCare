@@ -108,7 +108,7 @@
 							
 								<!-- prev 버튼 -->
 								<li id="page-prev">
-									<a href="getBoardList.do${pageMaker.makeQuery(pageMaker.startPage-1)}&searchCondition=<%=searchCondition %>&startDate=<%=startDate %>&endDate=<%=endDate %>" aria-label="Prev">
+									<a href="getBoardList.do${pageMaker.makeQuery(pageMaker.startPage)}&searchCondition=<%=searchCondition %>&startDate=<%=startDate %>&endDate=<%=endDate %>" aria-label="Prev">
 										<span aria-hidden="true">«</span>
 									</a>
 								</li>
@@ -125,7 +125,7 @@
 								
 								<!-- next 버튼 -->
 								<li id="page-next">
-								    <a href="getBoardList.do${pageMaker.makeQuery(pageMaker.endPage + 1)}&searchCondition=<%=searchCondition %>&startDate=<%=startDate %>&endDate=<%=endDate %>" aria-label="Next">
+								    <a href="getBoardList.do${pageMaker.makeQuery(pageMaker.endPage)}&searchCondition=<%=searchCondition %>&startDate=<%=startDate %>&endDate=<%=endDate %>" aria-label="Next">
 								    	<span aria-hidden="true">»</span>
 								    </a>
 								</li>
