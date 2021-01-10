@@ -5,6 +5,18 @@
 
 
 <!DOCTYPE html>
+<%
+	String searchCondition="all";
+	String startDate = "";
+	String endDate = "";
+
+	if(session.getAttribute("searchCondition") != null){
+		searchCondition = session.getAttribute("searchCondition").toString();
+		startDate = session.getAttribute("startDate").toString();
+		endDate = session.getAttribute("endDate").toString();	
+	}
+	
+%>
 <head>
 
 	<meta charset="utf-8">
@@ -36,7 +48,7 @@
 
 <!--  검색 FORM -->
 <div align="center">
-	<form name="searchUserBoard"  method="post" action="getBoardUserList.do">
+	<form name="searchUserBoard"  autocomplete="off" method="post" action="getBoardUserList.do">
 		<!-- 처리현황별 검색 SELECT -->
 		<select name="searchCondition">
 			<option value="all">전체</option>
@@ -67,11 +79,17 @@
 					</c:if>
 					<h1 class = "card-title"> ${board.category_detail}</h1>
 					<div class = "card-subtitle text-muted mb-2">
-					  ${board.problem_detail}
+						${board.problem_detail}
 					</div>
-					<div class ="card-text mb-2">	${board.department_name } ${board.floor }   </div>
+					<div class ="card-text mb-2">
+						${board.department_name } ${board.floor }
+					</div>
 					<c:if test="${board.flag eq 1 }">
-						<div class ="card-text mb-2"><span class= "text-muted">   처리 완료	</span></div>
+						<div class ="card-text mb-2">
+							<span class= "text-muted">
+								처리 완료
+							</span>
+						</div>
 					</c:if>
 					<c:if test="${board.flag eq 0 }">
 						<div class ="card-text mb-2"><span class= "text-muted">   처리 중	</span></div>
@@ -82,6 +100,41 @@
 		</c:forEach>
    			</div>
 	</div>
+	
+						<!-- 페이지 번호 -->	
+					<div class="text-center">
+						<nav aria-label="pagination">
+							<ul class="pagination">
+							
+								<!-- prev 버튼 -->
+								<li id="page-prev">
+									<a href="getBoardUserList.do${pageMaker.makeQuery(pageMaker.startPage)}&searchCondition=<%=searchCondition %>&startDate=<%=startDate %>&endDate=<%=endDate %>" aria-label="Prev">
+										<span aria-hidden="true">«</span>
+									</a>
+								</li>
+								
+								<!-- 페이지 번호 (시작 페이지 번호부터 끝 페이지 번호까지) -->
+								<c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
+								    <li id="page${idx}">
+									    <a href="getBoardUserList.do${pageMaker.makeQuery(idx)}&searchCondition=<%=searchCondition %>&startDate=<%=startDate %>&endDate=<%=endDate %>">
+									    	<!-- 시각 장애인을 위한 추가 -->
+									      	<span>${idx}<span class="sr-only">(current)</span></span>
+									    </a>
+								    </li>
+								</c:forEach>
+								
+								<!-- next 버튼 -->
+								<li id="page-next">
+								    <a href="getBoardUserList.do${pageMaker.makeQuery(pageMaker.endPage)}&searchCondition=<%=searchCondition %>&startDate=<%=startDate %>&endDate=<%=endDate %>" aria-label="Next">
+								    	<span aria-hidden="true">»</span>
+								    </a>
+								</li>
+								
+							</ul>
+						</nav>
+					</div>
+	
+	
 </c:when>
 <c:otherwise>
 <div class = "container-fluid" >
@@ -104,6 +157,7 @@
   
   <!-- Custom JavaScript for this theme -->
   <script src="<%=request.getContextPath()%>/resources/vendor/bootstrap/js/datepicker.js"></script>
+  <script src="<%=request.getContextPath()%>/resources/vendor/bootstrap/js/board-paging.js"></script>
 
 </body>
 

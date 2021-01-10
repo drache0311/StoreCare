@@ -48,9 +48,9 @@ public class BoardServiceImpl implements BoardService {
 
 
 	@Override
-	public List<BoardVO> selectUserBoardList(HashMap<String, String> param) {
+	public List<BoardVO> selectUserBoardList(Criteria cri) {
 		// TODO Auto-generated method stub
-		return boardDAO.selectUserBoardList(param);
+		return boardDAO.selectUserBoardList(cri);
 	}
 	
 	@Override

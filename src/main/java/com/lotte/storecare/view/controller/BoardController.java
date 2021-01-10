@@ -103,11 +103,24 @@ public class BoardController {
 	
 	// 유저 문의내역 검색 완료
 	@RequestMapping("/getBoardUserList.do")
-	public ModelAndView getBoardUserList(ModelAndView mav, HttpSession session, HttpServletRequest request) {
+	public ModelAndView getBoardUserList(ModelAndView mav, HttpSession session, HttpServletRequest request, Criteria cri) {
+		
+		session.setAttribute("searchCondition",request.getParameter("searchCondition"));
+		session.setAttribute("startDate",request.getParameter("startDate"));
+		session.setAttribute("endDate",request.getParameter("endDate"));
+		
 		String id = session.getAttribute("login").toString();
-		String searchCondition = request.getParameter("searchCondition");
-		String startDate = request.getParameter("startDate");
-		String endDate = request.getParameter("endDate");
+		String searchCondition = "all";
+		String startDate = "";
+		String endDate = "";
+		
+		
+		// searchCondition 설정
+		if(session.getAttribute("searchCondition") != null) {
+			searchCondition = session.getAttribute("searchCondition").toString();
+			startDate = session.getAttribute("startDate").toString();
+			endDate = session.getAttribute("endDate").toString();
+		}
 		
 		// 날짜선택 안할 때 "" 빈값으로 넘어오기 때문에 null로 변경해줌
 		if(startDate == "") {
@@ -117,14 +130,38 @@ public class BoardController {
 			endDate = null;
 		}
 		
-		HashMap<String,String> param = new HashMap<String,String>();
-		param.put("searchCondition", searchCondition);
-		param.put("startDate", startDate);
-		param.put("endDate", endDate);
-		param.put("id", id);
+		//
+		//
+		//
+		cri.setId(id);
+		cri.setEndDate(endDate);
+		cri.setSearchCondition(searchCondition);
+		cri.setStartDate(startDate);
+		cri.setDepartment_code("0");
+		System.out.println("ddddddddddddddddddddd "+cri.getPage());
+        //현재 페이지에 해당하는 게시물을 조회해 옴 
+		List<BoardVO> vo = service.selectUserBoardList(cri);
 		
-		List<BoardVO> vo = service.selectUserBoardList(param);
-		mav.addObject("boardUserList", vo); // Model 정보 저장
+		System.out.println(vo);
+		System.out.println(cri.getPageStart());
+		System.out.println("StartDate = "+cri.getStartDate() + "EndDate = "+cri.getEndDate() + "\n");
+		
+		//모델에 추가
+		mav.addObject("boardUserList",vo); // boardList -> list check
+        //PageMaker 객체 생성
+		PageMaker pageMaker = new PageMaker(cri);
+        //전체 게시물 수를 구함
+		int totalCount = service.getTotalCount(cri);
+        //pageMaker로 전달 -> pageMaker는 startPage, endPage, prev, next를 계산함
+		pageMaker.setTotalCount(totalCount);
+        //모델에 추가
+		mav.addObject("pageMaker", pageMaker);
+
+		
+		//
+		//
+		//
+
 		mav.setViewName("getBoardUserList"); // View 정보 저장
 		return mav;
 	}
@@ -194,13 +231,14 @@ public class BoardController {
 			cri.setEndDate(endDate);
 			cri.setSearchCondition(searchCondition);
 			cri.setStartDate(startDate);
+			cri.setId(null); 	// 총/관리자 컨트롤러여서 id는 null로 해준다.
 			System.out.println("ddddddddddddddddddddd "+cri.getPage());
 	        //현재 페이지에 해당하는 게시물을 조회해 옴 
 			List<BoardVO> vo = service.selectBoardList(cri);
 			
 			System.out.println(vo);
 			System.out.println(cri.getPageStart());
-			System.out.println("StartDate = "+cri.getStartDate() + "EndDate = "+cri.getEndDate() + "\n");
+			System.out.println("cri.id = "+cri.getId() + "cri.dep_code = "+cri.getDepartment_code() + "\n");
 			
 			//모델에 추가
 			mav.addObject("boardList",vo); // boardList -> list check

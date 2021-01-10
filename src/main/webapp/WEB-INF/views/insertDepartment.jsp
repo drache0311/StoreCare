@@ -44,7 +44,7 @@ String id = request.getParameter("id");
 <!-- 앞에서 POST로 던져주고 진짜 null로 비교하는식으로 변경  -->
 <!-- GET은 버리고 POST로 다 변경하장  -->
 
-<form method="get">
+<form method="get" autocomplete="off">
  	<div class = "container-fluid" >
 			<div class = "card mt-4">
 			    <div class ="card-body">

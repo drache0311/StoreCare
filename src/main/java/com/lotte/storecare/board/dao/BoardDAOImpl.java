@@ -52,9 +52,9 @@ public class BoardDAOImpl implements BoardDAO {
 
 	// 유저별 문의 내역 select
 	@Override
-	public List<BoardVO> selectUserBoardList(HashMap<String,String> param) {
+	public List<BoardVO> selectUserBoardList(Criteria cri) {
 		// TODO Auto-generated method stub
-		return session.selectList("boardDB.selectUserBoardList", param);
+		return session.selectList("boardDB.selectUserBoardList", cri);
 	}
 
 //	// 각 점별 문의 내역 select

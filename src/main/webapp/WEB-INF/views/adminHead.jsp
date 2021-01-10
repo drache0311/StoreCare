@@ -54,7 +54,7 @@
 					
 					<!--  검색 FORM -->
 					<div align="center">
-						<form name="searchDepBoard"  method="post" action="getBoardList.do">
+						<form name="searchDepBoard"  autocomplete="off" method="post" action="getBoardList.do">
 							<!-- 백화점별 검색 SELECT -->
 							<select name="searchDepartment">
 								<option class="btn btn-primary" value="0">전체</option>
