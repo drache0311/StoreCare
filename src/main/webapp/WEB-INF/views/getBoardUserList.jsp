@@ -36,7 +36,7 @@
 
 <!--  검색 FORM -->
 <div align="center">
-	<form name="searchUserBoard"  method="post" action="getBoardUserList.do">
+	<form name="searchUserBoard"  autocomplete="off" method="post" action="getBoardUserList.do">
 		<!-- 처리현황별 검색 SELECT -->
 		<select name="searchCondition">
 			<option value="all">전체</option>

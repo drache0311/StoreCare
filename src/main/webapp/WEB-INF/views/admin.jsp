@@ -60,7 +60,7 @@
 					
 					<!--  검색 FORM -->
 					<div align="center">
-						<form name="searchDepBoard"  method="post" action="getBoardList.do">
+						<form name="searchDepBoard"  autocomplete="off" method="post" action="getBoardList.do">
 							<!-- 처리현황별 검색 SELECT -->
 							<select name="searchCondition">
 								<option value="all">전체</option>
