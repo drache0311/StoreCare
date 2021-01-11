@@ -63,7 +63,8 @@ String id = request.getParameter("id");
 			<button formaction="deleteDepartment.do" class="btn btn-primary" type="submit" >삭제하기</button>
 	</div>
 </form>
-  
+	<!-- include prevButton -->
+	<%@include file ="common/prevButton.jsp" %>
   
   
   

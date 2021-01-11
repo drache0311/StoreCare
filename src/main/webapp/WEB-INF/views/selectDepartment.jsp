@@ -48,6 +48,8 @@
 						<input name="depth" type="hidden" value="1" />
 							<c:forEach items="${departmentList}" var="department">
 									<button class="btn btn-primary" type="submit" formaction="insertBoard?depth=1&department_department_code=${department.department_code }">${department.department_name}</button>
+									<br/>
+									<br/>
 							</c:forEach>
 						</td>
 					</tr>

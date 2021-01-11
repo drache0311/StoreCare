@@ -110,6 +110,8 @@
         	</form>
         	<input type="button" value="삭제하기" class="btn btn-primary" onclick="deleteValue();">
 			<input type="button" value="수정하기" class="btn btn-primary" onclick="fixValue();">
+			<!-- include prevButton -->
+			<%@include file ="common/prevButton.jsp" %>
          <!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
         </div>
       </div>

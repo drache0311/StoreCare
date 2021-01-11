@@ -115,7 +115,8 @@ Timestamp now = new Timestamp(System.currentTimeMillis());
 			</c:choose>
 	</div>
 		</form>
-  
+         	<!-- include prevButton -->
+			<%@include file ="common/prevButton.jsp" %>
   
   
   

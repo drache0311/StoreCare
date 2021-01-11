@@ -14,10 +14,10 @@
 	
 	<!-- select 쿼리 (유저별 문의 내역) -->
 	<select id="selectUserBoardList" parameterType="com.lotte.storecare.commons.Criteria" resultType="BoardVO">
-		select seq,place_detail,place_code,problem_code,category_code,clearTime,datetime,department_name,floor,flag,department_code,problem_detail,category_detail
+		select seq,place_detail,place_code,problem_code,category_code,clearTime,datetime,department_name,floor,flag,department_department_code,problem_detail,category_detail
 		from place
 		right outer join
-			(select seq,place_place_code,category_code,problem_code,clearTime,datetime,department_name,floor,flag,department_code,problem_detail,category_detail
+			(select seq,place_place_code,category_code,problem_code,clearTime,datetime,department_name,floor,flag,department_department_code,problem_detail,category_detail
 			from board
 			join problem
 			join category
@@ -39,10 +39,10 @@
 
 		<choose>
 			<when test="department_code == 0">
-				select seq,place_detail,place_code,problem_code,category_code,clearTime,datetime,department_name,floor,flag,department_code,problem_detail,category_detail
+				select seq,place_detail,place_code,problem_code,category_code,clearTime,datetime,department_name,floor,flag,department_department_code,problem_detail,category_detail
 				from place
 				right outer join
-					(select seq,place_place_code,category_code,problem_code,clearTime,datetime,department_name,floor,flag,department_code,problem_detail,category_detail
+					(select seq,place_place_code,category_code,problem_code,clearTime,datetime,department_name,floor,flag,department_department_code,problem_detail,category_detail
 					from board
 					join problem
 					join category
@@ -54,10 +54,10 @@
 			    on A.place_place_code=place.place_code 
 			</when>
 			<otherwise>
-				select seq,place_detail,place_code,problem_code,category_code,clearTime,datetime,department_name,floor,flag,department_code,problem_detail,category_detail
+				select seq,place_detail,place_code,problem_code,category_code,clearTime,datetime,department_name,floor,flag,department_department_code,problem_detail,category_detail
 				from place
 				right outer join
-					(select seq,place_place_code,category_code,problem_code,clearTime,datetime,department_name,floor,flag,department_code,problem_detail,category_detail
+					(select seq,place_place_code,category_code,problem_code,clearTime,datetime,department_name,floor,flag,department_department_code,problem_detail,category_detail
 					from board
 					join problem
 					join category

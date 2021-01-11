@@ -104,6 +104,8 @@
         	<!-- 삭제 버튼 -->
         	</form>
         	<input type="button" value="내 점에서 삭제하기" class="btn btn-primary" onclick="deleteValue();">
+        	<!-- include prevButton -->
+			<%@include file ="common/prevButton.jsp" %>
          <!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
         </div>
       </div>

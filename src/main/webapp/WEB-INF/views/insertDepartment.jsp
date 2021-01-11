@@ -59,7 +59,8 @@ String id = request.getParameter("id");
 			<button formaction="insertDepartment.do" class="btn btn-primary" type="submit" >추가하기</button>
 	</div>
 </form>
-  
+         	<!-- include prevButton -->
+			<%@include file ="common/prevButton.jsp" %>
   
   
   
