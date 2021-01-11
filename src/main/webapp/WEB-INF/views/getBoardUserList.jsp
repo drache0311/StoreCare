@@ -79,7 +79,7 @@
 					</c:if>
 					<h1 class = "card-title"> ${board.category_detail}</h1>
 					<div class = "card-subtitle text-muted mb-2">
-						${board.problem_detail}
+						${board.problem_detail}<br/>${board.place_detail} 
 					</div>
 					<div class ="card-text mb-2">
 						${board.department_name } ${board.floor }

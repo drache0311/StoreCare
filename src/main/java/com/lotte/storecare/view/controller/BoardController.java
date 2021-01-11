@@ -62,7 +62,7 @@ public class BoardController {
 	// 문의 등록  DO
 	@RequestMapping(value="/insertBoard.do", method=RequestMethod.GET)
 	public String INSERTBOARDTEMPDO_GET(BoardVO vo) {
-			
+		System.out.println("zzzzzzzzzzzzzzzzzzzz"+vo.getPlace_place_code());
 	
 		service.insertBoard(vo);
 

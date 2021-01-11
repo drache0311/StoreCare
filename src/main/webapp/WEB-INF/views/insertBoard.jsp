@@ -21,8 +21,10 @@
 
 <%
 	String depth = request.getParameter("depth");
-	String category_code = request.getParameter("category_code");
-	String problem_problem_code = request.getParameter("problem_problem_code");
+	String category_code = request.getParameter("category_category_code");
+	String category_detail = request.getParameter("category_detail");
+	String problem_code = request.getParameter("problem_problem_code");
+	String problem_detail = request.getParameter("problem_detail");
 	String seq = (String) request.getParameter("seq");
 	if(seq==null){
 		seq = "0";
@@ -68,7 +70,7 @@
 	         		<h2>${problemList[0].category_detail }</h2>
 	        		<c:forEach items="${problemList }" var="problem">
 	        			<h2>
-		        			<a href="insertBoard?category_category_code=${problem.category_category_code }&problem_problem_code=${problem.problem_problem_code }&department_department_code=<%=department_department_code %>&depth=3&seq=<%=seq %>" class="btn btn-primary">
+		        			<a href="insertBoard?category_category_code=${problem.category_category_code }&category_detail=${problem.category_detail }&problem_problem_code=${problem.problem_problem_code }&problem_detail=${problem.problem_detail }&department_department_code=<%=department_department_code %>&depth=3&seq=<%=seq %>" class="btn btn-primary">
 		        				${problem.problem_detail}
 		        			</a>
 	        			</h2>
@@ -78,6 +80,11 @@
 	        		</c:forEach>
         		</c:when> 
          		<c:when test="${depth eq 3}">
+	       			<c:if test="${problemList eq '[]' }">
+	       			<%
+	       				response.sendRedirect("checkBoard.do?problem_category_code="+category_code+"&problem_problem_code="+problem_code+"&problem_detail="+problem_detail+"&category_detail="+category_detail+"&department_department_code="+department_department_code+"&seq="+seq+"&flag="+flag+"&depth=3");
+         			%>
+         			</c:if>
 	         		<h2>${problemList[0].category_detail } </h2>
 	         		<p>${problemList[0].problem_detail }</p>
 		        		<c:forEach items="${problemList }" var="problem">

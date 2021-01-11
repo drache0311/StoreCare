@@ -129,7 +129,7 @@ function insertValue(){
 			success : function(jdata){
 				if(jdata = 1){
 					alert("처리 완료");
-					location.replace("updateProblem.do?depth=1")	// 다시 수정페이지로 새로고침
+					location.replace("sendProblem.do?depth=1")	// 다시 수정페이지로 새로고침
 				}else{
 					alert("처리 실패");
 				}
