@@ -89,7 +89,7 @@
 	        		<c:forEach items="${problemList }" var="problem">
 	        			<h2>
 	        			<!-- 문의 삭제 체크박스 -->
-	        				<input name="RowCheck" type="checkbox" value="${problem.place_code }"/>
+	        				<input name="RowCheck" type="checkbox" value="${problem.place_place_code }"/>
 		        			<a href="#" class="btn btn-primary">
 		        				${problem.place_detail}
 		        			</a>
