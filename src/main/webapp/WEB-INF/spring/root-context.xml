@@ -17,7 +17,7 @@
 	<bean id="dataSource"
 		class="org.apache.commons.dbcp2.BasicDataSource">
 		<property name="driverClassName" value="com.mysql.cj.jdbc.Driver" />
-		<property name="url" value="jdbc:mysql://52.79.251.156/storecare" />
+		<property name="url" value="jdbc:mysql://13.209.87.67/storecare" />
 		<property name="username" value="root" />
 		<property name="password" value="Dlwlrma0516*" />
 	</bean>
