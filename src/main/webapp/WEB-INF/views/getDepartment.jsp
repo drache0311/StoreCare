@@ -59,7 +59,7 @@ String id = request.getParameter("id");
 					<span class='text-primary'> ${id } </span>
 				</div>
    			</div>
-			<button formaction="updateDepartment.do" class="btn btn-primary" type="submit" >수정하기</button>
+<!-- 		<button formaction="updateDepartment.do" class="btn btn-primary" type="submit" >수정하기</button>	-->
 			<button formaction="deleteDepartment.do" class="btn btn-primary" type="submit" >삭제하기</button>
 	</div>
 </form>
