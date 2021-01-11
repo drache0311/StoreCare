@@ -37,10 +37,7 @@
 <!-- 전체 점별 막대그래프 -->
   <header class="bg-primary text-white">
     <div class="container text-center">
-      <h1>전체 점별 막대그래프</h1>
-      <p class="lead">전체 점별 막대그래프</p>
-        
-  <div id="chart_div"></div>
+	      <p>색깔 비교용</p>
     </div>
   </header>
 
@@ -150,7 +147,6 @@
 	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <!-- Custom JavaScript for this theme -->
 	<script src="<%=request.getContextPath()%>/resources/vendor/bootstrap/js/scrolling-nav.js"></script>
-	<script src="<%=request.getContextPath()%>/resources/vendor/bootstrap/js/chart-all-dep.js?ver=4"></script>
 	<script src="<%=request.getContextPath()%>/resources/vendor/bootstrap/js/datepicker.js"></script>
 	<script src="<%=request.getContextPath()%>/resources/vendor/bootstrap/js/board-paging.js"></script>
 <!-- SCRIPT ---------------------------------------------------------- -->
