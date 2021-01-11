@@ -56,7 +56,7 @@
 			<option value="done">처리완료</option>
 		</select>
 		<br/><br/> 
-		From: <input type="text" id="startDate" name="startDate" placeholder="시작날짜" >&nbsp;
+		From: <input type="text" id="startDate" name="startDate" placeholder="시작날짜" ><br/>
 		
 		To: <input type="text" id="endDate" name="endDate"  placeholder="끝날짜" >
 		
@@ -71,11 +71,11 @@
 <c:when test="${boardUserList ne '[]'}">
  	<div class = "container-fluid" >
 		<c:forEach items="${boardUserList}" var="board">
-			<div class = "card mt-4">
+			<div class = "card mt-2">
 			    <div class ="card-body">
 					<span class='text-primary'> 문의시간 ${board.datetime}</span>
 					<c:if test="${board.flag eq 1 }">
-						<span class='text-primary'> 처리시간 ${board.clearTime}</span>
+						<br/><span class='text-primary'> 처리시간 ${board.clearTime}</span>
 					</c:if>
 					<h1 class = "card-title"> ${board.category_detail}</h1>
 					<div class = "card-subtitle text-muted mb-2">
@@ -97,42 +97,39 @@
 					</c:if>
 					<a href="deleteUserBoard.do?seq=${board.seq}" class="btn btn-primary">삭제하기</a>
 				</div>
+				</div>
 		</c:forEach>
-   			</div>
+   			
 	</div>
-	
+
 						<!-- 페이지 번호 -->	
-					<div class="text-center">
-						<nav aria-label="pagination">
-							<ul class="pagination">
-							
+								<div class="btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups" style="margin-left: 35%">
+								  <div class="btn-group me-2" role="group" aria-label="First group">
 								<!-- prev 버튼 -->
-								<li id="page-prev">
-									<a href="getBoardUserList.do${pageMaker.makeQuery(pageMaker.startPage)}&searchCondition=<%=searchCondition %>&startDate=<%=startDate %>&endDate=<%=endDate %>" aria-label="Prev">
+								<div id="page-prev">
+									<a class="btn btn-outline-secondary" href="getBoardUserList.do${pageMaker.makeQuery(pageMaker.startPage)}&searchCondition=<%=searchCondition %>&startDate=<%=startDate %>&endDate=<%=endDate %>" aria-label="Prev">
 										<span aria-hidden="true">«</span>
 									</a>
-								</li>
+								</div>
 								
 								<!-- 페이지 번호 (시작 페이지 번호부터 끝 페이지 번호까지) -->
 								<c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
-								    <li id="page${idx}">
-									    <a href="getBoardUserList.do${pageMaker.makeQuery(idx)}&searchCondition=<%=searchCondition %>&startDate=<%=startDate %>&endDate=<%=endDate %>">
+								    <div id="page${idx}">
+									    <a class="btn btn-outline-secondary" href="getBoardUserList.do${pageMaker.makeQuery(idx)}&searchCondition=<%=searchCondition %>&startDate=<%=startDate %>&endDate=<%=endDate %>">
 									    	<!-- 시각 장애인을 위한 추가 -->
 									      	<span>${idx}<span class="sr-only">(current)</span></span>
 									    </a>
-								    </li>
+								    </div>
 								</c:forEach>
 								
 								<!-- next 버튼 -->
-								<li id="page-next">
-								    <a href="getBoardUserList.do${pageMaker.makeQuery(pageMaker.endPage)}&searchCondition=<%=searchCondition %>&startDate=<%=startDate %>&endDate=<%=endDate %>" aria-label="Next">
+								<div id="page-next">
+								    <a class="btn btn-outline-secondary" href="getBoardUserList.do${pageMaker.makeQuery(pageMaker.endPage)}&searchCondition=<%=searchCondition %>&startDate=<%=startDate %>&endDate=<%=endDate %>" aria-label="Next">
 								    	<span aria-hidden="true">»</span>
 								    </a>
-								</li>
-								
-							</ul>
-						</nav>
-					</div>
+								</div>	
+								  </div>
+								</div>
 	
 	
 </c:when>
