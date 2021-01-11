@@ -11,7 +11,7 @@
 	<!-- select 쿼리 (floor 조회) -->
 	<select id="selectFloor"  parameterType="int" resultType="DepartmentVO">
 		select distinct department_floor,department_name 
-		from department,board
+		from department
 		where department.department_code=#{department_department_code}
 	</select>	
 	

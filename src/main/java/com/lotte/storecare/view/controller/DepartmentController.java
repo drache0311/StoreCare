@@ -1,9 +1,12 @@
 ﻿package com.lotte.storecare.view.controller;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.List;
 
 import javax.annotation.Resource;
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -54,10 +57,20 @@ public class DepartmentController {
 
 	// 층 수 조회
 	@RequestMapping("/checkBoard.do")
-	public ModelAndView getFloor(BoardVO vo, ModelAndView mav) {
+	public ModelAndView getFloor(BoardVO vo, ModelAndView mav) throws UnsupportedEncodingException {
+		
+		/*String place_detail = URLEncoder.encode(vo.getPlace_detail(), "UTF-8");
+		String category_detail = URLEncoder.encode(vo.getCategory_detail(), "UTF-8");
+		String problem_detail = URLEncoder.encode(vo.getProblem_detail(), "UTF-8");*/
+		
+		System.out.println("pl_de"+vo.getPlace_detail());
+		System.out.println("pr_de"+vo.getProblem_detail());
+		System.out.println("Ca_de"+vo.getCategory_detail());
 		
 		List<DepartmentVO> depList = service.selectAll();
 		mav.addObject("departmentList", depList); // Model 정보 저장
+		
+		//?place_detail="+place_detail+"&category_detail="+category_detail+"&problem_detail="+problem_detail
 		
 		mav.addObject("board", service.selectFloor(vo)); // Model 정보 저장
 		mav.setViewName("checkBoard"); // View 정보 저장
