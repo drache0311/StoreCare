@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page import="java.net.URLEncoder" %>
 <!doctype html>
 <head>
     <meta charset="utf-8">
@@ -22,9 +23,15 @@
 <%
 	String depth = request.getParameter("depth");
 	String category_code = request.getParameter("category_category_code");
-	String category_detail = request.getParameter("category_detail");
+	String category_detail = null;
+	if(request.getParameter("category_detail") != null){
+		category_detail = URLEncoder.encode(request.getParameter("category_detail"));
+	}
 	String problem_code = request.getParameter("problem_problem_code");
-	String problem_detail = request.getParameter("problem_detail");
+	String problem_detail = null;
+	if(request.getParameter("problem_detail") != null){
+		problem_detail = URLEncoder.encode(request.getParameter("problem_detail"));
+	}
 	String seq = (String) request.getParameter("seq");
 	if(seq==null){
 		seq = "0";
@@ -82,6 +89,8 @@
          		<c:when test="${depth eq 3}">
 	       			<c:if test="${problemList eq '[]' }">
 	       			<%
+	       				System.out.println("여기 insert이다 !!!! "+problem_detail + " 제발 한글좀 "+ category_detail);
+	       				
 	       				response.sendRedirect("checkBoard.do?problem_category_code="+category_code+"&problem_problem_code="+problem_code+"&problem_detail="+problem_detail+"&category_detail="+category_detail+"&department_department_code="+department_department_code+"&seq="+seq+"&flag="+flag+"&depth=3");
          			%>
          			</c:if>

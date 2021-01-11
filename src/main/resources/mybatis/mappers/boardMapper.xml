@@ -14,54 +14,61 @@
 	
 	<!-- select 쿼리 (유저별 문의 내역) -->
 	<select id="selectUserBoardList" parameterType="com.lotte.storecare.commons.Criteria" resultType="BoardVO">
-		select * 
-		from board
-        join problem
-        join category
-        join department 
-        join place
-		ON problem.category_category_code=category.category_code
-		and board.problem_problem_code=problem.problem_code 
-		and board.problem_category_code=category.category_code 
-		and board.department_department_code=department.department_code 
-		and board.place_place_code=place.place_code
-		and users_id=#{id}
+		select seq,place_detail,place_code,problem_code,category_code,clearTime,datetime,department_name,floor,flag,department_code,problem_detail,category_detail
+		from place
+		right outer join
+			(select seq,place_place_code,category_code,problem_code,clearTime,datetime,department_name,floor,flag,department_code,problem_detail,category_detail
+			from board
+			join problem
+			join category
+			join department 
+			ON problem.category_category_code=category.category_code
+			and board.problem_problem_code=problem.problem_code 
+			and board.problem_category_code=category.category_code 
+			and board.department_department_code=department.department_code 
+			and users_id=#{id}) as A
+	    on A.place_place_code=place.place_code
 		
 	<include refid="searchPaging" />
 		
 	</select>
 	
 
-	<!-- select 쿼리 (각 점별 문의 내역) -->
+	<!-- select 쿼리 (전체(0) / 각 점별 문의 내역) -->
 	<select id="selectBoardList" parameterType="com.lotte.storecare.commons.Criteria" resultType="BoardVO">
 
 		<choose>
 			<when test="department_code == 0">
-				SELECT seq,datetime,clearTime,category_detail,problem_detail,flag,department_code,department_name,floor,users_id ,place_detail
-				FROM board 
-				join problem 
-				join category 
-				join department 
-				join place
-				ON board.problem_problem_code = problem.problem_code 
-				and problem.category_category_code=category.category_code 
-				and board.problem_category_code=category.category_code 
-				and board.department_department_code=department.department_code
-				and board.place_place_code=place.place_code 
+				select seq,place_detail,place_code,problem_code,category_code,clearTime,datetime,department_name,floor,flag,department_code,problem_detail,category_detail
+				from place
+				right outer join
+					(select seq,place_place_code,category_code,problem_code,clearTime,datetime,department_name,floor,flag,department_code,problem_detail,category_detail
+					from board
+					join problem
+					join category
+					join department 
+					ON problem.category_category_code=category.category_code
+					and board.problem_problem_code=problem.problem_code 
+					and board.problem_category_code=category.category_code 
+					and board.department_department_code=department.department_code ) as A
+			    on A.place_place_code=place.place_code 
 			</when>
 			<otherwise>
-				SELECT seq,datetime,clearTime,category_detail,problem_detail,flag,department_code,department_name,floor,users_id ,place_detail
-				FROM board 
-				join problem 
-				join category 
-				join department 
-				join place
-				ON board.problem_problem_code = problem.problem_code 
-				and problem.category_category_code=category.category_code 
-				and board.problem_category_code=category.category_code 
-				and board.department_department_code=department.department_code
-				and board.place_place_code=place.place_code 
-				and board.department_department_code=#{department_code}  <!-- board.department_department_code와 #{department_code} -> 1,2,3 등과 비교해서 각 점 선택 -->
+				select seq,place_detail,place_code,problem_code,category_code,clearTime,datetime,department_name,floor,flag,department_code,problem_detail,category_detail
+				from place
+				right outer join
+					(select seq,place_place_code,category_code,problem_code,clearTime,datetime,department_name,floor,flag,department_code,problem_detail,category_detail
+					from board
+					join problem
+					join category
+					join department 
+					ON problem.category_category_code=category.category_code
+					and board.problem_problem_code=problem.problem_code 
+					and board.problem_category_code=category.category_code 
+					and board.department_department_code=department.department_code
+					and board.department_department_code=#{department_code}  <!-- board.department_department_code와 #{department_code} -> 1,2,3 등과 비교해서 각 점 선택 --> ) as A
+			    on A.place_place_code=place.place_code 
+				
 			</otherwise>
 		</choose>
 		<include refid="searchPaging" />

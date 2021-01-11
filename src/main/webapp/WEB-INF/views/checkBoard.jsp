@@ -33,13 +33,16 @@ String id = (String) session.getAttribute("login");
 String department_code = request.getParameter("department_department_code");
 String flag = request.getParameter("flag");
 String place_place_code = request.getParameter("place_place_code");
+String place_detail = request.getParameter("place_place_detail");
+
+
 
 if(place_place_code == null){
 	System.out.println("pl_code를 null로 변경함");
 	place_place_code = "0";
 }
 
-
+System.out.println("pro_detail"+problem_detail);
 Timestamp now = new Timestamp(System.currentTimeMillis());
 
 %>
@@ -55,7 +58,7 @@ Timestamp now = new Timestamp(System.currentTimeMillis());
 <c:set var="seq" value="<%=seq%>" />    
 <c:set var="id" value="<%=id%>" />    
 <c:set var="flag" value="<%=flag%>" />
-
+<c:set var="place_detail" value="<%=place_detail %>"/>
 <!--  지금은 null이 String이라서 'null'로 비교하는데  -->
 <!-- 앞에서 POST로 던져주고 진짜 null로 비교하는식으로 변경  -->
 <!-- GET은 버리고 POST로 다 변경하장  -->
@@ -89,6 +92,10 @@ Timestamp now = new Timestamp(System.currentTimeMillis());
 					<span class='text-primary'> <%=category_detail %> </span>
 					<input name="problem_problem_code" type="hidden" value="<%=problem_code %>" />			
 					<h1 class = "card-title"> <%=problem_detail %> </h1>
+					<c:if test="${place_detail ne null }">
+						<%=place_detail %>
+					</c:if>
+					
 				</div>
 				<div class ="card-body">
 			    	<h5 class="card-header">백화점 층 수</h5>
