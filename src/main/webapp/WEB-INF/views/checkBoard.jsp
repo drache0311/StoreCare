@@ -34,6 +34,12 @@ String department_code = request.getParameter("department_department_code");
 String flag = request.getParameter("flag");
 String place_place_code = request.getParameter("place_place_code");
 
+if(place_place_code == null){
+	System.out.println("pl_code를 null로 변경함");
+	place_place_code = "0";
+}
+
+
 Timestamp now = new Timestamp(System.currentTimeMillis());
 
 %>
@@ -54,7 +60,6 @@ Timestamp now = new Timestamp(System.currentTimeMillis());
 <!-- 앞에서 POST로 던져주고 진짜 null로 비교하는식으로 변경  -->
 <!-- GET은 버리고 POST로 다 변경하장  -->
 
-out.println(${board});
 
 <c:choose>
 	<c:when test="${seq eq '0'}" >
@@ -75,11 +80,6 @@ out.println(${board});
 			    <input name="users_id" type="hidden" value="<%=id%>" />
 			    	<h5 class="card-header">현재 방문 백화점</h5>
 		    	<input name="department_department_name" type="hidden" value="${board.department_name}" />
-<%--       				<select name="department_department_name" id="department_department_code" onchange="departmentChange(this)">
-						<c:forEach items="${departmentList}" var="department">
-							<option value="${department.department_name}">${department.department_name}</option>
-						</c:forEach> --%>
-
 					<h1 class = "card-title">${board.department_name}</h1>
 					<input id="${board.department_name}" type="hidden" name="changeDepartment" />
 				</div>

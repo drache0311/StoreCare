@@ -19,10 +19,12 @@
         join problem
         join category
         join department 
+        join place
 		ON problem.category_category_code=category.category_code
 		and board.problem_problem_code=problem.problem_code 
 		and board.problem_category_code=category.category_code 
 		and board.department_department_code=department.department_code 
+		and board.place_place_code=place.place_code
 		and users_id=#{id}
 		
 	<include refid="searchPaging" />
@@ -111,8 +113,16 @@
 	
 	<!--  insert 쿼리 -->
 	<insert id="insertBoard" parameterType="BoardVO">
-		insert into board(floor, problem_problem_code,problem_category_code,users_id,department_department_code,place_place_code)
-		values(#{floor},#{problem_problem_code},#{problem_category_code},#{users_id},(select department_code from department where department_name=#{department_department_name}),#{place_place_code})
+	<choose>
+		<when test="place_place_code == null">
+			insert into board(floor, problem_problem_code,problem_category_code,users_id,department_department_code)
+			values(#{floor},#{problem_problem_code},#{problem_category_code},#{users_id},(select department_code from department where department_name=#{department_department_name}))	
+		</when>
+		<otherwise>
+			insert into board(floor, problem_problem_code,problem_category_code,users_id,department_department_code,place_place_code)
+			values(#{floor},#{problem_problem_code},#{problem_category_code},#{users_id},(select department_code from department where department_name=#{department_department_name}),#{place_place_code})
+		</otherwise>
+	</choose>
 	</insert>
 	
 	
