@@ -66,7 +66,7 @@
 	        		<!-- depth를 추가로 보내서 해당 depth에 input값을 추가하는 식으로 ??? -->
 	        		<input name="depth" type="hidden" value="${depth }" />
 	        		<input name="category_detail" type="text" id="detail" class="form-control" placeholder="여기에 입력하세요" onkeyup='getDetail()'>
-	        		<button class="btn btn-dark" type="submit" formaction="insertProblem.do" >추가하기</button>
+	        		<button class="btn btn-dark mt-2" style="float:left" type="submit" formaction="insertProblem.do" >추가하기</button>
         		</c:when>
          		<c:when test="${depth eq 2}">
 	         		${problemList[0].category_detail } >>>>>>${problemList[0].category_code }
@@ -86,7 +86,7 @@
 	        		<input name="depth" type="hidden" value="${depth }" />
 	        		<input id="category_code" name="category_code" type="hidden" value="<%=category_code %>" />
 	        		<input name="problem_detail" type="text" id="detail"  class="form-control" placeholder="여기에 입력하세요" onkeyup='getDetail()'>
-	        		<button class="btn btn-dark" type="submit" formaction="insertProblem.do" >추가하기</button>
+	        		<button class="btn btn-dark mt-2" style="float:left" type="submit" formaction="insertProblem.do" >추가하기</button>
         		</c:when> 
          		<c:when test="${depth eq 3}">
 	         		${problemList[0].category_detail } === ${problemList[0].problem_detail }
@@ -104,16 +104,15 @@
 	        		<input id="category_code" name="category_code" type="hidden" value="<%=category_code %>" />
 	        		<input id="problem_code" name="problem_code" type="hidden" value="<%=problem_code %>" />
 	        		<input name="place_detail" type="text" id="detail"  class="form-control" placeholder="여기에 입력하세요" onkeyup='getDetail()'>
-	        		<button class="btn btn-dark" type="submit" formaction="insertProblem.do" >추가하기</button>
+	        		<button class="btn btn-dark mt-2" style="float:left" type="submit" formaction="insertProblem.do">추가하기</button>
         		</c:when>
         	</c:choose>
         	<!--  수정 / 삭제 버튼 -->
-        	<input type="button" value="삭제하기" class="btn btn-dark" onclick="deleteValue();">
-			<input type="button" value="수정하기" class="btn btn-dark" onclick="fixValue();">
+        	<input type="button" value="삭제하기" class="btn btn-dark mt-2" style="float:left; margin-left:2%" onclick="deleteValue();">
+			<input type="button" value="수정하기" class="btn btn-dark mt-2" style="float:left; margin-left:2%" onclick="fixValue();">
         	</form>
 
-			<!-- include prevButton -->
-			<%@include file ="common/prevButton.jsp" %>
+			<button onclick="history.back()" class="btn btn-secondary mt-2" style="float:right; width: 10%" >이전</button>
          <!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
         </div>
       </div>

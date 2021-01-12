@@ -104,9 +104,10 @@
         	</c:choose>
         	<!-- 삭제 버튼 -->
         	</form>
-        	<input type="button" value="내 점에서 삭제하기" class="btn btn-dark" onclick="deleteValue();">
-        	<!-- include prevButton -->
-			<%@include file ="common/prevButton.jsp" %>
+        	<input type="button" value="내 점에서 삭제하기" class="btn btn-dark mt-4" style="float:left" onclick="deleteValue();">
+        	<c:if test="${depth ne 1 }">
+				<button onclick="history.back()" class="btn btn-secondary mt-4" style="float:right; width: 10%" >이전</button>
+			</c:if>
          <!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
         </div>
       </div>
