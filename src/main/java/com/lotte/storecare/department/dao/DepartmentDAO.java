@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.lotte.storecare.commons.Criteria;
 import com.lotte.storecare.vo.BoardVO;
+import com.lotte.storecare.vo.DepartmentProblemVO;
 import com.lotte.storecare.vo.DepartmentVO;
 
 public interface DepartmentDAO {
@@ -23,4 +24,7 @@ public interface DepartmentDAO {
 	public DepartmentVO selectFloor(BoardVO vo);
 	
 	public List<DepartmentVO> selectAll();
+	
+	// 백화점 코드로 백화점명 조회
+	public DepartmentVO selectDepartment(String department_department_code);
 }

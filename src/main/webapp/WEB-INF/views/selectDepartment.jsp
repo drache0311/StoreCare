@@ -42,7 +42,7 @@
         <li><small class="text-muted">고객 서비스 입니다.</small></li>
         </ul>
         <ul class="list-unstyled">
-        <p class="badge bg-secondary text-wrap text-white " style="width: 100%; height:40px; line-height:30px; font-size:1.2rem">
+        <p class="badge bg-secondary text-wrap text-light " style="width: 100%; height:40px; line-height:30px; font-size:1.2rem">
           문의하실 백화점을 선택하세요
 		</p>
 

@@ -10,7 +10,7 @@
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.79.0">
     
-    <title>총괄 관리자</title>
+    <title>등록하기</title>
     
 	
 	<!-- Bootstrap core CSS -->
@@ -55,7 +55,23 @@
 <body id="page-top">
 <!-- include nav -->
 <%@include file ="common/nav.jsp" %>
-
+<p class="p-3 text-white bg-secondary">
+    <img src="<%=request.getContextPath()%>/resources/icon/shop.png" class="img-thumbnail" alt="" width="30" height="30">
+    현재 방문 백화점 - ${departmentName.department_name }
+</p>
+  <!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
+<ul class="list-inline" style="text-align:center">
+	<li class="list-inline-item bg-danger">
+		<img src="<%=request.getContextPath()%>/resources/icon/message-circular.png" alt="" width="100" height="100">
+	</li>
+	<li class="list-inline-item">
+		<img src="<%=request.getContextPath()%>/resources/icon/right-arrow.png" alt="" width="50" height="50">
+	</li>
+	<li class="list-inline-item">
+		<img src="<%=request.getContextPath()%>/resources/icon/contract.png" alt="" width="100" height="100">
+	</li>
+</ul>
+  <!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
   <section id="about"> 
     <div class="container">
       <div class="row">
@@ -64,8 +80,8 @@
         	<c:choose>
         		<c:when test="${depth eq 1}">
 	        		<c:forEach items="${problemList }" var="problem">
-	        			<h2>
-	        				<a href="insertBoard?category_category_code=${problem.category_category_code }&department_department_code=<%=department_department_code %>&depth=2&seq=<%=seq %>" class="btn btn-secondary">
+	        			<h2 >
+	        				<a class="btn bg-light text-wrap " style="width: 100%; height:70px; line-height:70px; font-size:1.2rem ; text-align: start" href="insertBoard?category_category_code=${problem.category_category_code }&department_department_code=<%=department_department_code %>&depth=2&seq=<%=seq %>" >
 	        					${problem.category_detail}
 	        				</a>
 	        			</h2>

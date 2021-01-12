@@ -13,8 +13,18 @@ public class DepartmentProblemVO {
 	private int place_place_code;
 	private String place_detail;
 	private String department_department_code;
+	private String department_department_name;
 
 
+
+	public String getDepartment_department_name() {
+		return department_department_name;
+	}
+
+
+	public void setDepartment_department_name(String department_department_name) {
+		this.department_department_name = department_department_name;
+	}
 
 
 	public String getDepartment_department_code() {

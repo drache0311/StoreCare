@@ -54,7 +54,23 @@ Timestamp now = new Timestamp(System.currentTimeMillis());
 
  <!-- include nav -->
 <%@include file ="common/nav.jsp" %>
-
+<p class="p-3 text-white bg-secondary">
+    <img src="<%=request.getContextPath()%>/resources/icon/shop.png" class="img-thumbnail" alt="" width="30" height="30">
+    현재 방문 백화점 - ${board.department_name}
+</p>
+  <!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
+<ul class="list-inline" style="text-align:center">
+	<li class="list-inline-item">
+		<img src="<%=request.getContextPath()%>/resources/icon/message-circular.png" alt="" width="100" height="100">
+	</li>
+	<li class="list-inline-item">
+		<img src="<%=request.getContextPath()%>/resources/icon/right-arrow.png" alt="" width="50" height="50">
+	</li>
+	<li class="list-inline-item bg-danger">
+		<img src="<%=request.getContextPath()%>/resources/icon/contract.png" alt="" width="100" height="100">
+	</li>
+</ul>
+  <!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
   
     <!-- Page Content -->
 <c:set var="seq" value="<%=seq%>" />    
@@ -66,14 +82,8 @@ Timestamp now = new Timestamp(System.currentTimeMillis());
 <!-- GET은 버리고 POST로 다 변경하장  -->
 
 
-<c:choose>
-	<c:when test="${seq eq '0'}" >
-		<form action="insertBoard.do" method="get">
-	</c:when>
-	<c:otherwise>
-		<form action="updateUserBoard.do" method="get">
-	</c:otherwise>
-</c:choose>
+
+<form method="get">
  	<div class = "container-fluid" >
 			<div class = "card mt-4">
 			    <div class ="card-body">
@@ -85,40 +95,39 @@ Timestamp now = new Timestamp(System.currentTimeMillis());
 			    <input name="users_id" type="hidden" value="<%=id%>" />
 			    	<h5 class="card-header">현재 방문 백화점</h5>
 		    	<input name="department_department_name" type="hidden" value="${board.department_name}" />
-					<h1 class = "card-title">${board.department_name}</h1>
+					<h1 class = "card-title text-info">${board.department_name}</h1>
 					<input id="${board.department_name}" type="hidden" name="changeDepartment" />
 				</div>
 				<div class ="card-body">
 			    	<h5 class="card-header">요청내용</h5>
 			    	<input name="problem_category_code" type="hidden" value="<%=category_code %>" />
-					<span class='text-primary'> <%=category_detail %> </span>
+					<h1 class='text-info'> <%=category_detail %> </h1>
 					<input name="problem_problem_code" type="hidden" value="<%=problem_code %>" />			
-					<h1 class = "card-title"> <%=problem_detail %> </h1>
+					<h2 class = "card-title text-info"> <%=problem_detail %> </h1>
 					<c:if test="${place_detail ne null }">
-						<%=place_detail %>
+						<h3 class = "card-title text-info"><%=place_detail %></h2>
 					</c:if>
 					
 				</div>
 				<div class ="card-body">
 			    	<h5 class="card-header">백화점 층 수</h5>
 			    	
-			    		<select name="floor" id="floor">
+			    		<select class="ml-4 mt-1 btn btn-info dropdown-toggle" style="width:80%" name="floor" id="floor">
 							<option>선택해주세요.</option>
 						</select>
 				</div>
    			</div>
+	</div>
    			<c:choose>
 	   			<c:when test="${seq eq 0}">
-					<button class="btn btn-dark" type="submit" >등록하기</button>
+					<button formaction="insertBoard.do" class="btn btn-dark mt-4" type="submit" style="float:right; width:50%">등록</button>
 				</c:when>
 				<c:when test="${flag eq 0}">
-					<button class="btn btn-dark" type="submit" >수정하기</button>
+					<button formaction="updateUserBoard.do" class="btn btn-dark mt-4" type="submit" style="float:right; width:50%">수정</button>
 				</c:when>
 			</c:choose>
-	</div>
-		</form>
-         	<!-- include prevButton -->
-			<%@include file ="common/prevButton.jsp" %>
+</form>
+			<button onclick="history.back()" class="btn btn-secondary mt-4" style="float:left; width:50%" >이전</button>
   
   
   
