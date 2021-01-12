@@ -31,24 +31,28 @@
       <div class="col-lg-12 text-center">
       
       <!--  벨 아이콘 시작-->
-		<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bell" viewBox="0 0 16 16">
-  			<path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2z"/>
-  			<path fill-rule="evenodd" d="M8 1.918l-.797.161A4.002 4.002 0 0 0 4 6c0 .628-.134 2.197-.459 3.742-.16.767-.376 1.566-.663 2.258h10.244c-.287-.692-.502-1.49-.663-2.258C12.134 8.197 12 6.628 12 6a4.002 4.002 0 0 0-3.203-3.92L8 1.917zM14.22 12c.223.447.481.801.78 1H1c.299-.199.557-.553.78-1C2.68 10.2 3 6.88 3 6c0-2.42 1.72-4.44 4.005-4.901a1 1 0 1 1 1.99 0A5.002 5.002 0 0 1 13 6c0 .88.32 4.2 1.22 6z"/>
-		</svg>
+		<img class="mb-4" style="margin-top:20%" src="<%=request.getContextPath()%>/resources/icon/farmer.png" alt="" width="150" height="130">
       <!--  벨 아이콘 끝 -->
       
       
-        <h1 class="mt-5">StoreCare</h1>
-        <p class="lead">방문중인 백화점의 불편사항을 등록하시면 직원이 직접 확인 후 개선하는 고객 서비스 입니다.</p>
+        <h1>StoreCare</h1>
         <ul class="list-unstyled">
-          <li>문의하실 백화점을 선택하세요</li>
+        <li><small class="text-muted">방문중인 백화점의 불편사항을 등록하시면</small></li>
+        <li><small class="text-muted">직원이 직접 확인 후 개선하는</small></li>
+        <li><small class="text-muted">고객 서비스 입니다.</small></li>
+        </ul>
+        <ul class="list-unstyled">
+        <p class="badge bg-secondary text-wrap text-white " style="width: 100%; height:40px; line-height:30px; font-size:1.2rem">
+          문의하실 백화점을 선택하세요
+		</p>
+
           <li>		
           <!-- 문의할 백화점 선택 FORM -->
 				<form method="post" >
 				<div style="float:none">
 						<input name="depth" type="hidden" value="1" />
 							<c:forEach items="${departmentList}" var="department">
-									<button  class="btn btn-dark" type="submit" formaction="insertBoard?depth=1&department_department_code=${department.department_code }">${department.department_name}</button>
+									<button  class="btn btn-dark" style="margin-top:5%" type="submit" formaction="insertBoard?depth=1&department_department_code=${department.department_code }">${department.department_name}</button>
 							</c:forEach>
 				</div>
 			</form>
