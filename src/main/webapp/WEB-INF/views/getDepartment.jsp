@@ -60,7 +60,7 @@ String id = request.getParameter("id");
 				</div>
    			</div>
 <!-- 		<button formaction="updateDepartment.do" class="btn btn-primary" type="submit" >수정하기</button>	-->
-			<button formaction="deleteDepartment.do" class="btn btn-primary" type="submit" >삭제하기</button>
+			<button formaction="deleteDepartment.do" class="btn btn-secondary" type="submit" >삭제하기</button>
 	</div>
 </form>
 	<!-- include prevButton -->

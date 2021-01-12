@@ -3,6 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <!DOCTYPE html>
+
 <head>
 
   <meta charset="utf-8">
@@ -14,6 +15,8 @@
 
   <!-- Bootstrap core CSS -->
   <link href="<%=request.getContextPath()%>/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Custom CSS -->
+  <link href="<%=request.getContextPath()%>/resources/vendor/bootstrap/css/button-dark.css" rel="stylesheet">
 
 </head>
 
@@ -47,7 +50,7 @@
 						<td align="center">
 						<input name="depth" type="hidden" value="1" />
 							<c:forEach items="${departmentList}" var="department">
-									<button class="btn btn-primary" type="submit" formaction="insertBoard?depth=1&department_department_code=${department.department_code }">${department.department_name}</button>
+									<button class="btn btn-dark" type="submit" formaction="insertBoard?depth=1&department_department_code=${department.department_code }">${department.department_name}</button>
 									<br/>
 									<br/>
 							</c:forEach>

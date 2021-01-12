@@ -13,9 +13,11 @@
   <meta name="description" content="">
   <meta name="author" content="">
   
-  <!-- Bootstrap core CSS -->
-  <link href="<%=request.getContextPath()%>/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
+	<!-- Bootstrap core CSS -->
+	<link href="<%=request.getContextPath()%>/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+ 
+	<!-- Custom styles for this template -->
+	<link href="<%=request.getContextPath()%>/resources/vendor/bootstrap/css/button-dark.css" rel="stylesheet">
 <title>등록 확인</title>
 
 
@@ -107,10 +109,10 @@ Timestamp now = new Timestamp(System.currentTimeMillis());
    			</div>
    			<c:choose>
 	   			<c:when test="${seq eq 0}">
-					<button class="btn btn-primary" type="submit" >등록하기</button>
+					<button class="btn btn-dark" type="submit" >등록하기</button>
 				</c:when>
 				<c:when test="${flag eq 0}">
-					<button class="btn btn-primary" type="submit" >수정하기</button>
+					<button class="btn btn-dark" type="submit" >수정하기</button>
 				</c:when>
 			</c:choose>
 	</div>

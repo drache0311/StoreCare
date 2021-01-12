@@ -17,6 +17,7 @@
 
 	<!-- Custom styles for this template -->
 	<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/vendor/bootstrap/css/scrolling-nav.css">
+	<link href="<%=request.getContextPath()%>/resources/vendor/bootstrap/css/button-dark.css" rel="stylesheet">
 </head>
 
 <%
@@ -53,7 +54,7 @@
 	        			<!-- 문의 삭제 체크박스 -->
 	        			<h2>
 	        				<input name="RowCheck" type="checkbox" value="${problem.category_code }"/>
-	        				<a href="sendProblem.do?category_code=${problem.category_code }&depth=2" class="btn btn-primary">
+	        				<a href="sendProblem.do?category_code=${problem.category_code }&depth=2" class="btn btn-secondary">
 	        					${problem.category_detail}
 	        				</a>
 	        			</h2>
@@ -71,7 +72,7 @@
 	        			<!-- 문의 삭제 체크박스 -->
 	        			<h2>
 	        				<input name="RowCheck" type="checkbox" value="${problem.problem_code }"/>
-		        			<a href="sendProblem.do?category_code=${problem.category_code }&problem_code=${problem.problem_code }&depth=3" class="btn btn-primary">
+		        			<a href="sendProblem.do?category_code=${problem.category_code }&problem_code=${problem.problem_code }&depth=3" class="btn btn-secondary">
 		        				${problem.problem_detail}
 		        			</a>
 	        			</h2>
@@ -89,7 +90,7 @@
 	        			<h2>
 	        			<!-- 문의 삭제 체크박스 -->
 	        				<input name="RowCheck" type="checkbox" value="${problem.place_code }"/>
-		        			<a href="#" class="btn btn-primary">
+		        			<a href="#" class="btn btn-secondary">
 		        				${problem.place_detail}
 		        			</a>
 	        			</h2>
@@ -102,7 +103,7 @@
         	</c:choose>
         	<!-- 추가 / 삭제 버튼 -->
         	</form>
-        	<input type="button" value="내 점에 추가하기" class="btn btn-primary" onclick="insertValue();">
+        	<input type="button" value="내 점에 추가하기" class="btn btn-dark" onclick="insertValue();">
          <!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
         </div>
       </div>

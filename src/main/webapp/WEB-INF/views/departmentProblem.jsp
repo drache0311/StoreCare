@@ -17,6 +17,7 @@
 
 	<!-- Custom styles for this template -->
 	<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/vendor/bootstrap/css/scrolling-nav.css">
+	<link href="<%=request.getContextPath()%>/resources/vendor/bootstrap/css/button-dark.css" rel="stylesheet">
 </head>
 
 <%
@@ -54,7 +55,7 @@
 	        			<!-- 문의 삭제 체크박스 -->
 	        			<h2>
 	        				<input name="RowCheck" type="checkbox" value="${problem.category_category_code }"/>
-	        				<a href="departmentProblem.do?category_category_code=${problem.category_category_code }&department_department_code=<%=department_department_code %>&depth=2" class="btn btn-primary">
+	        				<a href="departmentProblem.do?category_category_code=${problem.category_category_code }&department_department_code=<%=department_department_code %>&depth=2" class="btn btn-secondary">
 	        					${problem.category_detail}
 	        				</a>
 	        			</h2>
@@ -72,7 +73,7 @@
 	        			<!-- 문의 삭제 체크박스 -->
 	        			<h2>
 	        				<input name="RowCheck" type="checkbox" value="${problem.problem_problem_code }"/>
-		        			<a href="departmentProblem.do?category_category_code=${problem.category_category_code }&problem_problem_code=${problem.problem_problem_code }&department_department_code=<%=department_department_code %>&depth=3" class="btn btn-primary">
+		        			<a href="departmentProblem.do?category_category_code=${problem.category_category_code }&problem_problem_code=${problem.problem_problem_code }&department_department_code=<%=department_department_code %>&depth=3" class="btn btn-secondary">
 		        				${problem.problem_detail}
 		        			</a>
 	        			</h2>
@@ -90,7 +91,7 @@
 	        			<h2>
 	        			<!-- 문의 삭제 체크박스 -->
 	        				<input name="RowCheck" type="checkbox" value="${problem.place_place_code }"/>
-		        			<a href="#" class="btn btn-primary">
+		        			<a href="#" class="btn btn-secondary">
 		        				${problem.place_detail}
 		        			</a>
 	        			</h2>
@@ -103,7 +104,7 @@
         	</c:choose>
         	<!-- 삭제 버튼 -->
         	</form>
-        	<input type="button" value="내 점에서 삭제하기" class="btn btn-primary" onclick="deleteValue();">
+        	<input type="button" value="내 점에서 삭제하기" class="btn btn-dark" onclick="deleteValue();">
         	<!-- include prevButton -->
 			<%@include file ="common/prevButton.jsp" %>
          <!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->

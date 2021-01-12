@@ -18,6 +18,7 @@
 
 	<!-- Custom styles for this template -->
 	<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/vendor/bootstrap/css/scrolling-nav.css">
+	<link href="<%=request.getContextPath()%>/resources/vendor/bootstrap/css/button-dark.css" rel="stylesheet">
 </head>
 
 <%
@@ -64,7 +65,7 @@
         		<c:when test="${depth eq 1}">
 	        		<c:forEach items="${problemList }" var="problem">
 	        			<h2>
-	        				<a href="insertBoard?category_category_code=${problem.category_category_code }&department_department_code=<%=department_department_code %>&depth=2&seq=<%=seq %>" class="btn btn-primary">
+	        				<a href="insertBoard?category_category_code=${problem.category_category_code }&department_department_code=<%=department_department_code %>&depth=2&seq=<%=seq %>" class="btn btn-secondary">
 	        					${problem.category_detail}
 	        				</a>
 	        			</h2>
@@ -77,7 +78,7 @@
 	         		<h2>${problemList[0].category_detail }</h2>
 	        		<c:forEach items="${problemList }" var="problem">
 	        			<h2>
-		        			<a href="insertBoard?category_category_code=${problem.category_category_code }&category_detail=${problem.category_detail }&problem_problem_code=${problem.problem_problem_code }&problem_detail=${problem.problem_detail }&department_department_code=<%=department_department_code %>&depth=3&seq=<%=seq %>" class="btn btn-primary">
+		        			<a href="insertBoard?category_category_code=${problem.category_category_code }&category_detail=${problem.category_detail }&problem_problem_code=${problem.problem_problem_code }&problem_detail=${problem.problem_detail }&department_department_code=<%=department_department_code %>&depth=3&seq=<%=seq %>" class="btn btn-secondary">
 		        				${problem.problem_detail}
 		        			</a>
 	        			</h2>
@@ -98,7 +99,7 @@
 	         		<p>${problemList[0].problem_detail }</p>
 		        		<c:forEach items="${problemList }" var="problem">
 									<h2>
-										<a href="checkBoard.do?problem_category_code=${problem.category_category_code }&problem_problem_code=${problem.problem_problem_code }&problem_detail=${problem.problem_detail }&category_detail=${problem.category_detail }&place_place_code=${problem.place_place_code }&place_place_detail=${problem.place_detail }&department_department_code=<%=department_department_code %>&seq=<%=seq %>&flag=<%=flag %>&depth=3" class="btn btn-primary">
+										<a href="checkBoard.do?problem_category_code=${problem.category_category_code }&problem_problem_code=${problem.problem_problem_code }&problem_detail=${problem.problem_detail }&category_detail=${problem.category_detail }&place_place_code=${problem.place_place_code }&place_place_detail=${problem.place_detail }&department_department_code=<%=department_department_code %>&seq=<%=seq %>&flag=<%=flag %>&depth=3" class="btn btn-secondary">
 											${problem.place_detail}
 										</a>
 									</h2>	

@@ -34,7 +34,7 @@
 
 	<!-- Custom styles for this template -->
 	<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/vendor/bootstrap/css/scrolling-nav.css">
-
+    <link href="<%=request.getContextPath()%>/resources/vendor/bootstrap/css/button-dark.css" rel="stylesheet">
 
 </head>
 
@@ -100,7 +100,7 @@
 						</c:forEach>
 						</tbody>
 					</table>
-					<input type="button" value="문의처리하기" class="btn btn-primary" onclick="deleteValue();">
+					<input type="button" value="문의처리하기" class="btn btn-dark" onclick="deleteValue();">
 					<!-- 페이지 번호 -->	
 					<div class="text-center">
 						<nav aria-label="pagination">
