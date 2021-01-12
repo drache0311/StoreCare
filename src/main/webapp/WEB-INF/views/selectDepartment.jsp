@@ -44,19 +44,13 @@
           <li>문의하실 백화점을 선택하세요</li>
           <li>		
           <!-- 문의할 백화점 선택 FORM -->
-				<form method="post">
-				<table align="center">
-					<tr>
-						<td align="center">
+				<form method="post" >
+				<div style="float:none">
 						<input name="depth" type="hidden" value="1" />
 							<c:forEach items="${departmentList}" var="department">
-									<button class="btn btn-dark" type="submit" formaction="insertBoard?depth=1&department_department_code=${department.department_code }">${department.department_name}</button>
-									<br/>
-									<br/>
+									<button  class="btn btn-dark" type="submit" formaction="insertBoard?depth=1&department_department_code=${department.department_code }">${department.department_name}</button>
 							</c:forEach>
-						</td>
-					</tr>
-				</table>
+				</div>
 			</form>
 			<!-- 문의할 백화점 선택 FORM 종료 -->
 

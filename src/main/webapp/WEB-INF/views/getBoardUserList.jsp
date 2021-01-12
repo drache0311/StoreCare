@@ -47,20 +47,25 @@
 
 
 <!--  검색 FORM -->
-<div align="center">
-	<form name="searchUserBoard"  autocomplete="off" method="post" action="getBoardUserList.do">
+<div>
+	<form name="searchUserBoard"  autocomplete="off" method="post" action="getBoardUserList.do" style="padding:10px">
 		<!-- 처리현황별 검색 SELECT -->
+		<div style="padding:10px">
+		<p>처리현황 :</p>
 		<select name="searchCondition">
 			<option value="all">전체</option>
 			<option value="doing">처리중</option>
 			<option value="done">처리완료</option>
 		</select>
-		<br/><br/> 
-		From: <input type="text" id="startDate" name="startDate" placeholder="시작날짜" ><br/>
-		
-		To: <input type="text" id="endDate" name="endDate"  placeholder="끝날짜" >
-		
-		<button type="submit" id="btnSearch">검색</button>
+		</div>
+		<div style="padding:10px">
+		<p>From : </p><input type="text" id="startDate" name="startDate" placeholder="전체" style="width: 115px">
+		</div> 
+		<div style="padding:10px">
+		<p>To &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: </p><input type="text" id="endDate" name="endDate"  placeholder="전체" style="width: 115px">
+		<button type="submit" id="btnSearch" style="float:right">검색</button>
+		</div>
+
 	</form>
 </div>
 
@@ -103,7 +108,7 @@
 	</div>
 
 						<!-- 페이지 번호 -->	
-								<div class="btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups" style="margin-left: 35%">
+								<div class="btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups" style="place-content: center">
 								  <div class="btn-group me-2" role="group" aria-label="First group">
 								<!-- prev 버튼 -->
 								<div id="page-prev">
