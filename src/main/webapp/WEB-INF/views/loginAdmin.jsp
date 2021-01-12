@@ -19,18 +19,19 @@
 
     <!-- Custom styles for this template -->
     <link href="<%=request.getContextPath()%>/resources/vendor/bootstrap/css/signin.css" rel="stylesheet">
+
   </head>
 <body class="text-center">
     
 <main class="form-signin">
   <form action="login.do" method="post" autocomplete="off">
-    <img class="mb-4" src="../assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">
+    <img class="mb-4" src="<%=request.getContextPath()%>/resources/icon/StoreCare-logo.png" alt="" width="150" height="130">
     <h1 class="h3 mb-3 fw-normal">StoreCare</h1>
     <label for="inputId" class="visually-hidden">ID</label>
     <input type="text" id="inputId" name="id" class="form-control" placeholder="Your ID" required autofocus>
     <label for="inputPassword" class="visually-hidden">Password</label>
     <input type="password" id="inputPassword" name="password" class="form-control" placeholder="Password" required>
-    <button class="w-100 btn btn-lg btn-primary" type="submit" value="로그인" >Sign In</button>
+    <button class="w-100 btn btn-lg btn-secondary" type="submit" value="로그인" >Sign In</button>
     <p class="mt-5 mb-3 text-muted">&copy; 2021</p>
   </form>
 </main>

@@ -27,21 +27,18 @@ public class DepartmentProblemController {
 	
 	@Inject
 	private DepartmentProblemService service;
-	@Inject
-	private UserService userService;
 
 
 	// 각 점별 문의 뎁스 검색 완료
 	@RequestMapping(value="/departmentProblem.do", method=RequestMethod.GET)
 	public ModelAndView departmentProblemList_GET(ModelAndView mav, DepartmentProblemVO vo ,HttpSession session) {
 		
-		
 		String department_department_code = session.getAttribute("department_code").toString();
 		
 		vo.setDepartment_department_code(department_department_code);
 		
 		System.out.println("depth =====> "+vo.getDepth()+ "department_department_code = " + vo.getDepartment_department_code() +"problem_code = " + vo.getProblem_problem_code());
-
+		
 		mav.addObject("problemList", service.selectDepProblemList(vo)); // Model 정보 저장
 		mav.setViewName("departmentProblem"); // View 정보 저장
 		return mav;

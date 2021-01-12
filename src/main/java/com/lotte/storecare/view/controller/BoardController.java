@@ -31,15 +31,12 @@ public class BoardController {
 	
 	@Inject
 	private BoardService service;
-
-	@Inject
-	private ProblemService problemService;
 	
 	@Inject
 	private DepartmentProblemService departmentProblemService;
 
 	@Inject
-	private UserService userService;
+	private DepartmentService departmentService;
 	
 	// 문의 등록 GET
 	@RequestMapping(value="/insertBoard", method=RequestMethod.GET)
@@ -47,6 +44,8 @@ public class BoardController {
 		System.out.println("depth =====> "+vo.getDepth()+ "category_code = " + vo.getCategory_code() +"problem_code = " + vo.getProblem_problem_code());
 		System.out.println("여긴 insertBoard GET");
 		mav.addObject("problemList", departmentProblemService.selectDepProblemList(vo)); // Model 정보 저장
+		mav.addObject("departmentName",departmentService.selectDepartment(vo.getDepartment_department_code()));
+
 		mav.setViewName("insertBoard"); // View 정보 저장
 		return mav;
 	}
@@ -54,8 +53,10 @@ public class BoardController {
 	@RequestMapping(value="/insertBoard", method=RequestMethod.POST)
 	public ModelAndView INSERTBOARD_POST(ModelAndView mav, DepartmentProblemVO vo) {			
 		System.out.println("depth =====> "+vo.getDepth()+ "category_code = " + vo.getCategory_code() +"problem_code = " + vo.getProblem_problem_code());
-		System.out.println("여긴 insertBoard GET");
+		System.out.println("여긴 insertBoard POST");
+		System.out.println("dep_code = "+ vo.getDepartment_department_code());
 		mav.addObject("problemList", departmentProblemService.selectDepProblemList(vo)); // Model 정보 저장
+		mav.addObject("departmentName",departmentService.selectDepartment(vo.getDepartment_department_code()));
 		mav.setViewName("insertBoard"); // View 정보 저장
 		return mav;
 	}

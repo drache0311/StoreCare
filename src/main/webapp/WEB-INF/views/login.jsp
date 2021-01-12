@@ -24,11 +24,11 @@
     
 <main class="form-signin">
   <form action="login.do" method="post" autocomplete="off">
-    <img class="mb-4" src="<%=request.getContextPath()%>/resources/icon/lotte.jfif" alt="" width="72" height="57">
+    <img class="mb-4" src="<%=request.getContextPath()%>/resources/icon/StoreCare-logo.png" alt="" width="150" height="130">
     <h1 class="h3 mb-3 fw-normal">StoreCare</h1>
     <label for="inputId" class="visually-hidden">Phone Number</label>
     <input type="text"  maxlength="11" onKeyUp="isNumber(this)" id="inputId" name="id" class="form-control" placeholder="01012345678" required autofocus>
-    <button id="btn" class="w-100 btn btn-lg btn-primary" type="submit" value="로그인" >Sign In</button>
+    <button id="btn" class="w-100 btn btn-lg btn-secondary" type="submit" value="로그인" >Sign In</button>
     <p class="mt-5 mb-3 text-muted">&copy; 2021</p>
   </form>
 </main>

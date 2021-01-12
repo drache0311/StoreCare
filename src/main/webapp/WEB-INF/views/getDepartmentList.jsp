@@ -23,7 +23,7 @@
 
 	<!-- Custom styles for this template -->
 	<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/vendor/bootstrap/css/scrolling-nav.css">
-
+    <link href="<%=request.getContextPath()%>/resources/vendor/bootstrap/css/button-dark.css" rel="stylesheet">
 
 </head>
 
@@ -65,7 +65,7 @@
 						</tbody>
 					</table>
 					<!-- 수정/삭제는 백화점 이름 클릭해서 들어간 후에 한다. -->
-					<button class="btn btn-primary" onclick="location.href='insertDepartment'">백화점 추가하기</button>
+					<button class="btn btn-dark" onclick="location.href='insertDepartment'">백화점 추가하기</button>
 				</div>
 			</div>
 		</div>

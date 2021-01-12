@@ -44,8 +44,8 @@ String id = request.getParameter("id");
 <!-- 앞에서 POST로 던져주고 진짜 null로 비교하는식으로 변경  -->
 <!-- GET은 버리고 POST로 다 변경하장  -->
 
-<form method="get">
- 	<div class = "container-fluid" >
+<form method="get" style="width:50%; text-align:center">
+ 	<div class = "container-fluid" style="margin-left:50%" >
 			<div class = "card mt-4">
 			    <div class ="card-body">
 			  	  <input name="department_name" type="hidden" value="${department_name }" />
@@ -59,12 +59,10 @@ String id = request.getParameter("id");
 					<span class='text-primary'> ${id } </span>
 				</div>
    			</div>
-<!-- 		<button formaction="updateDepartment.do" class="btn btn-primary" type="submit" >수정하기</button>	-->
-			<button formaction="deleteDepartment.do" class="btn btn-primary" type="submit" >삭제하기</button>
+			<button formaction="deleteDepartment.do" class="btn btn-secondary mt-4" type="submit" style="float:left; width: 20%;margin-left: 20% ">삭제하기</button>
 	</div>
 </form>
-	<!-- include prevButton -->
-	<%@include file ="common/prevButton.jsp" %>
+<button onclick="history.back()" class="btn btn-secondary mt-4" style="float:right; width: 10%;margin-right: 35%" >이전</button>
   
   
   

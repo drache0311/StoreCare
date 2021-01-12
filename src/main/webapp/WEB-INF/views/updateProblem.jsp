@@ -17,6 +17,7 @@
 
 	<!-- Custom styles for this template -->
 	<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/vendor/bootstrap/css/scrolling-nav.css">
+	<link href="<%=request.getContextPath()%>/resources/vendor/bootstrap/css/button-dark.css" rel="stylesheet">
 </head>
 
 <%
@@ -53,7 +54,7 @@
 	        			<!-- 문의 삭제 체크박스 -->
 	        			<h2>
 	        				<input name="RowCheck" type="checkbox" value="${problem.category_code }"/>
-	        				<a href="updateProblem.do?category_code=${problem.category_code }&depth=2" class="btn btn-primary">
+	        				<a href="updateProblem.do?category_code=${problem.category_code }&depth=2" class="btn btn-secondary">
 	        					${problem.category_detail}
 	        				</a>
 	        			</h2>
@@ -65,7 +66,7 @@
 	        		<!-- depth를 추가로 보내서 해당 depth에 input값을 추가하는 식으로 ??? -->
 	        		<input name="depth" type="hidden" value="${depth }" />
 	        		<input name="category_detail" type="text" id="detail" class="form-control" placeholder="여기에 입력하세요" onkeyup='getDetail()'>
-	        		<button class="btn btn-primary" type="submit" formaction="insertProblem.do" >추가하기</button>
+	        		<button class="btn btn-dark mt-2" style="float:left" type="submit" formaction="insertProblem.do" >추가하기</button>
         		</c:when>
          		<c:when test="${depth eq 2}">
 	         		${problemList[0].category_detail } >>>>>>${problemList[0].category_code }
@@ -73,7 +74,7 @@
 	        			<!-- 문의 삭제 체크박스 -->
 	        			<h2>
 	        				<input name="RowCheck" type="checkbox" value="${problem.problem_code }"/>
-		        			<a href="updateProblem.do?category_code=${problem.category_code }&problem_code=${problem.problem_code }&depth=3" class="btn btn-primary">
+		        			<a href="updateProblem.do?category_code=${problem.category_code }&problem_code=${problem.problem_code }&depth=3" class="btn btn-secondary">
 		        				${problem.problem_detail}
 		        			</a>
 	        			</h2>
@@ -85,7 +86,7 @@
 	        		<input name="depth" type="hidden" value="${depth }" />
 	        		<input id="category_code" name="category_code" type="hidden" value="<%=category_code %>" />
 	        		<input name="problem_detail" type="text" id="detail"  class="form-control" placeholder="여기에 입력하세요" onkeyup='getDetail()'>
-	        		<button class="btn btn-primary" type="submit" formaction="insertProblem.do" >추가하기</button>
+	        		<button class="btn btn-dark mt-2" style="float:left" type="submit" formaction="insertProblem.do" >추가하기</button>
         		</c:when> 
          		<c:when test="${depth eq 3}">
 	         		${problemList[0].category_detail } === ${problemList[0].problem_detail }
@@ -93,7 +94,7 @@
 	        			<h2>
 	        			<!-- 문의 삭제 체크박스 -->
 	        				<input name="RowCheck" type="checkbox" value="${problem.place_code }"/>
-		        			<a href="#" class="btn btn-primary">
+		        			<a href="#" class="btn btn-secondary">
 		        				${problem.place_detail}
 		        			</a>
 	        			</h2>
@@ -103,38 +104,16 @@
 	        		<input id="category_code" name="category_code" type="hidden" value="<%=category_code %>" />
 	        		<input id="problem_code" name="problem_code" type="hidden" value="<%=problem_code %>" />
 	        		<input name="place_detail" type="text" id="detail"  class="form-control" placeholder="여기에 입력하세요" onkeyup='getDetail()'>
-	        		<button class="btn btn-primary" type="submit" formaction="insertProblem.do" >추가하기</button>
+	        		<button class="btn btn-dark mt-2" style="float:left" type="submit" formaction="insertProblem.do">추가하기</button>
         		</c:when>
         	</c:choose>
         	<!--  수정 / 삭제 버튼 -->
+        	<input type="button" value="삭제하기" class="btn btn-dark mt-2" style="float:left; margin-left:2%" onclick="deleteValue();">
+			<input type="button" value="수정하기" class="btn btn-dark mt-2" style="float:left; margin-left:2%" onclick="fixValue();">
         	</form>
-        	<input type="button" value="삭제하기" class="btn btn-primary" onclick="deleteValue();">
-			<input type="button" value="수정하기" class="btn btn-primary" onclick="fixValue();">
-			<!-- include prevButton -->
-			<%@include file ="common/prevButton.jsp" %>
+
+			<button onclick="history.back()" class="btn btn-secondary mt-2" style="float:right; width: 10%" >이전</button>
          <!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="services" class="bg-light"> 
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-8 mx-auto">
-          <h2>Services we offer</h2>
-          <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut optio velit inventore, expedita quo laboriosam possimus ea consequatur vitae, doloribus consequuntur ex. Nemo assumenda laborum vel, labore ut velit dignissimos.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="contact">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-8 mx-auto">
-          <h2>Contact us</h2>
-          <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero odio fugiat voluptatem dolor, provident officiis, id iusto! Obcaecati incidunt, qui nihil beatae magnam et repudiandae ipsa exercitationem, in, quo totam.</p>
         </div>
       </div>
     </div>

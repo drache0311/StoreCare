@@ -15,17 +15,17 @@
 
     var target = document.getElementById("floor");
 
-    if(e[0].id == '롯데백화점_본점') var d = head;
-    else if(e[0].id == '롯데백화점_잠실점') var d = jamsil;
-    else if(e[0].id == '롯데백화점_미아점') var d = mia;
-    else if(e[0].id == '롯데백화점_영등포점') var d = mia;
-    else if(e[0].id == '롯데백화점_청량리점') var d = mia;
-    else if(e[0].id == '롯데백화점_강남점') var d = mia;
-    else if(e[0].id == '롯데백화점_노원점') var d = mia;
-    else if(e[0].id == '롯데백화점_관악점') var d = mia;
-    else if(e[0].id == '롯데백화점_캐슬플라자') var d = mia;
-    else if(e[0].id == '롯데백화점_건대스타시티점') var d = mia;
-    else if(e[0].id == '롯데백화점_김포공항점') var d = mia;
+    if(e[0].id == '본점') var d = head;
+    else if(e[0].id == '잠실점') var d = jamsil;
+    else if(e[0].id == '미아점') var d = mia;
+    else if(e[0].id == '영등포점') var d = yeongdeungpo;
+    else if(e[0].id == '청량리점') var d = cheongnyangni;
+    else if(e[0].id == '강남점') var d = gangnam;
+    else if(e[0].id == '노원점') var d = nowon;
+    else if(e[0].id == '관악점') var d = gwanak;
+    else if(e[0].id == '캐슬플라자') var d = cattle;
+    else if(e[0].id == '건대스타시티점') var d = starcity;
+    else if(e[0].id == '김포공항점') var d = gimpo;
 
 
 

@@ -44,8 +44,8 @@ String id = request.getParameter("id");
 <!-- 앞에서 POST로 던져주고 진짜 null로 비교하는식으로 변경  -->
 <!-- GET은 버리고 POST로 다 변경하장  -->
 
-<form method="get" autocomplete="off">
- 	<div class = "container-fluid" >
+<form method="get" autocomplete="off" style="width:50%; text-align:center">
+ 	<div class = "container-fluid" style="margin-left:50%">
 			<div class = "card mt-4">
 			    <div class ="card-body">
 			    	<h5 class="card-header">백화점 명</h5>
@@ -56,11 +56,10 @@ String id = request.getParameter("id");
 			    	<input name="id" type="text" value="${id }" />
 				</div>
    			</div>
-			<button formaction="insertDepartment.do" class="btn btn-primary" type="submit" >추가하기</button>
+			<button formaction="insertDepartment.do" class="btn btn-secondary mt-4" type="submit" style="float:left; width: 20%;margin-left: 20% " type="submit" >추가하기</button>
 	</div>
 </form>
-         	<!-- include prevButton -->
-			<%@include file ="common/prevButton.jsp" %>
+<button onclick="history.back()" class="btn btn-secondary mt-4" style="float:right; width: 10%;margin-right: 35%" >이전</button>
   
   
   

@@ -3,6 +3,7 @@ package com.lotte.storecare.department.service;
 import java.util.List;
 
 import com.lotte.storecare.vo.BoardVO;
+import com.lotte.storecare.vo.DepartmentProblemVO;
 import com.lotte.storecare.vo.DepartmentVO;
 
 public interface DepartmentService {
@@ -23,4 +24,7 @@ public interface DepartmentService {
 
 	
 	public List<DepartmentVO> selectAll();
+
+	// 백화점 코드로 백화점명 조회
+	public DepartmentVO selectDepartment(String department_department_code);
 }

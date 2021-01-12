@@ -54,4 +54,10 @@ public class DepartmentDAOImpl implements DepartmentDAO {
 	public List<DepartmentVO> selectDepartmentList() {
 		return session.selectList("departmentDB.selectDepartmentList");
 	}
+	// 백화점 코드로 백화점명 조회
+	@Override
+	public DepartmentVO selectDepartment(String department_department_code) {
+		return session.selectOne("departmentDB.selectDepartment" ,department_department_code );
+	}
+	
 }

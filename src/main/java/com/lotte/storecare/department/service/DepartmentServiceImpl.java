@@ -5,6 +5,7 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 import com.lotte.storecare.department.dao.DepartmentDAO;
 import com.lotte.storecare.vo.BoardVO;
+import com.lotte.storecare.vo.DepartmentProblemVO;
 import com.lotte.storecare.vo.DepartmentVO;
 
 @Service
@@ -50,6 +51,11 @@ public class DepartmentServiceImpl implements DepartmentService {
 	public List<DepartmentVO> selectDepartmentList() {
 		// TODO Auto-generated method stub
 		return departmentDAO.selectDepartmentList();
+	}
+	// 백화점 코드로 백화점명 조회
+	@Override
+	public DepartmentVO selectDepartment(String department_department_code) {
+		return departmentDAO.selectDepartment(department_department_code);
 	}
 	
 	
