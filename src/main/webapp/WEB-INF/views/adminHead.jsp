@@ -76,7 +76,7 @@
 							</div>
 							<div style="padding:10px">
 								<font>To &nbsp;&nbsp;&nbsp;&nbsp;: </font><input type="text" id="endDate" name="endDate"  placeholder="전체" style="width: 115px">
-								<button type="submit" id="btnSearch" style="float:right">검색</button>
+								<button type="submit" id="btnSearch" class="btn btn-info" style="float:right">검색</button>
 							</div>
 						</form>
 					</div>	

@@ -127,7 +127,7 @@ Timestamp now = new Timestamp(System.currentTimeMillis());
 				</c:when>
 			</c:choose>
 </form>
-			<button onclick="history.back()" class="btn btn-secondary mt-4" style="float:left; width:50%" >이전</button>
+<button onclick="history.back()" class="btn btn-secondary mt-4" style="float:left; width:50%" >이전</button>
   
   
   

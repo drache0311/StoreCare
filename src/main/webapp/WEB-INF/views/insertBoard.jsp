@@ -72,7 +72,7 @@
 	</li>
 </ul>
   <!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
-  <section id="about"> 
+  <section id="about" style="padding:50px 0"> 
     <div class="container">
       <div class="row">
         <div class="col-lg-8 mx-auto">
@@ -81,7 +81,7 @@
         		<c:when test="${depth eq 1}">
 	        		<c:forEach items="${problemList }" var="problem">
 	        			<h2 >
-	        				<a class="btn bg-light text-wrap " style="width: 100%; height:70px; line-height:70px; font-size:1.2rem ; text-align: start" href="insertBoard?category_category_code=${problem.category_category_code }&department_department_code=<%=department_department_code %>&depth=2&seq=<%=seq %>" >
+	        				<a class="btn bg-light text-wrap " style="width: 100%; height:70px; line-height:60px; font-size:1.2rem ; text-align: start" href="insertBoard?category_category_code=${problem.category_category_code }&department_department_code=<%=department_department_code %>&depth=2&seq=<%=seq %>" >
 	        					${problem.category_detail}
 	        				</a>
 	        			</h2>
@@ -91,11 +91,12 @@
 	        		</c:forEach>
         		</c:when>
          		<c:when test="${depth eq 2}">
-	         		<h2>${problemList[0].category_detail }</h2>
+	         		<h2 class="btn bg-dark text-white" style="width: 100%; height:70px; line-height:60px; font-size:1.2rem ; text-align: start">${problemList[0].category_detail }</h2>
 	        		<c:forEach items="${problemList }" var="problem">
 	        			<h2>
-		        			<a href="insertBoard?category_category_code=${problem.category_category_code }&category_detail=${problem.category_detail }&problem_problem_code=${problem.problem_problem_code }&problem_detail=${problem.problem_detail }&department_department_code=<%=department_department_code %>&depth=3&seq=<%=seq %>" class="btn btn-secondary">
-		        				${problem.problem_detail}
+		        			<a class="btn bg-light text-wrap " style="width: 100%; height:70px; line-height:60px; font-size:1.2rem ; text-align: start" href="insertBoard?category_category_code=${problem.category_category_code }&category_detail=${problem.category_detail }&problem_problem_code=${problem.problem_problem_code }&problem_detail=${problem.problem_detail }&department_department_code=<%=department_department_code %>&depth=3&seq=<%=seq %>" class="btn btn-secondary">
+		        				<img src="<%=request.getContextPath()%>/resources/icon/right-arrow-small.png"  alt="" width="20" height="20">
+		        					${problem.problem_detail}
 		        			</a>
 	        			</h2>
 	        			<!--  -->
@@ -111,21 +112,20 @@
 	       				response.sendRedirect("checkBoard.do?problem_category_code="+category_code+"&problem_problem_code="+problem_code+"&problem_detail="+problem_detail+"&category_detail="+category_detail+"&department_department_code="+department_department_code+"&seq="+seq+"&flag="+flag+"&depth=3");
          			%>
          			</c:if>
-	         		<h2>${problemList[0].category_detail } </h2>
-	         		<p>${problemList[0].problem_detail }</p>
+	         		<h2 class="btn bg-dark text-white" style="width: 100%; height:70px; line-height:60px; font-size:1.2rem ; text-align: start">${problemList[0].category_detail } </h2>
+	         		<p class="btn bg-secondary text-white" style="width: 100%; height:70px; line-height:60px; font-size:1.2rem ; text-align: start">${problemList[0].problem_detail }</p>
 		        		<c:forEach items="${problemList }" var="problem">
 									<h2>
-										<a href="checkBoard.do?problem_category_code=${problem.category_category_code }&problem_problem_code=${problem.problem_problem_code }&problem_detail=${problem.problem_detail }&category_detail=${problem.category_detail }&place_place_code=${problem.place_place_code }&place_place_detail=${problem.place_detail }&department_department_code=<%=department_department_code %>&seq=<%=seq %>&flag=<%=flag %>&depth=3" class="btn btn-secondary">
-											${problem.place_detail}
+										<a class="btn bg-light text-wrap " style="width: 100%; height:70px; line-height:60px; font-size:1.2rem ; text-align: start" href="checkBoard.do?problem_category_code=${problem.category_category_code }&problem_problem_code=${problem.problem_problem_code }&problem_detail=${problem.problem_detail }&category_detail=${problem.category_detail }&place_place_code=${problem.place_place_code }&place_place_detail=${problem.place_detail }&department_department_code=<%=department_department_code %>&seq=<%=seq %>&flag=<%=flag %>&depth=3" class="btn btn-secondary">
+											<img src="<%=request.getContextPath()%>/resources/icon/right-arrow-small.png"  alt="" width="20" height="20">
+												${problem.place_detail}
 										</a>
 									</h2>	
 			       		</c:forEach>
 			       		
         		</c:when>
         	</c:choose>
-       		<!-- include prevButton -->
-			<%@include file ="common/prevButton.jsp" %>
-
+			<button onclick="history.back()" class="btn btn-secondary mt-4" style="float:left; width:100%" >이전</button>
          <!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
         </div>
       </div>
