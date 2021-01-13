@@ -51,15 +51,22 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-8 mx-auto">
-        <!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
+        <!-- 삭제 버튼 -->
         <input type="button" value="내 점에서 삭제하기" class="btn btn-dark " style="float:left" onclick="deleteValue();">
         <br/>
+        <br/>
+        <!-- 이전 버튼 -->
         <c:if test="${depth ne 1 }">
 			<button onclick="history.back()" class="btn btn-secondary" style="float:right; width: 10%" >이전</button>
 		</c:if>
-        <br/>
-        <input id="allCheck" type="checkbox" name="allCheck" class="mt-4"/>
-        전체선택
+		<!-- 전체선택 체크박스 -->
+        <div class="form-check ml-4 mb-3" style="width:max-content">
+        	<input class="form-check-input" id="allCheck" type="checkbox" name="allCheck" style="zoom:1.5""/>
+        	<label class="form-check-label mt-2" for="allCheck">
+        		전체선택
+        	</label>
+        </div>
+        <!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
         <form  method="GET">
             <!-- 다시 이 페이지로 새로고침하기 위해 dep_code가 필요하다 -->
         	<input id="department_code" type="hidden" value="<%=department_department_code %>" />
@@ -70,7 +77,7 @@
 		        			<div class="col">
 			        			<!-- 문의 삭제 체크박스 -->
 			        			<h2>
-			        				<input name="RowCheck" type="checkbox" value="${problem.category_category_code }"/>
+			        				<input name="RowCheck" type="checkbox" value="${problem.category_category_code }" style="zoom:1.5"/>
 			        				<a href="departmentProblem.do?category_category_code=${problem.category_category_code }&department_department_code=<%=department_department_code %>&depth=2" class="btn btn-secondary">
 			        					${problem.category_detail}
 			        				</a>
@@ -106,7 +113,7 @@
 		        			<div class="col">
 			        			<!-- 문의 삭제 체크박스 -->
 			        			<h2>
-			        				<input name="RowCheck" type="checkbox" value="${problem.problem_problem_code }"/>
+			        				<input name="RowCheck" type="checkbox" value="${problem.problem_problem_code }" style="zoom:1.5"/>
 				        			<a href="departmentProblem.do?category_category_code=${problem.category_category_code }&problem_problem_code=${problem.problem_problem_code }&department_department_code=<%=department_department_code %>&depth=3" class="btn btn-secondary">
 				        				${problem.problem_detail}
 				        			</a>
@@ -134,7 +141,7 @@
 		         		<div class="col">
 		         			<h2 class="btn bg-dark text-white" style="width: 100%; height:70px; line-height:60px; font-size:1.2rem ; text-align: start">
 	         				<c:if test="${problemList eq '[]' }">
-		         				필요하다면 문의를 추가해주세요
+		         				필요하면 문의를 추가해주세요
 		         			</c:if>
 	         				<c:if test="${problemList ne '[]' }">
 		         				${problemList[0].problem_detail }
@@ -145,7 +152,7 @@
 			        		<div class="col">
 			        			<h2>
 			        			<!-- 문의 삭제 체크박스 -->
-			        				<input name="RowCheck" type="checkbox" value="${problem.place_place_code }"/>
+			        				<input name="RowCheck" type="checkbox" value="${problem.place_place_code }" style="zoom:1.5"/>
 				        			<a href="#" class="btn btn-secondary">
 				        				${problem.place_detail}
 				        			</a>

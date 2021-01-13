@@ -84,7 +84,7 @@
 					<table class="table table-striped table-hover" style="text-align:center; inline-size:max-content">
 						<thead>
 							<tr>
-								<th><input id="allCheck" type="checkbox" name="allCheck"/></th>
+								<th><input id="allCheck" type="checkbox" name="allCheck" style="zoom:1.5"/></th>
 								<th>접수일자</th>
 								<th>접수내용</th>
 								<th>처리현황</th>
@@ -96,7 +96,7 @@
 
 						<c:forEach items="${boardList}" var="board">
 							<tr>
-								<td><input name="RowCheck" type="checkbox" value="${board.seq }"/></td>
+								<td><input name="RowCheck" type="checkbox" value="${board.seq }" style="zoom:1.5"/></td>
 								<td>${board.datetime}</td>
 								<td>${board.category_detail}
 								${board.problem_detail}

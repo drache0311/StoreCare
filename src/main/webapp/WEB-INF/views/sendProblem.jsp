@@ -51,16 +51,23 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-8 mx-auto">
-        <!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
         <!-- 추가 버튼 -->
         <input type="button" value="내 점에 추가하기" class="btn btn-dark" style="" onclick="insertValue();">
         <br/>
+        <br/>
+        <!-- 이전 버튼 -->
         <c:if test="${depth ne 1 }">
     		<button onclick="history.back()" class="btn btn-secondary" style="float:right; width: 10%" >이전</button>
 		</c:if>
-		<br/>
-        <input id="allCheck" type="checkbox" name="allCheck" class="mt-4"/>
-        전체선택
+		
+		<!-- 전체선택 체크박스 -->
+        <div class="form-check ml-4 mb-3" style="width:max-content">
+        	<input class="form-check-input" id="allCheck" type="checkbox" name="allCheck" style="zoom:1.5"/>
+        	<label class="form-check-label mt-2" for="allCheck">
+        		전체선택
+        	</label>
+        </div>
+        <!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
         <form  method="GET">
         	<input id="department_code" name="department_code" type="hidden" value="<%=department_department_code %>" />
         	<div class="row row-cols-2">
@@ -70,7 +77,7 @@
 		        			<div class="col">
 			        			<!-- 문의 삭제 체크박스 -->
 			        			<h2>
-			        				<input name="RowCheck" type="checkbox" value="${problem.category_code }"/>
+			        				<input name="RowCheck" type="checkbox" value="${problem.category_code }" style="zoom:1.5"/>
 			        				<a href="sendProblem.do?category_code=${problem.category_code }&depth=2" class="btn btn-secondary">
 			        					${problem.category_detail}
 			        				</a>
@@ -106,7 +113,7 @@
 		        			<div class="col">
 			        			<!-- 문의 삭제 체크박스 -->
 			        			<h2>
-			        				<input name="RowCheck" type="checkbox" value="${problem.problem_code }"/>
+			        				<input name="RowCheck" type="checkbox" value="${problem.problem_code }" style="zoom:1.5"/>
 				        			<a href="sendProblem.do?category_code=${problem.category_code }&problem_code=${problem.problem_code }&depth=3" class="btn btn-secondary">
 				        				${problem.problem_detail}
 				        			</a>
@@ -146,7 +153,7 @@
 		        			<div class="col">
 			        			<h2>
 			        			<!-- 문의 삭제 체크박스 -->
-			        				<input name="RowCheck" type="checkbox" value="${problem.place_code }"/>
+			        				<input name="RowCheck" type="checkbox" value="${problem.place_code }" style="zoom:1.5"/>
 				        			<a href="#" class="btn btn-secondary">
 				        				${problem.place_detail}
 				        			</a>
