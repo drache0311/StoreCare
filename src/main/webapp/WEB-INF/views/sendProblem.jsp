@@ -47,6 +47,10 @@
         <!-- 추가 버튼 -->
         <input type="button" value="내 점에 추가하기" class="btn btn-dark" style="" onclick="insertValue();">
         <br/>
+        <c:if test="${depth ne 1 }">
+    		<button onclick="history.back()" class="btn btn-secondary" style="float:right; width: 10%" >이전</button>
+		</c:if>
+		<br/>
         <input id="allCheck" type="checkbox" name="allCheck" class="mt-4"/>
         전체선택
         <form  method="GET">
@@ -76,7 +80,7 @@
 	         			<div class="col">
 		         			<h2 class="btn bg-dark text-white" style="width: 100%; height:70px; line-height:60px; font-size:1.2rem ; text-align: start">
 	         				<c:if test="${problemList eq '[]' }">
-		         				문의가 없어요
+		         				2단계 문의가 없어요
 		         			</c:if>
 	         				<c:if test="${problemList ne '[]' }">
 		         				${problemList[0].category_detail }
@@ -86,7 +90,7 @@
 			         	<div class="col">
 		         				<c:if test="${problemList eq '[]' }">
 	         				<h2 class="btn bg-dark text-white" style="width: 100%; height:70px; line-height:60px; font-size:1.2rem ; text-align: start">
-			         				총괄 관리자에게 문의하세요
+			         				총괄 관리자에게 요청하세요
 		         			</h2>
 			         			</c:if>
 			         	</div>
@@ -112,7 +116,7 @@
 	         			<div class="col">
 		         			<h2 class="btn bg-dark text-white" style="width: 100%; height:70px; line-height:60px; font-size:1.2rem ; text-align: start">
 	         				<c:if test="${problemList eq '[]' }">
-		         				문의가 없어요
+		         				3단계 문의가 없어요
 		         			</c:if>
 	         				<c:if test="${problemList ne '[]' }">
 		         				${problemList[0].category_detail } 
@@ -122,7 +126,7 @@
 			        	<div class="col">
 			        		<h2 class="btn bg-dark text-white" style="width: 100%; height:70px; line-height:60px; font-size:1.2rem ; text-align: start">
 	         				<c:if test="${problemList eq '[]' }">
-		         				총괄 관리자에게 문의하세요
+		         				총괄 관리자에게 요청하세요
 		         			</c:if>
 	         				<c:if test="${problemList ne '[]' }">
 		         				${problemList[0].problem_detail }
@@ -150,9 +154,6 @@
 	        </div>
         	<!-- 추가 / 삭제 버튼 -->
         	</form>
-        	<c:if test="${depth ne 1 }">
-        		<button onclick="history.back()" class="btn btn-secondary mt-4" style="float:right; width: 10%" >이전</button>
-			</c:if>
          <!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
         </div>
       </div>
