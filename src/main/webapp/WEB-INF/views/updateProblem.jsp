@@ -34,7 +34,7 @@
 <%
 	}
 %>
-<body id="page-top">
+	<body id="page-top">
 <!-- include nav -->
 <%@include file ="common/nav.jsp" %>
 
@@ -46,73 +46,121 @@
         <!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
         <input id="allCheck" type="checkbox" name="allCheck"/>
         전체선택
+        <c:if test="${depth ne 1 }">
+	    	<button onclick="history.back()" class="btn btn-secondary mt-2" style="float:right; width: 10%" >이전</button>
+	    </c:if>
         <form  method="GET">
         	<input id="department_code" name="department_code" type="hidden" value="<%=department_department_code %>" />
         	<c:choose>
+        		<c:when test="${depth eq 1 }">
+        			<input name="category_detail" type="text" id="detail" class="form-control" placeholder="여기에 입력하세요" onkeyup='getDetail()'>
+        		</c:when>
+        		<c:when test="${depth eq 2 }">
+        			<input name="problem_detail" type="text" id="detail" class="form-control" placeholder="여기에 입력하세요" onkeyup='getDetail()'>
+        		</c:when>
+        		<c:when test="${depth eq 3 }">
+        			<input name="place_detail" type="text" id="detail" class="form-control" placeholder="여기에 입력하세요" onkeyup='getDetail()'>
+        		</c:when>
+        	</c:choose>
+        	<!--  추가 / 수정 / 삭제 버튼 -->
+	        	<button class="btn btn-dark mt-2"  type="submit" formaction="insertProblem.do" >추가하기</button>
+				<input type="button" value="수정하기" class="btn btn-dark mt-2" style=" margin-left:2%" onclick="fixValue();">
+	        	<input type="button" value="삭제하기" class="btn btn-dark mt-2" style=" margin-left:2%" onclick="deleteValue();">
+			<br/><br/><br/>
+			
+			
+			
+			<div class="row row-cols-2">
+        	<c:choose>
         		<c:when test="${depth eq 1}">
 	        		<c:forEach items="${problemList }" var="problem">
-	        			<!-- 문의 삭제 체크박스 -->
-	        			<h2>
-	        				<input name="RowCheck" type="checkbox" value="${problem.category_code }"/>
-	        				<a href="updateProblem.do?category_code=${problem.category_code }&depth=2" class="btn btn-secondary">
-	        					${problem.category_detail}
-	        				</a>
-	        			</h2>
+	        			<div class="col">
+		        			<!-- 문의 삭제 체크박스 -->
+		        			<h2 class="mt-1">
+		        				<input name="RowCheck" type="checkbox" value="${problem.category_code }"/>
+		        				<a href="updateProblem.do?category_code=${problem.category_code }&depth=2" class="btn btn-secondary">
+		        					${problem.category_detail}
+		        				</a>
+		        			</h2>
+		        		</div>
 	        			<!--  -->
 	        			<!-- 여기서 category_code의 값을 넘겨줘야 뎁스2가 정해진다 -->
 	        			<!--  -->
 	        		</c:forEach>
-	        		<!-- 문의 추가 버튼 -->	
-	        		<!-- depth를 추가로 보내서 해당 depth에 input값을 추가하는 식으로 ??? -->
 	        		<input name="depth" type="hidden" value="${depth }" />
-	        		<input name="category_detail" type="text" id="detail" class="form-control" placeholder="여기에 입력하세요" onkeyup='getDetail()'>
-	        		<button class="btn btn-dark mt-2" style="float:left" type="submit" formaction="insertProblem.do" >추가하기</button>
         		</c:when>
          		<c:when test="${depth eq 2}">
-	         		${problemList[0].category_detail } >>>>>>${problemList[0].category_code }
+	         		<div class="col">
+	         			<h2 class="btn bg-dark text-white" style="width: 100%; height:70px; line-height:60px; font-size:1.2rem ; text-align: start">
+		         			<c:if test="${problemList eq '[]' }">
+		         				새로운 2단계 문의를 작성해주세요.
+		         			</c:if>
+		         			<c:if test="${problemList ne '[]' }">
+		         				${problemList[0].category_detail }		         				
+		         			</c:if>		         			
+	         			</h2>
+	         		</div>
+	         		<div class="col"></div>
 	        		<c:forEach items="${problemList }" var="problem">
-	        			<!-- 문의 삭제 체크박스 -->
-	        			<h2>
-	        				<input name="RowCheck" type="checkbox" value="${problem.problem_code }"/>
-		        			<a href="updateProblem.do?category_code=${problem.category_code }&problem_code=${problem.problem_code }&depth=3" class="btn btn-secondary">
-		        				${problem.problem_detail}
-		        			</a>
-	        			</h2>
+	        			<div class="col">
+		        			<!-- 문의 삭제 체크박스 -->
+		        			<h2>
+		        				<input name="RowCheck" type="checkbox" value="${problem.problem_code }"/>
+			        			<a href="updateProblem.do?category_code=${problem.category_code }&problem_code=${problem.problem_code }&depth=3" class="btn btn-secondary">
+			        				${problem.problem_detail}
+			        			</a>
+		        			</h2>
+	        			</div>
 	        			<!--  -->
 	        			<!-- 여기서 category_code와 problem_code의 값을 넘겨줘야 뎁스3가 정해진다 -->
 	        			<!--  -->
 	        		</c:forEach>
-	        		<!-- 문의 추가 버튼 -->	
+	        		<!-- 문의 추가 요소 -->	
 	        		<input name="depth" type="hidden" value="${depth }" />
 	        		<input id="category_code" name="category_code" type="hidden" value="<%=category_code %>" />
-	        		<input name="problem_detail" type="text" id="detail"  class="form-control" placeholder="여기에 입력하세요" onkeyup='getDetail()'>
-	        		<button class="btn btn-dark mt-2" style="float:left" type="submit" formaction="insertProblem.do" >추가하기</button>
         		</c:when> 
          		<c:when test="${depth eq 3}">
-	         		${problemList[0].category_detail } === ${problemList[0].problem_detail }
+	         		<div class="col">
+	         			<h2 class="btn bg-dark text-white" style="width: 100%; height:70px; line-height:60px; font-size:1.2rem ; text-align: start">
+	         				<c:if test="${problemList eq '[]' }">
+		         				새로운 3단계 문의를 작성해주세요.
+		         			</c:if>
+		         			<c:if test="${problemList ne '[]' }">
+		         				${problemList[0].category_detail}
+		         			</c:if>
+	         			</h2>
+	         		</div>
+	         		<div class="col">
+	         			<h2 class="btn bg-dark text-white" style="width: 100%; height:70px; line-height:60px; font-size:1.2rem ; text-align: start">
+	         				<c:if test="${problemList eq '[]' }">
+		         				필요 없다면 생략해도 됩니다.
+		         			</c:if>
+	         				<c:if test="${problemList ne '[]' }">
+		         				${problemList[0].problem_detail }
+		         			</c:if>
+	         			</h2>
+	         		</div>
 	        		<c:forEach items="${problemList }" var="problem">
-	        			<h2>
-	        			<!-- 문의 삭제 체크박스 -->
-	        				<input name="RowCheck" type="checkbox" value="${problem.place_code }"/>
-		        			<a href="#" class="btn btn-secondary">
-		        				${problem.place_detail}
-		        			</a>
-	        			</h2>
+	        			<div class="col">
+		        			<h2>
+		        			<!-- 문의 삭제 체크박스 -->
+		        				<input name="RowCheck" type="checkbox" value="${problem.place_code }"/>
+			        			<a href="#" class="btn btn-secondary">
+			        				${problem.place_detail}
+			        			</a>
+		        			</h2>
+	        			</div>
 	        		</c:forEach>
-	        		<!-- 문의 추가 버튼 -->	
+	        		<!-- 문의 추가 요소 -->	
 	        		<input name="depth" type="hidden" value="${depth }" />
 	        		<input id="category_code" name="category_code" type="hidden" value="<%=category_code %>" />
 	        		<input id="problem_code" name="problem_code" type="hidden" value="<%=problem_code %>" />
-	        		<input name="place_detail" type="text" id="detail"  class="form-control" placeholder="여기에 입력하세요" onkeyup='getDetail()'>
-	        		<button class="btn btn-dark mt-2" style="float:left" type="submit" formaction="insertProblem.do">추가하기</button>
         		</c:when>
         	</c:choose>
-        	<!--  수정 / 삭제 버튼 -->
-        	<input type="button" value="삭제하기" class="btn btn-dark mt-2" style="float:left; margin-left:2%" onclick="deleteValue();">
-			<input type="button" value="수정하기" class="btn btn-dark mt-2" style="float:left; margin-left:2%" onclick="fixValue();">
+        	</div>
         	</form>
 
-			<button onclick="history.back()" class="btn btn-secondary mt-2" style="float:right; width: 10%" >이전</button>
+			
          <!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
         </div>
       </div>
