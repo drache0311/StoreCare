@@ -44,7 +44,7 @@
 	<section id="about">
 		<div class="container">
 			<div class="row">
-				<div class="col-lg-8 mx-auto">
+				<div class="col-lg-8 mx-auto" style="text-align-last: center">
 					<h2>전체 내역</h2>
 					
 					<table class="table table-striped table-hover">

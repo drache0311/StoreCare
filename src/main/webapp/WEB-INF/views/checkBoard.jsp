@@ -93,28 +93,28 @@ Timestamp now = new Timestamp(System.currentTimeMillis());
 			    <input name="datetime" type="hidden" value="<%=now%>" />
 			    <input name="place_place_code" type="hidden" value="<%=place_place_code%>" />
 			    <input name="users_id" type="hidden" value="<%=id%>" />
-			    	<h5 class="card-header">현재 방문 백화점</h5>
-		    	<input name="department_department_name" type="hidden" value="${board.department_name}" />
-					<h1 class = "card-title text-info">${board.department_name}</h1>
-					<input id="${board.department_name}" type="hidden" name="changeDepartment" />
-				</div>
-				<div class ="card-body">
-			    	<h5 class="card-header">요청내용</h5>
-			    	<input name="problem_category_code" type="hidden" value="<%=category_code %>" />
+		    	<input name="problem_category_code" type="hidden" value="<%=category_code %>" />
+				<input name="problem_problem_code" type="hidden" value="<%=problem_code %>" />	
+		    	<input name="department_department_name" type="hidden" value="${board.department_name}" />				
+				<input id="${board.department_name}" type="hidden" name="changeDepartment" />	
+							
+			    	<h5 class="card-header">요청하신 내용</h5>
 					<h1 class='text-info'> <%=category_detail %> </h1>
-					<input name="problem_problem_code" type="hidden" value="<%=problem_code %>" />			
-					<h2 class = "card-title text-info"> <%=problem_detail %> </h1>
+					<h2 class = "card-title text-info"> <%=problem_detail %> </h2>
 					<c:if test="${place_detail ne null }">
-						<h3 class = "card-title text-info"><%=place_detail %></h2>
+						<h3 class = "card-title text-info"><%=place_detail %></h3>
 					</c:if>
-					
 				</div>
 				<div class ="card-body">
-			    	<h5 class="card-header">백화점 층 수</h5>
-			    	
+			    	<h5 class="card-header">층 수</h5>
 			    		<select class="ml-4 mt-1 btn btn-info dropdown-toggle" style="width:80%" name="floor" id="floor">
 							<option>선택해주세요.</option>
 						</select>
+				</div>
+				<div class ="card-body">
+			    	<h5 class="card-header">확인</h5>
+						요청하신 문의가 내용과 맞으시다면 
+						<br/>층 수를 선택 후 등록을 눌러주세요.
 				</div>
    			</div>
 	</div>

@@ -44,69 +44,116 @@
       <div class="row">
         <div class="col-lg-8 mx-auto">
         <!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
-        <input id="allCheck" type="checkbox" name="allCheck"/>
+        <!-- 추가 버튼 -->
+        <input type="button" value="내 점에 추가하기" class="btn btn-dark" style="" onclick="insertValue();">
+        <br/>
+        <c:if test="${depth ne 1 }">
+    		<button onclick="history.back()" class="btn btn-secondary" style="float:right; width: 10%" >이전</button>
+		</c:if>
+		<br/>
+        <input id="allCheck" type="checkbox" name="allCheck" class="mt-4"/>
         전체선택
         <form  method="GET">
         	<input id="department_code" name="department_code" type="hidden" value="<%=department_department_code %>" />
-        	<c:choose>
-        		<c:when test="${depth eq 1}">
-	        		<c:forEach items="${problemList }" var="problem">
-	        			<!-- 문의 삭제 체크박스 -->
-	        			<h2>
-	        				<input name="RowCheck" type="checkbox" value="${problem.category_code }"/>
-	        				<a href="sendProblem.do?category_code=${problem.category_code }&depth=2" class="btn btn-secondary">
-	        					${problem.category_detail}
-	        				</a>
-	        			</h2>
-	        			<!--  -->
-	        			<!-- 여기서 category_code의 값을 넘겨줘야 뎁스2가 정해진다 -->
-	        			<!--  -->
-	        		</c:forEach>
-	        		<!-- 문의 추가 버튼 -->	
-	        		<!-- depth를 추가로 보내서 해당 depth에 input값을 추가하는 식으로 ??? -->
-	        		<input name="depth" type="hidden" value="${depth }" />
-        		</c:when>
-         		<c:when test="${depth eq 2}">
-	         		${problemList[0].category_detail } >>>>>>${problemList[0].category_code }
-	        		<c:forEach items="${problemList }" var="problem">
-	        			<!-- 문의 삭제 체크박스 -->
-	        			<h2>
-	        				<input name="RowCheck" type="checkbox" value="${problem.problem_code }"/>
-		        			<a href="sendProblem.do?category_code=${problem.category_code }&problem_code=${problem.problem_code }&depth=3" class="btn btn-secondary">
-		        				${problem.problem_detail}
-		        			</a>
-	        			</h2>
-	        			<!--  -->
-	        			<!-- 여기서 category_code와 problem_code의 값을 넘겨줘야 뎁스3가 정해진다 -->
-	        			<!--  -->
-	        		</c:forEach>
-	        		<!-- 문의 추가 버튼 -->	
-	        		<input name="depth" type="hidden" value="${depth }" />
-	        		<input id="category_code" name="category_code" type="hidden" value="<%=category_code %>" />
-        		</c:when> 
-         		<c:when test="${depth eq 3}">
-	         		${problemList[0].category_detail } === ${problemList[0].problem_detail }
-	        		<c:forEach items="${problemList }" var="problem">
-	        			<h2>
-	        			<!-- 문의 삭제 체크박스 -->
-	        				<input name="RowCheck" type="checkbox" value="${problem.place_code }"/>
-		        			<a href="#" class="btn btn-secondary">
-		        				${problem.place_detail}
-		        			</a>
-	        			</h2>
-	        		</c:forEach>
-	        		<!-- 문의 추가 버튼 -->	
-	        		<input name="depth" type="hidden" value="${depth }" />
-	        		<input id="category_code" name="category_code" type="hidden" value="<%=category_code %>" />
-	        		<input id="problem_code" name="problem_code" type="hidden" value="<%=problem_code %>" />
-        		</c:when>
-        	</c:choose>
+        	<div class="row row-cols-2">
+	        	<c:choose>
+	        		<c:when test="${depth eq 1}">
+		        		<c:forEach items="${problemList }" var="problem">
+		        			<div class="col">
+			        			<!-- 문의 삭제 체크박스 -->
+			        			<h2>
+			        				<input name="RowCheck" type="checkbox" value="${problem.category_code }"/>
+			        				<a href="sendProblem.do?category_code=${problem.category_code }&depth=2" class="btn btn-secondary">
+			        					${problem.category_detail}
+			        				</a>
+			        			</h2>
+			        			<!--  -->
+			        			<!-- 여기서 category_code의 값을 넘겨줘야 뎁스2가 정해진다 -->
+			        			<!--  -->
+		        			</div>
+		        		</c:forEach>
+		        		<!-- 문의 추가 요소 -->	
+		        		<!-- depth를 추가로 보내서 해당 depth에 input값을 추가하는 식으로 ??? -->
+		        		<input name="depth" type="hidden" value="${depth }" />
+	        		</c:when>
+	         		<c:when test="${depth eq 2}">
+	         			<div class="col">
+		         			<h2 class="btn bg-dark text-white" style="width: 100%; height:70px; line-height:60px; font-size:1.2rem ; text-align: start">
+	         				<c:if test="${problemList eq '[]' }">
+		         				2단계 문의가 없어요
+		         			</c:if>
+	         				<c:if test="${problemList ne '[]' }">
+		         				${problemList[0].category_detail }
+		         			</c:if>
+			         		</h2>
+			         	</div>
+			         	<div class="col">
+		         				<c:if test="${problemList eq '[]' }">
+	         				<h2 class="btn bg-dark text-white" style="width: 100%; height:70px; line-height:60px; font-size:1.2rem ; text-align: start">
+			         				총괄 관리자에게 요청하세요
+		         			</h2>
+			         			</c:if>
+			         	</div>
+		        		<c:forEach items="${problemList }" var="problem">
+		        			<div class="col">
+			        			<!-- 문의 삭제 체크박스 -->
+			        			<h2>
+			        				<input name="RowCheck" type="checkbox" value="${problem.problem_code }"/>
+				        			<a href="sendProblem.do?category_code=${problem.category_code }&problem_code=${problem.problem_code }&depth=3" class="btn btn-secondary">
+				        				${problem.problem_detail}
+				        			</a>
+			        			</h2>
+			        			<!--  -->
+			        			<!-- 여기서 category_code와 problem_code의 값을 넘겨줘야 뎁스3가 정해진다 -->
+			        			<!--  -->
+		        			</div>
+		        		</c:forEach>
+		        		<!-- 문의 추가 요소 -->	
+		        		<input name="depth" type="hidden" value="${depth }" />
+		        		<input id="category_code" name="category_code" type="hidden" value="<%=category_code %>" />
+	        		</c:when> 
+	         		<c:when test="${depth eq 3}">
+	         			<div class="col">
+		         			<h2 class="btn bg-dark text-white" style="width: 100%; height:70px; line-height:60px; font-size:1.2rem ; text-align: start">
+	         				<c:if test="${problemList eq '[]' }">
+		         				3단계 문의가 없어요
+		         			</c:if>
+	         				<c:if test="${problemList ne '[]' }">
+		         				${problemList[0].category_detail } 
+		         			</c:if>
+			        		</h2>
+			        	</div>
+			        	<div class="col">
+			        		<h2 class="btn bg-dark text-white" style="width: 100%; height:70px; line-height:60px; font-size:1.2rem ; text-align: start">
+	         				<c:if test="${problemList eq '[]' }">
+		         				총괄 관리자에게 요청하세요
+		         			</c:if>
+	         				<c:if test="${problemList ne '[]' }">
+		         				${problemList[0].problem_detail }
+		         			</c:if>
+
+			        		</h2>
+			        	</div>
+		        		<c:forEach items="${problemList }" var="problem">
+		        			<div class="col">
+			        			<h2>
+			        			<!-- 문의 삭제 체크박스 -->
+			        				<input name="RowCheck" type="checkbox" value="${problem.place_code }"/>
+				        			<a href="#" class="btn btn-secondary">
+				        				${problem.place_detail}
+				        			</a>
+			        			</h2>
+		        			</div>
+		        		</c:forEach>
+		        		<!-- 문의 추가 요소 -->	
+		        		<input name="depth" type="hidden" value="${depth }" />
+		        		<input id="category_code" name="category_code" type="hidden" value="<%=category_code %>" />
+		        		<input id="problem_code" name="problem_code" type="hidden" value="<%=problem_code %>" />
+	        		</c:when>
+	        	</c:choose>
+	        </div>
         	<!-- 추가 / 삭제 버튼 -->
         	</form>
-        	<input type="button" value="내 점에 추가하기" class="btn btn-dark mt-4" style="float:left" "onclick="insertValue();">
-        	<c:if test="${depth ne 1 }">
-        		<button onclick="history.back()" class="btn btn-secondary mt-4" style="float:right; width: 10%" >이전</button>
-			</c:if>
          <!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
         </div>
       </div>

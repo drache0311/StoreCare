@@ -27,6 +27,7 @@ public class ProblemController {
 	// 문의사항 등록 완료
 	@RequestMapping("/insertProblem.do")
 	public String insertProblem(ProblemVO vo) {
+		System.out.println("insertProblem입니다 ." + vo);
 		service.insertProblem(vo);
 		return "updateProblem.do";
 	}

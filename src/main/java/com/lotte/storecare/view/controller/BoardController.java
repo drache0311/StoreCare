@@ -176,12 +176,13 @@ public class BoardController {
 			session.setAttribute("searchCondition",request.getParameter("searchCondition"));
 			session.setAttribute("startDate",request.getParameter("startDate"));
 			session.setAttribute("endDate",request.getParameter("endDate"));
+			session.setAttribute("searchId", request.getParameter("searchId"));
 			String role="";
 			String department_code ="0";
 			String searchCondition = "all";
 			String startDate = "";
 			String endDate = "";
-			
+			String searchId = "all";
 			
 			
 			// searchDepartment 설정
@@ -200,6 +201,7 @@ public class BoardController {
 				department_code = session.getAttribute("department_code").toString();
 				startDate = session.getAttribute("startDate").toString();
 				endDate = session.getAttribute("endDate").toString();
+				searchId = session.getAttribute("searchId").toString();
 			}
 			// role 설정 - 총관리자이면 role이 null이 아니고 0임
 			if(session.getAttribute("role") != null) {
@@ -211,6 +213,9 @@ public class BoardController {
 			}
 			if(endDate == "") {
 				endDate = null;
+			}
+			if(searchId == "") {
+				searchId = "all";
 			}
 			
 			HashMap<String,String> param = new HashMap<String,String>();
@@ -233,6 +238,7 @@ public class BoardController {
 			cri.setSearchCondition(searchCondition);
 			cri.setStartDate(startDate);
 			cri.setId(null); 	// 총/관리자 컨트롤러여서 id는 null로 해준다.
+			cri.setSearchId(searchId);
 			System.out.println("ddddddddddddddddddddd "+cri.getPage());
 	        //현재 페이지에 해당하는 게시물을 조회해 옴 
 			List<BoardVO> vo = service.selectBoardList(cri);

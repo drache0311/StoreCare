@@ -12,9 +12,17 @@ public class Criteria {
 	private String startDate;
 	private String endDate;
 	private String id;
+	private String searchId;
 	
 	
-	
+	public String getSearchId() {
+		return searchId;
+	}
+
+	public void setSearchId(String searchId) {
+		this.searchId = searchId;
+	}
+
 	public String getId() {
 		return id;
 	}
