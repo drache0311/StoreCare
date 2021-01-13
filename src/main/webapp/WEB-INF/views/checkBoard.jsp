@@ -66,10 +66,12 @@ Timestamp now = new Timestamp(System.currentTimeMillis());
 	<li class="list-inline-item">
 		<img src="<%=request.getContextPath()%>/resources/icon/right-arrow.png" alt="" width="50" height="50">
 	</li>
-	<li class="list-inline-item bg-danger">
-		<img src="<%=request.getContextPath()%>/resources/icon/contract.png" alt="" width="100" height="100">
+	<li class="list-inline-item">
+		<img src="<%=request.getContextPath()%>/resources/icon/contract-red.png" alt="" width="100" height="100">
 	</li>
 </ul>
+<font style="margin-left:21%">요청사항</font>
+<font style="margin-left:23%">문의등록(빨간글씨)</font>
   <!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
   
     <!-- Page Content -->
@@ -98,7 +100,7 @@ Timestamp now = new Timestamp(System.currentTimeMillis());
 		    	<input name="department_department_name" type="hidden" value="${board.department_name}" />				
 				<input id="${board.department_name}" type="hidden" name="changeDepartment" />	
 				<!-- 입력된 문의 1,2,3뎁스 표시 -->
-		    	<h5 class="card-header">요청하신 내용</h5>
+		    	<h5 class="card-header">요청하신 내용 - 밑에 볼드체로 까망</h5>
 				<h3 class='text-info'> <%=category_detail %> </h3>
 				<h3 class = "card-title text-info"> <%=problem_detail %> </h3>
 				<c:if test="${place_detail ne null }">

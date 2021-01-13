@@ -48,10 +48,11 @@
 <%@include file ="common/nav.jsp" %>
 
 
-	<header class="bg-primary text-white">
+	<header class="text-white" style="background-size: 100%; background-repeat:no-repeat; background-image: url(<%=request.getContextPath()%>/resources/icon/lotte-department.png)">
 		<div class="container text-center">
-			<h1><%=department_name %> 관리자님 안녕하세요</h1>
-			<p class="lead"><%=department_name %> 접수내역 조회 페이지입니다</p>
+			<h1><font size="60px" style="font-weight:700"><%=department_name %></font> 관리자님 안녕하세요</h1>
+			<hr style="border: solid 1px #fff; width:46%"  >
+			<p class="lead"><%=department_name %> 접수내역 <font size="5px" style="font-weight:600">조회</font> 페이지입니다</p>
 		</div>
 	</header>
 
@@ -98,9 +99,12 @@
 							<tr>
 								<td><input name="RowCheck" type="checkbox" value="${board.seq }" style="zoom:1.5"/></td>
 								<td>${board.datetime}</td>
-								<td>${board.category_detail}
-								${board.problem_detail}
-								${board.place_detail }</td>
+								<td>
+									${board.category_detail}
+									${board.problem_detail}
+									${board.place_detail }
+									${board.floor }
+								</td>
 								<td><c:if test="${board.flag eq 0}" >처리 중</c:if> <c:if test="${board.flag eq 1}" >처리완료</c:if></td>
 								<td>${board.clearTime}</td>
 								<td>${board.users_id}</td>
