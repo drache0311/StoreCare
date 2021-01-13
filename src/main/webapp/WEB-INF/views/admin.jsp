@@ -7,11 +7,13 @@
 	String searchCondition="all";
 	String startDate = "";
 	String endDate = "";
-
+	String searchId = "all";
+	
 	if(session.getAttribute("searchCondition") != null){
 		searchCondition = session.getAttribute("searchCondition").toString();
 		startDate = session.getAttribute("startDate").toString();
-		endDate = session.getAttribute("endDate").toString();	
+		endDate = session.getAttribute("endDate").toString();
+		searchId = session.getAttribute("searchId").toString();
 	}
 	
 %>
@@ -59,23 +61,26 @@
 					<h2>전체 내역</h2>
 					
 					<!--  검색 FORM -->
-					<div align="center">
+					<div style="text-align-last: center">
 						<form name="searchDepBoard"  autocomplete="off" method="post" action="getBoardList.do">
 							<!-- 처리현황별 검색 SELECT -->
+							처리현황 
 							<select name="searchCondition">
 								<option value="all">전체</option>
 								<option value="doing">처리중</option>
 								<option value="done">처리완료</option>
 							</select>
 							<br/><br/> 
-							From: <input type="text" id="startDate" name="startDate" placeholder="시작날짜" >&nbsp;
-							
-							To: <input type="text" id="endDate" name="endDate"  placeholder="끝날짜" >
+							From <input type="text" id="startDate" name="startDate" placeholder="전체" style="width: 115px">
+							&nbsp;
+							To <input type="text" id="endDate" name="endDate"  placeholder="전체" style="width: 115px">
+							&nbsp;
+							아이디 <input type="text" id="searchId" name="searchId"  placeholder="01012345678" style="width: 115px">
 							
 							<button type="submit" id="btnSearch" class="btn btn-info" style="float:right">검색</button>
 						</form>
 					</div>	
-					<table class="table table-striped table-hover">
+					<table class="table table-striped table-hover" style="text-align:center; inline-size:max-content">
 						<thead>
 							<tr>
 								<th><input id="allCheck" type="checkbox" name="allCheck"/></th>
@@ -83,6 +88,7 @@
 								<th>접수내용</th>
 								<th>처리현황</th>
 								<th>처리시간</th>
+								<th>문의자</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -96,6 +102,7 @@
 								${board.place_detail }</td>
 								<td><c:if test="${board.flag eq 0}" >처리 중</c:if> <c:if test="${board.flag eq 1}" >처리완료</c:if></td>
 								<td>${board.clearTime}</td>
+								<td>${board.users_id}</td>
 							</tr>
 						</c:forEach>
 						</tbody>
@@ -107,7 +114,7 @@
 							
 								<!-- prev 버튼 -->
 								<div id="page-prev">
-									<a class="btn btn-outline-secondary" href="getBoardList.do${pageMaker.makeQuery(pageMaker.startPage)}&searchCondition=<%=searchCondition %>&startDate=<%=startDate %>&endDate=<%=endDate %>" aria-label="Prev">
+									<a class="btn btn-outline-secondary" href="getBoardList.do${pageMaker.makeQuery(pageMaker.startPage)}&searchCondition=<%=searchCondition %>&startDate=<%=startDate %>&endDate=<%=endDate %>&searchId=<%=searchId %>" aria-label="Prev">
 										<span aria-hidden="true">«</span>
 									</a>
 								</div>
@@ -115,7 +122,7 @@
 								<!-- 페이지 번호 (시작 페이지 번호부터 끝 페이지 번호까지) -->
 								<c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
 								    <div id="page${idx}">
-									    <a class="btn btn-outline-secondary" href="getBoardList.do${pageMaker.makeQuery(idx)}&searchCondition=<%=searchCondition %>&startDate=<%=startDate %>&endDate=<%=endDate %>">
+									    <a class="btn btn-outline-secondary" href="getBoardList.do${pageMaker.makeQuery(idx)}&searchCondition=<%=searchCondition %>&startDate=<%=startDate %>&endDate=<%=endDate %>&searchId=<%=searchId %>">
 									    	<!-- 시각 장애인을 위한 추가 -->
 									      	<span>${idx}<span class="sr-only">(current)</span></span>
 									    </a>
@@ -124,7 +131,7 @@
 								
 								<!-- next 버튼 -->
 								<div id="page-next">
-								    <a class="btn btn-outline-secondary" href="getBoardList.do${pageMaker.makeQuery(pageMaker.endPage)}&searchCondition=<%=searchCondition %>&startDate=<%=startDate %>&endDate=<%=endDate %>" aria-label="Next">
+								    <a class="btn btn-outline-secondary" href="getBoardList.do${pageMaker.makeQuery(pageMaker.endPage)}&searchCondition=<%=searchCondition %>&startDate=<%=startDate %>&endDate=<%=endDate %>&searchId=<%=searchId %>" aria-label="Next">
 								    	<span aria-hidden="true">»</span>
 								    </a>
 								</div>	

@@ -5,11 +5,13 @@
 	String searchCondition="all";
 	String startDate = "";
 	String endDate = "";
-
+	String searchId = "all";
+	
 	if(session.getAttribute("searchCondition") != null){
 		searchCondition = session.getAttribute("searchCondition").toString();
 		startDate = session.getAttribute("startDate").toString();
 		endDate = session.getAttribute("endDate").toString();	
+		searchId = session.getAttribute("searchId").toString();
 	}
 	
 %>
@@ -50,11 +52,11 @@
 					<h2>전체 내역</h2>
 					
 					<!--  검색 FORM -->
-					<div>
+					<div style="text-align-last: center">
 						<form name="searchDepBoard"  autocomplete="off" method="post" action="getBoardList.do">
 							<!-- 백화점별 검색 SELECT -->
 							<div style="padding:10px">
-								<font>백화점명 :</font>
+								<font>백화점명 </font>
 								<select name="searchDepartment" style="width:90px">
 									<option class="btn btn-primary" value="0">전체</option>
 									<c:forEach items="${departmentList}" var="department">
@@ -72,15 +74,14 @@
 								</select>
 							</div>
 							<div style="padding:10px">
-								<font>From : </font><input type="text" id="startDate" name="startDate" placeholder="전체" style="width: 115px">
-							</div>
-							<div style="padding:10px">
-								<font>To &nbsp;&nbsp;&nbsp;&nbsp;: </font><input type="text" id="endDate" name="endDate"  placeholder="전체" style="width: 115px">
+								<font>From </font><input type="text" id="startDate" name="startDate" placeholder="전체" style="width: 115px">
+								<font>To </font><input type="text" id="endDate" name="endDate"  placeholder="전체" style="width: 115px">
+								아이디 <input type="text" id="searchId" name="searchId"  placeholder="01012345678" style="width: 115px">
 								<button type="submit" id="btnSearch" class="btn btn-info" style="float:right">검색</button>
 							</div>
 						</form>
 					</div>	
-					<table class="table table-striped table-hover">
+					<table class="table table-striped table-hover" style="text-align:center; inline-size:max-content">
 						<thead>
 							<tr>
 								<th>백화점 명</th>
@@ -88,6 +89,7 @@
 								<th>접수내용</th>
 								<th>처리현황</th>
 								<th>처리시간</th>
+								<th>문의자</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -101,6 +103,7 @@
 								${board.place_detail }</td>
 								<td><c:if test="${board.flag eq 0}" >처리 중</c:if> <c:if test="${board.flag eq 1}" >처리완료</c:if></td>
 								<td>${board.clearTime}</td>
+								<td>${board.users_id }</td>
 							</tr>
 						</c:forEach>
 						</tbody>
@@ -111,7 +114,7 @@
 							
 								<!-- prev 버튼 -->
 								<div id="page-prev">
-									<a class="btn btn-outline-secondary" href="getBoardList.do${pageMaker.makeQuery(pageMaker.startPage)}&searchCondition=<%=searchCondition %>&startDate=<%=startDate %>&endDate=<%=endDate %>" aria-label="Prev">
+									<a class="btn btn-outline-secondary" href="getBoardList.do${pageMaker.makeQuery(pageMaker.startPage)}&searchCondition=<%=searchCondition %>&startDate=<%=startDate %>&endDate=<%=endDate %>&searchId=<%=searchId %>" aria-label="Prev">
 										<span aria-hidden="true">«</span>
 									</a>
 								</div>
@@ -119,7 +122,7 @@
 								<!-- 페이지 번호 (시작 페이지 번호부터 끝 페이지 번호까지) -->
 								<c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
 								    <div id="page${idx}">
-									    <a class="btn btn-outline-secondary" href="getBoardList.do${pageMaker.makeQuery(idx)}&searchCondition=<%=searchCondition %>&startDate=<%=startDate %>&endDate=<%=endDate %>">
+									    <a class="btn btn-outline-secondary" href="getBoardList.do${pageMaker.makeQuery(idx)}&searchCondition=<%=searchCondition %>&startDate=<%=startDate %>&endDate=<%=endDate %>&searchId=<%=searchId %>">
 									      	<span>${idx}</span>
 									    </a>
 								    </div>
@@ -127,7 +130,7 @@
 
 								<!-- next 버튼 -->
 								<div id="page-next">
-								    <a class="btn btn-outline-secondary" href="getBoardList.do${pageMaker.makeQuery(pageMaker.endPage)}&searchCondition=<%=searchCondition %>&startDate=<%=startDate %>&endDate=<%=endDate %>" aria-label="Next">
+								    <a class="btn btn-outline-secondary" href="getBoardList.do${pageMaker.makeQuery(pageMaker.endPage)}&searchCondition=<%=searchCondition %>&startDate=<%=startDate %>&endDate=<%=endDate %>&searchId=<%=searchId %>" aria-label="Next">
 								    	<span aria-hidden="true">»</span>
 								    </a>
 								</div>		

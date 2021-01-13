@@ -39,25 +39,10 @@
 
 		<choose>
 			<when test="department_code == 0">
-				select seq,place_detail,place_code,problem_code,category_code,clearTime,datetime,department_name,floor,flag,department_department_code,problem_detail,category_detail
+				select seq,place_detail,place_code,problem_code,category_code,clearTime,datetime,department_name,floor,flag,department_department_code,problem_detail,category_detail,users_id
 				from place
 				right outer join
-					(select seq,place_place_code,category_code,problem_code,clearTime,datetime,department_name,floor,flag,department_department_code,problem_detail,category_detail
-					from board
-					join problem
-					join category
-					join department 
-					ON problem.category_category_code=category.category_code
-					and board.problem_problem_code=problem.problem_code 
-					and board.problem_category_code=category.category_code 
-					and board.department_department_code=department.department_code ) as A
-			    on A.place_place_code=place.place_code 
-			</when>
-			<otherwise>
-				select seq,place_detail,place_code,problem_code,category_code,clearTime,datetime,department_name,floor,flag,department_department_code,problem_detail,category_detail
-				from place
-				right outer join
-					(select seq,place_place_code,category_code,problem_code,clearTime,datetime,department_name,floor,flag,department_department_code,problem_detail,category_detail
+					(select seq,place_place_code,category_code,problem_code,clearTime,datetime,department_name,floor,flag,department_department_code,problem_detail,category_detail,users_id
 					from board
 					join problem
 					join category
@@ -66,9 +51,31 @@
 					and board.problem_problem_code=problem.problem_code 
 					and board.problem_category_code=category.category_code 
 					and board.department_department_code=department.department_code
-					and board.department_department_code=#{department_code}  <!-- board.department_department_code와 #{department_code} -> 1,2,3 등과 비교해서 각 점 선택 --> ) as A
+					<if test="searchId != 'all'">
+						and board.users_id = #{searchId}			
+					</if>
+					) as A
 			    on A.place_place_code=place.place_code 
-				
+			</when>
+			<otherwise>
+					select seq,place_detail,place_code,problem_code,category_code,clearTime,datetime,department_name,floor,flag,department_department_code,problem_detail,category_detail,users_id
+					from place
+					right outer join
+						(select seq,place_place_code,category_code,problem_code,clearTime,datetime,department_name,floor,flag,department_department_code,problem_detail,category_detail,users_id
+						from board
+						join problem
+						join category
+						join department 
+						ON problem.category_category_code=category.category_code
+						and board.problem_problem_code=problem.problem_code 
+						and board.problem_category_code=category.category_code 
+						and board.department_department_code=department.department_code
+						and board.department_department_code=#{department_code}
+						<if test="searchId != 'all'">
+							and board.users_id = #{searchId}			
+						</if>
+						) as A <!-- board.department_department_code와 #{department_code} -> 1,2,3 등과 비교해서 각 점 선택 --> 
+				    on A.place_place_code=place.place_code 
 			</otherwise>
 		</choose>
 		<include refid="searchPaging" />
@@ -86,12 +93,21 @@
 		<when test="department_code == 0">	<!-- 총괄관리자 전체 문의내역 페이징 번호 개수 쿼리 -->
 			select count(seq)
 			from board
-			<include refid="search" />
+			<if test="searchId != 'all'">
+				where board.users_id = #{searchId}		
+				<include refid="search2" />
+			</if>
+			<if test="searchId == 'all'">	
+				<include refid="search" />
+			</if>
 		</when>
 		<otherwise>	<!-- 각 점별 문의내역 페이징 개수 쿼리 -->
 			select count(seq)
 			from board
 			where board.department_department_code=#{department_code}
+			<if test="searchId != 'all'">
+				and users_id = #{searchId}			
+			</if>
 			<include refid="search2" />
 		</otherwise>
 		</choose>
@@ -156,7 +172,6 @@
 					where dateTime &lt; #{endDate}+1
 				</if>
 				<if test=" startDate == null and endDate == null"> <!-- 시작날짜가 null이고 끝날짜가 null일 때 -->
-					order by seq desc
 				</if>
 			</when>
 			<!-- 문의처리현황이 처리 중 일 때 -->
@@ -175,7 +190,6 @@
 				</if>
 				<if test=" startDate == null and endDate == null"> <!-- 시작날짜가 null이고 끝날짜가 null일 때 -->
 					where flag=0
-					order by seq desc
 				</if>
 			</when>
 			<!-- 문의처리현황이 처리완료 일 때 -->
@@ -194,10 +208,10 @@
 				</if>
 				<if test=" startDate == null and endDate == null"> <!-- 시작날짜가 null이고 끝날짜가 null일 때 -->
 					where flag=1
-					order by seq desc
 				</if>
-			</when>		
+			</when>	
 		</choose>
+			order by seq desc
 	</sql>
 
 	<!-- 날짜별 및 문의처리현황별 조회 SQL 2 -->
