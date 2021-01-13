@@ -34,10 +34,16 @@
 <%
 	}
 %>
-	<body id="page-top">
+<body id="page-top">
 <!-- include nav -->
 <%@include file ="common/nav.jsp" %>
 
+<header class="bg-primary text-white">
+	<div class="container text-center">
+		<h1>관리자님 안녕하세요</h1>
+		<p class="lead">백화점이 사용할 문의를 관리하는 페이지입니다</p>
+	</div>
+</header>
 <!--  여기서부터 foreach를 써서 section마다 각 점별 막대그래프 출력 -->
   <section id="about"> 
     <div class="container">

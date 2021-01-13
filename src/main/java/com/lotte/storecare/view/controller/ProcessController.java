@@ -28,13 +28,6 @@ public class ProcessController {
 		return "getBoardUserList";
 	}
 	
-//	@RequestMapping(value="/insertBoard", method=RequestMethod.GET)
-//	public String INSERTBOARD_GET() {	
-//		System.out.println("여긴 GET");
-//		return "insertBoard";
-//	}
-	
-	
 	@RequestMapping(value="/checkBoard", method=RequestMethod.GET)
 	public String CHECKBOARD_GET() {	
 		return "checkBoard";

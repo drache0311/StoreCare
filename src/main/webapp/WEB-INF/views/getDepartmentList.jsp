@@ -34,18 +34,18 @@
 <%@include file ="common/nav.jsp" %>
 
 
-	<header class="bg-primary text-white">
-		<div class="container text-center">
-			<h1>관리자 페이지</h1>
-			<p class="lead">백화점 관리 페이지</p>
-		</div>
-	</header>
+<header class="bg-primary text-white">
+	<div class="container text-center">
+		<h1>관리자님 안녕하세요</h1>
+		<p class="lead">백화점을 추가 삭제하는 페이지입니다.</p>
+	</div>
+</header>
 
 	<section id="about">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-8 mx-auto" style="text-align-last: center">
-					<h2>전체 내역</h2>
+					<h2>백화점/관리자 리스트</h2>
 					
 					<table class="table table-striped table-hover">
 						<thead>

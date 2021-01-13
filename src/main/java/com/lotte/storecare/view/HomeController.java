@@ -6,7 +6,10 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import com.lotte.storecare.department.service.DepartmentService;
 import com.lotte.storecare.user.service.UserService;
+import com.lotte.storecare.vo.DepartmentVO;
 import com.lotte.storecare.vo.UserVO;
 
 /**
@@ -17,6 +20,9 @@ public class HomeController {
 	
 	@Inject
 	private UserService service;
+	
+	@Inject
+	private DepartmentService departmentService;
 	
 	//	.jsp로 보여줄려면 
 	//	com.lotte.view 에서 return 해야 .jsp로 된다.
@@ -62,12 +68,14 @@ public class HomeController {
 	}
 	
 	// 입력한 아이디/비밀번호 맞으면 insertBoard로 , 틀리면 다시 login.jsp로
+	@SuppressWarnings("unused")
 	@RequestMapping(value="/login.do", method=RequestMethod.POST)
 	public String LOGIN_POST(HttpSession session,HttpServletRequest httpServletRequest) {	
 		
 		String id = httpServletRequest.getParameter("id");
 		
 		UserVO vo = service.select(id); 
+
 		
 		if(vo == null){
 			session.setAttribute("role", 2);
@@ -77,8 +85,10 @@ public class HomeController {
 			session.setAttribute("role", vo.getRole());
 			return "getBoardList.do";
 		}else{ // role이 1이면 각 점 관리자 페이지로
+			DepartmentVO departmentVO = departmentService.selectDepartment(Integer.toString(vo.getDepartment_code()));
 			 session.setAttribute("role", vo.getRole());
 			 session.setAttribute("department_code", vo.getDepartment_code());
+			 session.setAttribute("department_name", departmentVO.getDepartment_name());
 			 return "getBoardList.do";
 		}
 	}

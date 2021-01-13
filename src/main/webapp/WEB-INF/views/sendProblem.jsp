@@ -24,6 +24,7 @@
 	String depth = request.getParameter("depth");
 	String category_code = request.getParameter("category_code");
 	String problem_code = request.getParameter("problem_code");
+	String department_name = session.getAttribute("department_name").toString();
 %>
 <c:set var="depth" value="<%=depth %>" />
 
@@ -38,6 +39,13 @@
 <!-- include nav -->
 <%@include file ="common/nav.jsp" %>
 
+<header class="bg-primary text-white">
+	<div class="container text-center">
+		<h1><%=department_name %> 관리자님 안녕하세요</h1>
+		<p class="lead"><%=department_name %>에 문의사항을 추가하는 페이지입니다</p>
+	</div>
+</header>
+	
 <!--  여기서부터 foreach를 써서 section마다 각 점별 막대그래프 출력 -->
   <section id="about"> 
     <div class="container">
