@@ -8,6 +8,7 @@
 	String startDate = "";
 	String endDate = "";
 	String searchId = "all";
+	String department_name = session.getAttribute("department_name").toString();
 	
 	if(session.getAttribute("searchCondition") != null){
 		searchCondition = session.getAttribute("searchCondition").toString();
@@ -49,8 +50,8 @@
 
 	<header class="bg-primary text-white">
 		<div class="container text-center">
-			<h1>관리자 페이지</h1>
-			<p class="lead">전체 접수내역 조회 페이지</p>
+			<h1><%=department_name %> 관리자님 안녕하세요</h1>
+			<p class="lead"><%=department_name %> 접수내역 조회 페이지입니다</p>
 		</div>
 	</header>
 
@@ -83,7 +84,7 @@
 					<table class="table table-striped table-hover" style="text-align:center; inline-size:max-content">
 						<thead>
 							<tr>
-								<th><input id="allCheck" type="checkbox" name="allCheck"/></th>
+								<th><input id="allCheck" type="checkbox" name="allCheck" style="zoom:1.5"/></th>
 								<th>접수일자</th>
 								<th>접수내용</th>
 								<th>처리현황</th>
@@ -95,7 +96,7 @@
 
 						<c:forEach items="${boardList}" var="board">
 							<tr>
-								<td><input name="RowCheck" type="checkbox" value="${board.seq }"/></td>
+								<td><input name="RowCheck" type="checkbox" value="${board.seq }" style="zoom:1.5"/></td>
 								<td>${board.datetime}</td>
 								<td>${board.category_detail}
 								${board.problem_detail}

@@ -2,6 +2,12 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!doctype html>
+<%
+	String depth = request.getParameter("depth");
+	String category_code = request.getParameter("category_code");
+	String problem_code = request.getParameter("problem_code");
+	String department_name = session.getAttribute("department_name").toString();
+%>
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -9,7 +15,7 @@
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.79.0">
     
-    <title>??점 문의 관리</title>
+    <title><%=department_name %> 문의 관리</title>
     
 	
 	<!-- Bootstrap core CSS -->
@@ -20,12 +26,6 @@
 	<link href="<%=request.getContextPath()%>/resources/vendor/bootstrap/css/button-dark.css" rel="stylesheet">
 </head>
 
-<%
-	String depth = request.getParameter("depth");
-	String category_code = request.getParameter("category_code");
-	String problem_code = request.getParameter("problem_code");
-	
-%>
 <c:set var="depth" value="<%=depth %>" />
 
 <%
@@ -38,20 +38,35 @@
 <body id="page-top">
 <!-- include nav -->
 <%@include file ="common/nav.jsp" %>
+
+<header class="bg-primary text-white">
+	<div class="container text-center">
+		<h1><%=department_name %> 관리자님 안녕하세요</h1>
+		<p class="lead"><%=department_name %>의 문의사항을 삭제하는 페이지입니다</p>
+	</div>
+</header>
+
 <!--  여기서부터 foreach를 써서 section마다 각 점별 막대그래프 출력 -->
   <section id="about"> 
     <div class="container">
       <div class="row">
         <div class="col-lg-8 mx-auto">
-        <!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
+        <!-- 삭제 버튼 -->
         <input type="button" value="내 점에서 삭제하기" class="btn btn-dark " style="float:left" onclick="deleteValue();">
         <br/>
+        <br/>
+        <!-- 이전 버튼 -->
         <c:if test="${depth ne 1 }">
 			<button onclick="history.back()" class="btn btn-secondary" style="float:right; width: 10%" >이전</button>
 		</c:if>
-        <br/>
-        <input id="allCheck" type="checkbox" name="allCheck" class="mt-4"/>
-        전체선택
+		<!-- 전체선택 체크박스 -->
+        <div class="form-check ml-4 mb-3" style="width:max-content">
+        	<input class="form-check-input" id="allCheck" type="checkbox" name="allCheck" style="zoom:1.5""/>
+        	<label class="form-check-label mt-2" for="allCheck">
+        		전체선택
+        	</label>
+        </div>
+        <!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
         <form  method="GET">
             <!-- 다시 이 페이지로 새로고침하기 위해 dep_code가 필요하다 -->
         	<input id="department_code" type="hidden" value="<%=department_department_code %>" />
@@ -62,7 +77,7 @@
 		        			<div class="col">
 			        			<!-- 문의 삭제 체크박스 -->
 			        			<h2>
-			        				<input name="RowCheck" type="checkbox" value="${problem.category_category_code }"/>
+			        				<input name="RowCheck" type="checkbox" value="${problem.category_category_code }" style="zoom:1.5"/>
 			        				<a href="departmentProblem.do?category_category_code=${problem.category_category_code }&department_department_code=<%=department_department_code %>&depth=2" class="btn btn-secondary">
 			        					${problem.category_detail}
 			        				</a>
@@ -98,7 +113,7 @@
 		        			<div class="col">
 			        			<!-- 문의 삭제 체크박스 -->
 			        			<h2>
-			        				<input name="RowCheck" type="checkbox" value="${problem.problem_problem_code }"/>
+			        				<input name="RowCheck" type="checkbox" value="${problem.problem_problem_code }" style="zoom:1.5"/>
 				        			<a href="departmentProblem.do?category_category_code=${problem.category_category_code }&problem_problem_code=${problem.problem_problem_code }&department_department_code=<%=department_department_code %>&depth=3" class="btn btn-secondary">
 				        				${problem.problem_detail}
 				        			</a>
@@ -126,7 +141,7 @@
 		         		<div class="col">
 		         			<h2 class="btn bg-dark text-white" style="width: 100%; height:70px; line-height:60px; font-size:1.2rem ; text-align: start">
 	         				<c:if test="${problemList eq '[]' }">
-		         				필요하다면 문의를 추가해주세요
+		         				필요하면 문의를 추가해주세요
 		         			</c:if>
 	         				<c:if test="${problemList ne '[]' }">
 		         				${problemList[0].problem_detail }
@@ -137,7 +152,7 @@
 			        		<div class="col">
 			        			<h2>
 			        			<!-- 문의 삭제 체크박스 -->
-			        				<input name="RowCheck" type="checkbox" value="${problem.place_place_code }"/>
+			        				<input name="RowCheck" type="checkbox" value="${problem.place_place_code }" style="zoom:1.5"/>
 				        			<a href="#" class="btn btn-secondary">
 				        				${problem.place_detail}
 				        			</a>
