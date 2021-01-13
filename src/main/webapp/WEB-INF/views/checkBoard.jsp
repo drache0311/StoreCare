@@ -85,8 +85,8 @@ Timestamp now = new Timestamp(System.currentTimeMillis());
 
 <form method="get">
  	<div class = "container-fluid" >
-			<div class = "card mt-4">
-			    <div class ="card-body">
+		<div class = "card mt-4">
+		    <div class ="card-body">
 			    <c:if test="${seq ne 'null'}">
 			  	  <input name="seq" type="hidden" value="<%=seq%>" />
 			    </c:if>
@@ -97,26 +97,26 @@ Timestamp now = new Timestamp(System.currentTimeMillis());
 				<input name="problem_problem_code" type="hidden" value="<%=problem_code %>" />	
 		    	<input name="department_department_name" type="hidden" value="${board.department_name}" />				
 				<input id="${board.department_name}" type="hidden" name="changeDepartment" />	
-							
-			    	<h5 class="card-header">요청하신 내용</h5>
-					<h1 class='text-info'> <%=category_detail %> </h1>
-					<h2 class = "card-title text-info"> <%=problem_detail %> </h2>
-					<c:if test="${place_detail ne null }">
-						<h3 class = "card-title text-info"><%=place_detail %></h3>
-					</c:if>
-				</div>
-				<div class ="card-body">
-			    	<h5 class="card-header">층 수</h5>
-			    		<select class="ml-4 mt-1 btn btn-info dropdown-toggle" style="width:80%" name="floor" id="floor">
-							<option>선택해주세요.</option>
-						</select>
-				</div>
-				<div class ="card-body">
-			    	<h5 class="card-header">확인</h5>
-						요청하신 문의가 내용과 맞으시다면 
-						<br/>층 수를 선택 후 등록을 눌러주세요.
-				</div>
-   			</div>
+				<!-- 입력된 문의 1,2,3뎁스 표시 -->
+		    	<h5 class="card-header">요청하신 내용</h5>
+				<h3 class='text-info'> <%=category_detail %> </h3>
+				<h3 class = "card-title text-info"> <%=problem_detail %> </h3>
+				<c:if test="${place_detail ne null }">
+					<h3 class = "card-title text-info"><%=place_detail %></h3>
+				</c:if>
+			</div>
+			<div class ="card-body">
+		    	<h5 class="card-header">층 수</h5>
+		    		<select class="ml-4 mt-1 btn btn-info dropdown-toggle" style="width:80%" name="floor" id="floor">
+						<option>선택해주세요.</option>
+					</select>
+			</div>
+			<div class ="card-body">
+		    	<h5 class="card-header">확인</h5>
+					요청하신 문의가 내용과 맞으시다면 
+					<br/>층 수를 선택 후 등록을 눌러주세요.
+			</div>
+  		</div>
 	</div>
    			<c:choose>
 	   			<c:when test="${seq eq 0}">
