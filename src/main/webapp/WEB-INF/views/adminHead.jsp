@@ -76,7 +76,7 @@
 							<div style="padding:10px">
 								<font>From </font><input type="text" id="startDate" name="startDate" placeholder="전체" style="width: 115px">
 								<font>To </font><input type="text" id="endDate" name="endDate"  placeholder="전체" style="width: 115px">
-								아이디 <input type="text" id="searchId" name="searchId"  placeholder="01012345678" style="width: 115px">
+								문의자 <input type="text" id="searchId" name="searchId"  placeholder="01012345678" style="width: 115px">
 								<button type="submit" id="btnSearch" class="btn btn-info" style="float:right">검색</button>
 							</div>
 						</form>

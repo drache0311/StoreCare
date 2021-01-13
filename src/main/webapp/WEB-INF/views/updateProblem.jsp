@@ -100,7 +100,9 @@
 		         			</c:if>		         			
 	         			</h2>
 	         		</div>
-	         		<div class="col"></div>
+	         		<div class="col">
+	         		
+	         		</div>
 	        		<c:forEach items="${problemList }" var="problem">
 	        			<div class="col">
 		        			<!-- 문의 삭제 체크박스 -->
