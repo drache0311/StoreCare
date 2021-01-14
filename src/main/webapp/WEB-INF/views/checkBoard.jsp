@@ -101,10 +101,10 @@ Timestamp now = new Timestamp(System.currentTimeMillis());
 				<input id="${board.department_name}" type="hidden" name="changeDepartment" />	
 				<!-- 입력된 문의 1,2,3뎁스 표시 -->
 		    	<h5 class="card-header">요청하신 내용</h5>
-				<h3 style="font-weight:bold"> <%=category_detail %> </h3>
-				<h3 class = "card-title" style="font-weight:bold"> <%=problem_detail %> </h3>
+				<h3 class="ml-4" style="font-weight:bold"> <%=category_detail %> </h3>
+				<h3 class = "card-title ml-4" style="font-weight:bold"> <%=problem_detail %> </h3>
 				<c:if test="${place_detail ne null }">
-					<h3 class = "card-title" style="font-weight:bold"><%=place_detail %></h3>
+					<h3 class = "card-title ml-4" style="font-weight:bold"><%=place_detail %></h3>
 				</c:if>
 			</div>
 			<div class ="card-body">
@@ -115,8 +115,9 @@ Timestamp now = new Timestamp(System.currentTimeMillis());
 			</div>
 			<div class ="card-body">
 		    	<h5 class="card-header">확인사항</h5>
-					요청하신 문의가 내용과 맞으시다면 
-					<br/>층 수를 선택 후 등록을 눌러주세요.
+					<span class="ml-4">요청하신 문의가 내용과 맞으시다면 </span>
+					<br/>
+					<span class="ml-4">층 수를 선택 후 등록을 눌러주세요.</span>
 			</div>
   		</div>
 	</div>
