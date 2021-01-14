@@ -71,7 +71,7 @@
 		<img src="<%=request.getContextPath()%>/resources/icon/contract.png" alt="" width="100" height="100">
 	</li>
 </ul>
-<font style="margin-left:21%">요청사항(빨간글씨)</font>
+<font class="text-danger" style="margin-left:21%; font-weight:bold">요청사항</font>
 <font style="margin-left:23%">문의등록</font>
   <!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
   <section id="about" style="padding:50px 0"> 

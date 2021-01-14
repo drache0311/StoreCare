@@ -48,7 +48,7 @@
 
 <!--  검색 FORM -->
 <div>
-	<form name="searchUserBoard"  autocomplete="off" method="post" action="getBoardUserList.do" style="padding:10px">
+	<form name="searchUserBoard"  autocomplete="off" method="post" action="getBoardUserList.do" style="padding:10px; font-weight:bold">
 		<!-- 처리현황별 검색 SELECT -->
 		<div style="padding:10px; text-align-last: center">
 		<p>처리현황</p>

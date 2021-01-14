@@ -59,7 +59,7 @@
 	    <!-- 전체 선택 체크박스 -->
         <div class="form-check ml-4 mb-3" style="width:max-content">
         	<input class="form-check-input" id="allCheck" type="checkbox" name="allCheck" style="zoom:1.5"/>
-        	<label class="form-check-label mt-2" for="allCheck">
+        	<label class="form-check-label mt-2" for="allCheck" style="font-weight:bold">
         		전체선택
         	</label>
         </div>
@@ -88,6 +88,16 @@
 			<div class="row row-cols-2">
         	<c:choose>
         		<c:when test="${depth eq 1}">
+        			<div class="col">
+        				<h2 class="btn bg-dark text-white" style="width: 100%; height:70px; line-height:60px; font-size:1.2rem ; text-align: start">
+        					1단계 문의를 삭제하시면 해당 문의의
+        				</h2>
+        			</div>
+        			<div class="col">
+        				<h2 class="btn bg-dark text-white" style="width: 100%; height:70px; line-height:60px; font-size:1.2rem ; text-align: start">
+        					모든 문의가 삭제됩니다
+        				</h2>
+        			</div>
 	        		<c:forEach items="${problemList }" var="problem">
 	        			<div class="col">
 		        			<!-- 문의 삭제 체크박스 -->
@@ -109,6 +119,11 @@
 	         			<h2 class="btn bg-dark text-white" style="width: 100%; height:70px; line-height:60px; font-size:1.2rem ; text-align: start">
 		         			<c:if test="${problemList eq '[]' }">
 		         				새로운 2단계 문의를 작성해주세요.
+		         				</h2>
+		         				</div>
+		         				<div class="col">
+		         					<h2 class="btn bg-dark text-white" style="width: 100%; height:70px; line-height:60px; font-size:1.2rem ; text-align: start">
+		         						2단계 문의는 필수입니다
 		         			</c:if>
 		         			<c:if test="${problemList ne '[]' }">
 		         				${problemList[0].category_detail }		         				

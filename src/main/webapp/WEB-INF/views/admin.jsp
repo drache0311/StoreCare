@@ -60,29 +60,26 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-8 mx-auto">
-					<h2>전체 내역</h2>
-					
+					<h2 style="font-weight:bold">전체 내역</h2>
 					<!--  검색 FORM -->
 					<div style="text-align-last: center">
 						<form name="searchDepBoard"  autocomplete="off" method="post" action="getBoardList.do">
 							<!-- 처리현황별 검색 SELECT -->
-							처리현황 
+							<font style="font-size:large">처리현황</font>
 							<select name="searchCondition">
 								<option value="all">전체</option>
 								<option value="doing">처리중</option>
 								<option value="done">처리완료</option>
 							</select>
-							<br/><br/> 
-							From <input type="text" id="startDate" name="startDate" placeholder="전체" style="width: 115px">
-							&nbsp;
-							To <input type="text" id="endDate" name="endDate"  placeholder="전체" style="width: 115px">
-							&nbsp;
-							문의자 <input type="text" id="searchId" name="searchId"  placeholder="01012345678" style="width: 115px">
+							<hr>
+							<font style="font-size:large">From</font> <input type="text" id="startDate" name="startDate" placeholder="전체" style="width: 115px">
+							<font class="ml-2" style="font-size:large">To</font> <input type="text" id="endDate" name="endDate"  placeholder="전체" style="width: 115px">
+							<font class="ml-2" style="font-size:large">문의자</font> <input type="text" id="searchId" name="searchId"  placeholder="01012345678" style="width: 115px">
 							
 							<button type="submit" id="btnSearch" class="btn btn-info" style="float:right">검색</button>
 						</form>
 					</div>	
-					<table class="table table-striped table-hover" style="text-align:center; inline-size:max-content">
+					<table class="table table-striped table-hover" style="text-align:center; inline-size:max-content;">
 						<thead>
 							<tr>
 								<th><input id="allCheck" type="checkbox" name="allCheck" style="zoom:1.5"/></th>
@@ -110,6 +107,16 @@
 								<td>${board.users_id}</td>
 							</tr>
 						</c:forEach>
+						<c:if test="${boardList eq '[]' }">
+							<tr>
+								<td></td>
+								<td></td>
+								<td style="width:400px">문의가 없어요!</td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+						</c:if>
 						</tbody>
 					</table>
 					<input type="button" value="문의처리하기" class="btn btn-dark" onclick="deleteValue();">
