@@ -33,7 +33,8 @@
 	
 	<!-- Bootstrap core CSS -->
 	<link href="<%=request.getContextPath()%>/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-	
+	<!-- Custom CSS -->
+	<link href="<%=request.getContextPath()%>/resources/vendor/bootstrap/css/button-dark.css" rel="stylesheet">
 
 </head>
 
@@ -51,13 +52,14 @@
 	<form name="searchUserBoard"  autocomplete="off" method="post" action="getBoardUserList.do" style="padding:10px; font-weight:bold">
 		<!-- 처리현황별 검색 SELECT -->
 		<div style="padding:10px; text-align-last: center">
-		<p>처리현황</p>
+		<font style="font-size:large">처리현황</font>
 		<select name="searchCondition">
 			<option value="all">전체</option>
 			<option value="doing">처리중</option>
 			<option value="done">처리완료</option>
 		</select>
 		</div>
+		<hr style="width:70%">
 		<div style="padding:10px; text-align-last: center">
 		From
 		<input type="text" id="startDate" name="startDate" placeholder="전체" style="width: 115px">
@@ -65,11 +67,8 @@
 		<input type="text" id="endDate" name="endDate"  placeholder="전체" style="width: 115px">
 		<button type="submit" id="btnSearch" class="btn btn-info" style="float:right">검색</button>
 		</div>
-
 	</form>
 </div>
-
-  
 
   <!-- 여기도 null이 아니라 [] 빈 리스트인데 이거 나중에 생각해보자  -->
 <c:choose>
@@ -143,7 +142,7 @@
 			<div class = "card mt-4">
 			    <div class ="card-body">
 					<h1 class = "card-title"> 문의가 없네요 !! </h1>
-					 <a href="selectDepartment" class="btn btn-primary">문의 하러가기 </a>
+					 <a href="selectDepartment" class="btn btn-dark">문의 하러가기 </a>
 				</div>
 			</div>
 </div>
