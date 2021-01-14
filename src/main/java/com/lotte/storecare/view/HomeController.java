@@ -48,6 +48,12 @@ public class HomeController {
 	// logout.do로 받아서 session 끊고 login으로 get방식으루 보냄
 	@RequestMapping(value="/logout.do", method=RequestMethod.GET)
 	public String LOGOUT_GET(HttpSession session) {
+		System.out.println(session.getAttribute("role").toString());
+		if(!session.getAttribute("role").toString().equals("2")) {
+			session.invalidate();
+			System.out.println("sdfdsfdsf으로 LOGOUT");
+			return "super";
+		}
 		session.invalidate();
 		System.out.println("logout.do -> / 이동 GET으로 LOGOUT");
 		return "/";
@@ -60,27 +66,26 @@ public class HomeController {
 		return "login";
 	}
 	
-	//아디 비번 안 맞을시 여기로 와서 다시 login 페이지
-	@RequestMapping(value = "/login", method=RequestMethod.POST)
+	//아디 비번 안 맞을시 여기로 와서 다시 loginAdmin 페이지
+	@RequestMapping(value = "/super", method=RequestMethod.POST)
 	public String LOGIN_INVALID_POST() {
-		System.out.println("아디비번안맞아서 /login -> login  POST임");
-		return "login";
+		return "loginAdmin";
 	}
 	
-	// 입력한 아이디/비밀번호 맞으면 insertBoard로 , 틀리면 다시 login.jsp로
+	// 입력한 아이디/비밀번호 맞으면 getBoardList.do로 , 틀리면 다시 loginAdmin.jsp로
 	@SuppressWarnings("unused")
-	@RequestMapping(value="/login.do", method=RequestMethod.POST)
-	public String LOGIN_POST(HttpSession session,HttpServletRequest httpServletRequest) {	
+	@RequestMapping(value="/loginAdmin.do", method=RequestMethod.POST)
+	public String LOGIN_ADMIN_POST(HttpSession session,HttpServletRequest httpServletRequest,UserVO vo) {	
 		
-		String id = httpServletRequest.getParameter("id");
-		
-		UserVO vo = service.select(id); 
+		/*
+		 * String id = httpServletRequest.getParameter("id"); String pw =
+		 * httpServletRequest.getParameter("password");
+		 */
+		vo = service.select(vo); 
 
 		
 		if(vo == null){
-			session.setAttribute("role", 2);
-			session.setAttribute("login", id);
-			return "selectDepartment";
+			return "super";
 		}else if(vo.getRole() == 0) { // role이 0 이면 총괄 관리자 페이지로
 			session.setAttribute("role", vo.getRole());
 			return "getBoardList.do";
@@ -92,7 +97,16 @@ public class HomeController {
 			 return "getBoardList.do";
 		}
 	}
-	
+	// 입력한 아이디/비밀번호 맞으면 selectDepartment로 
+	@RequestMapping(value="/login.do", method=RequestMethod.POST)
+	public String LOGIN_POST(HttpSession session,HttpServletRequest httpServletRequest) {	
+		
+		String id = httpServletRequest.getParameter("id");
+		
+		session.setAttribute("role", 2);
+		session.setAttribute("login", id);
+		return "selectDepartment";
+	}	
 
 
 	// 입력한 아이디/비밀번호 맞으면 getDpartMent.do로 , 틀리면 다시 login.jsp로
