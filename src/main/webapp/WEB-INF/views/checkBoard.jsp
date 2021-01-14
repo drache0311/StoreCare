@@ -71,7 +71,7 @@ Timestamp now = new Timestamp(System.currentTimeMillis());
 	</li>
 </ul>
 <font style="margin-left:21%">요청사항</font>
-<font style="margin-left:23%">문의등록(빨간글씨)</font>
+<font class="text-danger" style="margin-left:23%; font-weight:bold">문의등록</font>
   <!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
   
     <!-- Page Content -->
@@ -100,11 +100,11 @@ Timestamp now = new Timestamp(System.currentTimeMillis());
 		    	<input name="department_department_name" type="hidden" value="${board.department_name}" />				
 				<input id="${board.department_name}" type="hidden" name="changeDepartment" />	
 				<!-- 입력된 문의 1,2,3뎁스 표시 -->
-		    	<h5 class="card-header">요청하신 내용 - 밑에 볼드체로 까망</h5>
-				<h3 class='text-info'> <%=category_detail %> </h3>
-				<h3 class = "card-title text-info"> <%=problem_detail %> </h3>
+		    	<h5 class="card-header">요청하신 내용</h5>
+				<h3 style="font-weight:bold"> <%=category_detail %> </h3>
+				<h3 class = "card-title" style="font-weight:bold"> <%=problem_detail %> </h3>
 				<c:if test="${place_detail ne null }">
-					<h3 class = "card-title text-info"><%=place_detail %></h3>
+					<h3 class = "card-title" style="font-weight:bold"><%=place_detail %></h3>
 				</c:if>
 			</div>
 			<div class ="card-body">
@@ -114,7 +114,7 @@ Timestamp now = new Timestamp(System.currentTimeMillis());
 					</select>
 			</div>
 			<div class ="card-body">
-		    	<h5 class="card-header">확인</h5>
+		    	<h5 class="card-header">확인사항</h5>
 					요청하신 문의가 내용과 맞으시다면 
 					<br/>층 수를 선택 후 등록을 눌러주세요.
 			</div>

@@ -50,14 +50,14 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-8 mx-auto">
-					<h2>전체 내역</h2>
+					<h2 style="font-weight:bold">전체 내역</h2>
 					
 					<!--  검색 FORM -->
 					<div style="text-align-last: center">
 						<form name="searchDepBoard"  autocomplete="off" method="post" action="getBoardList.do">
 							<!-- 백화점별 검색 SELECT -->
-							<div style="padding:10px">
-								<font>백화점명 </font>
+							<div style="padding:10px; float:left; margin-left:25%">
+								<font style="font-size:large">백화점명 </font>
 								<select name="searchDepartment" style="width:90px">
 									<option class="btn btn-primary" value="0">전체</option>
 									<c:forEach items="${departmentList}" var="department">
@@ -66,18 +66,19 @@
 								</select>
 							</div>
 							<!-- 처리현황별 검색 SELECT -->
-							<div style="padding:10px">
-								<font>처리현황</font>
+							<div  style="padding:10px; margin-right:20%">
+								<font style="font-size:large">처리현황</font>
 								<select name="searchCondition" style="width:100px">
 									<option value="all">전체</option>
 									<option value="doing">처리중</option>
 									<option value="done">처리완료</option>
 								</select>
 							</div>
-							<div style="padding:10px">
-								<font>From </font><input type="text" id="startDate" name="startDate" placeholder="전체" style="width: 115px">
-								<font>To </font><input type="text" id="endDate" name="endDate"  placeholder="전체" style="width: 115px">
-								문의자 <input type="text" id="searchId" name="searchId"  placeholder="01012345678" style="width: 115px">
+							<hr style="margin-left:10%">
+							<div  style="padding:10px">
+								<font style="font-size:large">From </font><input type="text" id="startDate" name="startDate" placeholder="전체" style="width: 115px">
+								<font class="ml-2" style="font-size:large">To </font><input type="text" id="endDate" name="endDate"  placeholder="전체" style="width: 115px">
+								<font class="ml-2" style="font-size:large">문의자</font> <input type="text" id="searchId" name="searchId"  placeholder="01012345678" style="width: 115px">
 								<button type="submit" id="btnSearch" class="btn btn-info" style="float:right">검색</button>
 							</div>
 						</form>
@@ -110,6 +111,16 @@
 								<td>${board.users_id }</td>
 							</tr>
 						</c:forEach>
+						<c:if test="${boardList eq '[]' }">
+							<tr>
+								<td></td>
+								<td></td>
+								<td style="width:400px">문의가 없어요!</td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+						</c:if>
 						</tbody>
 					</table>
 					<!-- (페이지번호) -->
