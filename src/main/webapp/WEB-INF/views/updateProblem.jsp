@@ -38,12 +38,14 @@
 <!-- include nav -->
 <%@include file ="common/nav.jsp" %>
 
-<header class="bg-primary text-white">
+<header class="text-white" style="background-size: 100%; background-repeat:no-repeat; background-image: url(<%=request.getContextPath()%>/resources/icon/lotte-department.png)">
 	<div class="container text-center">
 		<h1>관리자님 안녕하세요</h1>
-		<p class="lead">백화점이 사용할 문의를 관리하는 페이지입니다</p>
+		<hr style="border: solid 1px #fff; width:46%"  >
+		<p class="lead">백화점이 사용할 문의를 <font size="5px" style="font-weight:600">관리</font>하는 페이지입니다</p>
 	</div>
 </header>
+
 <!--  여기서부터 foreach를 써서 section마다 각 점별 막대그래프 출력 -->
   <section id="about"> 
     <div class="container">

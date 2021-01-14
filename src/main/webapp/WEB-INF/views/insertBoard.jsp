@@ -61,8 +61,8 @@
 </p>
   <!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
 <ul class="list-inline" style="text-align:center">
-	<li class="list-inline-item bg-danger">
-		<img src="<%=request.getContextPath()%>/resources/icon/message-circular.png" alt="" width="100" height="100">
+	<li class="list-inline-item">
+		<img src="<%=request.getContextPath()%>/resources/icon/message-circular-red.png" alt="" width="100" height="100">
 	</li>
 	<li class="list-inline-item">
 		<img src="<%=request.getContextPath()%>/resources/icon/right-arrow.png" alt="" width="50" height="50">
@@ -71,6 +71,8 @@
 		<img src="<%=request.getContextPath()%>/resources/icon/contract.png" alt="" width="100" height="100">
 	</li>
 </ul>
+<font style="margin-left:21%">요청사항(빨간글씨)</font>
+<font style="margin-left:23%">문의등록</font>
   <!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
   <section id="about" style="padding:50px 0"> 
     <div class="container">

@@ -33,13 +33,13 @@
 <!-- include nav -->
 <%@include file ="common/nav.jsp" %>
 
-
-<header class="bg-primary text-white">
-	<div class="container text-center">
-		<h1>관리자님 안녕하세요</h1>
-		<p class="lead">백화점을 추가 삭제하는 페이지입니다.</p>
-	</div>
-</header>
+	<header class="text-white" style="background-size: 100%; background-repeat:no-repeat; background-image: url(<%=request.getContextPath()%>/resources/icon/lotte-department.png)">
+		<div class="container text-center">
+			<h1>관리자님 안녕하세요</h1>
+			<hr style="border: solid 1px #fff; width:46%"  >
+			<p class="lead">백화점을 <font size="5px" style="font-weight:600">추가 삭제</font>하는 페이지입니다</p>
+		</div>
+	</header>
 
 	<section id="about">
 		<div class="container">
