@@ -71,7 +71,7 @@
 								<option value="doing">처리중</option>
 								<option value="done">처리완료</option>
 							</select>
-							<hr>
+							<hr style="margin-left:5%">
 							<font style="font-size:large">From</font> <input type="text" id="startDate" name="startDate" placeholder="전체" style="width: 115px">
 							<font class="ml-2" style="font-size:large">To</font> <input type="text" id="endDate" name="endDate"  placeholder="전체" style="width: 115px">
 							<font class="ml-2" style="font-size:large">문의자</font> <input type="text" id="searchId" name="searchId"  placeholder="01012345678" style="width: 115px">

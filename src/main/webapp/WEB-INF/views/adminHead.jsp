@@ -56,7 +56,7 @@
 					<div style="text-align-last: center">
 						<form name="searchDepBoard"  autocomplete="off" method="post" action="getBoardList.do">
 							<!-- 백화점별 검색 SELECT -->
-							<div style="padding:10px">
+							<div style="padding:10px; float:left; margin-left:25%">
 								<font style="font-size:large">백화점명 </font>
 								<select name="searchDepartment" style="width:90px">
 									<option class="btn btn-primary" value="0">전체</option>
@@ -66,16 +66,16 @@
 								</select>
 							</div>
 							<!-- 처리현황별 검색 SELECT -->
-							<div style="padding:10px">
+							<div  style="padding:10px; margin-right:20%">
 								<font style="font-size:large">처리현황</font>
 								<select name="searchCondition" style="width:100px">
 									<option value="all">전체</option>
 									<option value="doing">처리중</option>
 									<option value="done">처리완료</option>
 								</select>
-								<hr>
 							</div>
-							<div style="padding:10px">
+							<hr style="margin-left:10%">
+							<div  style="padding:10px">
 								<font style="font-size:large">From </font><input type="text" id="startDate" name="startDate" placeholder="전체" style="width: 115px">
 								<font class="ml-2" style="font-size:large">To </font><input type="text" id="endDate" name="endDate"  placeholder="전체" style="width: 115px">
 								<font class="ml-2" style="font-size:large">문의자</font> <input type="text" id="searchId" name="searchId"  placeholder="01012345678" style="width: 115px">
