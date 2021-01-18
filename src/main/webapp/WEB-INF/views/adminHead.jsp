@@ -182,6 +182,7 @@
 	<script src="<%=request.getContextPath()%>/resources/vendor/bootstrap/js/scrolling-nav.js"></script>
 	<script src="<%=request.getContextPath()%>/resources/vendor/bootstrap/js/datepicker.js"></script>
 	<script src="<%=request.getContextPath()%>/resources/vendor/bootstrap/js/board-paging.js"></script>
+ 	<script src="<%=request.getContextPath()%>/resources/vendor/bootstrap/js/id-check.js"></script>
 <!-- SCRIPT ---------------------------------------------------------- -->
 </body>
 </html>

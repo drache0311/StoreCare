@@ -1,5 +1,5 @@
 function isNumber(e){
-	var btn = document.getElementById('btn');
+	var btn = document.getElementById('searchId');
 
 	if(isNaN(e.value)){
 		alert('숫자만 입력가능합니다.');
