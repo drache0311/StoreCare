@@ -12,14 +12,15 @@
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd">
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
+	<context:property-placeholder location="classpath:mybatis/database.properties" />
 	
 	<!-- 커넥션풀 DataSource 객체 -->
 	<bean id="dataSource"
 		class="org.apache.commons.dbcp2.BasicDataSource">
-		<property name="driverClassName" value="com.mysql.cj.jdbc.Driver" />
-		<property name="url" value="jdbc:mysql://13.209.41.35/storecare" />
-		<property name="username" value="root" />
-		<property name="password" value="Dlwlrma0516*" />
+		<property name="driverClassName" value="${storecare.driverClassName}" />
+		<property name="url" value="${storecare.url}" />
+		<property name="username" value="${storecare.username}" />
+		<property name="password" value="${storecare.password}" />
 	</bean>
 	
 	<!-- sqlSessionFactory --> 
