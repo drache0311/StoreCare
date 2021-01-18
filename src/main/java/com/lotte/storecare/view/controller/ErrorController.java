@@ -18,7 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class ErrorController {
 
 	// 각 점별 문의 뎁스 검색 완료
-	@RequestMapping(value="/common/error{error_code}/", method=RequestMethod.GET)
+	@RequestMapping(value="/common/error{error_code}/")
 	public ModelAndView error(HttpServletRequest request, @PathVariable String error_code) {
 		
 		ModelAndView mv = new ModelAndView("/common/error");
