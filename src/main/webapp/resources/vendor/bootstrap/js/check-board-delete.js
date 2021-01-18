@@ -30,21 +30,25 @@ function deleteValue(){
 		alert("선택된 문의가 없습니다.");
 	}else{
 		var chk = confirm("처리하시겠습니까?");
-		$.ajax({
-			url : url,	// 위의 전송 URL
-			type : 'POST',
-			traditional : true,
-			data : {
-				valueArr : valueArr	// 보내고자하는 data 변수 설정
-			},
-			success : function(jdata){
-				if(jdata = 1){
-					alert("처리 완료");
-					location.replace("getBoardList.do");	// admin 페이지로 새로고침
-				}else{
-					alert("처리 실패");
+		if(chk == true){ // 확인
+			$.ajax({
+				url : url,	// 위의 전송 URL
+				type : 'POST',
+				traditional : true,
+				data : {
+					valueArr : valueArr	// 보내고자하는 data 변수 설정
+				},
+				success : function(jdata){
+					if(jdata = 1){
+						alert("처리 완료");
+						location.replace("getBoardList.do");	// admin 페이지로 새로고침
+					}else{
+						alert("처리 실패");
+					}
 				}
-			}
-		});
+			});
+		}else{
+			return;
+		}
 	}
 }

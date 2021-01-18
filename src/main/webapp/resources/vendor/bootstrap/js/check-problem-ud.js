@@ -35,23 +35,27 @@ function deleteValue(){
 		alert("선택된 문의사항이 없습니다.");
 	}else{
 		var chk = confirm("삭제하시겠습니까?");
-		$.ajax({
-			url : url,	// 위의 전송 URL
-			type : 'GET',
-			traditional : true,
-			data : {
-				valueArr : valueArr,	// 보내고자하는 data 변수 설정
-				depth	:	depth[0].value
-			},
-			success : function(jdata){
-				if(jdata = 1){
-					alert("처리 완료");
-					location.replace("updateProblem.do?depth=1")	// 다시 수정페이지로 새로고침
-				}else{
-					alert("처리 실패");
+		if(chk == true){ // 확인
+			$.ajax({
+				url : url,	// 위의 전송 URL
+				type : 'GET',
+				traditional : true,
+				data : {
+					valueArr : valueArr,	// 보내고자하는 data 변수 설정
+					depth	:	depth[0].value
+				},
+				success : function(jdata){
+					if(jdata = 1){
+						alert("처리 완료");
+						location.replace("updateProblem.do?depth=1")	// 다시 수정페이지로 새로고침
+					}else{
+						alert("처리 실패");
+					}
 				}
-			}
-		});
+			});
+		}else{	// 취소
+			return;
+		}
 	}
 }
 
@@ -74,24 +78,28 @@ function fixValue(){
 		alert("선택된 문의사항이 없습니다.");
 	}else{
 		var chk = confirm("수정하시겠습니까?");
-		$.ajax({
-			url : url,	// 위의 전송 URL
-			type : 'GET',
-			traditional : true,
-			data : {
-				valueArr : valueArr,	// 보내고자하는 data 변수 설정
-				depth	:	depth[0].value,
-				detail	:	detail
-			},
-			success : function(jdata){
-				if(jdata = 1){
-					alert("처리 완료");
-					location.replace("updateProblem.do?depth=1")	// 다시 수정페이지로 새로고침
-				}else{
-					alert("처리 실패");
+		if(chk == true){ // 확인
+			$.ajax({
+				url : url,	// 위의 전송 URL
+				type : 'GET',
+				traditional : true,
+				data : {
+					valueArr : valueArr,	// 보내고자하는 data 변수 설정
+					depth	:	depth[0].value,
+					detail	:	detail
+				},
+				success : function(jdata){
+					if(jdata = 1){
+						alert("처리 완료");
+						location.replace("updateProblem.do?depth=1")	// 다시 수정페이지로 새로고침
+					}else{
+						alert("처리 실패");
+					}
 				}
-			}
-		});
+			});
+		}else{	//취소
+			return;
+		}
 	}
 }
 function insertValue(){
@@ -115,25 +123,29 @@ function insertValue(){
 		alert("선택된 문의사항이 없습니다.");
 	}else{
 		var chk = confirm("내 점에 추가하시겠습니까?");
-		$.ajax({
-			url : url,	// 위의 전송 URL
-			type : 'GET',
-			traditional : true,
-			data : {
-				valueArr : valueArr,	// 보내고자하는 data 변수 설정
-				depth	:	depth[0].value,
-				department_code : department_code,
-				category_code : category_code,
-				problem_code : problem_code
-			},
-			success : function(jdata){
-				if(jdata = 1){
-					alert("처리 완료");
-					location.replace("updateProblem.do?depth=1")	// 다시 수정페이지로 새로고침
-				}else{
-					alert("처리 실패");
+		if(chk == true){ // 확인
+			$.ajax({
+				url : url,	// 위의 전송 URL
+				type : 'GET',
+				traditional : true,
+				data : {
+					valueArr : valueArr,	// 보내고자하는 data 변수 설정
+					depth	:	depth[0].value,
+					department_code : department_code,
+					category_code : category_code,
+					problem_code : problem_code
+				},
+				success : function(jdata){
+					if(jdata = 1){
+						alert("처리 완료");
+						location.replace("updateProblem.do?depth=1")	// 다시 수정페이지로 새로고침
+					}else{
+						alert("처리 실패");
+					}
 				}
-			}
-		});
+			});
+		}else{	//취소
+			return;
+		}
 	}
 }
