@@ -1,21 +1,32 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <!doctype html>
 <%
 	String searchCondition="all";
 	String startDate = "";
 	String endDate = "";
 	String searchId = "all";
+	String department_code = "";
 	
 	if(session.getAttribute("searchCondition") != null){
 		searchCondition = session.getAttribute("searchCondition").toString();
 		startDate = session.getAttribute("startDate").toString();
 		endDate = session.getAttribute("endDate").toString();	
 		searchId = session.getAttribute("searchId").toString();
+		department_code = session.getAttribute("department_code").toString();
 	}
 	
 %>
 <head>
+	<c:set var="searchCondition" value="<%=searchCondition %>"/>
+	<c:set var="startDate" value="<%=startDate %>"/>
+	<c:set var="endDate" value="<%=endDate %>"/>
+	<c:set var="searchId" value="<%=searchId %>"/>
+	<fmt:parseNumber var = "department_code" type = "number" value = "<%=department_code %>" />
+
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
@@ -59,9 +70,9 @@
 							<div style="padding:10px; float:left; margin-left:25%">
 								<font style="font-size:large">백화점명 </font>
 								<select name="searchDepartment" style="width:90px">
-									<option class="btn btn-primary" value="0">전체</option>
+									<option value="0">전체</option>
 									<c:forEach items="${departmentList}" var="department">
-											<option  value="${department.department_code}">${department.department_name}</option>
+											<option  value="${department.department_code}" <c:out value = "${department_code eq department.department_code ? 'selected' : '' }" />>${department.department_name}</option>
 									</c:forEach>
 								</select>
 							</div>
@@ -69,16 +80,16 @@
 							<div  style="padding:10px; margin-right:20%">
 								<font style="font-size:large">처리현황</font>
 								<select name="searchCondition" style="width:100px">
-									<option value="all">전체</option>
-									<option value="doing">처리중</option>
-									<option value="done">처리완료</option>
+									<option value="all" <c:out value = "${searchCondition eq 'all' ? 'selected' : '' }" />>전체</option>
+									<option value="doing" <c:out value = "${searchCondition eq 'doing' ? 'selected' : '' }" />>처리중</option>
+									<option value="done" <c:out value = "${searchCondition eq 'done' ? 'selected' : '' }" />>처리완료</option>
 								</select>
 							</div>
 							<hr style="margin-left:10%">
 							<div  style="padding:10px">
-								<font style="font-size:large">From </font><input type="text" id="startDate" name="startDate" placeholder="전체" style="width: 115px">
-								<font class="ml-2" style="font-size:large">To </font><input type="text" id="endDate" name="endDate"  placeholder="전체" style="width: 115px">
-								<font class="ml-2" style="font-size:large">문의자</font> <input type="text" id="searchId" name="searchId"  placeholder="01012345678" style="width: 115px">
+								<font style="font-size:large">From </font><input type="text" id="startDate" name="startDate" placeholder="전체" value='<c:out value="${startDate}" />' style="width: 115px">
+								<font class="ml-2" style="font-size:large">To </font><input type="text" id="endDate" name="endDate"  placeholder="전체" value='<c:out value="${endDate}" />' style="width: 115px">
+								<font class="ml-2" style="font-size:large">문의자</font> <input type="text" id="searchId" name="searchId"  placeholder="01012345678" value='<c:out value="${searchId eq 'all' ? '' : searchId}" />' style="width: 115px">
 								<button type="submit" id="btnSearch" class="btn btn-info" style="float:right">검색</button>
 							</div>
 						</form>
@@ -171,6 +182,7 @@
 	<script src="<%=request.getContextPath()%>/resources/vendor/bootstrap/js/scrolling-nav.js"></script>
 	<script src="<%=request.getContextPath()%>/resources/vendor/bootstrap/js/datepicker.js"></script>
 	<script src="<%=request.getContextPath()%>/resources/vendor/bootstrap/js/board-paging.js"></script>
+ 	<script src="<%=request.getContextPath()%>/resources/vendor/bootstrap/js/id-check.js"></script>
 <!-- SCRIPT ---------------------------------------------------------- -->
 </body>
 </html>
