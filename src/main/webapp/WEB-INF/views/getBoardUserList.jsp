@@ -18,6 +18,10 @@
 	
 %>
 <head>
+	<c:set var="depth" value="${problemList[0].depth }" />
+	<c:set var="searchCondition" value="<%=searchCondition %>"/>
+	<c:set var="startDate" value="<%=startDate %>"/>
+	<c:set var="endDate" value="<%=endDate %>"/>
 
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -54,17 +58,17 @@
 		<div style="padding:10px; text-align-last: center">
 		<font style="font-size:large">처리현황</font>
 		<select name="searchCondition">
-			<option value="all">전체</option>
-			<option value="doing">처리중</option>
-			<option value="done">처리완료</option>
+			<option value="all" <c:out value = "${searchCondition eq 'all' ? 'selected' : '' }" />>전체</option>
+			<option value="doing" <c:out value = "${searchCondition eq 'doing' ? 'selected' : '' }" />>처리중</option>
+			<option value="done" <c:out value = "${searchCondition eq 'done' ? 'selected' : '' }" />>처리완료</option>
 		</select>
 		</div>
 		<hr style="width:70%">
 		<div style="padding:10px; text-align-last: center">
 		From
-		<input type="text" id="startDate" name="startDate" placeholder="전체" style="width: 115px">
+		<input type="text" id="startDate" name="startDate" placeholder="전체" value='<c:out value="${startDate}" />' style="width: 115px">
 		To 
-		<input type="text" id="endDate" name="endDate"  placeholder="전체" style="width: 115px">
+		<input type="text" id="endDate" name="endDate"  placeholder="전체" value='<c:out value="${endDate}" />' style="width: 115px">
 		<button type="submit" id="btnSearch" class="btn btn-info" style="float:right">검색</button>
 		</div>
 	</form>

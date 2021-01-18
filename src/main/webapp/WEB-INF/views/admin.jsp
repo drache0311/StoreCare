@@ -19,7 +19,12 @@
 	
 %>
 <head>
-
+	<c:set var="searchCondition" value="<%=searchCondition %>"/>
+	<c:set var="startDate" value="<%=startDate %>"/>
+	<c:set var="endDate" value="<%=endDate %>"/>
+	<c:set var="searchId" value="<%=searchId %>"/>
+	<c:set var="department_name" value="<%=department_name %>"/>
+		
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
@@ -67,14 +72,14 @@
 							<!-- 처리현황별 검색 SELECT -->
 							<font style="font-size:large">처리현황</font>
 							<select name="searchCondition">
-								<option value="all">전체</option>
-								<option value="doing">처리중</option>
-								<option value="done">처리완료</option>
+								<option value="all" <c:out value = "${searchCondition eq 'all' ? 'selected' : '' }" />>전체</option>
+								<option value="doing" <c:out value = "${searchCondition eq 'doing' ? 'selected' : '' }" />>처리중</option>
+								<option value="done" <c:out value = "${searchCondition eq 'done' ? 'selected' : '' }" />>처리완료</option>
 							</select>
 							<hr style="margin-left:5%">
-							<font style="font-size:large">From</font> <input type="text" id="startDate" name="startDate" placeholder="전체" style="width: 115px">
-							<font class="ml-2" style="font-size:large">To</font> <input type="text" id="endDate" name="endDate"  placeholder="전체" style="width: 115px">
-							<font class="ml-2" style="font-size:large">문의자</font> <input type="text" id="searchId" name="searchId"  placeholder="01012345678" style="width: 115px">
+							<font style="font-size:large">From</font> <input type="text" id="startDate" name="startDate" placeholder="전체" value='<c:out value="${startDate}" />' style="width: 115px">
+							<font class="ml-2" style="font-size:large">To</font> <input type="text" id="endDate" name="endDate"  placeholder="전체" value='<c:out value="${endDate}" />' style="width: 115px">
+							<font class="ml-2" style="font-size:large">문의자</font> <input type="text" id="searchId" name="searchId"  placeholder="01012345678" value='<c:out value="${searchId}" />' style="width: 115px">
 							
 							<button type="submit" id="btnSearch" class="btn btn-info" style="float:right">검색</button>
 						</form>
