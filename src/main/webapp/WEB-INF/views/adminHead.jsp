@@ -89,7 +89,7 @@
 							<div  style="padding:10px">
 								<font style="font-size:large">From </font><input type="text" id="startDate" name="startDate" placeholder="전체" value='<c:out value="${startDate}" />' style="width: 115px">
 								<font class="ml-2" style="font-size:large">To </font><input type="text" id="endDate" name="endDate"  placeholder="전체" value='<c:out value="${endDate}" />' style="width: 115px">
-								<font class="ml-2" style="font-size:large">문의자</font> <input type="text" id="searchId" name="searchId"  placeholder="01012345678" value='<c:out value="${searchId eq 'all' ? '' : searchId}" />' style="width: 115px">
+								<font class="ml-2" style="font-size:large">문의자</font> <input type="text" id="searchId" name="searchId"  placeholder="01012345678" value='<c:out value="${searchId eq 'all' ? '' : searchId}" />' style="width: 115px" onKeyUp="isNumber(this)">
 								<button type="submit" id="btnSearch" class="btn btn-info" style="float:right">검색</button>
 							</div>
 						</form>
