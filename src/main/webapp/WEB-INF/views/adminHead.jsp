@@ -182,7 +182,7 @@
 	<script src="<%=request.getContextPath()%>/resources/vendor/bootstrap/js/scrolling-nav.js"></script>
 	<script src="<%=request.getContextPath()%>/resources/vendor/bootstrap/js/datepicker.js"></script>
 	<script src="<%=request.getContextPath()%>/resources/vendor/bootstrap/js/board-paging.js"></script>
- 	<script src="<%=request.getContextPath()%>/resources/vendor/bootstrap/js/id-check.js"></script>
+ 	<script src="<%=request.getContextPath()%>/resources/vendor/bootstrap/js/id-check.js?ver=21-01-18"></script>
 <!-- SCRIPT ---------------------------------------------------------- -->
 </body>
 </html>
