@@ -137,7 +137,7 @@
 	        			<div class="col">
 		        			<!-- 문의 삭제 체크박스 -->
 		        			<h2>
-		        				<input name="RowCheck" type="checkbox" value="${problem.problem_code } style="zoom:1.5""/>
+		        				<input name="RowCheck" type="checkbox" value="${problem.problem_code }" style="zoom:1.5"/>
 			        			<a href="updateProblem.do?category_code=${problem.category_code }&problem_code=${problem.problem_code }&depth=3" class="btn btn-secondary">
 			        				${problem.problem_detail}
 			        			</a>
@@ -176,7 +176,7 @@
 	        			<div class="col">
 		        			<h2>
 		        			<!-- 문의 삭제 체크박스 -->
-		        				<input name="RowCheck" type="checkbox" value="${problem.place_code } style="zoom:1.5""/>
+		        				<input name="RowCheck" type="checkbox" value="${problem.place_code }" style="zoom:1.5"/>
 			        			<a href="#" class="btn btn-secondary">
 			        				${problem.place_detail}
 			        			</a>
@@ -208,7 +208,7 @@
 <script src="<%=request.getContextPath()%>/resources/vendor/jquery/jquery-3.5.1.min.js"></script>
 
 <!-- Custom JavaScript for this theme -->
-<script src="<%=request.getContextPath()%>/resources/vendor/bootstrap/js/check-problem-ud.js?ver=1"></script>
+<script src="<%=request.getContextPath()%>/resources/vendor/bootstrap/js/check-problem-ud.js?ver=21-01-18"></script>
 <!-- SCRIPT ---------------------------------------------------------- -->
 </body>
 </html>
