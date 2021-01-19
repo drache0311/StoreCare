@@ -88,16 +88,22 @@
 			<div class="row row-cols-2">
         	<c:choose>
         		<c:when test="${depth eq 1}">
-        			<div class="col">
-        				<h2 class="btn bg-dark text-white" style="width: 100%; height:70px; line-height:60px; font-size:1.2rem ; text-align: start">
-        					1단계 문의를 삭제하시면 해당 문의의
-        				</h2>
-        			</div>
-        			<div class="col">
-        				<h2 class="btn bg-dark text-white" style="width: 100%; height:70px; line-height:60px; font-size:1.2rem ; text-align: start">
-        					모든 문의가 삭제됩니다
-        				</h2>
-        			</div>
+         			<c:if test="${problemList eq '[]' }">
+						<div class="col-12">
+	        				<h2 class="btn disabled bg-info text-white" style="width: 100%; height:70px; line-height:60px; font-size:1.2rem ; text-align: start">
+	        					1단계 문의가 없어요. 문의를 추가해주세요.
+							</h2>
+						</div>
+         			</c:if>
+         			<c:if test="${problemList ne '[]' }">
+						<div class="col-12">
+	        				<h2 class="btn disabled bg-info text-white" style="width: 100%; font-size:1.2rem ; text-align: start">
+	        					체크박스를 선택하고 수정/삭제하거나 문의를 클릭하여 <br/>
+	        					2단계 문의를 볼 수 있습니다.
+							</h2>
+							<font class="text-danger">* 1단계 문의목록입니다.</font>
+						</div>
+					</c:if>
 	        		<c:forEach items="${problemList }" var="problem">
 	        			<div class="col">
 		        			<!-- 문의 삭제 체크박스 -->
@@ -115,24 +121,22 @@
 	        		<input name="depth" type="hidden" value="${depth }" />
         		</c:when>
          		<c:when test="${depth eq 2}">
-	         		<div class="col">
-	         			<h2 class="btn bg-dark text-white" style="width: 100%; height:70px; line-height:60px; font-size:1.2rem ; text-align: start">
-		         			<c:if test="${problemList eq '[]' }">
-		         				새로운 2단계 문의를 작성해주세요.
-		         				</h2>
-		         				</div>
-		         				<div class="col">
-		         					<h2 class="btn bg-dark text-white" style="width: 100%; height:70px; line-height:60px; font-size:1.2rem ; text-align: start">
-		         						2단계 문의는 필수입니다
-		         			</c:if>
-		         			<c:if test="${problemList ne '[]' }">
-		         				${problemList[0].category_detail }		         				
-		         			</c:if>		         			
-	         			</h2>
-	         		</div>
-	         		<div class="col">
-	         		
-	         		</div>
+	         			<c:if test="${problemList eq '[]' }">
+							<div class="col-12">
+		        				<h2 class="btn disabled bg-info text-white" style="width: 100%; height:70px; line-height:60px; font-size:1.2rem ; text-align: start">
+		        					2단계 문의가 없어요. 문의를 추가해주세요.
+								</h2>
+							</div>
+	         			</c:if>
+	         			<c:if test="${problemList ne '[]' }">
+							<div class="col-12">
+		        				<h2 class="btn disabled bg-info text-white" style="width: 100%;  font-size:1.2rem ; text-align: start">
+		        					체크박스를 선택하고 수정/삭제하거나 문의를 클릭하여 <br/>
+		        					3단계 문의를 볼 수 있습니다.
+								</h2>
+								<font class="text-danger">*	${problemList[0].category_detail }의 2단계 문의입니다.</font>
+							</div>
+	         			</c:if>
 	        		<c:forEach items="${problemList }" var="problem">
 	        			<div class="col">
 		        			<!-- 문의 삭제 체크박스 -->
@@ -152,32 +156,27 @@
 	        		<input id="category_code" name="category_code" type="hidden" value="<%=category_code %>" />
         		</c:when> 
          		<c:when test="${depth eq 3}">
-	         		<div class="col">
-	         			<h2 class="btn bg-dark text-white" style="width: 100%; height:70px; line-height:60px; font-size:1.2rem ; text-align: start">
-	         				<c:if test="${problemList eq '[]' }">
-		         				새로운 3단계 문의를 작성해주세요.
-		         			</c:if>
-		         			<c:if test="${problemList ne '[]' }">
-		         				${problemList[0].category_detail}
-		         			</c:if>
-	         			</h2>
-	         		</div>
-	         		<div class="col">
-	         			<h2 class="btn bg-dark text-white" style="width: 100%; height:70px; line-height:60px; font-size:1.2rem ; text-align: start">
-	         				<c:if test="${problemList eq '[]' }">
-		         				필요 없다면 생략해도 됩니다.
-		         			</c:if>
-	         				<c:if test="${problemList ne '[]' }">
-		         				${problemList[0].problem_detail }
-		         			</c:if>
-	         			</h2>
-	         		</div>
+	         			<c:if test="${problemList eq '[]' }">
+							<div class="col-12">
+		        				<h2 class="btn disabled bg-info text-white" style="width: 100%; height:70px; line-height:60px; font-size:1.2rem ; text-align: start">
+		        					3단계 문의가 없어요. 필요하다면 추가해주세요.
+								</h2>
+							</div>
+	         			</c:if>
+	         			<c:if test="${problemList ne '[]' }">
+							<div class="col-12">
+		        				<h2 class="btn disabled bg-info text-white" style="width: 100%;  font-size:1.2rem ; text-align: start">
+		        					체크박스를 선택하고 수정/삭제할 수 있습니다.
+								</h2>
+		        				<font class="text-danger">* ${problemList[0].category_detail } > ${problemList[0].problem_detail }의 3단계 문의입니다.</font>
+							</div>
+	         			</c:if>
 	        		<c:forEach items="${problemList }" var="problem">
 	        			<div class="col">
 		        			<h2>
 		        			<!-- 문의 삭제 체크박스 -->
 		        				<input name="RowCheck" type="checkbox" value="${problem.place_code }" style="zoom:1.5"/>
-			        			<a href="#" class="btn btn-secondary">
+			        			<a href="#" class="btn btn-secondary disabled">
 			        				${problem.place_detail}
 			        			</a>
 		        			</h2>

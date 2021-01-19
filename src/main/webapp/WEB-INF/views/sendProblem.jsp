@@ -50,7 +50,6 @@
   <section id="about"> 
     <div class="container">
       <div class="row">
-      <h2 class="btn disabled bg-info text-white" style="width: 100%; font-size:1.2rem ; text-align: start">ㄴㄴ</h2>
         <div class="col-lg-8 mx-auto">
         <!-- 추가 버튼 -->
         <input type="button" value="내 점에 추가하기" class="btn btn-dark" style="" onclick="insertValue();">
@@ -74,13 +73,22 @@
         	<div class="row row-cols-2">
 	        	<c:choose>
 	        		<c:when test="${depth eq 1}">
+	         			<c:if test="${problemList eq '[]' }">
+							<div class="col-12">
+		        				<h2 class="btn disabled bg-info text-white" style="width: 100%; height:70px; line-height:60px; font-size:1.2rem ; text-align: start">
+		        					1단계 문의가 없어요. 총 관리자에게 요청해주세요.
+								</h2>
+							</div>
+	         			</c:if>
+	         			<c:if test="${problemList ne '[]' }">
 							<div class="col-12">
 		        				<h2 class="btn disabled bg-info text-white" style="width: 100%; font-size:1.2rem ; text-align: start">
-		        					1단계 문의목록입니다.<br/>
 		        					체크박스를 선택하고 내 점에 추가하거나 문의를 클릭하여 <br/>
 		        					2단계 문의를 볼 수 있습니다.
 								</h2>
+								<font class="text-danger">* 1단계 문의목록입니다.</font>
 							</div>
+						</c:if>
 		        		<c:forEach items="${problemList }" var="problem">
 		        			<div class="col">
 			        			<!-- 문의 삭제 체크박스 -->
@@ -110,10 +118,10 @@
 	         			<c:if test="${problemList ne '[]' }">
 							<div class="col-12">
 		        				<h2 class="btn disabled bg-info text-white" style="width: 100%;  font-size:1.2rem ; text-align: start">
-		        					${problemList[0].category_detail }의 2단계 문의입니다.<br/>
 		        					체크박스를 선택하고 내 점에 추가하거나 문의를 클릭하여 <br/>
 		        					3단계 문의를 볼 수 있습니다.
 								</h2>
+								<font class="text-danger">*	${problemList[0].category_detail }의 2단계 문의입니다.</font>
 							</div>
 	         			</c:if>
 		        		<c:forEach items="${problemList }" var="problem">
@@ -135,7 +143,6 @@
 		        		<input id="category_code" name="category_code" type="hidden" value="<%=category_code %>" />
 	        		</c:when> 
 	         		<c:when test="${depth eq 3}">
-		        		${problemList[0].category_detail } > ${problemList[0].problem_detail }<br/>
 	         			<c:if test="${problemList eq '[]' }">
 							<div class="col-12">
 		        				<h2 class="btn disabled bg-info text-white" style="width: 100%; height:70px; line-height:60px; font-size:1.2rem ; text-align: start">
@@ -148,6 +155,7 @@
 		        				<h2 class="btn disabled bg-info text-white" style="width: 100%;  font-size:1.2rem ; text-align: start">
 		        					체크박스를 선택하고 내 점에 추가할 수 있습니다.
 								</h2>
+		        				<font class="text-danger">* ${problemList[0].category_detail } > ${problemList[0].problem_detail }의 3단계 문의입니다.</font>
 							</div>
 	         			</c:if>
 		        		<c:forEach items="${problemList }" var="problem">
@@ -155,7 +163,7 @@
 			        			<h2>
 			        			<!-- 문의 삭제 체크박스 -->
 			        				<input name="RowCheck" type="checkbox" value="${problem.place_code }" style="zoom:1.5"/>
-				        			<a href="#" class="btn btn-secondary">
+				        			<a href="#" class="btn btn-secondary disabled">
 				        				${problem.place_detail}
 				        			</a>
 			        			</h2>
