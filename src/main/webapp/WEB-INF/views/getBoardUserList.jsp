@@ -85,22 +85,30 @@
 					<c:if test="${board.flag eq 1 }">
 						<br/><span class='text-primary'> 처리시간 ${board.clearTime}</span>
 					</c:if>
-					<h1 class = "card-title"> ${board.category_detail}</h1>
+					<h1 class = "card-title"> 요청내용 </h1>
 					<div class = "card-subtitle text-muted mb-2">
-						${board.problem_detail}<br/>${board.place_detail} 
+						- ${board.category_detail}<br/>
+						- ${board.problem_detail}<br/>
+						<c:if test="${board.place_detail ne null }">
+							- ${board.place_detail} 
+						</c:if>
 					</div>
 					<div class ="card-text mb-2">
-						${board.department_name } ${board.floor }
+						장소 - ${board.department_name } ${board.floor }
 					</div>
 					<c:if test="${board.flag eq 1 }">
 						<div class ="card-text mb-2">
 							<span class= "text-muted">
-								처리 완료
+								상태 - 처리 완료
 							</span>
 						</div>
 					</c:if>
 					<c:if test="${board.flag eq 0 }">
-						<div class ="card-text mb-2"><span class= "text-muted">   처리 중	</span></div>
+						<div class ="card-text mb-2">
+							<span class= "text-muted">
+								상태 - 처리 중	
+							</span>
+						</div>
 						<a href="insertBoard?seq=${board.seq}&department_department_code=${board.department_department_code}&flag=${board.flag}&depth=1" class="btn btn-secondary">수정하기</a>
 					</c:if>
 					<a href="deleteUserBoard.do?seq=${board.seq}" class="btn btn-secondary">삭제하기</a>

@@ -100,11 +100,17 @@ Timestamp now = new Timestamp(System.currentTimeMillis());
 		    	<input name="department_department_name" type="hidden" value="${board.department_name}" />				
 				<input id="${board.department_name}" type="hidden" name="changeDepartment" />	
 				<!-- 입력된 문의 1,2,3뎁스 표시 -->
-		    	<h5 class="card-header">요청하신 내용</h5>
-				<h3 class="ml-4" style="font-weight:bold"> <%=category_detail %> </h3>
-				<h3 class = "card-title ml-4" style="font-weight:bold"> <%=problem_detail %> </h3>
+		    	<h5 class="card-header">요청하신 내용</h5><br/>
+				<h2 class="btn bg-dark text-white" style="width: 100%; height:70px; line-height:60px; font-size:1.2rem ; text-align: start"> <%=category_detail %> </h2>
+				<p class="btn bg-secondary text-white" style="width: 100%; height:70px; line-height:60px; font-size:1.2rem ; text-align: start">
+					<img src="<%=request.getContextPath()%>/resources/icon/right-arrow-small.png"  alt="" width="20" height="20">
+					<%=problem_detail %> 
+				</p>
 				<c:if test="${place_detail ne null }">
-					<h3 class = "card-title ml-4" style="font-weight:bold"><%=place_detail %></h3>
+					<p class="btn bg-light text-wrap " style="width: 100%; height:70px; line-height:60px; font-size:1.2rem ; text-align: start">
+						<img src="<%=request.getContextPath()%>/resources/icon/right-arrow-small.png"  alt="" width="20" height="20">
+						<%=place_detail %>
+					</p>
 				</c:if>
 			</div>
 			<div class ="card-body">

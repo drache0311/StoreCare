@@ -47,7 +47,6 @@
 	</div>
 </header>
 
-<!--  여기서부터 foreach를 써서 section마다 각 점별 막대그래프 출력 -->
   <section id="about"> 
     <div class="container">
       <div class="row">

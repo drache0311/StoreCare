@@ -102,9 +102,9 @@
 								<td><input name="RowCheck" type="checkbox" value="${board.seq }" style="zoom:1.5"/></td>
 								<td>${board.datetime}</td>
 								<td>
-									${board.category_detail}
-									${board.problem_detail}
-									${board.place_detail }
+									${board.category_detail} /
+									${board.problem_detail} /
+									<c:if test="${board.place_detail ne null }">${board.place_detail } /</c:if>
 									${board.floor }
 								</td>
 								<td><c:if test="${board.flag eq 0}" >처리 중</c:if> <c:if test="${board.flag eq 1}" >처리완료</c:if></td>
