@@ -251,8 +251,8 @@ public class BoardVO {
 
 	@Override
 	public String toString() {
-		return "BoardVO [seq=" + seq + ", floor=" + floor + ", problem_problem_code=" + problem_problem_code + ", problem_category_code=" + problem_category_code + ", users_id="
-				+ users_id + ", department_department_code=" +department_department_code +"department_name = " + department_name + "datetime=" + datetime +"category_detail="+ category_detail + "problem_detail=" + problem_detail +"\n]";
+		return "BoardVO [seq=" + seq +",place_place_code="+place_place_code+ ", floor=" + floor + ", problem_problem_code=" + problem_problem_code + ", problem_category_code=" + problem_category_code + ", users_id="
+				+ users_id + ", department_department_code=" +department_department_code +"department_name = " + department_name + "datetime=" + datetime +"category_detail="+ category_detail + "problem_detail=" + problem_detail +"place_detail = "+ place_detail + "\n]";
 	}
 	
 }

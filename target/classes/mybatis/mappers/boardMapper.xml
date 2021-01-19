@@ -117,6 +117,9 @@
 	<update id="updateUserBoard" parameterType="boardVO">
 		update board
 		set problem_problem_code=#{problem_problem_code}, datetime=#{datetime}, problem_category_code=#{problem_category_code}, floor=#{floor} ,department_department_code=(select department_code from department where department_name=#{department_department_name})
+		<if test="place_place_code neq null">
+			,place_place_code=#{place_place_code}
+		</if>
 		where seq=#{seq}
 	</update>
 	
