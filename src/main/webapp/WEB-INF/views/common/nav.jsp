@@ -15,8 +15,8 @@
   <!-- Navigation            ----------------------------------------------------------- -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
     <div class="container">
-      <img  src="<%=request.getContextPath()%>/resources/icon/StoreCare-logo.png" alt="" width="50" height="100%">
-      <a class="navbar-brand" href="#" style="margin-left:5%;font-weight:500;font-size:xx-large">StoreCare</a>
+      <img  src="<%=request.getContextPath()%>/resources/icon/icu-logo.png" alt="" width="50" height="100%">
+      <a class="navbar-brand" href="#" style="margin-left:5%;font-weight:500;font-size:xx-large">I Care U</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>

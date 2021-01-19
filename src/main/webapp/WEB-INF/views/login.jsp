@@ -24,8 +24,8 @@
     
 <main class="form-signin">
   <form action="login.do" method="post" autocomplete="off">
-    <img class="mb-4" src="<%=request.getContextPath()%>/resources/icon/StoreCare-logo.png" alt="" width="150" height="130">
-    <h1 class="h3 mb-3 fw-normal">StoreCare</h1>
+    <img class="mb-4" src="<%=request.getContextPath()%>/resources/icon/icu-logo.png" alt="" width="150" height="130">
+    <h1 class="h3 mb-3 fw-normal">I Care U</h1>
     <label for="inputId" class="visually-hidden">Phone Number</label>
     <input type="text"  maxlength="11" onKeyUp="isNumber(this)" id="inputId" name="id" class="form-control" placeholder="01012345678" required autofocus>
     <button id="searchId" class="w-100 btn btn-lg btn-secondary" type="submit" value="로그인" >Sign In</button>

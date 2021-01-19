@@ -11,7 +11,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Lotte-StoreCare</title>
+  <title>I Care U</title>
 
   <!-- Bootstrap core CSS -->
   <link href="<%=request.getContextPath()%>/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -35,7 +35,7 @@
       <!--  벨 아이콘 끝 -->
       
       
-        <h1>StoreCare</h1>
+        <h1>I Care U</h1>
         <ul class="list-unstyled">
         <li><small class="text-muted">방문중인 백화점의 불편사항을 등록하시면</small></li>
         <li><small class="text-muted">직원이 직접 확인 후 개선하는</small></li>

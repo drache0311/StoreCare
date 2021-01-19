@@ -28,7 +28,7 @@
 	<meta name="description" content="">
 	<meta name="author" content="">
 	
-	<title>나의 StoreCare</title>
+	<title>나의 ICU</title>
 	
 	<!-- JQuery JavaScript -->
 	<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/vendor/bootstrap/css/jquery-ui.css" type="text/css" />  

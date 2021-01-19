@@ -25,8 +25,8 @@
     
 <main class="form-signin">
   <form action="loginAdmin.do" method="post" autocomplete="off">
-    <img class="mb-4" src="<%=request.getContextPath()%>/resources/icon/StoreCare-logo.png" alt="" width="150" height="130">
-    <h1 class="h3 mb-3 fw-normal">StoreCare</h1>
+    <img class="mb-4" src="<%=request.getContextPath()%>/resources/icon/icu-logo.png" alt="" width="150" height="130">
+    <h1 class="h3 mb-3 fw-normal">I Care U</h1>
     <label for="inputId" class="visually-hidden">ID</label>
     <input type="text" id="inputId" name="id" class="form-control" placeholder="Your ID" required autofocus>
     <label for="inputPassword" class="visually-hidden">Password</label>
