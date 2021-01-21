@@ -97,10 +97,9 @@
 					    <c:if test="${board.place_detail ne null }">
 					    	&#xE001; ${board.place_detail}
 					    </c:if>
-					    <br/> ${board.department_name } ${board.floor }
 					  </div>
 					</div>
-			
+					장소 - ${board.department_name } ${board.floor }
 					<c:if test="${board.flag eq 1 }">
 						<div class ="card-text text-danger mb-2">
 							<span >
