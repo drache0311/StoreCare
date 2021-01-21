@@ -51,7 +51,7 @@
   <section id="about"> 
     <div class="container">
       <div class="row">
-        <div class="col-lg-8 mx-auto">
+        <div class="col-lg-12 mx-auto">
 		<!-- 이전 버튼 -->
         <c:if test="${depth ne 1 }">
 	    	<button onclick="history.back()" class="btn btn-secondary" style="float:right; width: 10%" >이전</button>
@@ -83,116 +83,127 @@
 				<input type="button" value="수정하기" class="btn btn-dark mt-2" style=" margin-left:2%" onclick="fixValue();">
 	        	<input type="button" value="삭제하기" class="btn btn-dark mt-2" style=" margin-left:2%" onclick="deleteValue();">
 			<hr><br/><br/><br/>
-			
-
-			
-			<div class="row row-cols-2">
-        	<c:choose>
-        		<c:when test="${depth eq 1}">
-         			<c:if test="${problemList eq '[]' }">
-						<div class="col-12">
-	        				<h2 class="btn disabled bg-info text-white" style="width: 100%; height:70px; line-height:60px; font-size:1.2rem ; text-align: start">
-	        					1단계 문의가 없어요. 문의를 추가해주세요.
-							</h2>
+<!-- 카드형식 테스트중 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
+			<div class="card">
+				<c:choose>
+					<c:when test="${depth eq 1}">
+						<c:if test="${problemList eq '[]' }">
+							<div class="card-header text-center">	
+								1단계 문의가 없어요. 문의를 추가해주세요.
+							</div>
+						</c:if>
+					 	<c:if test="${problemList ne '[]' }">
+							<div class="card-header text-center">
+								체크박스를 선택하고 수정/삭제하거나 문의를 클릭하여 2단계 문의를 볼 수 있습니다.
+							</div>
+						</c:if>
+						<div class="card-body">
+							<div class="alert alert-danger" role="alert">
+								* 1단계 문의목록입니다
+							</div>
+							<div class="row row-cols-4">
+					       		<c:forEach items="${problemList }" var="problem">
+					       			<div class="col">
+					        			<!-- 문의 삭제 체크박스 -->
+					        			<h2 class="mt-1">
+					        				<input name="RowCheck" type="checkbox" value="${problem.category_code }" style="zoom:1.5"/>
+					        				<a href="updateProblem.do?category_code=${problem.category_code }&depth=2&#about" class="btn btn-secondary">
+					        					${problem.category_detail}
+					        				</a>
+					        			</h2>
+					        		</div>
+					       			<!--  -->
+					       			<!-- 여기서 category_code의 값을 넘겨줘야 뎁스2가 정해진다 -->
+					       			<!--  -->
+					       		</c:forEach>
+					       		<!-- 문의 추가 요소 -->	
+					       		<input name="depth" type="hidden" value="${depth }" />
+							</div>
 						</div>
-         			</c:if>
-         			<c:if test="${problemList ne '[]' }">
-						<div class="col-12">
-	        				<h2 class="btn disabled bg-info text-white" style="width: 100%; font-size:1.2rem ; text-align: start">
-	        					체크박스를 선택하고 수정/삭제하거나 문의를 클릭하여 <br/>
-	        					2단계 문의를 볼 수 있습니다.
-							</h2>
-							<font class="text-danger">* <span >1단계</span> 문의목록입니다.</font>
+					</c:when>
+					<c:when test="${depth eq 2}">
+						<c:if test="${problemList ne '[]' }">
+							<div class="card-header text-danger">*	${problemList[0].category_detail }의 2단계 문의입니다.</div>
+						</c:if>
+						<c:if test="${problemList eq '[]' }">
+							<div class="card-header text-center">	
+								2단계 문의가 없어요. 문의를 추가해주세요.
+							</div>
+						</c:if>
+					 	<c:if test="${problemList ne '[]' }">
+							<div class="card-header text-center">
+								체크박스를 선택하고 수정/삭제하거나 문의를 클릭하여 3단계 문의를 볼 수 있습니다.
+							</div>
+						</c:if>
+						<div class="card-body">
+							<div class="alert alert-danger" role="alert">
+								* 2단계 문의목록입니다
+							</div>
+							<div class="row row-cols-4">
+					       		<c:forEach items="${problemList }" var="problem">
+					       			<div class="col">
+					        			<!-- 문의 삭제 체크박스 -->
+					        			<h2 class="mt-1">
+					        				<input name="RowCheck" type="checkbox" value="${problem.problem_code }" style="zoom:1.5"/>
+						        			<a href="updateProblem.do?category_code=${problem.category_code }&problem_code=${problem.problem_code }&depth=3&#about" class="btn btn-secondary">
+						        				${problem.problem_detail}
+						        			</a>
+					        			</h2>
+					        		</div>
+					       			<!--  -->
+					       			<!-- 여기서 category_code의 값을 넘겨줘야 뎁스2가 정해진다 -->
+					       			<!--  -->
+					       		</c:forEach>
+				        		<!-- 문의 추가 요소 -->	
+				        		<input name="depth" type="hidden" value="${depth }"/>
+				        		<input id="category_code" name="category_code" type="hidden" value="<%=category_code %>" />
+							</div>
 						</div>
-					</c:if>
-	        		<c:forEach items="${problemList }" var="problem">
-	        			<div class="col border">
-		        			<!-- 문의 삭제 체크박스 -->
-		        			<h2 class="mt-1">
-		        				<input name="RowCheck" type="checkbox" value="${problem.category_code }" style="zoom:1.5"/>
-		        				<a href="updateProblem.do?category_code=${problem.category_code }&depth=2&#about" class="btn btn-secondary">
-		        					${problem.category_detail}
-		        				</a>
-		        			</h2>
-		        		</div>
-	        			<!--  -->
-	        			<!-- 여기서 category_code의 값을 넘겨줘야 뎁스2가 정해진다 -->
-	        			<!--  -->
-	        		</c:forEach>
-	        		<input name="depth" type="hidden" value="${depth }" />
-        		</c:when>
-         		<c:when test="${depth eq 2}">
-	         			<c:if test="${problemList eq '[]' }">
-							<div class="col-12">
-		        				<h2 class="btn disabled bg-info text-white" style="width: 100%; height:70px; line-height:60px; font-size:1.2rem ; text-align: start">
-		        					2단계 문의가 없어요. 문의를 추가해주세요.
-								</h2>
+					</c:when>
+					<c:when test="${depth eq 3}">
+						<c:if test="${problemList ne '[]' }">
+							<div class="card-header text-danger">* ${problemList[0].category_detail } > ${problemList[0].problem_detail }의 3단계 문의입니다.</div>
+						</c:if>
+						<c:if test="${problemList eq '[]' }">
+							<div class="card-header text-center">	
+								3단계 문의가 없어요. 필요하다면 추가해주세요.
 							</div>
-	         			</c:if>
-	         			<c:if test="${problemList ne '[]' }">
-							<div class="col-12">
-		        				<h2 class="btn disabled bg-info text-white" style="width: 100%;  font-size:1.2rem ; text-align: start">
-		        					체크박스를 선택하고 수정/삭제하거나 문의를 클릭하여 <br/>
-		        					3단계 문의를 볼 수 있습니다.
-								</h2>
-								<font class="text-danger">*	${problemList[0].category_detail }의 2단계 문의입니다.</font>
+						</c:if>
+					 	<c:if test="${problemList ne '[]' }">
+							<div class="card-header text-center">
+								체크박스를 선택하고 수정/삭제할 수 있습니다.
 							</div>
-	         			</c:if>
-	        		<c:forEach items="${problemList }" var="problem">
-	        			<div class="col">
-		        			<!-- 문의 삭제 체크박스 -->
-		        			<h2>
-		        				<input name="RowCheck" type="checkbox" value="${problem.problem_code }" style="zoom:1.5"/>
-			        			<a href="updateProblem.do?category_code=${problem.category_code }&problem_code=${problem.problem_code }&depth=3&#about" class="btn btn-secondary">
-			        				${problem.problem_detail}
-			        			</a>
-		        			</h2>
-	        			</div>
-	        			<!--  -->
-	        			<!-- 여기서 category_code와 problem_code의 값을 넘겨줘야 뎁스3가 정해진다 -->
-	        			<!--  -->
-	        		</c:forEach>
-	        		<!-- 문의 추가 요소 -->	
-	        		<input name="depth" type="hidden" value="${depth }"/>
-	        		<input id="category_code" name="category_code" type="hidden" value="<%=category_code %>" />
-        		</c:when> 
-         		<c:when test="${depth eq 3}">
-	         			<c:if test="${problemList eq '[]' }">
-							<div class="col-12">
-		        				<h2 class="btn disabled bg-info text-white" style="width: 100%; height:70px; line-height:60px; font-size:1.2rem ; text-align: start">
-		        					3단계 문의가 없어요. 필요하다면 추가해주세요.
-								</h2>
+						</c:if>
+						<div class="card-body">
+							<div class="alert alert-danger" role="alert">
+								* 3단계 문의목록입니다
 							</div>
-	         			</c:if>
-	         			<c:if test="${problemList ne '[]' }">
-							<div class="col-12">
-		        				<h2 class="btn disabled bg-info text-white" style="width: 100%;  font-size:1.2rem ; text-align: start">
-		        					체크박스를 선택하고 수정/삭제할 수 있습니다.
-								</h2>
-		        				<font class="text-danger">* ${problemList[0].category_detail } > ${problemList[0].problem_detail }의 3단계 문의입니다.</font>
+							<div class="row row-cols-4">
+					       		<c:forEach items="${problemList }" var="problem">
+					       			<div class="col">
+					        			<!-- 문의 삭제 체크박스 -->
+					        			<h2 class="mt-1">
+					        				<input name="RowCheck" type="checkbox" value="${problem.place_code }" style="zoom:1.5"/>
+						        			<a class="btn btn-secondary disabled">
+						        				${problem.place_detail}
+						        			</a>
+					        			</h2>
+					        		</div>
+					       			<!--  -->
+					       			<!-- 여기서 category_code의 값을 넘겨줘야 뎁스2가 정해진다 -->
+					       			<!--  -->
+					       		</c:forEach>
+				        		<!-- 문의 추가 요소 -->	
+				        		<input name="depth" type="hidden" value="${depth }" />
+				        		<input id="category_code" name="category_code" type="hidden" value="<%=category_code %>" />
+				        		<input id="problem_code" name="problem_code" type="hidden" value="<%=problem_code %>" />
 							</div>
-	         			</c:if>
-	        		<c:forEach items="${problemList }" var="problem">
-	        			<div class="col">
-		        			<h2>
-		        			<!-- 문의 삭제 체크박스 -->
-		        				<input name="RowCheck" type="checkbox" value="${problem.place_code }" style="zoom:1.5"/>
-			        			<a class="btn btn-secondary disabled">
-			        				${problem.place_detail}
-			        			</a>
-		        			</h2>
-	        			</div>
-	        		</c:forEach>
-	        		<!-- 문의 추가 요소 -->	
-	        		<input name="depth" type="hidden" value="${depth }" />
-	        		<input id="category_code" name="category_code" type="hidden" value="<%=category_code %>" />
-	        		<input id="problem_code" name="problem_code" type="hidden" value="<%=problem_code %>" />
-        		</c:when>
-        	</c:choose>
-        	</div>
-        	</form>
-
-			
+						</div>
+					</c:when>
+				</c:choose>
+			</div>
+<!-- 카드형식 테스트중 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
+			</form>	
          <!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
         </div>
       </div>

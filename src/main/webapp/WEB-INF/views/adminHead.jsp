@@ -67,7 +67,7 @@
 	<section id="about">
 		<div class="container">
 			<div class="row">
-				<div class="col-lg-8 mx-auto">
+				<div class="col-lg-12 mx-auto">
 					<h2 style="font-weight:bold">전체 내역</h2>
 					
 					<!--  검색 FORM -->
@@ -101,7 +101,7 @@
 							</div>
 						</form>
 					</div>	
-					<table class="table table-striped table-hover" style="text-align:center; inline-size:max-content">
+					<table class="table table-striped table-hover" style="text-align:center;">
 						<thead>
 							<tr>
 								<th>백화점 명</th>
