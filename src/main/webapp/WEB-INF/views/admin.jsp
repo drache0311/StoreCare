@@ -18,6 +18,7 @@
 	}
 	
 %>
+
 <head>
 	<c:set var="searchCondition" value="<%=searchCondition %>"/>
 	<c:set var="startDate" value="<%=startDate %>"/>
@@ -43,10 +44,11 @@
 	<!-- Custom styles for this template -->
 	<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/vendor/bootstrap/css/scrolling-nav.css">
     <link href="<%=request.getContextPath()%>/resources/vendor/bootstrap/css/button-dark.css" rel="stylesheet">
+	<link href='//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css' rel='stylesheet' type='text/css'>
 
 </head>
 
-<body id="page-top">
+<body id="page-top" style="font-family:Spoqa Han Sans Neo, sans-serif">
 
 
 <!-- include nav -->
@@ -55,13 +57,13 @@
 
 	<header class="text-white" style="background-size: 100%; background-repeat:no-repeat; background-image: url(<%=request.getContextPath()%>/resources/icon/lotte-department.png)">
 		<div class="container text-center">
-			<h1><font size="60px" style="font-weight:700"><%=department_name %></font> 관리자님 안녕하세요</h1>
+			<h1><font size="60px" style="font-weight:700 "><%=department_name %></font> 관리자님 안녕하세요</h1>
 			<hr style="border: solid 1px #fff; width:46%"  >
 			<p class="lead"><%=department_name %> 접수내역 <font size="5px" style="font-weight:600">조회</font> 페이지입니다</p>
 		</div>
 	</header>
 
-	<section id="about">
+	<section id="about" >
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-8 mx-auto">

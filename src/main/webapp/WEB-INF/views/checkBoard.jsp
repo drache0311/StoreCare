@@ -18,6 +18,7 @@
  
 	<!-- Custom styles for this template -->
 	<link href="<%=request.getContextPath()%>/resources/vendor/bootstrap/css/button-dark.css" rel="stylesheet">
+	<link href='//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css' rel='stylesheet' type='text/css'>
 <title>등록 확인</title>
 
 
@@ -50,7 +51,7 @@ Timestamp now = new Timestamp(System.currentTimeMillis());
 %>
 
 </head>
-<body>
+<body style="font-family:Spoqa Han Sans Neo, sans-serif">
 
  <!-- include nav -->
 <%@include file ="common/nav.jsp" %>

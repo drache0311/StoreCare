@@ -13,14 +13,14 @@
 
   <title>I Care U</title>
 
-  <!-- Bootstrap core CSS -->
-  <link href="<%=request.getContextPath()%>/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <!-- Custom CSS -->
-  <link href="<%=request.getContextPath()%>/resources/vendor/bootstrap/css/button-dark.css" rel="stylesheet">
-
+	<!-- Bootstrap core CSS -->
+	<link href="<%=request.getContextPath()%>/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	<!-- Custom CSS -->
+	<link href="<%=request.getContextPath()%>/resources/vendor/bootstrap/css/button-dark.css" rel="stylesheet">
+	<link href='//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css' rel='stylesheet' type='text/css'>
 </head>
 
-<body>
+<body style="font-family:Spoqa Han Sans Neo, sans-serif"> 
 
 <!-- include nav -->
 <%@include file ="common/nav.jsp" %>

@@ -24,10 +24,10 @@
 	<!-- Custom styles for this template -->
 	<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/vendor/bootstrap/css/scrolling-nav.css">
     <link href="<%=request.getContextPath()%>/resources/vendor/bootstrap/css/button-dark.css" rel="stylesheet">
-
+	<link href='//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css' rel='stylesheet' type='text/css'>
 </head>
 
-<body id="page-top">
+<body id="page-top" style="font-family:Spoqa Han Sans Neo, sans-serif">
 
 
 <!-- include nav -->

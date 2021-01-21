@@ -19,9 +19,9 @@
 
     <!-- Custom styles for this template -->
     <link href="<%=request.getContextPath()%>/resources/vendor/bootstrap/css/signin.css" rel="stylesheet">
-
+	<link href='//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css' rel='stylesheet' type='text/css'>
   </head>
-<body class="text-center">
+<body class="text-center" style="font-family:Spoqa Han Sans Neo, sans-serif">
     
 <main class="form-signin">
   <form action="loginAdmin.do" method="post" autocomplete="off">
