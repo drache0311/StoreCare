@@ -69,13 +69,13 @@
         	<input id="department_code" name="department_code" type="hidden" value="<%=department_department_code %>" />
         	<c:choose>
         		<c:when test="${depth eq 1 }">
-        			<input name="category_detail" type="text" id="detail" class="form-control" placeholder="여기에 입력하세요" onkeyup='getDetail()'>
+        			<input name="category_detail" type="text" id="detail" class="form-control" placeholder="추가/수정할 이름을 여기에 입력하세요" onkeyup='getDetail()'>
         		</c:when>
         		<c:when test="${depth eq 2 }">
-        			<input name="problem_detail" type="text" id="detail" class="form-control" placeholder="여기에 입력하세요" onkeyup='getDetail()'>
+        			<input name="problem_detail" type="text" id="detail" class="form-control" placeholder="추가/수정할 이름을 여기에 입력하세요" onkeyup='getDetail()'>
         		</c:when>
         		<c:when test="${depth eq 3 }">
-        			<input name="place_detail" type="text" id="detail" class="form-control" placeholder="여기에 입력하세요" onkeyup='getDetail()'>
+        			<input name="place_detail" type="text" id="detail" class="form-control" placeholder="추가/수정할 이름을 여기에 입력하세요" onkeyup='getDetail()'>
         		</c:when>
         	</c:choose>
         	<!--  추가 / 수정 / 삭제 버튼 -->
@@ -83,23 +83,29 @@
 				<input type="button" value="수정하기" class="btn btn-dark mt-2" style=" margin-left:2%" onclick="fixValue();">
 	        	<input type="button" value="삭제하기" class="btn btn-dark mt-2" style=" margin-left:2%" onclick="deleteValue();">
 			<hr><br/><br/><br/>
-<!-- 카드형식 테스트중 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
+<!-- 카드형식 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
 			<div class="card">
 				<c:choose>
 					<c:when test="${depth eq 1}">
 						<c:if test="${problemList eq '[]' }">
+							<div class="card-header text-danger  text-center">
+								점들이 사용할 문의를 추가해주세요.
+							</div>
 							<div class="card-header text-center">	
-								1단계 문의가 없어요. 문의를 추가해주세요.
+								체크박스를 선택하고 수정/삭제하거나 문의를 클릭하여 2단계 문의를 볼 수 있습니다.
 							</div>
 						</c:if>
 					 	<c:if test="${problemList ne '[]' }">
+							<div class="card-header text-danger text-center">
+								위의 기능으로 문의를 관리할 수 있습니다.
+							</div>
 							<div class="card-header text-center">
 								체크박스를 선택하고 수정/삭제하거나 문의를 클릭하여 2단계 문의를 볼 수 있습니다.
 							</div>
 						</c:if>
 						<div class="card-body">
 							<div class="alert alert-danger" role="alert">
-								* 1단계 문의목록입니다
+								* 문의를 수정/삭제하면 사용중인 모든 점에 적용됩니다.
 							</div>
 							<div class="row row-cols-4">
 					       		<c:forEach items="${problemList }" var="problem">
@@ -123,21 +129,24 @@
 					</c:when>
 					<c:when test="${depth eq 2}">
 						<c:if test="${problemList ne '[]' }">
-							<div class="card-header text-danger">*	${problemList[0].category_detail }의 2단계 문의입니다.</div>
-						</c:if>
-						<c:if test="${problemList eq '[]' }">
-							<div class="card-header text-center">	
-								2단계 문의가 없어요. 문의를 추가해주세요.
+							<div class="card-header text-danger text-center">
+								<span style="font-size:x-large;">${problemList[0].category_detail }</span>의 2단계 문의입니다.
+							</div>
+							<div class="card-header text-center">
+								체크박스를 선택하고 수정/삭제하거나 문의를 클릭하여 3단계 문의를 볼 수 있습니다.
 							</div>
 						</c:if>
-					 	<c:if test="${problemList ne '[]' }">
+						<c:if test="${problemList eq '[]' }">
+							<div class="card-header text-danger text-center">	
+								2단계 문의가 없어요. 문의를 추가해주세요.
+							</div>
 							<div class="card-header text-center">
 								체크박스를 선택하고 수정/삭제하거나 문의를 클릭하여 3단계 문의를 볼 수 있습니다.
 							</div>
 						</c:if>
 						<div class="card-body">
 							<div class="alert alert-danger" role="alert">
-								* 2단계 문의목록입니다
+								* 문의를 수정/삭제하면 사용중인 모든 점에 적용됩니다.
 							</div>
 							<div class="row row-cols-4">
 					       		<c:forEach items="${problemList }" var="problem">
@@ -162,21 +171,24 @@
 					</c:when>
 					<c:when test="${depth eq 3}">
 						<c:if test="${problemList ne '[]' }">
-							<div class="card-header text-danger">* ${problemList[0].category_detail } > ${problemList[0].problem_detail }의 3단계 문의입니다.</div>
-						</c:if>
-						<c:if test="${problemList eq '[]' }">
-							<div class="card-header text-center">	
-								3단계 문의가 없어요. 필요하다면 추가해주세요.
+							<div class="card-header text-danger text-center">
+								<span style="font-size:x-large;">${problemList[0].category_detail } &#xE001; ${problemList[0].problem_detail }</span>의 3단계 문의입니다.
+							</div>
+							<div class="card-header text-center">
+								체크박스를 선택하고 수정/삭제할 수 있습니다.
 							</div>
 						</c:if>
-					 	<c:if test="${problemList ne '[]' }">
+						<c:if test="${problemList eq '[]' }">
+							<div class="card-header text-danger text-center">	
+								3단계 문의가 없어요. 필요하다면 추가해주세요.
+							</div>
 							<div class="card-header text-center">
 								체크박스를 선택하고 수정/삭제할 수 있습니다.
 							</div>
 						</c:if>
 						<div class="card-body">
 							<div class="alert alert-danger" role="alert">
-								* 3단계 문의목록입니다
+								* 문의를 수정/삭제하면 사용중인 모든 점에 적용됩니다.
 							</div>
 							<div class="row row-cols-4">
 					       		<c:forEach items="${problemList }" var="problem">
@@ -202,7 +214,7 @@
 					</c:when>
 				</c:choose>
 			</div>
-<!-- 카드형식 테스트중 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
+<!-- 카드형식  ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
 			</form>	
          <!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
         </div>
