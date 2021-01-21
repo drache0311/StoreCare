@@ -68,7 +68,7 @@
 					<h2 style="font-weight:bold">전체 내역</h2>
 					<!--  검색 FORM -->
 					<div style="text-align-last: center">
-						<form name="searchDepBoard"  autocomplete="off" method="post" action="getBoardList.do">
+						<form name="searchDepBoard"  autocomplete="off" method="post" action="getBoardList.do?#about">
 							<!-- 처리현황별 검색 SELECT -->
 							<font style="font-size:large">처리현황</font>
 							<select name="searchCondition">
@@ -77,8 +77,8 @@
 								<option value="done" <c:out value = "${searchCondition eq 'done' ? 'selected' : '' }" />>처리완료</option>
 							</select>
 							<hr style="margin-left:5%">
-							<font style="font-size:large">From</font> <input type="text" id="startDate" name="startDate" placeholder="전체" value='<c:out value="${startDate}" />' style="width: 115px">
-							<font class="ml-2" style="font-size:large">To</font> <input type="text" id="endDate" name="endDate"  placeholder="전체" value='<c:out value="${endDate}" />' style="width: 115px">
+							<font style="font-size:large">From</font> <input type="text" id="startDate" name="startDate" placeholder="YYYY:MM:DD" value='<c:out value="${startDate}" />' style="width: 115px">
+							<font class="ml-2" style="font-size:large">To</font> <input type="text" id="endDate" name="endDate"  placeholder="YYYY:MM:DD" value='<c:out value="${endDate}" />' style="width: 115px">
 							<font class="ml-2" style="font-size:large">문의자</font> <input type="text" id="searchId" name="searchId"  placeholder="01012345678" value='<c:out value="${searchId eq 'all' ? '' : searchId}" />' style="width: 115px" onKeyUp="isNumber(this)">
 							
 							<button type="submit" id="btnSearch" class="btn btn-info" style="float:right">검색</button>
@@ -131,7 +131,7 @@
 							
 								<!-- prev 버튼 -->
 								<div id="page-prev">
-									<a class="btn btn-outline-secondary" href="getBoardList.do${pageMaker.makeQuery(pageMaker.startPage)}&searchCondition=<%=searchCondition %>&startDate=<%=startDate %>&endDate=<%=endDate %>&searchId=<%=searchId %>" aria-label="Prev">
+									<a class="btn btn-outline-secondary" href="getBoardList.do${pageMaker.makeQuery(pageMaker.startPage)}&searchCondition=<%=searchCondition %>&startDate=<%=startDate %>&endDate=<%=endDate %>&searchId=<%=searchId %>&#about" aria-label="Prev">
 										<span aria-hidden="true">«</span>
 									</a>
 								</div>
@@ -139,7 +139,7 @@
 								<!-- 페이지 번호 (시작 페이지 번호부터 끝 페이지 번호까지) -->
 								<c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
 								    <div id="page${idx}">
-									    <a class="btn btn-outline-secondary" href="getBoardList.do${pageMaker.makeQuery(idx)}&searchCondition=<%=searchCondition %>&startDate=<%=startDate %>&endDate=<%=endDate %>&searchId=<%=searchId %>">
+									    <a class="btn btn-outline-secondary" href="getBoardList.do${pageMaker.makeQuery(idx)}&searchCondition=<%=searchCondition %>&startDate=<%=startDate %>&endDate=<%=endDate %>&searchId=<%=searchId %>&#about">
 									    	<!-- 시각 장애인을 위한 추가 -->
 									      	<span>${idx}<span class="sr-only">(current)</span></span>
 									    </a>
@@ -148,7 +148,7 @@
 								
 								<!-- next 버튼 -->
 								<div id="page-next">
-								    <a class="btn btn-outline-secondary" href="getBoardList.do${pageMaker.makeQuery(pageMaker.endPage)}&searchCondition=<%=searchCondition %>&startDate=<%=startDate %>&endDate=<%=endDate %>&searchId=<%=searchId %>" aria-label="Next">
+								    <a class="btn btn-outline-secondary" href="getBoardList.do${pageMaker.makeQuery(pageMaker.endPage)}&searchCondition=<%=searchCondition %>&startDate=<%=startDate %>&endDate=<%=endDate %>&searchId=<%=searchId %>&#about" aria-label="Next">
 								    	<span aria-hidden="true">»</span>
 								    </a>
 								</div>	
@@ -169,7 +169,7 @@
 
 <!-- Custom JavaScript for this theme -->
 	<script src="<%=request.getContextPath()%>/resources/vendor/bootstrap/js/datepicker.js"></script>
-	<script src="<%=request.getContextPath()%>/resources/vendor/bootstrap/js/check-board-delete.js"></script>
+	<script src="<%=request.getContextPath()%>/resources/vendor/bootstrap/js/check-board-delete.js?ver=21-01-20"></script>
 	<script src="<%=request.getContextPath()%>/resources/vendor/bootstrap/js/board-paging.js"></script>
  	<script src="<%=request.getContextPath()%>/resources/vendor/bootstrap/js/id-check.js?ver=21-01-18"></script>
 <!-- SCRIPT ---------------------------------------------------------- -->

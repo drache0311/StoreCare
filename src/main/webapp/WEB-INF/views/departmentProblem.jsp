@@ -94,7 +94,7 @@
 			        			<!-- 문의 삭제 체크박스 -->
 			        			<h2>
 			        				<input name="RowCheck" type="checkbox" value="${problem.category_category_code }" style="zoom:1.5"/>
-			        				<a href="departmentProblem.do?category_category_code=${problem.category_category_code }&department_department_code=<%=department_department_code %>&depth=2" class="btn btn-secondary">
+			        				<a href="departmentProblem.do?category_category_code=${problem.category_category_code }&department_department_code=<%=department_department_code %>&depth=2&#about" class="btn btn-secondary">
 			        					${problem.category_detail}
 			        				</a>
 			        			</h2>
@@ -129,7 +129,7 @@
 			        			<!-- 문의 삭제 체크박스 -->
 			        			<h2>
 			        				<input name="RowCheck" type="checkbox" value="${problem.problem_problem_code }" style="zoom:1.5"/>
-				        			<a href="departmentProblem.do?category_category_code=${problem.category_category_code }&problem_problem_code=${problem.problem_problem_code }&department_department_code=<%=department_department_code %>&depth=3" class="btn btn-secondary">
+				        			<a href="departmentProblem.do?category_category_code=${problem.category_category_code }&problem_problem_code=${problem.problem_problem_code }&department_department_code=<%=department_department_code %>&depth=3&#about" class="btn btn-secondary">
 				        				${problem.problem_detail}
 				        			</a>
 			        			</h2>
@@ -194,7 +194,7 @@
 <script src="<%=request.getContextPath()%>/resources/vendor/jquery/jquery-3.5.1.min.js"></script>
 
 <!-- Custom JavaScript for this theme -->
-<script src="<%=request.getContextPath()%>/resources/vendor/bootstrap/js/check-problem-delete-depAdmin.js?ver=2"></script>
+<script src="<%=request.getContextPath()%>/resources/vendor/bootstrap/js/check-problem-delete-depAdmin.js?ver=21-01-21"></script>
 <!-- SCRIPT ---------------------------------------------------------- -->
 </body>
 </html>

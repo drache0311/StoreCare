@@ -40,7 +40,7 @@
 
 <header class="text-white" style="background-size: 100%; background-repeat:no-repeat; background-image: url(<%=request.getContextPath()%>/resources/icon/lotte-department.png)">
 	<div class="container text-center">
-		<h1>관리자님 안녕하세요</h1>
+		<h1>본사 관리자님 안녕하세요</h1>
 		<hr style="border: solid 1px #fff; width:46%"  >
 		<p class="lead">백화점이 사용할 문의를 <font size="5px" style="font-weight:600">관리</font>하는 페이지입니다</p>
 	</div>
@@ -78,12 +78,12 @@
         		</c:when>
         	</c:choose>
         	<!--  추가 / 수정 / 삭제 버튼 -->
-	        	<button class="btn btn-dark mt-2"  type="submit" formaction="insertProblem.do" >추가하기</button>
+	        	<button class="btn btn-dark mt-2"  type="submit" formaction="insertProblem.do?#about" >추가하기</button>
 				<input type="button" value="수정하기" class="btn btn-dark mt-2" style=" margin-left:2%" onclick="fixValue();">
 	        	<input type="button" value="삭제하기" class="btn btn-dark mt-2" style=" margin-left:2%" onclick="deleteValue();">
-			<br/><br/><br/>
+			<hr><br/><br/><br/>
 			
-			
+
 			
 			<div class="row row-cols-2">
         	<c:choose>
@@ -101,15 +101,15 @@
 	        					체크박스를 선택하고 수정/삭제하거나 문의를 클릭하여 <br/>
 	        					2단계 문의를 볼 수 있습니다.
 							</h2>
-							<font class="text-danger">* 1단계 문의목록입니다.</font>
+							<font class="text-danger">* <span >1단계</span> 문의목록입니다.</font>
 						</div>
 					</c:if>
 	        		<c:forEach items="${problemList }" var="problem">
-	        			<div class="col">
+	        			<div class="col border">
 		        			<!-- 문의 삭제 체크박스 -->
 		        			<h2 class="mt-1">
 		        				<input name="RowCheck" type="checkbox" value="${problem.category_code }" style="zoom:1.5"/>
-		        				<a href="updateProblem.do?category_code=${problem.category_code }&depth=2" class="btn btn-secondary">
+		        				<a href="updateProblem.do?category_code=${problem.category_code }&depth=2&#about" class="btn btn-secondary">
 		        					${problem.category_detail}
 		        				</a>
 		        			</h2>
@@ -142,7 +142,7 @@
 		        			<!-- 문의 삭제 체크박스 -->
 		        			<h2>
 		        				<input name="RowCheck" type="checkbox" value="${problem.problem_code }" style="zoom:1.5"/>
-			        			<a href="updateProblem.do?category_code=${problem.category_code }&problem_code=${problem.problem_code }&depth=3" class="btn btn-secondary">
+			        			<a href="updateProblem.do?category_code=${problem.category_code }&problem_code=${problem.problem_code }&depth=3&#about" class="btn btn-secondary">
 			        				${problem.problem_detail}
 			        			</a>
 		        			</h2>
@@ -176,7 +176,7 @@
 		        			<h2>
 		        			<!-- 문의 삭제 체크박스 -->
 		        				<input name="RowCheck" type="checkbox" value="${problem.place_code }" style="zoom:1.5"/>
-			        			<a href="#" class="btn btn-secondary disabled">
+			        			<a class="btn btn-secondary disabled">
 			        				${problem.place_detail}
 			        			</a>
 		        			</h2>
@@ -207,7 +207,7 @@
 <script src="<%=request.getContextPath()%>/resources/vendor/jquery/jquery-3.5.1.min.js"></script>
 
 <!-- Custom JavaScript for this theme -->
-<script src="<%=request.getContextPath()%>/resources/vendor/bootstrap/js/check-problem-ud.js?ver=21-01-18"></script>
+<script src="<%=request.getContextPath()%>/resources/vendor/bootstrap/js/check-problem-ud.js?ver=21-01-21"></script>
 <!-- SCRIPT ---------------------------------------------------------- -->
 </body>
 </html>

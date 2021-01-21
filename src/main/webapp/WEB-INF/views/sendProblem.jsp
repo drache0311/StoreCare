@@ -94,7 +94,7 @@
 			        			<!-- 문의 삭제 체크박스 -->
 			        			<h2>
 			        				<input name="RowCheck" type="checkbox" value="${problem.category_code }" style="zoom:1.5"/>
-			        				<a href="sendProblem.do?category_code=${problem.category_code }&depth=2" class="btn btn-secondary">
+			        				<a href="sendProblem.do?category_code=${problem.category_code }&depth=2&#about" class="btn btn-secondary">
 			        					${problem.category_detail}
 			        				</a>
 			        			</h2>
@@ -129,7 +129,7 @@
 			        			<!-- 문의 삭제 체크박스 -->
 			        			<h2>
 			        				<input name="RowCheck" type="checkbox" value="${problem.problem_code }" style="zoom:1.5"/>
-				        			<a href="sendProblem.do?category_code=${problem.category_code }&problem_code=${problem.problem_code }&depth=3" class="btn btn-secondary">
+				        			<a href="sendProblem.do?category_code=${problem.category_code }&problem_code=${problem.problem_code }&depth=3&#about" class="btn btn-secondary">
 				        				${problem.problem_detail}
 				        			</a>
 			        			</h2>

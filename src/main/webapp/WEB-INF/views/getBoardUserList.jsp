@@ -66,9 +66,9 @@
 		<hr style="width:70%">
 		<div style="padding:10px; text-align-last: center">
 		From
-		<input type="text" id="startDate" name="startDate" placeholder="전체" value='<c:out value="${startDate}" />' style="width: 115px">
+		<input type="text" id="startDate" name="startDate" placeholder="YYYY:MM:DD" value='<c:out value="${startDate}" />' style="width: 115px">
 		To 
-		<input type="text" id="endDate" name="endDate"  placeholder="전체" value='<c:out value="${endDate}" />' style="width: 115px">
+		<input type="text" id="endDate" name="endDate"  placeholder="YYYY:MM:DD" value='<c:out value="${endDate}" />' style="width: 115px">
 		<button type="submit" id="btnSearch" class="btn btn-info" style="float:right">검색</button>
 		</div>
 	</form>
