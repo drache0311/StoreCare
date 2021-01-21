@@ -98,8 +98,7 @@
 	        		<c:forEach items="${problemList }" var="problem">
 	        			<h2>
 		        			<a class="btn bg-light text-wrap " style="width: 100%; height:70px; line-height:60px; font-size:1.2rem ; text-align: start" href="insertBoard?category_category_code=${problem.category_category_code }&category_detail=${problem.category_detail }&problem_problem_code=${problem.problem_problem_code }&problem_detail=${problem.problem_detail }&department_department_code=<%=department_department_code %>&depth=3&seq=<%=seq %>" class="btn btn-secondary">
-		        				<img src="<%=request.getContextPath()%>/resources/icon/right-arrow-small.png"  alt="" width="20" height="20">
-		        					${problem.problem_detail}
+		        				&#xE001; ${problem.problem_detail}
 		        			</a>
 	        			</h2>
 	        			<!--  -->
@@ -120,8 +119,7 @@
 		        		<c:forEach items="${problemList }" var="problem">
 									<h2>
 										<a class="btn bg-light text-wrap " style="width: 100%; height:70px; line-height:60px; font-size:1.2rem ; text-align: start" href="checkBoard.do?problem_category_code=${problem.category_category_code }&problem_problem_code=${problem.problem_problem_code }&problem_detail=${problem.problem_detail }&category_detail=${problem.category_detail }&place_place_code=${problem.place_place_code }&place_place_detail=${problem.place_detail }&department_department_code=<%=department_department_code %>&seq=<%=seq %>&flag=<%=flag %>&depth=3" class="btn btn-secondary">
-											<img src="<%=request.getContextPath()%>/resources/icon/right-arrow-small.png"  alt="" width="20" height="20">
-												${problem.place_detail}
+											&#xE001; ${problem.place_detail}
 										</a>
 									</h2>	
 			       		</c:forEach>

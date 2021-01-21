@@ -79,33 +79,38 @@
 <c:when test="${boardUserList ne '[]'}">
  	<div class = "container-fluid" >
 		<c:forEach items="${boardUserList}" var="board">
-			<div class = "card mt-2">
+			<c:if test="${board.flag eq 0 }">
+				<div class = "card mt-2">
+			</c:if>
+			<c:if test="${board.flag eq 1 }">
+				<div class = "card text-dark bg-light border-secondary mt-2">
+			</c:if>
 			    <div class ="card-body">
 					<span class='text-primary'> 문의시간 ${board.datetime}</span>
 					<c:if test="${board.flag eq 1 }">
 						<br/><span class='text-primary'> 처리시간 ${board.clearTime}</span>
 					</c:if>
-					<h1 class = "card-title"> 요청내용 </h1>
-					<div class = "card-subtitle text-muted mb-2">
-						- ${board.category_detail}<br/>
-						- ${board.problem_detail}<br/>
-						<c:if test="${board.place_detail ne null }">
-							- ${board.place_detail} 
-						</c:if>
+					<span class = "card-text"> <br/>요청사항 </span>
+					<div class="card">
+					  <div class="card-footer">
+					    ${board.category_detail} &#xE001; ${board.problem_detail}
+					    <c:if test="${board.place_detail ne null }">
+					    	&#xE001; ${board.place_detail}
+					    </c:if>
+					    <br/> ${board.department_name } ${board.floor }
+					  </div>
 					</div>
-					<div class ="card-text mb-2">
-						장소 - ${board.department_name } ${board.floor }
-					</div>
+			
 					<c:if test="${board.flag eq 1 }">
-						<div class ="card-text mb-2">
-							<span class= "text-muted">
+						<div class ="card-text text-danger mb-2">
+							<span >
 								상태 - 처리 완료
 							</span>
 						</div>
 					</c:if>
 					<c:if test="${board.flag eq 0 }">
-						<div class ="card-text mb-2">
-							<span class= "text-muted">
+						<div class ="card-text text-muted mb-2">
+							<span>
 								상태 - 처리 중	
 							</span>
 						</div>
