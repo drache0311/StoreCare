@@ -41,8 +41,9 @@
 
 	<!-- Custom styles for this template -->
 	<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/vendor/bootstrap/css/scrolling-nav.css">
+	<link href='//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css' rel='stylesheet' type='text/css'>
 </head>
-<body id="page-top">
+<body id="page-top" style="font-family:Spoqa Han Sans Neo, sans-serif">
 
 <!-- include nav -->
 <%@include file ="common/nav.jsp" %>
@@ -50,22 +51,28 @@
 <!-- 페이지 설명 헤더 -->
 <header class="text-white" style="background-size: 100%; background-repeat:no-repeat; background-image: url(<%=request.getContextPath()%>/resources/icon/lotte-department.png)">
 	<div class="container text-center">
-		<h1>관리자님 안녕하세요</h1>
+		<h1>본사 관리자님 안녕하세요</h1>
 		<hr style="border: solid 1px #fff; width:46%"  >
 		<p class="lead">전체 백화점의 문의 접수내역 <font size="5px" style="font-weight:600">조회</font> 페이지입니다</p>
 	</div>
 </header>
-
+<section>
+	<div class="container">
+		<div class="row">
+			<div id="chart_div"></div>
+		</div>
+	</div>
+</section>
 <!--  여기서부터 foreach를 써서 section마다 각 점별 막대그래프 출력 -->
 	<section id="about">
 		<div class="container">
 			<div class="row">
-				<div class="col-lg-8 mx-auto">
+				<div class="col-lg-12 mx-auto">
 					<h2 style="font-weight:bold">전체 내역</h2>
 					
 					<!--  검색 FORM -->
 					<div style="text-align-last: center">
-						<form name="searchDepBoard"  autocomplete="off" method="post" action="getBoardList.do">
+						<form name="searchDepBoard"  autocomplete="off" method="post" action="getBoardList.do?#about">
 							<!-- 백화점별 검색 SELECT -->
 							<div style="padding:10px; float:left; margin-left:25%">
 								<font style="font-size:large">백화점명 </font>
@@ -87,14 +94,14 @@
 							</div>
 							<hr style="margin-left:10%">
 							<div  style="padding:10px">
-								<font style="font-size:large">From </font><input type="text" id="startDate" name="startDate" placeholder="전체" value='<c:out value="${startDate}" />' style="width: 115px">
-								<font class="ml-2" style="font-size:large">To </font><input type="text" id="endDate" name="endDate"  placeholder="전체" value='<c:out value="${endDate}" />' style="width: 115px">
+								<font style="font-size:large">From </font><input type="text" id="startDate" name="startDate" placeholder="YYYY:MM:DD" value='<c:out value="${startDate}" />' style="width: 115px">
+								<font class="ml-2" style="font-size:large">To </font><input type="text" id="endDate" name="endDate"  placeholder="YYYY:MM:DD" value='<c:out value="${endDate}" />' style="width: 115px">
 								<font class="ml-2" style="font-size:large">문의자</font> <input type="text" id="searchId" name="searchId"  placeholder="01012345678" value='<c:out value="${searchId eq 'all' ? '' : searchId}" />' style="width: 115px" onKeyUp="isNumber(this)">
 								<button type="submit" id="btnSearch" class="btn btn-info" style="float:right">검색</button>
 							</div>
 						</form>
 					</div>	
-					<table class="table table-striped table-hover" style="text-align:center; inline-size:max-content">
+					<table class="table table-striped table-hover" style="text-align:center;">
 						<thead>
 							<tr>
 								<th>백화점 명</th>
@@ -140,7 +147,7 @@
 							
 								<!-- prev 버튼 -->
 								<div id="page-prev">
-									<a class="btn btn-outline-secondary" href="getBoardList.do${pageMaker.makeQuery(pageMaker.startPage)}&searchCondition=<%=searchCondition %>&startDate=<%=startDate %>&endDate=<%=endDate %>&searchId=<%=searchId %>" aria-label="Prev">
+									<a class="btn btn-outline-secondary" href="getBoardList.do${pageMaker.makeQuery(pageMaker.startPage)}&searchCondition=<%=searchCondition %>&startDate=<%=startDate %>&endDate=<%=endDate %>&searchId=<%=searchId %>&#about" aria-label="Prev">
 										<span aria-hidden="true">«</span>
 									</a>
 								</div>
@@ -148,7 +155,7 @@
 								<!-- 페이지 번호 (시작 페이지 번호부터 끝 페이지 번호까지) -->
 								<c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
 								    <div id="page${idx}">
-									    <a class="btn btn-outline-secondary" href="getBoardList.do${pageMaker.makeQuery(idx)}&searchCondition=<%=searchCondition %>&startDate=<%=startDate %>&endDate=<%=endDate %>&searchId=<%=searchId %>">
+									    <a class="btn btn-outline-secondary" href="getBoardList.do${pageMaker.makeQuery(idx)}&searchCondition=<%=searchCondition %>&startDate=<%=startDate %>&endDate=<%=endDate %>&searchId=<%=searchId %>&#about">
 									      	<span>${idx}</span>
 									    </a>
 								    </div>
@@ -156,7 +163,7 @@
 
 								<!-- next 버튼 -->
 								<div id="page-next">
-								    <a class="btn btn-outline-secondary" href="getBoardList.do${pageMaker.makeQuery(pageMaker.endPage)}&searchCondition=<%=searchCondition %>&startDate=<%=startDate %>&endDate=<%=endDate %>&searchId=<%=searchId %>" aria-label="Next">
+								    <a class="btn btn-outline-secondary" href="getBoardList.do${pageMaker.makeQuery(pageMaker.endPage)}&searchCondition=<%=searchCondition %>&startDate=<%=startDate %>&endDate=<%=endDate %>&searchId=<%=searchId %>&#about" aria-label="Next">
 								    	<span aria-hidden="true">»</span>
 								    </a>
 								</div>		
@@ -183,6 +190,7 @@
 	<script src="<%=request.getContextPath()%>/resources/vendor/bootstrap/js/datepicker.js"></script>
 	<script src="<%=request.getContextPath()%>/resources/vendor/bootstrap/js/board-paging.js"></script>
  	<script src="<%=request.getContextPath()%>/resources/vendor/bootstrap/js/id-check.js?ver=21-01-18"></script>
+ 	<script src="<%=request.getContextPath()%>/resources/vendor/bootstrap/js/chart-all-dep.js?ver=21-01-20"></script>
 <!-- SCRIPT ---------------------------------------------------------- -->
 </body>
 </html>

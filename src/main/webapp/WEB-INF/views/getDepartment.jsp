@@ -15,7 +15,7 @@
   
   <!-- Bootstrap core CSS -->
   <link href="<%=request.getContextPath()%>/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
+	<link href='//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css' rel='stylesheet' type='text/css'>
 <title>등록 확인</title>
 
 
@@ -29,7 +29,7 @@ String id = request.getParameter("id");
 %>
 
 </head>
-<body>
+<body style="font-family:Spoqa Han Sans Neo, sans-serif">
 
  <!-- include nav -->
 <%@include file ="common/nav.jsp" %>

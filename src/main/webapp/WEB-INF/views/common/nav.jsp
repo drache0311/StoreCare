@@ -24,7 +24,7 @@
         <ul class="navbar-nav ml-auto">
           <li class="nav-item active">
           <c:if test="${role eq '0'}">
-            <a class="nav-link" href="getBoardList.do">Home
+            <a class="nav-link" href="getBoardList.do">문의내역
               <span class="sr-only">(current)</span>
             </a>
           <!-- 백화점 및 관리자를 배정,추가,수정,삭제 하는 페이지 -->
@@ -37,12 +37,12 @@
 	        </li>
           </c:if>
           <c:if test="${role eq '1'}">
-			<a class="nav-link" href="getBoardList.do">Home
+			<a class="nav-link" href="getBoardList.do">문의내역
 			  <span class="sr-only">(current)</span>
 			</a>
 	        <!-- 원하는 문의를 각 점에 추가하는 페이지 -->
 	        <li class="nav-item">
-	          <a class="nav-link" href="sendProblem.do?depth=1&department_department_code=<%=department_department_code%>">문의 추가</a>
+	          <a class="nav-link" href="sendProblem.do?depth=1&department_department_code=<%=department_department_code%>">내 백화점 문의추가</a>
 	        </li>
 	        <!-- 각 점별 뎁스별 문의 검색,삭제 페이지 -->
 	        <li class="nav-item">
@@ -62,7 +62,7 @@
           </c:if>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="logout.do">Log-out</a>
+            <a class="nav-link" href="logout.do">로그아웃</a>
           </li>
         </ul>
       </div>

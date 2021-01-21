@@ -39,10 +39,10 @@
 	<link href="<%=request.getContextPath()%>/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 	<!-- Custom CSS -->
 	<link href="<%=request.getContextPath()%>/resources/vendor/bootstrap/css/button-dark.css" rel="stylesheet">
-
+	<link href='//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css' rel='stylesheet' type='text/css'>
 </head>
 
-<body>
+<body style="font-family:Spoqa Han Sans Neo, sans-serif">
 
 <!-- include nav -->
 <%@include file ="common/nav.jsp" %>
@@ -66,9 +66,9 @@
 		<hr style="width:70%">
 		<div style="padding:10px; text-align-last: center">
 		From
-		<input type="text" id="startDate" name="startDate" placeholder="전체" value='<c:out value="${startDate}" />' style="width: 115px">
+		<input type="text" id="startDate" name="startDate" placeholder="YYYY:MM:DD" value='<c:out value="${startDate}" />' style="width: 115px">
 		To 
-		<input type="text" id="endDate" name="endDate"  placeholder="전체" value='<c:out value="${endDate}" />' style="width: 115px">
+		<input type="text" id="endDate" name="endDate"  placeholder="YYYY:MM:DD" value='<c:out value="${endDate}" />' style="width: 115px">
 		<button type="submit" id="btnSearch" class="btn btn-info" style="float:right">검색</button>
 		</div>
 	</form>
@@ -79,33 +79,38 @@
 <c:when test="${boardUserList ne '[]'}">
  	<div class = "container-fluid" >
 		<c:forEach items="${boardUserList}" var="board">
-			<div class = "card mt-2">
+			<c:if test="${board.flag eq 0 }">
+				<div class = "card mt-2">
+			</c:if>
+			<c:if test="${board.flag eq 1 }">
+				<div class = "card text-dark bg-light border-secondary mt-2">
+			</c:if>
 			    <div class ="card-body">
 					<span class='text-primary'> 문의시간 ${board.datetime}</span>
 					<c:if test="${board.flag eq 1 }">
 						<br/><span class='text-primary'> 처리시간 ${board.clearTime}</span>
 					</c:if>
-					<h1 class = "card-title"> 요청내용 </h1>
-					<div class = "card-subtitle text-muted mb-2">
-						- ${board.category_detail}<br/>
-						- ${board.problem_detail}<br/>
-						<c:if test="${board.place_detail ne null }">
-							- ${board.place_detail} 
-						</c:if>
+					<span class = "card-text"> <br/>요청사항 </span>
+					<div class="card">
+					  <div class="card-footer">
+					    ${board.category_detail} &#xE001; ${board.problem_detail}
+					    <c:if test="${board.place_detail ne null }">
+					    	&#xE001; ${board.place_detail}
+					    </c:if>
+					    <br/> ${board.department_name } ${board.floor }
+					  </div>
 					</div>
-					<div class ="card-text mb-2">
-						장소 - ${board.department_name } ${board.floor }
-					</div>
+			
 					<c:if test="${board.flag eq 1 }">
-						<div class ="card-text mb-2">
-							<span class= "text-muted">
+						<div class ="card-text text-danger mb-2">
+							<span >
 								상태 - 처리 완료
 							</span>
 						</div>
 					</c:if>
 					<c:if test="${board.flag eq 0 }">
-						<div class ="card-text mb-2">
-							<span class= "text-muted">
+						<div class ="card-text text-muted mb-2">
+							<span>
 								상태 - 처리 중	
 							</span>
 						</div>

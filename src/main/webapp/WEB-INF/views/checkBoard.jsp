@@ -18,6 +18,7 @@
  
 	<!-- Custom styles for this template -->
 	<link href="<%=request.getContextPath()%>/resources/vendor/bootstrap/css/button-dark.css" rel="stylesheet">
+	<link href='//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css' rel='stylesheet' type='text/css'>
 <title>등록 확인</title>
 
 
@@ -50,7 +51,7 @@ Timestamp now = new Timestamp(System.currentTimeMillis());
 %>
 
 </head>
-<body>
+<body style="font-family:Spoqa Han Sans Neo, sans-serif">
 
  <!-- include nav -->
 <%@include file ="common/nav.jsp" %>
@@ -88,6 +89,7 @@ Timestamp now = new Timestamp(System.currentTimeMillis());
 <form method="get">
  	<div class = "container-fluid" >
 		<div class = "card mt-4">
+		    <h5 class="card-header">요청하신 내용</h5>
 		    <div class ="card-body">
 			    <c:if test="${seq ne 'null'}">
 			  	  <input name="seq" type="hidden" value="<%=seq%>" />
@@ -100,30 +102,27 @@ Timestamp now = new Timestamp(System.currentTimeMillis());
 		    	<input name="department_department_name" type="hidden" value="${board.department_name}" />				
 				<input id="${board.department_name}" type="hidden" name="changeDepartment" />	
 				<!-- 입력된 문의 1,2,3뎁스 표시 -->
-		    	<h5 class="card-header">요청하신 내용</h5><br/>
-				<h2 class="btn bg-dark text-white" style="width: 100%; height:70px; line-height:60px; font-size:1.2rem ; text-align: start"> <%=category_detail %> </h2>
-				<p class="btn bg-secondary text-white" style="width: 100%; height:70px; line-height:60px; font-size:1.2rem ; text-align: start">
-					<img src="<%=request.getContextPath()%>/resources/icon/right-arrow-small.png"  alt="" width="20" height="20">
-					<%=problem_detail %> 
-				</p>
-				<c:if test="${place_detail ne null }">
-					<p class="btn bg-light text-wrap " style="width: 100%; height:70px; line-height:60px; font-size:1.2rem ; text-align: start">
-						<img src="<%=request.getContextPath()%>/resources/icon/right-arrow-small.png"  alt="" width="20" height="20">
-						<%=place_detail %>
-					</p>
-				</c:if>
+				<div class="card card-header">
+	    				<%=category_detail %> 
+	    				&#xE001; <%=problem_detail %> 
+	    				<c:if test="${place_detail ne null }">
+	    					&#xE001; <%=place_detail %>
+	    				</c:if>
+	    		</div>	
 			</div>
+		    <h5 class="card-header">층 수</h5>
 			<div class ="card-body">
-		    	<h5 class="card-header">층 수</h5>
 		    		<select class="ml-4 mt-1 btn btn-info dropdown-toggle" style="width:80%" name="floor" id="floor">
 						<option>선택해주세요.</option>
 					</select>
 			</div>
+		    <h5 class="card-header">확인사항</h5>
 			<div class ="card-body">
-		    	<h5 class="card-header">확인사항</h5>
-					<span class="ml-4">요청하신 문의가 내용과 맞으시다면 </span>
-					<br/>
-					<span class="ml-4">층 수를 선택 후 등록을 눌러주세요.</span>
+					<div class="card card-header">
+						요청하신 문의가 내용과 맞으시다면
+						<br/>
+						층 수를 선택 후 등록을 눌러주세요.
+					</div>
 			</div>
   		</div>
 	</div>

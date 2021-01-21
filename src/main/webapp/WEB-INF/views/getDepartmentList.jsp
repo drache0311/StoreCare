@@ -24,10 +24,10 @@
 	<!-- Custom styles for this template -->
 	<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/vendor/bootstrap/css/scrolling-nav.css">
     <link href="<%=request.getContextPath()%>/resources/vendor/bootstrap/css/button-dark.css" rel="stylesheet">
-
+	<link href='//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css' rel='stylesheet' type='text/css'>
 </head>
 
-<body id="page-top">
+<body id="page-top" style="font-family:Spoqa Han Sans Neo, sans-serif">
 
 
 <!-- include nav -->
@@ -35,7 +35,7 @@
 
 	<header class="text-white" style="background-size: 100%; background-repeat:no-repeat; background-image: url(<%=request.getContextPath()%>/resources/icon/lotte-department.png)">
 		<div class="container text-center">
-			<h1>관리자님 안녕하세요</h1>
+			<h1>본사 관리자님 안녕하세요</h1>
 			<hr style="border: solid 1px #fff; width:46%"  >
 			<p class="lead">백화점을 <font size="5px" style="font-weight:600">관리</font>하는 페이지입니다</p>
 		</div>
