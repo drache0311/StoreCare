@@ -66,7 +66,7 @@
 	<section id="about" >
 		<div class="container">
 			<div class="row">
-				<div class="col-lg-8 mx-auto">
+				<div class="col-lg-12 mx-auto">
 					<h2 style="font-weight:bold">전체 내역</h2>
 					<!--  검색 FORM -->
 					<div style="text-align-last: center">
@@ -83,10 +83,10 @@
 							<font class="ml-2" style="font-size:large">To</font> <input type="text" id="endDate" name="endDate"  placeholder="YYYY:MM:DD" value='<c:out value="${endDate}" />' style="width: 115px">
 							<font class="ml-2" style="font-size:large">문의자</font> <input type="text" id="searchId" name="searchId"  placeholder="01012345678" value='<c:out value="${searchId eq 'all' ? '' : searchId}" />' style="width: 115px" onKeyUp="isNumber(this)">
 							
-							<button type="submit" id="btnSearch" class="btn btn-info" style="float:right">검색</button>
+							<button type="submit" id="btnSearch" class="btn btn-info" style="float:right;width:10%">검색</button>
 						</form>
 					</div>	
-					<table class="table table-striped table-hover" style="text-align:center; inline-size:max-content;">
+					<table class="table table-striped table-hover" style="text-align:center;">
 						<thead>
 							<tr>
 								<th><input id="allCheck" type="checkbox" name="allCheck" style="zoom:1.5"/></th>

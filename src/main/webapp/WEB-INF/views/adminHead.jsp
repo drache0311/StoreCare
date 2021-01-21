@@ -56,13 +56,6 @@
 		<p class="lead">전체 백화점의 문의 접수내역 <font size="5px" style="font-weight:600">조회</font> 페이지입니다</p>
 	</div>
 </header>
-<section>
-	<div class="container">
-		<div class="row">
-			<div id="chart_div"></div>
-		</div>
-	</div>
-</section>
 <!--  여기서부터 foreach를 써서 section마다 각 점별 막대그래프 출력 -->
 	<section id="about">
 		<div class="container">
@@ -97,7 +90,7 @@
 								<font style="font-size:large">From </font><input type="text" id="startDate" name="startDate" placeholder="YYYY:MM:DD" value='<c:out value="${startDate}" />' style="width: 115px">
 								<font class="ml-2" style="font-size:large">To </font><input type="text" id="endDate" name="endDate"  placeholder="YYYY:MM:DD" value='<c:out value="${endDate}" />' style="width: 115px">
 								<font class="ml-2" style="font-size:large">문의자</font> <input type="text" id="searchId" name="searchId"  placeholder="01012345678" value='<c:out value="${searchId eq 'all' ? '' : searchId}" />' style="width: 115px" onKeyUp="isNumber(this)">
-								<button type="submit" id="btnSearch" class="btn btn-info" style="float:right">검색</button>
+								<button type="submit" id="btnSearch" class="btn btn-info" style="float:right;width:10%">검색</button>
 							</div>
 						</form>
 					</div>	

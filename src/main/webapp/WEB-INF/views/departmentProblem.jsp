@@ -51,129 +51,149 @@
   <section id="about"> 
     <div class="container">
       <div class="row">
-        <div class="col-lg-8 mx-auto">
-        <!-- 삭제 버튼 -->
-        <input type="button" value="내 점에서 삭제하기" class="btn btn-dark " style="float:left" onclick="deleteValue();">
-        <br/>
-        <br/>
-        <!-- 이전 버튼 -->
-        <c:if test="${depth ne 1 }">
-			<button onclick="history.back()" class="btn btn-secondary" style="float:right; width: 10%" >이전</button>
-		</c:if>
-		<!-- 전체선택 체크박스 -->
-        <div class="form-check ml-4 mb-3" style="width:max-content">
-        	<input class="form-check-input" id="allCheck" type="checkbox" name="allCheck" style="zoom:1.5""/>
-        	<label class="form-check-label mt-2" for="allCheck"  style="font-weight:bold">
-        		전체선택
-        	</label>
-        </div>
+        <div class="col-lg-12 mx-auto">
         <!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
-        <form  method="GET">
-            <!-- 다시 이 페이지로 새로고침하기 위해 dep_code가 필요하다 -->
-        	<input id="department_code" type="hidden" value="<%=department_department_code %>" />
-        	<div class="row row-cols-2">
+
+	        	<div class="card mb-4">
+	        		<div class="card-header">
+	        		문의 삭제 기능
+	        		</div>
+	        		<div class="card-body">
+   				        <!-- 이전 버튼 -->
+				        <c:if test="${depth ne 1 }">
+				    		<button onclick="history.back()" class="btn btn-secondary" style="float:right; width: 10%" >이전</button>
+						</c:if>
+						<!-- 전체선택 체크박스 -->
+						<div class="form-check ml-4" style="width:max-content">
+							<input class="form-check-input" id="allCheck" type="checkbox" name="allCheck" style="zoom:1.5""/>
+							<label class="form-check-label mt-2" for="allCheck"  style="font-weight:bold;float:left">
+								전체선택
+							</label>
+						</div>
+				        <form  method="GET">
+				            <!-- 다시 이 페이지로 새로고침하기 위해 dep_code가 필요하다 -->
+				        	<input id="department_code" type="hidden" value="<%=department_department_code %>" />
+				        <!-- 삭제 버튼 -->
+				        <input type="button" value="내 점에서 삭제하기" class="btn btn-dark ml-4" style="float:left" onclick="deleteValue();">
+         			</div>
+	        	</div>
+
+        	<div class="card">
 	        	<c:choose>
 	        		<c:when test="${depth eq 1}">
 	         			<c:if test="${problemList eq '[]' }">
-							<div class="col-12">
-		        				<h2 class="btn disabled bg-info text-white" style="width: 100%; height:70px; line-height:60px; font-size:1.2rem ; text-align: start">
-		        					1단계 문의가 없어요. 문의를 추가해주세요.
-								</h2>
-							</div>
-	         			</c:if>
-	         			<c:if test="${problemList ne '[]' }">
-							<div class="col-12">
-		        				<h2 class="btn disabled bg-info text-white" style="width: 100%; font-size:1.2rem ; text-align: start">
-		        					체크박스를 선택하고 내 점에서 삭제하거나 문의를 클릭하여 <br/>
-		        					2단계 문의를 볼 수 있습니다.
-								</h2>
-								<font class="text-danger">* 1단계 문의목록입니다.</font>
+							<div class="card-header text-danger  text-center">
+								문의가 없네요! 본사 관리자에게 요청하세요.
 							</div>
 						</c:if>
-		        		<c:forEach items="${problemList }" var="problem">
-		        			<div class="col">
-			        			<!-- 문의 삭제 체크박스 -->
-			        			<h2>
-			        				<input name="RowCheck" type="checkbox" value="${problem.category_category_code }" style="zoom:1.5"/>
-			        				<a href="departmentProblem.do?category_category_code=${problem.category_category_code }&department_department_code=<%=department_department_code %>&depth=2&#about" class="btn btn-secondary">
-			        					${problem.category_detail}
-			        				</a>
-			        			</h2>
-			        			<!--  -->
-			        			<!-- 여기서 category_code의 값을 넘겨줘야 뎁스2가 정해진다 -->
-			        			<!--  -->
-		        			</div>
-		        		</c:forEach>
+					 	<c:if test="${problemList ne '[]' }">
+							<div class="card-header text-danger text-center">
+								위의 기능으로 문의를 삭제할 수 있습니다.
+							</div>
+						</c:if>
+						<div class="card-header text-center">
+							체크박스를 선택하고 '내점에서 삭제하기'를 클릭하시면 <%=department_name %>에서 삭제됩니다.
+						</div>
+						<div class="card-body">
+							<div class="alert alert-danger" role="alert">
+								* 1단계 문의를 삭제하면 해당 1-2-3단계의 모든 문의가 <%=department_name %>에서 삭제됩니다.
+							</div>
+							<div class="row row-cols-4">
+				        		<c:forEach items="${problemList }" var="problem">
+				        			<div class="col">
+					        			<!-- 문의 삭제 체크박스 -->
+					        			<h2>
+					        				<input name="RowCheck" type="checkbox" value="${problem.category_category_code }" style="zoom:1.5"/>
+					        				<a href="departmentProblem.do?category_category_code=${problem.category_category_code }&department_department_code=<%=department_department_code %>&depth=2&#about" class="btn btn-secondary">
+					        					${problem.category_detail}
+					        				</a>
+					        			</h2>
+					        			<!--  -->
+					        			<!-- 여기서 category_code의 값을 넘겨줘야 뎁스2가 정해진다 -->
+					        			<!--  -->
+				        			</div>
+				        		</c:forEach>
 		        		<!-- 문의 추가 버튼 -->	
 		        		<!-- depth를 추가로 보내서 해당 depth에 input값을 추가하는 식으로 ??? -->
-		        		<input name="depth" type="hidden" value="${depth }" />
+		        				<input name="depth" type="hidden" value="${depth }" />
+		        			</div>
+		        		</div>
 	        		</c:when>
 	         		<c:when test="${depth eq 2}">
-	         			<c:if test="${problemList eq '[]' }">
-							<div class="col-12">
-		        				<h2 class="btn disabled bg-info text-white" style="width: 100%; height:70px; line-height:60px; font-size:1.2rem ; text-align: start">
-		        					2단계 문의가 없어요. 문의를 추가해주세요.
-								</h2>
+						<c:if test="${problemList ne '[]' }">
+							<div class="card-header text-danger text-center">
+								<span style="font-size:x-large;">${problemList[0].category_detail }</span>의 2단계 문의입니다.
 							</div>
-	         			</c:if>
-	         			<c:if test="${problemList ne '[]' }">
-							<div class="col-12">
-		        				<h2 class="btn disabled bg-info text-white" style="width: 100%;  font-size:1.2rem ; text-align: start">
-		        					체크박스를 선택하고 내 점에서 삭제하거나 문의를 클릭하여 <br/>
-		        					3단계 문의를 볼 수 있습니다.
-								</h2>
-								<font class="text-danger">*	${problemList[0].category_detail }의 2단계 문의입니다.</font>
+						</c:if>
+						<c:if test="${problemList eq '[]' }">
+							<div class="card-header text-danger text-center">	
+								2단계 문의가 없어요. 문의를 추가해주세요.
 							</div>
-	         			</c:if>
-		        		<c:forEach items="${problemList }" var="problem">
-		        			<div class="col">
-			        			<!-- 문의 삭제 체크박스 -->
-			        			<h2>
-			        				<input name="RowCheck" type="checkbox" value="${problem.problem_problem_code }" style="zoom:1.5"/>
-				        			<a href="departmentProblem.do?category_category_code=${problem.category_category_code }&problem_problem_code=${problem.problem_problem_code }&department_department_code=<%=department_department_code %>&depth=3&#about" class="btn btn-secondary">
-				        				${problem.problem_detail}
-				        			</a>
-			        			</h2>
-			        			<!--  -->
-			        			<!-- 여기서 category_code와 problem_code의 값을 넘겨줘야 뎁스3가 정해진다 -->
-			        			<!--  -->
-			        		</div>
-		        		</c:forEach>
-		        		<!-- 문의 추가 버튼 -->	
-		        		<input name="depth" type="hidden" value="${depth }" />
-		        		<input name="category_code" type="hidden" value="<%=category_code %>" />
+						</c:if>
+						<div class="card-header text-center">
+							체크박스를 선택하고 삭제하거나 문의를 클릭하여 3단계 문의를 볼 수 있습니다.
+						</div>
+						<div class="card-body">
+							<div class="alert alert-danger" role="alert">
+								* 2단계 문의를 삭제하면 해당 1-2-3단계의 모든 문의가 <%=department_name %>에서 삭제됩니다.
+							</div>
+							<div class="row row-cols-4">
+				        		<c:forEach items="${problemList }" var="problem">
+				        			<div class="col">
+					        			<!-- 문의 삭제 체크박스 -->
+					        			<h2>
+					        				<input name="RowCheck" type="checkbox" value="${problem.problem_problem_code }" style="zoom:1.5"/>
+						        			<a href="departmentProblem.do?category_category_code=${problem.category_category_code }&problem_problem_code=${problem.problem_problem_code }&department_department_code=<%=department_department_code %>&depth=3&#about" class="btn btn-secondary">
+						        				${problem.problem_detail}
+						        			</a>
+					        			</h2>
+					        			<!--  -->
+					        			<!-- 여기서 category_code와 problem_code의 값을 넘겨줘야 뎁스3가 정해진다 -->
+					        			<!--  -->
+					        		</div>
+				        		</c:forEach>
+				        		<!-- 문의 추가 버튼 -->	
+				        		<input name="depth" type="hidden" value="${depth }" />
+				        		<input name="category_code" type="hidden" value="<%=category_code %>" />
+	        				</div>
+	        			</div>
 	        		</c:when> 
 	         		<c:when test="${depth eq 3}">
-	         			<c:if test="${problemList eq '[]' }">
-							<div class="col-12">
-		        				<h2 class="btn disabled bg-info text-white" style="width: 100%; height:70px; line-height:60px; font-size:1.2rem ; text-align: start">
-		        					3단계 문의가 없어요. 필요하다면 추가해주세요.
-								</h2>
+						<c:if test="${problemList ne '[]' }">
+							<div class="card-header text-danger text-center">
+								<span style="font-size:x-large;">${problemList[0].category_detail } &#xE001; ${problemList[0].problem_detail }</span>의 3단계 문의입니다.
 							</div>
-	         			</c:if>
-	         			<c:if test="${problemList ne '[]' }">
-							<div class="col-12">
-		        				<h2 class="btn disabled bg-info text-white" style="width: 100%;  font-size:1.2rem ; text-align: start">
-		        					체크박스를 선택하고 내 점에서 삭제할 수 있습니다.
-								</h2>
-		        				<font class="text-danger">* ${problemList[0].category_detail } > ${problemList[0].problem_detail }의 3단계 문의입니다.</font>
+						</c:if>
+						<c:if test="${problemList eq '[]' }">
+							<div class="card-header text-danger text-center">	
+								3단계 문의가 없어요. 필요하다면 추가해주세요.
 							</div>
-	         			</c:if>
-		        		<c:forEach items="${problemList }" var="problem">
-			        		<div class="col">
-			        			<h2>
-			        			<!-- 문의 삭제 체크박스 -->
-			        				<input name="RowCheck" type="checkbox" value="${problem.place_place_code }" style="zoom:1.5"/>
-				        			<a href="#" class="btn btn-secondary disabled">
-				        				${problem.place_detail}
-				        			</a>
-			        			</h2>
-		        			</div>
-		        		</c:forEach>
-		        		<!-- 문의 추가 버튼 -->	
-		        		<input name="depth" type="hidden" value="${depth }" />
-		        		<input name="category_code" type="hidden" value="<%=category_code %>" />
-		        		<input name="problem_code" type="hidden" value="<%=problem_code %>" />
+						</c:if>
+						<div class="card-header text-center">
+							체크박스를 선택하고 삭제할 수 있습니다.
+						</div>
+						<div class="card-body">
+							<div class="alert alert-danger" role="alert">
+								* 3단계 문의를 삭제하면 해당 1-2-3단계 문의만 <%=department_name %>에서 삭제됩니다.
+							</div>
+							<div class="row row-cols-4">
+				        		<c:forEach items="${problemList }" var="problem">
+					        		<div class="col">
+					        			<h2>
+					        			<!-- 문의 삭제 체크박스 -->
+					        				<input name="RowCheck" type="checkbox" value="${problem.place_place_code }" style="zoom:1.5"/>
+						        			<a href="#" class="btn btn-secondary disabled">
+						        				${problem.place_detail}
+						        			</a>
+					        			</h2>
+				        			</div>
+				        		</c:forEach>
+				        		<!-- 문의 추가 버튼 -->	
+				        		<input name="depth" type="hidden" value="${depth }" />
+				        		<input name="category_code" type="hidden" value="<%=category_code %>" />
+				        		<input name="problem_code" type="hidden" value="<%=problem_code %>" />
+	        				</div>
+	        			</div>
 	        		</c:when>
 	        	</c:choose>
         	</div>
